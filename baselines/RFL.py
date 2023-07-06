@@ -89,8 +89,9 @@ def RFL(args):
             tmp += sim_weight * i
         f_G = torch.div(tmp, w_sum)
 
-        acc_s2 = globaltest(copy.deepcopy(net_glob).to(args.device), dataset_train, args)
+        acc_s1 = globaltest(copy.deepcopy(net_glob).to(args.device), dataset_train, args)
         acc_s2 = globaltest(copy.deepcopy(net_glob).to(args.device), dataset_test, args)
+        f_acc.write("third stage round %d, test acc  %.4f \n" % (rnd, acc_s1))
         f_acc.write("third stage round %d, test acc  %.4f \n" % (rnd, acc_s2))
         f_acc.flush()
     #     # logging
