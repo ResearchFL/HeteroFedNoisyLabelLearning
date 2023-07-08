@@ -5,8 +5,8 @@ import argparse
 
 def args_parser():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-algo', "--algorithm", type=str, default="RFL")
-    parser.add_argument('-gpu', type=int, default=1, help="GPU ID, -1 for CPU")
+    parser.add_argument('-algo', "--algorithm", type=str, default="FedTwin")
+    parser.add_argument('-gpu', type=int, default=0, help="GPU ID, -1 for CPU")
 
     #######################################################################
     ################### federated common arguments#########################
@@ -17,10 +17,10 @@ def args_parser():
     parser.add_argument('--frac2', type=float, default=0.1,
                         help="fration of selected clients in fine-tuning and usual training stage")
     parser.add_argument('--num_users', type=int, default=100, help="number of uses: K")
-    parser.add_argument('--local_bs', type=int, default=10, help="local batch size: B")
-    parser.add_argument('--lr', type=float, default=0.03, help="learning rate")
-    parser.add_argument('--model', type=str, default='resnet18', help="model name")
-    parser.add_argument('--dataset', type=str, default='cifar10', help="name of dataset")
+    parser.add_argument('--local_bs', type=int, default=32, help="local batch size: B")
+    parser.add_argument('--lr', type=float, default=0.01, help="learning rate")
+    parser.add_argument('--model', type=str, default='lenet', help="model name")
+    parser.add_argument('--dataset', type=str, default='mnist', help="name of dataset")
     parser.add_argument('--pretrained', action='store_true', help="whether to use pre-trained model")
     parser.add_argument('--iid', action='store_true', help="i.i.d. or non-i.i.d.")
     parser.add_argument('--non_iid_prob_class', type=float, default=0.7, help="non iid sampling prob for class")
@@ -75,13 +75,10 @@ def args_parser():
 
 
     ###### FedTwinCORES####################
-    parser.add_argument('-pl', "--personal_learning_rate", type=str, default=0.09)
+    parser.add_argument('--plr', help="--personal_learning_rate", type=str, default=0.09)
     # same with FedCorr
-    parser.add_argument("--beta", type=float, default=1.0,
-                        help="Average moving parameter for pFedMe")
     parser.add_argument("--lamda", type=int, default=15, help="Regularization term")
     parser.add_argument("--K", type=int, default=5, help="Computation steps")
-
     return parser.parse_args()
 
     # # training arguments

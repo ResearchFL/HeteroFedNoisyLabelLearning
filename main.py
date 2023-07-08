@@ -9,6 +9,7 @@ import torch
 from util.options import args_parser
 from baselines.FedCorr import FedCorr
 from baselines.RFL import RFL
+from baselines.FedTwin import FedTwin
 np.set_printoptions(threshold=np.inf)
 """
 Major framework of noise FL
@@ -34,8 +35,8 @@ def run(args):
     # path
     if not os.path.exists(args.save_dir + 'txtsave/'):
         os.makedirs(args.save_dir + 'txtsave/')
-    args.txtpath = args.save_dir + 'txtsave/%s_%s_NL_%.1f_LB_%.1f_Rnd_%d_ep_%d_Frac_%.2f_LR_%.3f_Beta_%.1f_Seed_%d' % (
-        args.dataset, args.model, args.level_n_system,
+    args.txtpath = args.save_dir + 'txtsave/%s_%s_%s_NL_%.1f_LB_%.1f_Rnd_%d_ep_%d_Frac_%.2f_LR_%.3f_Beta_%.1f_Seed_%d' % (
+        args.algorithm, args.dataset, args.model, args.level_n_system,
         args.level_n_lowerb, args.rounds2,
         args.local_ep, args.frac2, args.lr,
         args.beta, args.seed)

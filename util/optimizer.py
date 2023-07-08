@@ -1,3 +1,5 @@
+import copy
+
 from torch.optim import Optimizer
 
 class TwinOptimizer(Optimizer):
@@ -12,7 +14,7 @@ class TwinOptimizer(Optimizer):
         loss = None
         if closure is not None:
             loss = closure
-        weight_update = local_weight_updated.copy()
+        weight_update = copy.deepcopy(local_weight_updated)
         for group in self.param_groups:
             for p, localweight in zip(group['params'], weight_update):
                 p.data = p.data - group['lr'] * (
@@ -23,7 +25,7 @@ class TwinOptimizer(Optimizer):
         loss = None
         if closure is not None:
             loss = closure
-        weight_update = local_weight_updated.copy()
+        weight_update = copy.deepcopy(local_weight_updated)
         for group in self.param_groups:
             for p, localweight in zip(group['params'], weight_update):
                 p.data = localweight.data

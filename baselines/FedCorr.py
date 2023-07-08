@@ -70,7 +70,7 @@ def FedCorr(args):
                 # proximal term operation
                 mu_i = mu_list[idx]
                 local = LocalUpdate(args=args, dataset=dataset_train, idxs=sample_idx)
-                w, loss = local.update_weights(net=copy.deepcopy(net_local).to(args.device), seed=args.seed,
+                w, loss = local.update_weights(net=copy.deepcopy(net_local).to(args.device),
                                                w_g=net_glob.to(args.device), epoch=args.local_ep, mu=mu_i)
 
                 net_local.load_state_dict(copy.deepcopy(w))
@@ -185,7 +185,7 @@ def FedCorr(args):
         idxs_users = np.random.choice(range(args.num_users), m, replace=False, p=prob)
         for idx in idxs_users:  # training over the subset
             local = LocalUpdate(args=args, dataset=dataset_train, idxs=dict_users[idx])
-            w_local, loss_local = local.update_weights(net=copy.deepcopy(net_glob).to(args.device), seed=args.seed,
+            w_local, loss_local = local.update_weights(net=copy.deepcopy(net_glob).to(args.device),
                                                        w_g=net_glob.to(args.device), epoch=args.local_ep, mu=0)
             w_locals.append(copy.deepcopy(w_local))  # store every updated model
             loss_locals.append(copy.deepcopy(loss_local))

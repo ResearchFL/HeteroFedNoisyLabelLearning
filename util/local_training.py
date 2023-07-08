@@ -1,96 +1,14 @@
 # python version 3.7.1
 # -*- coding: utf-8 -*-
+import copy
 
+from util.loss import CORESLoss
 import torch
 from torch.nn import CrossEntropyLoss
 from torch.utils.data import DataLoader, Dataset
-import torch.nn.functional as F
+from util.loss import FedTwinCRLoss
 import numpy as np
 from util.optimizer import TwinOptimizer
-
-class FedTwinCRLoss(CrossEntropyLoss):
-    __constants__ = ['weight', 'ignore_index', 'reduction']
-
-    def __init__(self, weight=None, ignore_index=-100, reduction='mean'):
-        super(FedTwinCRLoss, self).__init__(weight, reduction)
-        self.ignore_index = ignore_index
-
-    @staticmethod
-    def is_clean_judge(input1, input2, target):
-        loss1 = F.cross_entropy(input1, target, reduction='none')
-        loss2 = F.cross_entropy(input2, target, reduction='none')
-        loss1_ = -torch.log(F.softmax(input1, dim=1) + 1e-8)
-        loss2_ = -torch.log(F.softmax(input2, dim=1) + 1e-8)
-
-        loss1 = loss1 - torch.mean(loss1_, 1)
-        loss2 = loss2 - torch.mean(loss2_, 1)
-
-        thre = -0.0
-
-        ind_1 = (loss1.data.cpu().numpy() <= thre)  # global model Sieve
-        ind_2 = (loss2.data.cpu().numpy() <= thre)  # private model Sieve
-        return [ind_1, ind_2]
-
-    @staticmethod
-    def cal_prf(is_clean_real, is_clean_judge):
-        is_clean_judge_1 = is_clean_judge[0]
-        is_clean_judge_2 = is_clean_judge[1]
-        pure_ratio_1 = 100 * np.sum(is_clean_real * is_clean_judge_1) / (np.sum(is_clean_judge_1) + 1e-8)
-        pure_ratio_2 = 100 * np.sum(is_clean_real * is_clean_judge_2) / (np.sum(is_clean_judge_2) + 1e-8)
-
-        Recall_1 = 100 * np.sum(is_clean_real * is_clean_judge_1) / (np.sum(is_clean_real) + 1e-8)
-        Recall_2 = 100 * np.sum(is_clean_real * is_clean_judge_2) / (np.sum(is_clean_real) + 1e-8)
-
-        F_score1 = 2 * pure_ratio_1 * Recall_1 / (pure_ratio_1 + Recall_1 + 1e-8)
-        F_score2 = 2 * pure_ratio_2 * Recall_2 / (pure_ratio_2 + Recall_2 + 1e-8)
-        # clean_num = np.sum(ind_2)
-        return {'pure_ratio': [pure_ratio_1, pure_ratio_2],
-                'recall': [Recall_1, Recall_2],
-                'F_score': [F_score1, F_score2]}
-
-    def forward(self, input1, input2, target, round, noise_prior, epoch, begin_sel):
-        # input1: global_model output
-        # input2: private_model output
-        beta = self.f_beta((round - 1) * 5 + epoch)
-        [is_clean_judge_1, is_clean_judge_2] = FedTwinCRLoss.is_clean_judge(input1, input2, target)
-
-        if begin_sel:
-            if np.sum(is_clean_judge_2) == 0:
-                loss_1_update = F.cross_entropy(input1, target, reduction='none')
-                loss1 = torch.sum(loss_1_update) / len(is_clean_judge_2) * 1e-8
-            else:
-                is_clean_judge_2 = torch.tensor(is_clean_judge_2)
-                loss_1_update = F.cross_entropy(input1[is_clean_judge_2], target[is_clean_judge_2], reduction='none') - beta * torch.sum(
-                    torch.mul(noise_prior, -torch.log(F.softmax(input1[is_clean_judge_2], dim=1) + 1e-8)), 1)
-                loss1 = torch.sum(loss_1_update) / np.sum(is_clean_judge_2.data.cpu().numpy())
-            if np.sum(is_clean_judge_1) == 0:
-                loss_2_update = F.cross_entropy(input2, target, reduction='none')
-                loss2 = torch.sum(loss_2_update) / len(is_clean_judge_1) * 1e-8
-                # loss2 = None
-            else:
-                ind_1 = torch.tensor(is_clean_judge_1)
-                loss_2_update = F.cross_entropy(input2[ind_1], target[ind_1], reduction='none') - beta * torch.sum(
-                    torch.mul(noise_prior, -torch.log(F.softmax(input2[ind_1], dim=1) + 1e-8)), 1)
-                loss2 = torch.sum(loss_2_update) / np.sum(ind_1.data.cpu().numpy())
-        else:
-            loss_1_update = F.cross_entropy(input1, target, reduction='none') - beta * torch.sum(
-                torch.mul(noise_prior, -torch.log(F.softmax(input1, dim=1) + 1e-8)), 1)
-            loss_2_update = F.cross_entropy(input2, target, reduction='none') - beta * torch.sum(
-                torch.mul(noise_prior, -torch.log(F.softmax(input2, dim=1) + 1e-8)), 1)
-            loss1 = torch.sum(loss_1_update) / len(is_clean_judge_1)
-            loss2 = torch.sum(loss_2_update) / len(is_clean_judge_2)
-
-        return [loss1, loss2]
-
-    def f_beta(self, batch):
-        max_beta = 0.1
-        beta1 = np.linspace(0.0, 0.0, num=1)
-        beta2 = np.linspace(0.0, max_beta, num=50)
-        beta3 = np.linspace(max_beta, max_beta, num=5000)
-
-        beta = np.concatenate((beta1, beta2, beta3), axis=0)
-        return beta[batch]
-
 
 def mixup_data(x, y, alpha=1.0, use_cuda=True):
     '''Returns mixed inputs, pairs of targets, and lambda'''
@@ -139,7 +57,7 @@ class LocalUpdate(object):
         test = DataLoader(dataset, batch_size=128)
         return train, test
 
-    def update_weights(self, net, seed, w_g, epoch, mu=1, lr=None):
+    def update_weights(self, net, w_g, epoch, mu=1, lr=None):
         net_glob = w_g
 
         net.train()
@@ -184,10 +102,10 @@ class LocalUpdate(object):
         return net.state_dict(), sum(epoch_loss) / len(epoch_loss)
 
 
-class FedTwinCORESLocalUpdate(object):
+class FedTwinLocalUpdate(object):
     def __init__(self, args, dataset, idxs):
         self.args = args
-        self.loss_func = CrossEntropyLoss()  # loss function -- cross entropy
+        self.loss_func = FedTwinCRLoss(reduce=False)  # loss function -- cross entropy
         self.ldr_train, self.ldr_test = self.train_test(dataset, list(idxs))
 
     def train_test(self, dataset, idxs):
@@ -196,52 +114,49 @@ class FedTwinCORESLocalUpdate(object):
         test = DataLoader(dataset, batch_size=128)
         return train, test
 
-    def update_weights(self, net, K, lamda, w_g, epoch, mu=1):
-        net_glob = w_g
-
-        net.train()
+    def update_weights(self, net_p, net_glob, rounds, epoch):
+        net_p.train()
+        net_glob.train()
+        net_global_param = copy.deepcopy(list(net_glob.parameters()))
         # train and update
-        optimizer = TwinOptimizer(net.parameters(), lr=self.args.plr)
-
+        optimizer_theta = TwinOptimizer(net_p.parameters(), lr=self.args.plr)
+        optimizer_w = torch.optim.SGD(net_glob.parameters(), lr=self.args.plr)
         epoch_loss = []
+        n_bar_k = []
         for iter in range(epoch):
             batch_loss = []
             # use/load data from split training set "ldr_train"
+            b_bar_p = []
             for batch_idx, (images, labels) in enumerate(self.ldr_train):
                 images, labels = images.to(self.args.device), labels.to(self.args.device)
                 # K = 30 # K is number of personalized steps
-                for i in range(K):
-                    if self.args.mixup:
-                        inputs, targets_a, targets_b, lam = mixup_data(images, labels, self.args.alpha)
-                        net.zero_grad()
-                        log_probs = net(inputs)
-                        loss = mixup_criterion(self.loss_func, log_probs, targets_a, targets_b, lam)
-                    else:
-                        labels = labels.long()
-                        net.zero_grad()
-                        log_probs = net(images)
-                        loss = self.loss_func(log_probs, labels)
+                for i in range(self.args.K):
+                    labels = labels.long()
+                    net_p.zero_grad()
+                    log_probs_p = net_p(images)
+                    log_probs_g = net_glob(images)
+                    # log_probs = net(images)
+                    # TODO:check
+                    loss_p, loss_g, len_loss_p, len_loss_g = self.loss_func(log_probs_p, log_probs_g, labels, rounds)
+                    loss_p.backward()
+                    self.persionalized_model_bar, _ = optimizer_theta.step(net_global_param)
 
-                    if self.args.beta > 0:
-                        if batch_idx > 0:
-                            w_diff = torch.tensor(0.).to(self.args.device)
-                            for w, w_t in zip(net_glob.parameters(), net.parameters()):
-                                w_diff += torch.pow(torch.norm(w - w_t), 2)
-                            w_diff = torch.sqrt(w_diff)
-                            loss += self.args.beta * mu * w_diff
-                    loss.backward()
-                    self.persionalized_model_bar, _ = optimizer.step(net)
-
-                batch_loss.append(loss.item())
+                # batch_loss.append(loss.item())
                 # update local weight after finding aproximate theta
-                for new_param, localweight in zip(self.persionalized_model_bar, net_glob):
-                    localweight.data = localweight.data - lamda * self.args.lr * (
+                for new_param, localweight in zip(self.persionalized_model_bar, net_global_param):
+                    localweight.data = localweight.data - self.args.lamda * self.args.lr * (
                                 localweight.data - new_param.data)
+                for param, new_param in zip(net_glob.parameters(), net_global_param):
+                    param.data = new_param.data.clone()
+                net_glob.zero_grad()
+                loss_g.backward()
+                optimizer_w.step()
+                batch_loss.append(loss_g.item())
+                b_bar_p.append(len_loss_g)
+            n_bar_k.append(sum(b_bar_p))
             epoch_loss.append(sum(batch_loss)/len(batch_loss))
-        # update arameters
-        for param, new_param in zip(net.parameters(), net_glob):
-            param.data = new_param.data.clone()
-        return net.state_dict(), net_glob.state_dict(), sum(epoch_loss) / len(epoch_loss)
+        n_bar_k = sum(n_bar_k)/len(n_bar_k)
+        return net_p.state_dict(), net_glob.state_dict(), sum(epoch_loss) / len(epoch_loss), n_bar_k
 
 
 class LocalUpdateRFL:
@@ -293,8 +208,7 @@ class LocalUpdateRFL:
         return ind_update
 
     def train(self, net, f_G, client_num):
-        optimizer = torch.optim.SGD(net.parameters(), lr=self.args.lr, momentum=self.args.momentum,
-                                    weight_decay=self.args.weight_decay)
+        optimizer = torch.optim.SGD(net.parameters(), lr=self.args.lr)
         epoch_loss = []
 
         net.eval()
@@ -414,7 +328,7 @@ def globaltest(net, test_dataset, args):
     return acc
 
 
-def personalizedtest():
+def personalizedtest(args, p_models, dataset_test):
         stats = test_persionalized_model()
         stats_train = train_error_and_loss_persionalized_model()
         glob_acc = np.sum(stats[2])*1.0/np.sum(stats[1])
@@ -428,3 +342,88 @@ def personalizedtest():
         print("Average Personal Accurancy: ", glob_acc)
         print("Average Personal Trainning Accurancy: ", train_acc)
         print("Average Personal Trainning Loss: ",train_loss)
+
+
+# class CoteachingCRLoss(CrossEntropyLoss):
+#     __constants__ = ['weight', 'ignore_index', 'reduction']
+#
+#     def __init__(self, weight=None, ignore_index=-100, reduction='mean'):
+#         super(CoteachingCRLoss, self).__init__(weight, reduction)
+#         self.ignore_index = ignore_index
+#
+#     @staticmethod
+#     def is_clean_judge(input1, input2, target):
+#         loss1 = F.cross_entropy(input1, target, reduction='none')
+#         loss2 = F.cross_entropy(input2, target, reduction='none')
+#         loss1_ = -torch.log(F.softmax(input1, dim=1) + 1e-8)
+#         loss2_ = -torch.log(F.softmax(input2, dim=1) + 1e-8)
+#
+#         loss1 = loss1 - torch.mean(loss1_, 1)
+#         loss2 = loss2 - torch.mean(loss2_, 1)
+#
+#         thre = -0.0
+#
+#         ind_1 = (loss1.data.cpu().numpy() <= thre)  # global model Sieve
+#         ind_2 = (loss2.data.cpu().numpy() <= thre)  # private model Sieve
+#         return [ind_1, ind_2]
+#
+#     @staticmethod
+#     def cal_prf(is_clean_real, is_clean_judge):
+#         is_clean_judge_1 = is_clean_judge[0]
+#         is_clean_judge_2 = is_clean_judge[1]
+#         pure_ratio_1 = 100 * np.sum(is_clean_real * is_clean_judge_1) / (np.sum(is_clean_judge_1) + 1e-8)
+#         pure_ratio_2 = 100 * np.sum(is_clean_real * is_clean_judge_2) / (np.sum(is_clean_judge_2) + 1e-8)
+#
+#         Recall_1 = 100 * np.sum(is_clean_real * is_clean_judge_1) / (np.sum(is_clean_real) + 1e-8)
+#         Recall_2 = 100 * np.sum(is_clean_real * is_clean_judge_2) / (np.sum(is_clean_real) + 1e-8)
+#
+#         F_score1 = 2 * pure_ratio_1 * Recall_1 / (pure_ratio_1 + Recall_1 + 1e-8)
+#         F_score2 = 2 * pure_ratio_2 * Recall_2 / (pure_ratio_2 + Recall_2 + 1e-8)
+#         # clean_num = np.sum(ind_2)
+#         return {'pure_ratio': [pure_ratio_1, pure_ratio_2],
+#                 'recall': [Recall_1, Recall_2],
+#                 'F_score': [F_score1, F_score2]}
+#
+#     def forward(self, input1, input2, target, round, noise_prior, epoch, begin_sel):
+#         # input1: global_model output
+#         # input2: private_model output
+#         beta = self.f_beta((round - 1) * 5 + epoch)
+#         [is_clean_judge_1, is_clean_judge_2] = FedTwinCRLoss.is_clean_judge(input1, input2, target)
+#
+#         if begin_sel:
+#             if np.sum(is_clean_judge_2) == 0:
+#                 loss_1_update = F.cross_entropy(input1, target, reduction='none')
+#                 loss1 = torch.sum(loss_1_update) / len(is_clean_judge_2) * 1e-8
+#             else:
+#                 is_clean_judge_2 = torch.tensor(is_clean_judge_2)
+#                 loss_1_update = F.cross_entropy(input1[is_clean_judge_2], target[is_clean_judge_2], reduction='none') - beta * torch.sum(
+#                     torch.mul(noise_prior, -torch.log(F.softmax(input1[is_clean_judge_2], dim=1) + 1e-8)), 1)
+#                 loss1 = torch.sum(loss_1_update) / np.sum(is_clean_judge_2.data.cpu().numpy())
+#             if np.sum(is_clean_judge_1) == 0:
+#                 loss_2_update = F.cross_entropy(input2, target, reduction='none')
+#                 loss2 = torch.sum(loss_2_update) / len(is_clean_judge_1) * 1e-8
+#                 # loss2 = None
+#             else:
+#                 ind_1 = torch.tensor(is_clean_judge_1)
+#                 loss_2_update = F.cross_entropy(input2[ind_1], target[ind_1], reduction='none') - beta * torch.sum(
+#                     torch.mul(noise_prior, -torch.log(F.softmax(input2[ind_1], dim=1) + 1e-8)), 1)
+#                 loss2 = torch.sum(loss_2_update) / np.sum(ind_1.data.cpu().numpy())
+#         else:
+#             loss_1_update = F.cross_entropy(input1, target, reduction='none') - beta * torch.sum(
+#                 torch.mul(noise_prior, -torch.log(F.softmax(input1, dim=1) + 1e-8)), 1)
+#             loss_2_update = F.cross_entropy(input2, target, reduction='none') - beta * torch.sum(
+#                 torch.mul(noise_prior, -torch.log(F.softmax(input2, dim=1) + 1e-8)), 1)
+#             loss1 = torch.sum(loss_1_update) / len(is_clean_judge_1)
+#             loss2 = torch.sum(loss_2_update) / len(is_clean_judge_2)
+#
+#         return [loss1, loss2]
+#
+#     def f_beta(self, batch):
+#         max_beta = 0.1
+#         beta1 = np.linspace(0.0, 0.0, num=1)
+#         beta2 = np.linspace(0.0, max_beta, num=50)
+#         beta3 = np.linspace(max_beta, max_beta, num=5000)
+#
+#         beta = np.concatenate((beta1, beta2, beta3), axis=0)
+#         return beta[batch]
+

@@ -10,7 +10,42 @@ import torch.utils
 def get_dataset(args):
     args.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-    if args.dataset == 'cifar10':
+    if args.dataset == 'mnist':
+        data_path = '../data/mnist'
+        args.num_classes = 10
+        from six.moves import urllib
+
+        opener = urllib.request.build_opener()
+        opener.addheaders = [('User-agent', 'Mozilla/5.0')]
+        urllib.request.install_opener(opener)
+
+        trans_mnist_train = transforms.Compose([
+            transforms.RandomCrop(28, padding=4),
+            transforms.RandomHorizontalFlip(),
+            transforms.Resize((32, 32)),
+            transforms.ToTensor(),
+            transforms.Normalize((0.1307,), (0.3081,)),
+        ])
+        trans_mnist_val = transforms.Compose([
+            transforms.Resize((32, 32)),
+            transforms.ToTensor(),
+            transforms.Normalize((0.1307,), (0.3081,)),
+        ])
+        dataset_train = datasets.MNIST(
+            root=data_path,
+            download=True,
+            train=True,
+            transform=trans_mnist_train,
+        )
+        dataset_test = datasets.MNIST(
+            root=data_path,
+            download=True,
+            train=False,
+            transform=trans_mnist_val,
+        )
+        n_train = len(dataset_train)
+        y_train = np.array(dataset_train.targets)
+    elif args.dataset == 'cifar10':
         data_path = '../data/cifar10'
         args.num_classes = 10
         # args.model = 'resnet18'

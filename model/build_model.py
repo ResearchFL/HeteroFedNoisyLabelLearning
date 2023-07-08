@@ -8,7 +8,10 @@ import torch.nn as nn
 def build_model(args):
     # choose different Neural network model for different args or input
     if args.model == 'lenet':
-        netglob = LeNet().to(args.device)
+        if args.dataset == 'mnist':
+            netglob = LeNet(1).to(args.device)
+        else:
+            netglob = LeNet().to(args.device)
 
     elif args.model == 'resnet18':
         netglob = ResNet18(args.num_classes)
