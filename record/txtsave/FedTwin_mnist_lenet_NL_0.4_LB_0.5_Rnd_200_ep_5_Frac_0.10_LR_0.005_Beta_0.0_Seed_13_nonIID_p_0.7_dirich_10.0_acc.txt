@@ -1,0 +1,48 @@
+
+ Round 0 global test acc  46.5300 
+
+ Round 1 global test acc  65.3600 
+
+ Round 2 global test acc  65.1000 
+
+ Round 3 global test acc  74.9700 
+
+ Round 4 global test acc  80.1300 
+
+ Round 5 global test acc  81.0100 
+
+ Round 6 global test acc  77.8000 
+
+ Round 7 global test acc  82.0900 
+
+ Round 8 global test acc  86.4700 
+
+ Round 9 global test acc  83.7900 
+
+ Round 10 global test acc  88.1100 
+
+ Round 11 global test acc  90.8000 
+
+ Round 12 global test acc  89.8400 
+
+ Round 13 global test acc  89.8300 
+
+ Round 14 global test acc  72.2800 
+
+ Round 15 global test acc  92.1500 
+
+ Round 16 global test acc  92.7600 
+
+ Round 17 global test acc  93.8600 
+
+ Round 18 global test acc  92.9400 
+
+ Round 19 global test acc  94.6300 
+
+ Round 20 global test acc  93.1300 
+
+ Round 21 global test acc  94.2800 
+
+ Round 22 global test acc  94.4600 
+
+ Round 23 global test acc  46.9900 
