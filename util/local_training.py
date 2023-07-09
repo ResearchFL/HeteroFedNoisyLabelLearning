@@ -1,14 +1,12 @@
 # python version 3.7.1
 # -*- coding: utf-8 -*-
-import copy
 
-from util.loss import CORESLoss
 import torch
 from torch.nn import CrossEntropyLoss
 from torch.utils.data import DataLoader, Dataset
 from util.loss import FedTwinCRLoss
 import numpy as np
-from util.optimizer import TwinOptimizer
+from util.optimizer import TwinOptimizer, adjust_learning_rate, alpha_plan
 
 def mixup_data(x, y, alpha=1.0, use_cuda=True):
     '''Returns mixed inputs, pairs of targets, and lambda'''
@@ -122,6 +120,8 @@ class FedTwinLocalUpdate:
         # train and update
         optimizer_theta = TwinOptimizer(net_p.parameters(), lr=self.args.plr, lamda=self.args.lamda)
         optimizer_w = torch.optim.SGD(net_glob.parameters(), lr=self.args.plr)
+        adjust_learning_rate(optimizer_theta, rounds, alpha_plan)
+        adjust_learning_rate(optimizer_w, rounds, alpha_plan)
         epoch_loss = []
         n_bar_k = []
         for iter in range(epoch):

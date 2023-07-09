@@ -40,7 +40,7 @@ def FedTwin(args):
             print('\n')
 
         # dict_len = [len(dict_users[idx]) for idx in idxs_users]
-        w_glob_fl = personalized_aggregation(netglob.state_dict(), w_locals, n_bar,  args.gamma)
+        w_glob_fl = personalized_aggregation(netglob.state_dict(), w_locals, n_bar, args.gamma)
         netglob.load_state_dict(w_glob_fl)
         # acc_s1 = personalizedtest(args, p_models, dataset_test)
         acc_s2 = globaltest(netglob.to(args.device), dataset_test, args)

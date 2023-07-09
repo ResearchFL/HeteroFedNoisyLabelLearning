@@ -2,9 +2,10 @@ from typing import Optional
 from torch import Tensor
 import torch
 import torch.nn.functional as F
-from torch.autograd import Variable
+from util.optimizer import filter_noisy_data, f_beta
 from torch.nn import CrossEntropyLoss
-import numpy as np
+
+
 class CORESLoss(CrossEntropyLoss):
     r"""
     Examples::
@@ -45,35 +46,6 @@ class CORESLoss(CrossEntropyLoss):
             loss = loss - beta * torch.sum(torch.mul(noise_prior, loss_), 1)
         loss_ = loss
         return loss_
-
-def filter_noisy_data(input: Tensor, target: Tensor):
-    loss = F.cross_entropy(input, target, reduction='none')  # crossentropy loss
-    loss_numpy = loss.data.cpu().numpy()
-    num_batch = len(loss_numpy)  # number of batch
-    loss_v = np.zeros(num_batch)  # selected tag
-    loss_ = -torch.log(F.softmax(input, dim=1) + 1e-8)
-    # sel metric
-    loss_sel = loss - torch.mean(loss_, 1)  # CRLOSS - alpha
-    loss_div_numpy = loss_sel.data.cpu().numpy()
-    for i in range(len(loss_numpy)):
-        if loss_div_numpy[i] <= 0:
-            loss_v[i] = 1.0
-    loss_v = loss_v.astype(np.float32)
-
-    return Variable(torch.from_numpy(loss_v)).bool()
-def f_beta(round):
-    # beta1 = np.linspace(0.0, 0.0, num=2)
-    # beta2 = np.linspace(0.0, 2, num=6)
-    # beta3 = np.linspace(2, 2, num=100-8)
-    #
-    # beta = np.concatenate((beta1, beta2, beta3), axis=0)
-    max_beta = 0.1
-    beta1 = np.linspace(0.0, 0.0, num=2)
-    beta2 = np.linspace(0.0, max_beta, num=50)
-    beta3 = np.linspace(max_beta, max_beta, num=5000)
-
-    beta = np.concatenate((beta1, beta2, beta3), axis=0)
-    return beta[round]
 
 
 class FedTwinCRLoss(CrossEntropyLoss):

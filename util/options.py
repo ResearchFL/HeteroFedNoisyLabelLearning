@@ -40,7 +40,7 @@ def args_parser():
     parser.add_argument('--rounds1', type=int, default=200, help="rounds of training in fine_tuning stage")
     parser.add_argument('--frac1', type=float, default=0.01, help="fration of selected clients in preprocessing stage")
 
-    parser.add_argument('--beta', type=float, default=0, help="coefficient for local proximal，0 for fedavg, 1 for fedprox, 5 for noise fl")
+    parser.add_argument('--beta', type=float, default=5, help="coefficient for local proximal，0 for fedavg, 1 for fedprox, 5 for noise fl")
     ## correction
     parser.add_argument('--relabel_ratio', type=float, default=0.5, help="proportion of relabeled samples among selected noisy samples")
     parser.add_argument('--confidence_thres', type=float, default=0.5, help="threshold of model's confidence on each sample")
@@ -77,8 +77,8 @@ def args_parser():
     ###### FedTwinCORES####################
     parser.add_argument('--plr', help="--personal_learning_rate", type=str, default=0.09)
     # same with FedCorr
-    parser.add_argument("--lamda", type=int, default=15, help="Regularization term")
-    parser.add_argument("--K", type=int, default=5, help="Computation steps")
+    parser.add_argument("--lamda", type=int, default=15, help="regularization term")
+    parser.add_argument("--K", type=int, default=5, help="personalized computation steps")
     parser.add_argument('--gamma', type=float, default=1, help="personalized aggregation")
     return parser.parse_args()
 

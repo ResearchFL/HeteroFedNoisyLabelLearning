@@ -35,11 +35,9 @@ def run(args):
     # path
     if not os.path.exists(args.save_dir + 'txtsave/'):
         os.makedirs(args.save_dir + 'txtsave/')
-    args.txtpath = args.save_dir + 'txtsave/%s_%s_%s_NL_%.1f_LB_%.1f_Rnd_%d_ep_%d_Frac_%.2f_LR_%.3f_Beta_%.1f_Seed_%d' % (
-        args.algorithm, args.dataset, args.model, args.level_n_system,
-        args.level_n_lowerb, args.rounds2,
-        args.local_ep, args.frac2, args.lr,
-        args.beta, args.seed)
+    args.txtpath = args.save_dir + 'txtsave/%s_%s_%s_NL_%.1f_LB_%.1f_Rnd_%d_ep_%d_Frac_%.2f_LR_%.3f_Seed_%d' % (
+        args.algorithm, args.dataset, args.model, args.level_n_system, args.level_n_lowerb,
+        args.rounds2, args.local_ep, args.frac2, args.lr, args.seed)
     if args.iid:
         args.txtpath += "_IID"
     else:
@@ -50,6 +48,7 @@ def run(args):
     # run Algorithm
     eval(args.algorithm)(args)
     torch.cuda.empty_cache()
+
 
 if __name__ == '__main__':
     # parse args
