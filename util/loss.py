@@ -27,18 +27,18 @@ class CORESLoss(CrossEntropyLoss):
     label_smoothing: float
 
     def __init__(self, weight: Optional[Tensor] = None, size_average=None, ignore_index: int = -100,
-                 reduce=None, reduction: str = 'mean', label_smoothing: float = 0.0) -> None:
-        super().__init__(weight, size_average, reduce, reduction)
+                reduction: str = 'mean', label_smoothing: float = 0.0) -> None:
+        super().__init__(weight, size_average, reduction)
         self.ignore_index = ignore_index
         self.label_smoothing = label_smoothing
-        self.reduce = reduce
+        self.reduction = reduction
 
     def forward(self, input: Tensor, target: Tensor, beta, noise_prior=None) -> Tensor:
         # beta = f_beta(epoch)
         # if epoch == 1:
             # print(f'current beta is {beta}')
-        loss = F.cross_entropy(input, target, reduce=self.reduce) # crossentropy loss
-        loss_ = -torch.log(F.softmax(input) + 1e-8)
+        loss = F.cross_entropy(input, target, reduction=self.reduction) # crossentropy loss
+        loss_ = -torch.log(F.softmax(input, dim=1) + 1e-8)
         if noise_prior is None:
             loss = loss - beta * torch.mean(loss_, 1)  # CORESLoss
         else:
@@ -47,11 +47,11 @@ class CORESLoss(CrossEntropyLoss):
         return loss_
 
 def filter_noisy_data(input: Tensor, target: Tensor):
-    loss = F.cross_entropy(input, target, reduce=False)  # crossentropy loss
+    loss = F.cross_entropy(input, target, reduction='none')  # crossentropy loss
     loss_numpy = loss.data.cpu().numpy()
     num_batch = len(loss_numpy)  # number of batch
     loss_v = np.zeros(num_batch)  # selected tag
-    loss_ = -torch.log(F.softmax(input) + 1e-8)
+    loss_ = -torch.log(F.softmax(input, dim=1) + 1e-8)
     # sel metric
     loss_sel = loss - torch.mean(loss_, 1)  # CRLOSS - alpha
     loss_div_numpy = loss_sel.data.cpu().numpy()
@@ -60,19 +60,19 @@ def filter_noisy_data(input: Tensor, target: Tensor):
             loss_v[i] = 1.0
     loss_v = loss_v.astype(np.float32)
 
-    return Variable(torch.from_numpy(loss_v)).cuda()
+    return Variable(torch.from_numpy(loss_v)).bool()
 def f_beta(round):
-    beta1 = np.linspace(0.0, 0.0, num=2)
-    beta2 = np.linspace(0.0, 2, num=6)
-    beta3 = np.linspace(2, 2, num=100-8)
-
-    beta = np.concatenate((beta1, beta2, beta3), axis=0)
-    # max_beta = 0.1
-    # beta1 = np.linspace(0.0, 0.0, num=1)
-    # beta2 = np.linspace(0.0, max_beta, num=50)
-    # beta3 = np.linspace(max_beta, max_beta, num=5000)
+    # beta1 = np.linspace(0.0, 0.0, num=2)
+    # beta2 = np.linspace(0.0, 2, num=6)
+    # beta3 = np.linspace(2, 2, num=100-8)
     #
     # beta = np.concatenate((beta1, beta2, beta3), axis=0)
+    max_beta = 0.1
+    beta1 = np.linspace(0.0, 0.0, num=2)
+    beta2 = np.linspace(0.0, max_beta, num=6)
+    beta3 = np.linspace(max_beta, max_beta, num=5000)
+
+    beta = np.concatenate((beta1, beta2, beta3), axis=0)
     return beta[round]
 
 
@@ -82,14 +82,14 @@ class FedTwinCRLoss(CrossEntropyLoss):
     label_smoothing: float
 
     def __init__(self, weight: Optional[Tensor] = None, size_average=None, ignore_index: int = -100,
-                 reduce=None, reduction: str = 'mean', label_smoothing: float = 0.0) -> None:
-        super().__init__(weight, size_average, reduce, reduction)
+                 reduction: str = 'mean', label_smoothing: float = 0.0) -> None:
+        super().__init__(weight, size_average, reduction)
         self.ignore_index = ignore_index
         self.label_smoothing = label_smoothing
-        self.reduce = reduce
+        self.reduction = reduction
 
     def forward(self, input_p, input_g, target, rounds, noise_prior=None):
-        coresloss = CORESLoss(reduce=self.reduce)
+        coresloss = CORESLoss(reduction=self.reduction)
         Beta = f_beta(rounds)
         if rounds <= 1:  # 如果在前30epoch集中式，对应联邦应该是30/local_epoch
             loss_p_update = coresloss(input_p, target, Beta, noise_prior)
@@ -103,11 +103,13 @@ class FedTwinCRLoss(CrossEntropyLoss):
         loss_batch_p = loss_p_update.data.cpu().numpy() # number of batch loss1
         loss_batch_g = loss_g_update.data.cpu().numpy()  # number of batch loss1
         if len(loss_batch_p) == 0.0:
-            loss_p = torch.mean(loss_p_update) / 100000000
+            loss_p = coresloss(input_p, target, Beta, noise_prior)
+            loss_p = torch.mean(loss_p) / 100000000
         else:
             loss_p = torch.sum(loss_p_update) / len(loss_batch_p)
         if len(loss_batch_g) == 0.0:
-            loss_g = torch.mean(loss_g_update) / 100000000
+            loss_g = coresloss(input_g, target, Beta, noise_prior)
+            loss_g = torch.mean(loss_g) / 100000000
         else:
             loss_g = torch.sum(loss_g_update) / len(loss_batch_g)
         return loss_p, loss_g, len(loss_batch_p), len(loss_batch_g)

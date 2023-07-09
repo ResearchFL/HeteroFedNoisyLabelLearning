@@ -102,11 +102,12 @@ class LocalUpdate(object):
         return net.state_dict(), sum(epoch_loss) / len(epoch_loss)
 
 
-class FedTwinLocalUpdate(object):
+class FedTwinLocalUpdate:
     def __init__(self, args, dataset, idxs):
         self.args = args
-        self.loss_func = FedTwinCRLoss(reduce=False)  # loss function -- cross entropy
+        self.loss_func = FedTwinCRLoss(reduction='none')  # loss function -- cross entropy
         self.ldr_train, self.ldr_test = self.train_test(dataset, list(idxs))
+        self.idxs = idxs
 
     def train_test(self, dataset, idxs):
         # split training set, validation set and test set
@@ -117,9 +118,9 @@ class FedTwinLocalUpdate(object):
     def update_weights(self, net_p, net_glob, rounds, epoch):
         net_p.train()
         net_glob.train()
-        net_global_param = copy.deepcopy(list(net_glob.parameters()))
+        # net_global_param = copy.deepcopy(list(net_glob.parameters()))
         # train and update
-        optimizer_theta = TwinOptimizer(net_p.parameters(), lr=self.args.plr)
+        optimizer_theta = TwinOptimizer(net_p.parameters(), lr=self.args.plr, lamda=self.args.lamda)
         optimizer_w = torch.optim.SGD(net_glob.parameters(), lr=self.args.plr)
         epoch_loss = []
         n_bar_k = []
@@ -130,24 +131,29 @@ class FedTwinLocalUpdate(object):
             for batch_idx, (images, labels) in enumerate(self.ldr_train):
                 images, labels = images.to(self.args.device), labels.to(self.args.device)
                 # K = 30 # K is number of personalized steps
+
+                labels = labels.long()
+                log_probs_p = net_p(images)
+                log_probs_g = net_glob(images)
+                # log_probs = net(images)
+                loss_p, loss_g, len_loss_p, len_loss_g = self.loss_func(log_probs_p, log_probs_g, labels, rounds)
                 for i in range(self.args.K):
-                    labels = labels.long()
                     net_p.zero_grad()
-                    log_probs_p = net_p(images)
-                    log_probs_g = net_glob(images)
-                    # log_probs = net(images)
-                    # TODO:check
-                    loss_p, loss_g, len_loss_p, len_loss_g = self.loss_func(log_probs_p, log_probs_g, labels, rounds)
-                    loss_p.backward()
-                    self.persionalized_model_bar, _ = optimizer_theta.step(net_global_param)
+                    if i == (self.args.K - 1):
+                        loss_p.backward()
+                    else:
+                        loss_p.backward(retain_graph=True)
+                    self.persionalized_model_bar, _ = optimizer_theta.step(list(net_glob.parameters()))
 
                 # batch_loss.append(loss.item())
                 # update local weight after finding aproximate theta
-                for new_param, localweight in zip(self.persionalized_model_bar, net_global_param):
+                for new_param, localweight in zip(self.persionalized_model_bar, net_glob.parameters()):
                     localweight.data = localweight.data - self.args.lamda * self.args.lr * (
                                 localweight.data - new_param.data)
-                for param, new_param in zip(net_glob.parameters(), net_global_param):
+
+                for param, new_param in zip(net_glob.parameters(), net_glob.parameters()):
                     param.data = new_param.data.clone()
+
                 net_glob.zero_grad()
                 loss_g.backward()
                 optimizer_w.step()
@@ -155,8 +161,12 @@ class FedTwinLocalUpdate(object):
                 b_bar_p.append(len_loss_g)
             n_bar_k.append(sum(b_bar_p))
             epoch_loss.append(sum(batch_loss)/len(batch_loss))
+            print("\rRounds {:d} Client {} Epoch {:d}: train loss {:.4f}"
+                  .format(rounds, iter, self.idxs, sum(epoch_loss) / len(epoch_loss)), end='\n', flush=True)
+            # if any(math.isnan(loss) for loss in epoch_loss):
+            #     print("debug epoch_loss")
         n_bar_k = sum(n_bar_k)/len(n_bar_k)
-        return net_p.state_dict(), net_glob.state_dict(), sum(epoch_loss) / len(epoch_loss), n_bar_k
+        return net_p, net_glob.state_dict(), sum(epoch_loss) / len(epoch_loss), n_bar_k
 
 
 class LocalUpdateRFL:
@@ -324,24 +334,54 @@ def globaltest(net, test_dataset, args):
             total += labels.size(0)
             correct += (predicted == labels).sum().item()
 
-    acc = correct / total
+    acc = (correct / total)*100
     return acc
 
 
 def personalizedtest(args, p_models, dataset_test):
-        stats = test_persionalized_model()
-        stats_train = train_error_and_loss_persionalized_model()
-        glob_acc = np.sum(stats[2])*1.0/np.sum(stats[1])
-        train_acc = np.sum(stats_train[2])*1.0/np.sum(stats_train[1])
-        # train_loss = np.dot(stats_train[3], stats_train[1])*1.0/np.sum(stats_train[1])
-        train_loss = sum([x * y for (x, y) in zip(stats_train[1], stats_train[3])]).item() / np.sum(stats_train[1])
-        rs_glob_acc_per.append(glob_acc)
-        rs_train_acc_per.append(train_acc)
-        rs_train_loss_per.append(train_loss)
-        #print("stats_train[1]",stats_train[3][0])
-        print("Average Personal Accurancy: ", glob_acc)
-        print("Average Personal Trainning Accurancy: ", train_acc)
-        print("Average Personal Trainning Loss: ",train_loss)
+    pass
+#     num_samples = []
+#     tot_correct = []
+#     for p_model in p_models:
+#         self.model.eval()
+#         test_acc = 0
+#         self.update_parameters(self.persionalized_model_bar)
+#         for x, y in self.testloaderfull:
+#             x, y = x.to(self.device), y.to(self.device)
+#             output = self.model(x)
+#             test_acc += (torch.sum(torch.argmax(output, dim=1) == y)).item()
+#             # @loss += self.loss(output, y)
+#             # print(self.id + ", Test Accuracy:", test_acc / y.shape[0] )
+#             # print(self.id + ", Test Loss:", loss)
+#         self.update_parameters(self.local_model)
+#         test_acc, y.shape[0]
+#
+#
+#
+#
+#
+#
+#         ct, ns = c.test_persionalized_model()
+#         tot_correct.append(ct * 1.0)
+#         num_samples.append(ns)
+#     ids = [c.id for c in self.users]
+#
+#     return ids, num_samples, tot_correct
+#
+#
+#     stats = test_persionalized_model()
+#         stats_train = train_error_and_loss_persionalized_model()
+#         glob_acc = np.sum(stats[2])*1.0/np.sum(stats[1])
+#         train_acc = np.sum(stats_train[2])*1.0/np.sum(stats_train[1])
+#         # train_loss = np.dot(stats_train[3], stats_train[1])*1.0/np.sum(stats_train[1])
+#         train_loss = sum([x * y for (x, y) in zip(stats_train[1], stats_train[3])]).item() / np.sum(stats_train[1])
+#         rs_glob_acc_per.append(glob_acc)
+#         rs_train_acc_per.append(train_acc)
+#         rs_train_loss_per.append(train_loss)
+#         #print("stats_train[1]",stats_train[3][0])
+#         print("Average Personal Accurancy: ", glob_acc)
+#         print("Average Personal Trainning Accurancy: ", train_acc)
+#         print("Average Personal Trainning Loss: ",train_loss)
 
 
 # class CoteachingCRLoss(CrossEntropyLoss):
