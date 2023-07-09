@@ -21,7 +21,7 @@ def FedTwin(args):
     m = max(int(args.frac2 * args.num_users), 1)  # num_select_clients
     prob = [1 / args.num_users for i in range(args.num_users)]
     for rnd in range(args.rounds2):
-        if rnd <=1:
+        if rnd <=args.begin_sel:
             print("\rRounds {:d} early training:"
               .format(rnd), end='\n', flush=True)
         else:
@@ -32,7 +32,7 @@ def FedTwin(args):
         for idx in idxs_users:  # training over the subset
             local = FedTwinLocalUpdate(args=args, dataset=dataset_train, idxs=dict_users[idx], client_idx=idx)
             p_model, w_local, loss_local, n_bar_k = local.update_weights(net_p=copy.deepcopy(netglob).to(args.device),
-                                                                         net_glob=copy.deepcopy(netglob).to(args.device), rounds=rnd, epoch=args.local_ep)
+                                                                         net_glob=copy.deepcopy(netglob).to(args.device), rounds=rnd, args=args)
             w_locals.append(copy.deepcopy(w_local))  # store every updated model
             p_models.append(p_model)
             loss_locals.append(loss_local)

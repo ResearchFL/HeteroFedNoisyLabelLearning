@@ -1,12 +1,14 @@
 # python version 3.7.1
 # -*- coding: utf-8 -*-
+import copy
 
+from util.loss import CORESLoss
 import torch
 from torch.nn import CrossEntropyLoss
 from torch.utils.data import DataLoader, Dataset
 from util.loss import FedTwinCRLoss
 import numpy as np
-from util.optimizer import TwinOptimizer, adjust_learning_rate, alpha_plan
+from util.optimizer import TwinOptimizer, adjust_learning_rate
 
 def mixup_data(x, y, alpha=1.0, use_cuda=True):
     '''Returns mixed inputs, pairs of targets, and lambda'''
@@ -113,18 +115,20 @@ class FedTwinLocalUpdate:
         test = DataLoader(dataset, batch_size=128)
         return train, test
 
-    def update_weights(self, net_p, net_glob, rounds, epoch):
+    def update_weights(self, net_p, net_glob, rounds, args):
         net_p.train()
         net_glob.train()
         # net_global_param = copy.deepcopy(list(net_glob.parameters()))
         # train and update
         optimizer_theta = TwinOptimizer(net_p.parameters(), lr=self.args.plr, lamda=self.args.lamda)
         optimizer_w = torch.optim.SGD(net_glob.parameters(), lr=self.args.plr)
-        adjust_learning_rate(optimizer=optimizer_theta, round=rounds, alpha_plan=alpha_plan)
-        self.args.lr = adjust_learning_rate(round=rounds, alpha_plan=alpha_plan)
+        adjust_learning_rate(rounds, args, optimizer_theta)
+        adjust_learning_rate(rounds, args, optimizer_w)
+        lr=args.lr
+        # lr = adjust_learning_rate(round, args)
         epoch_loss = []
         n_bar_k = []
-        for iter in range(epoch):
+        for iter in range(args.local_ep):
             batch_loss = []
             # use/load data from split training set "ldr_train"
             b_bar_p = []
@@ -136,7 +140,7 @@ class FedTwinLocalUpdate:
                 log_probs_p = net_p(images)
                 log_probs_g = net_glob(images)
                 # log_probs = net(images)
-                loss_p, loss_g, len_loss_p, len_loss_g = self.loss_func(log_probs_p, log_probs_g, labels, rounds)
+                loss_p, loss_g, len_loss_p, len_loss_g = self.loss_func(log_probs_p, log_probs_g, labels, rounds, args)
                 for i in range(self.args.K):
                     net_p.zero_grad()
                     if i == (self.args.K - 1):
@@ -148,7 +152,7 @@ class FedTwinLocalUpdate:
                 # batch_loss.append(loss.item())
                 # update local weight after finding aproximate theta
                 for new_param, localweight in zip(self.persionalized_model_bar, net_glob.parameters()):
-                    localweight.data = localweight.data - self.args.lamda * self.args.lr * (
+                    localweight.data = localweight.data - self.args.lamda * lr * (
                                 localweight.data - new_param.data)
 
                 for param, new_param in zip(net_glob.parameters(), net_glob.parameters()):
@@ -163,6 +167,8 @@ class FedTwinLocalUpdate:
             epoch_loss.append(sum(batch_loss)/len(batch_loss))
             print("\rRounds {:d} Client {:d} Epoch {:d}: train loss {:.4f}"
                   .format(rounds, self.client_idx, iter, sum(epoch_loss) / len(epoch_loss)), end='\n', flush=True)
+            # if any(math.isnan(loss) for loss in epoch_loss):
+            #     print("debug epoch_loss")
         n_bar_k = sum(n_bar_k)/len(n_bar_k)
         return net_p, net_glob.state_dict(), sum(epoch_loss) / len(epoch_loss), n_bar_k
 

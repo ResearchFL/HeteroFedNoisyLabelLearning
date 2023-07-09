@@ -5,7 +5,6 @@ import numpy as np
 from torch import Tensor
 import torch.nn.functional as F
 import torch
-
 class TwinOptimizer(Optimizer):
     def __init__(self, params, lr=0.01, lamda=0.1, mu=0.001):
         # self.local_weight_updated = local_weight # w_i,K
@@ -53,27 +52,42 @@ def filter_noisy_data(input: Tensor, target: Tensor):
 
     return Variable(torch.from_numpy(loss_v)).bool()
 
-def f_beta(round):
+
+def f_beta(round, args):
     # beta1 = np.linspace(0.0, 0.0, num=2)
     # beta2 = np.linspace(0.0, 2, num=6)
     # beta3 = np.linspace(2, 2, num=100-8)
     #
     # beta = np.concatenate((beta1, beta2, beta3), axis=0)
-    beta1 = np.linspace(0.0, 0.0, num=10)
-    beta2 = np.linspace(0.0, 2, num=30)
-    beta3 = np.linspace(2, 2, num=60)
-
+    # max_beta = 1
+    # beta1 = np.linspace(0.0, 0.0, num=2)
+    # beta2 = np.linspace(0.0, max_beta, num=20)
+    # beta3 = np.linspace(max_beta, max_beta, num=5000)
+    #
+    # beta = np.concatenate((beta1, beta2, beta3), axis=0)
+    max_beta = 1.0
+    beta1 = np.linspace(0.0, 0.0, num=2)
+    beta2 = np.linspace(0.0, max_beta, num=args.begin_sel)
+    beta3 = np.linspace(max_beta, max_beta, num=5000)
     beta = np.concatenate((beta1, beta2, beta3), axis=0)
     return beta[round]
 
+
 # Adjust learning rate and for SGD Optimizer
-def adjust_learning_rate(round, alpha_plan, optimizer=None):
-    if optimizer == None:
-        lr = alpha_plan[round] / (1 + f_beta(round))
+# def adjust_learning_rate(optimizer, round, args):
+#     alpha_plan = [args.plr] * 3 + [args.plr * 0.1] * 50
+#     if type(optimizer).__name__ == "TwinOptimizer":
+#         for param_group in optimizer.param_groups:
+#             param_group['lr']= alpha_plan[round] / (1 + f_beta(round, args))
+#     else:
+#         for param_group in optimizer.param_groups:
+#             param_group['lr']= alpha_plan[round] / (1 + f_beta(round, args))
+
+def adjust_learning_rate(round, args, optimizer=None):
+    alpha_plan = {[args.plr] * 3 + [args.plr * 0.1] * 50, [args.lr] * 3 + [args.lr * 0.1] * 50}
+    if optimizer is None:
+        lr = alpha_plan[1][round] / (1 + f_beta(round))
         return lr
     else:
         for param_group in optimizer.param_groups:
-            param_group['lr']= alpha_plan[round] / (1 + f_beta(round))
-
-
-alpha_plan = [0.1] * 50 + [0.01] * 50
+            param_group['lr']= alpha_plan[0][round] / (1 + f_beta(round, args))
