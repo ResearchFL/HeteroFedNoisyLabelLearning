@@ -11,7 +11,7 @@ from util.local_training import FedTwinLocalUpdate, globaltest, personalizedtest
 
 
 def FedTwin(args):
-    f_acc = open(args.txtpath + '_acc.txt', 'w')
+    f_save = open(args.txtpath + '_acc.txt', 'w')
     # load dataset
     dataset_train, dataset_test, dict_users, y_train, gamma_s = load_data_with_noisy_label(args)
 
@@ -38,14 +38,17 @@ def FedTwin(args):
             loss_locals.append(loss_local)
             n_bar.append(n_bar_k)
             print('\n')
-
+        loss_round = sum(loss_locals)/len(loss_locals)
         # dict_len = [len(dict_users[idx]) for idx in idxs_users]
         w_glob_fl = personalized_aggregation(netglob.state_dict(), w_locals, n_bar, args.gamma)
         netglob.load_state_dict(w_glob_fl)
         # acc_s1 = personalizedtest(args, p_models, dataset_test)
         acc_s2 = globaltest(netglob.to(args.device), dataset_test, args)
         # f_acc.write("third stage round %d, personalized test acc  %.4f \n" % (rnd, acc_s1))
-        show_info = "\n Round %d global test acc  %.4f \n" % (rnd, acc_s2)
-        print(show_info)
-        f_acc.write(show_info)
-        f_acc.flush()
+        show_info_loss = "Round %d train loss  %.4f" % (rnd, loss_round)
+        show_info_test_acc = "Round %d global test acc  %.4f \n" % (rnd, acc_s2)
+        print(show_info_test_acc)
+        print(show_info_loss)
+        f_save.write(show_info_test_acc)
+        f_save.write(show_info_loss)
+        f_save.flush()

@@ -1,4 +1,116 @@
 
- Round 0 global test acc  33.8400 
+ Round 0 global test acc  53.0700 
 
- Round 1 global test acc  43.7200 
+ Round 0 train loss  2.0429 
+
+ Round 1 global test acc  69.4300 
+
+ Round 1 train loss  1.8818 
+
+ Round 2 global test acc  74.2200 
+
+ Round 2 train loss  1.5234 
+
+ Round 3 global test acc  78.7100 
+
+ Round 3 train loss  1.3345 
+
+ Round 4 global test acc  79.6300 
+
+ Round 4 train loss  0.9458 
+
+ Round 5 global test acc  78.7500 
+
+ Round 5 train loss  0.6910 
+
+ Round 6 global test acc  77.9700 
+
+ Round 6 train loss  -0.2921 
+
+ Round 7 global test acc  79.6900 
+
+ Round 7 train loss  -0.3665 
+
+ Round 8 global test acc  77.1200 
+
+ Round 8 train loss  -1.9974 
+
+ Round 9 global test acc  76.1200 
+
+ Round 9 train loss  -1.5402 
+
+ Round 10 global test acc  77.6900 
+
+ Round 10 train loss  -3.7812 
+
+ Round 11 global test acc  78.0800 
+
+ Round 11 train loss  -4.7090 
+
+ Round 12 global test acc  76.4600 
+
+ Round 12 train loss  -4.1174 
+
+ Round 13 global test acc  80.7800 
+
+ Round 13 train loss  -5.3420 
+
+ Round 14 global test acc  81.7100 
+
+ Round 14 train loss  -5.8929 
+
+ Round 15 global test acc  83.7600 
+
+ Round 15 train loss  -6.2609 
+
+ Round 16 global test acc  80.8300 
+
+ Round 16 train loss  -5.0273 
+
+ Round 17 global test acc  83.8400 
+
+ Round 17 train loss  -5.3276 
+
+ Round 18 global test acc  83.4400 
+
+ Round 18 train loss  -5.5962 
+
+ Round 19 global test acc  86.1900 
+
+ Round 19 train loss  -5.0261 
+
+ Round 20 global test acc  79.5200 
+
+ Round 20 train loss  -4.6384 
+
+ Round 21 global test acc  81.3500 
+
+ Round 21 train loss  -5.5440 
+
+ Round 22 global test acc  81.1300 
+
+ Round 22 train loss  -5.9530 
+
+ Round 23 global test acc  9.8000 
+
+ Round 23 train loss  4396380489199430.5000 
+
+ Round 24 global test acc  9.8000 
+
+ Round 24 train loss  nan 
+
+ Round 25 global test acc  9.8000 
+
+ Round 25 train loss  nan 
+
+ Round 26 global test acc  9.8000 
+
+ Round 26 train loss  nan 
+
+ Round 27 global test acc  9.8000 
+
+ Round 27 train loss  nan 
+
+ Round 28 global test acc  9.8000 
+
+ Round 28 train loss  nan 

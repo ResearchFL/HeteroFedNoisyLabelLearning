@@ -21,5 +21,8 @@ def personalized_aggregation(netglob, w, n_bar, gamma):
         w_agg[k] = w_agg[k] * n_bar[0]
         for i in range(1, len(w)):
             w_agg[k] += w[i][k] * n_bar[i]
-        w_agg[k] = gamma * torch.div(w_agg[k], sum(n_bar)) + (1 - gamma) * netglob[k]
+        if sum(n_bar) == 0:
+            w_agg[k] = gamma * torch.div(w_agg[k], sum(n_bar)+100000000) + (1 - gamma) * netglob[k]
+        else:
+            w_agg[k] = gamma * torch.div(w_agg[k], sum(n_bar)) + (1 - gamma) * netglob[k]
     return w_agg

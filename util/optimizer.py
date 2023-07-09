@@ -65,7 +65,7 @@ def f_beta(round, args):
     # beta3 = np.linspace(max_beta, max_beta, num=5000)
     #
     # beta = np.concatenate((beta1, beta2, beta3), axis=0)
-    max_beta = 1.0
+    max_beta = 0.5
     beta1 = np.linspace(0.0, 0.0, num=2)
     beta2 = np.linspace(0.0, max_beta, num=args.begin_sel)
     beta3 = np.linspace(max_beta, max_beta, num=5000)
@@ -84,9 +84,9 @@ def f_beta(round, args):
 #             param_group['lr']= alpha_plan[round] / (1 + f_beta(round, args))
 
 def adjust_learning_rate(round, args, optimizer=None):
-    alpha_plan = {[args.plr] * 3 + [args.plr * 0.1] * 50, [args.lr] * 3 + [args.lr * 0.1] * 50}
+    alpha_plan = [[args.plr] * 3 + [args.plr * 0.1] * 50, [args.lr] * 3 + [args.lr * 0.1] * 50]
     if optimizer is None:
-        lr = alpha_plan[1][round] / (1 + f_beta(round))
+        lr = alpha_plan[1][round] / (1 + f_beta(round, args))
         return lr
     else:
         for param_group in optimizer.param_groups:

@@ -124,8 +124,9 @@ class FedTwinLocalUpdate:
         optimizer_w = torch.optim.SGD(net_glob.parameters(), lr=self.args.plr)
         adjust_learning_rate(rounds, args, optimizer_theta)
         adjust_learning_rate(rounds, args, optimizer_w)
-        lr=args.lr
-        # lr = adjust_learning_rate(round, args)
+        # lr=args.lr
+        lr = adjust_learning_rate(rounds, args)
+
         epoch_loss = []
         n_bar_k = []
         for iter in range(args.local_ep):
