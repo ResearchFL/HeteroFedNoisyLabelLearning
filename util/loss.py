@@ -69,7 +69,7 @@ def f_beta(round):
     # beta = np.concatenate((beta1, beta2, beta3), axis=0)
     max_beta = 0.1
     beta1 = np.linspace(0.0, 0.0, num=2)
-    beta2 = np.linspace(0.0, max_beta, num=6)
+    beta2 = np.linspace(0.0, max_beta, num=50)
     beta3 = np.linspace(max_beta, max_beta, num=5000)
 
     beta = np.concatenate((beta1, beta2, beta3), axis=0)

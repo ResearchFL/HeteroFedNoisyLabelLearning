@@ -18,7 +18,7 @@ def args_parser():
                         help="fration of selected clients in fine-tuning and usual training stage")
     parser.add_argument('--num_users', type=int, default=100, help="number of uses: K")
     parser.add_argument('--local_bs', type=int, default=32, help="local batch size: B")
-    parser.add_argument('--lr', type=float, default=0.01, help="learning rate")
+    parser.add_argument('--lr', type=float, default=0.005, help="learning rate") #0.01
     parser.add_argument('--model', type=str, default='lenet', help="model name")
     parser.add_argument('--dataset', type=str, default='mnist', help="name of dataset")
     parser.add_argument('--pretrained', action='store_true', help="whether to use pre-trained model")
@@ -79,6 +79,7 @@ def args_parser():
     # same with FedCorr
     parser.add_argument("--lamda", type=int, default=15, help="Regularization term")
     parser.add_argument("--K", type=int, default=5, help="Computation steps")
+    parser.add_argument('--gamma', type=float, default=1, help="personalized aggregation")
     return parser.parse_args()
 
     # # training arguments
