@@ -126,7 +126,6 @@ class FedTwinLocalUpdate:
         adjust_learning_rate(rounds, args, optimizer_w)
         # lr=args.lr
         lr = adjust_learning_rate(rounds, args)
-
         epoch_loss = []
         n_bar_k = []
         for iter in range(args.local_ep):

@@ -1,0 +1,159 @@
+global test acc  45.9300 
+
+Round 0 train loss  2.0190
+global test acc  37.6600 
+
+Round 1 train loss  1.9755
+global test acc  60.1100 
+
+Round 2 train loss  1.7173
+global test acc  72.7400 
+
+Round 3 train loss  1.4573
+global test acc  76.2900 
+
+Round 4 train loss  0.9395
+global test acc  76.8500 
+
+Round 5 train loss  0.6372
+global test acc  79.2800 
+
+Round 6 train loss  -0.4309
+global test acc  80.2800 
+
+Round 7 train loss  -0.4884
+global test acc  79.2100 
+
+Round 8 train loss  -2.2082
+global test acc  78.0600 
+
+Round 9 train loss  -1.7266
+global test acc  79.4000 
+
+Round 10 train loss  -4.0224
+global test acc  80.7600 
+
+Round 11 train loss  -5.4257
+global test acc  80.9000 
+
+Round 12 train loss  -4.8430
+global test acc  82.4100 
+
+Round 13 train loss  -5.9693
+global test acc  82.4100 
+
+Round 14 train loss  -6.2993
+global test acc  85.5800 
+
+Round 15 train loss  -6.6519
+global test acc  82.6800 
+
+Round 16 train loss  -5.5552
+global test acc  85.9800 
+
+Round 17 train loss  -5.7487
+global test acc  87.7200 
+
+Round 18 train loss  -6.0156
+global test acc  88.6000 
+
+Round 19 train loss  -5.5809
+global test acc  86.0100 
+
+Round 20 train loss  -5.1749
+global test acc  84.2600 
+
+Round 21 train loss  -5.9707
+global test acc  84.1400 
+
+Round 22 train loss  -6.2191
+global test acc  89.2200 
+
+Round 23 train loss  -6.7183
+global test acc  83.7600 
+
+Round 24 train loss  -5.3663
+global test acc  89.6400 
+
+Round 25 train loss  -5.2897
+global test acc  81.9700 
+
+Round 26 train loss  -5.0082
+global test acc  89.5600 
+
+Round 27 train loss  -6.0546
+global test acc  88.9600 
+
+Round 28 train loss  -6.0086
+global test acc  90.5200 
+
+Round 29 train loss  -6.2587
+global test acc  90.2400 
+
+Round 30 train loss  -5.7571
+global test acc  90.7100 
+
+Round 31 train loss  -5.6535
+global test acc  91.2100 
+
+Round 32 train loss  -6.0992
+global test acc  91.3000 
+
+Round 33 train loss  -6.9047
+global test acc  91.0300 
+
+Round 34 train loss  -5.2265
+global test acc  91.0300 
+
+Round 35 train loss  -7.0593
+global test acc  72.3600 
+
+Round 36 train loss  -6.4170
+global test acc  80.9700 
+
+Round 37 train loss  -4.0210
+global test acc  88.5000 
+
+Round 38 train loss  -6.4540
+global test acc  91.6800 
+
+Round 39 train loss  -5.7925
+global test acc  73.4800 
+
+Round 40 train loss  -5.0847
+global test acc  91.4900 
+
+Round 41 train loss  -5.6028
+global test acc  92.3200 
+
+Round 42 train loss  -5.0665
+global test acc  93.2100 
+
+Round 43 train loss  -5.5407
+global test acc  84.7900 
+
+Round 44 train loss  -5.5738
+global test acc  92.3400 
+
+Round 45 train loss  -6.2075
+global test acc  92.9100 
+
+Round 46 train loss  -6.1147
+global test acc  87.2400 
+
+Round 47 train loss  -6.2831
+global test acc  93.0900 
+
+Round 48 train loss  -6.3449
+global test acc  90.1500 
+
+Round 49 train loss  -6.0742
+global test acc  93.8700 
+
+Round 50 train loss  -6.6698
+global test acc  90.0200 
+
+Round 51 train loss  -6.7534
+global test acc  93.5800 
+
+Round 52 train loss  -5.5346

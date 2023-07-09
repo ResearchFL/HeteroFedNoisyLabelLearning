@@ -84,7 +84,7 @@ def f_beta(round, args):
 #             param_group['lr']= alpha_plan[round] / (1 + f_beta(round, args))
 
 def adjust_learning_rate(round, args, optimizer=None):
-    alpha_plan = [[args.plr] * 3 + [args.plr * 0.1] * 50, [args.lr] * 3 + [args.lr * 0.1] * 50]
+    alpha_plan = [[args.plr] * 10 + [args.plr * 0.1] * 500, [args.lr] * 10 + [args.lr * 0.1] * 500]
     if optimizer is None:
         lr = alpha_plan[1][round] / (1 + f_beta(round, args))
         return lr

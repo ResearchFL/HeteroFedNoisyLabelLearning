@@ -8,7 +8,7 @@ with open('./record/txtsave/FedTwin_mnist_lenet_NL_0.4_LB_0.5_Rnd_200_ep_5_Frac_
 # 提取测试准确率
 test_acc = []
 for line in lines:
-    if 'global test acc' in line:
+    if 'train loss' in line:
         acc = float(line.split()[-1])
         test_acc.append(acc)
 
@@ -18,8 +18,8 @@ rounds = np.arange(len(test_acc))
 # 绘制曲线图
 plt.plot(rounds, test_acc, marker='o')
 plt.xlabel('Round')
-plt.ylabel('Test Accuracy')
-plt.title('Test Accuracy vs. Round')
+plt.ylabel('Train Loss')
+plt.title('Train Loss vs. Round')
 plt.xticks(rounds)
 plt.grid(True)
 plt.show()
