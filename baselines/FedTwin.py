@@ -30,13 +30,14 @@ def FedTwin(args):
         w_locals, p_models, loss_locals, n_bar = [], [], [], []
         idxs_users = np.random.choice(range(args.num_users), m, replace=False, p=prob)
         for idx in idxs_users:  # training over the subset
-            local = FedTwinLocalUpdate(args=args, dataset=dataset_train, idxs=dict_users[idx])
+            local = FedTwinLocalUpdate(args=args, dataset=dataset_train, idxs=dict_users[idx], client_idx=idx)
             p_model, w_local, loss_local, n_bar_k = local.update_weights(net_p=copy.deepcopy(netglob).to(args.device),
                                                                          net_glob=copy.deepcopy(netglob).to(args.device), rounds=rnd, epoch=args.local_ep)
             w_locals.append(copy.deepcopy(w_local))  # store every updated model
             p_models.append(p_model)
             loss_locals.append(loss_local)
             n_bar.append(n_bar_k)
+            print('\n')
 
         # dict_len = [len(dict_users[idx]) for idx in idxs_users]
         w_glob_fl = personalized_aggregation(netglob.state_dict(), w_locals, n_bar,  args.gamma)

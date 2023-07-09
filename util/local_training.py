@@ -103,11 +103,11 @@ class LocalUpdate(object):
 
 
 class FedTwinLocalUpdate:
-    def __init__(self, args, dataset, idxs):
+    def __init__(self, args, dataset, idxs, client_idx):
         self.args = args
         self.loss_func = FedTwinCRLoss(reduction='none')  # loss function -- cross entropy
         self.ldr_train, self.ldr_test = self.train_test(dataset, list(idxs))
-        self.idxs = idxs
+        self.client_idx = client_idx
 
     def train_test(self, dataset, idxs):
         # split training set, validation set and test set
@@ -161,8 +161,8 @@ class FedTwinLocalUpdate:
                 b_bar_p.append(len_loss_g)
             n_bar_k.append(sum(b_bar_p))
             epoch_loss.append(sum(batch_loss)/len(batch_loss))
-            print("\rRounds {:d} Client {} Epoch {:d}: train loss {:.4f}"
-                  .format(rounds, iter, self.idxs, sum(epoch_loss) / len(epoch_loss)), end='\n', flush=True)
+            print("\rRounds {:d} Client {:d} Epoch {:d}: train loss {:.4f}"
+                  .format(rounds, self.client_idx, iter, sum(epoch_loss) / len(epoch_loss)), end='\n', flush=True)
             # if any(math.isnan(loss) for loss in epoch_loss):
             #     print("debug epoch_loss")
         n_bar_k = sum(n_bar_k)/len(n_bar_k)
