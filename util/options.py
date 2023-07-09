@@ -76,7 +76,6 @@ def args_parser():
 
     ###### FedTwinCORES####################
     parser.add_argument('--plr', help="--personal_learning_rate", type=str, default=0.09)
-    # same with FedCorr
     parser.add_argument("--lamda", type=int, default=15, help="regularization term")
     parser.add_argument("--K", type=int, default=5, help="personalized computation steps")
     parser.add_argument('--gamma', type=float, default=1, help="personalized aggregation")

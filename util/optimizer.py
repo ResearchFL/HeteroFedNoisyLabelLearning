@@ -67,9 +67,13 @@ def f_beta(round):
     return beta[round]
 
 # Adjust learning rate and for SGD Optimizer
-def adjust_learning_rate(optimizer, round, alpha_plan):
-    for param_group in optimizer.param_groups:
-        param_group['lr']= alpha_plan[round] / (1 + f_beta(round))
+def adjust_learning_rate(round, alpha_plan, optimizer=None):
+    if optimizer == None:
+        lr = alpha_plan[round] / (1 + f_beta(round))
+        return lr
+    else:
+        for param_group in optimizer.param_groups:
+            param_group['lr']= alpha_plan[round] / (1 + f_beta(round))
 
 
 alpha_plan = [0.1] * 50 + [0.01] * 50

@@ -120,8 +120,8 @@ class FedTwinLocalUpdate:
         # train and update
         optimizer_theta = TwinOptimizer(net_p.parameters(), lr=self.args.plr, lamda=self.args.lamda)
         optimizer_w = torch.optim.SGD(net_glob.parameters(), lr=self.args.plr)
-        adjust_learning_rate(optimizer_theta, rounds, alpha_plan)
-        adjust_learning_rate(optimizer_w, rounds, alpha_plan)
+        adjust_learning_rate(optimizer=optimizer_theta, round=rounds, alpha_plan=alpha_plan)
+        self.args.lr = adjust_learning_rate(round=rounds, alpha_plan=alpha_plan)
         epoch_loss = []
         n_bar_k = []
         for iter in range(epoch):
@@ -163,8 +163,6 @@ class FedTwinLocalUpdate:
             epoch_loss.append(sum(batch_loss)/len(batch_loss))
             print("\rRounds {:d} Client {:d} Epoch {:d}: train loss {:.4f}"
                   .format(rounds, self.client_idx, iter, sum(epoch_loss) / len(epoch_loss)), end='\n', flush=True)
-            # if any(math.isnan(loss) for loss in epoch_loss):
-            #     print("debug epoch_loss")
         n_bar_k = sum(n_bar_k)/len(n_bar_k)
         return net_p, net_glob.state_dict(), sum(epoch_loss) / len(epoch_loss), n_bar_k
 
