@@ -9,7 +9,7 @@ from util.local_training import globaltest, get_local_update_objects
 
 
 def RFL(args):
-    f_acc = open(args.txtname + '_acc.txt', 'a')
+    f_save = open(args.save_dir + args.txtname + '_acc.txt', 'a')
     ##############################
     #  Load Dataset
     ##############################
@@ -89,11 +89,11 @@ def RFL(args):
             tmp += sim_weight * i
         f_G = torch.div(tmp, w_sum)
 
-        acc_s1 = globaltest(copy.deepcopy(net_glob).to(args.device), dataset_train, args)
-        acc_s2 = globaltest(copy.deepcopy(net_glob).to(args.device), dataset_test, args)
-        f_acc.write("third stage round %d, test acc  %.4f \n" % (rnd, acc_s1))
-        f_acc.write("third stage round %d, test acc  %.4f \n" % (rnd, acc_s2))
-        f_acc.flush()
+        acc_s2 = globaltest(net_glob.to(args.device), dataset_test, args)
+        show_info_test_acc = "global test acc  %.4f \n" % (acc_s2)
+        print(show_info_test_acc)
+        f_save.write(show_info_test_acc)
+        f_save.flush()
     #     # logging
     #     train_acc, train_loss = test_img(net_glob, log_train_data_loader, args)
     #     test_acc, test_loss = test_img(net_glob, log_test_data_loader, args)
