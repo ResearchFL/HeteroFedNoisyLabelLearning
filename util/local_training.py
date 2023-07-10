@@ -41,8 +41,9 @@ class DatasetSplit(Dataset):
         return len(self.idxs)
 
     def __getitem__(self, item):
+        item = int(item)
         image, label = self.dataset[self.idxs[item]]
-        return image, label
+        return image, label, self.idxs[item]
 
 
 class LocalUpdate(object):
@@ -122,23 +123,23 @@ class FedTwinLocalUpdate:
         # train and update
         optimizer_theta = TwinOptimizer(net_p.parameters(), lr=self.args.plr, lamda=self.args.lamda)
         optimizer_w = torch.optim.SGD(net_glob.parameters(), lr=self.args.plr)
-        adjust_learning_rate(rounds, args, optimizer_theta)
-        adjust_learning_rate(rounds, args, optimizer_w)
-        # lr=args.lr
-        lr = adjust_learning_rate(rounds, args)
+        lr = args.lr
+        # adjust_learning_rate(rounds, args, optimizer_theta)
+        # adjust_learning_rate(rounds, args, optimizer_w)
+        # lr = adjust_learning_rate(rounds, args)
         epoch_loss = []
         n_bar_k = []
         for iter in range(args.local_ep):
             batch_loss = []
             # use/load data from split training set "ldr_train"
             b_bar_p = []
-            for batch_idx, (images, labels) in enumerate(self.ldr_train):
+            for batch_idx, (images, labels, _)  in enumerate(self.ldr_train):
                 images, labels = images.to(self.args.device), labels.to(self.args.device)
                 # K = 30 # K is number of personalized steps
 
                 labels = labels.long()
-                log_probs_p = net_p(images)
-                log_probs_g = net_glob(images)
+                log_probs_p, _ = net_p(images)
+                log_probs_g, _ = net_glob(images)
                 # log_probs = net(images)
                 loss_p, loss_g, len_loss_p, len_loss_g = self.loss_func(log_probs_p, log_probs_g, labels, rounds, args)
                 for i in range(self.args.K):
@@ -182,10 +183,10 @@ class LocalUpdateRFL:
 
         self.pseudo_labels = torch.zeros(len(self.dataset), dtype=torch.long, device=self.args.device)
         self.sim = torch.nn.CosineSimilarity(dim=1)
-        self.loss_func = CrossEntropyLoss()
+        self.loss_func = CrossEntropyLoss(reduction="none")
         self.ldr_train, self.ldr_test = self.train_test(dataset, list(idxs))
         # self.ldr_train = DataLoader(DatasetSplitRFL(dataset, idxs), batch_size=self.args.local_bs, shuffle=True)
-        # self.ldr_train_tmp = DataLoader(DatasetSplitRFL(dataset, idxs), batch_size=1, shuffle=True)
+        self.ldr_train_tmp = DataLoader(DatasetSplit(dataset, idxs), batch_size=1, shuffle=True)
     def train_test(self, dataset, idxs):
         # split training set, validation set and test set
         train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True)
@@ -209,9 +210,9 @@ class LocalUpdateRFL:
 
         return L_c + (lambda_cen * L_cen) + (lambda_e * L_e)
 
-    def get_small_loss_samples(self, y_pred, y_true, forget_rate):
+    def get_small_loss_samples(self, y_pred, y_true, forget_rate, args):
         loss = self.loss_func(y_pred, y_true)
-        ind_sorted = np.argsort(loss.data.cpu()).cuda()
+        ind_sorted = np.argsort(loss.data.cpu()).to(args.device)
         loss_sorted = loss[ind_sorted]
 
         remember_rate = 1 - forget_rate
@@ -226,7 +227,7 @@ class LocalUpdateRFL:
         epoch_loss = []
 
         net.eval()
-        f_k = torch.zeros(self.args.num_classes, self.args.feature_dim, device=self.args.device)
+        f_k = torch.zeros(self.args.num_classes, net.fc1.in_features, device=self.args.device)
         n_labels = torch.zeros(self.args.num_classes, 1, device=self.args.device)
 
         # obtain global-guided pseudo labels y_hat by y_hat_k = C_G(F_G(x_k))
@@ -262,12 +263,12 @@ class LocalUpdateRFL:
                 feature = feature.detach()
                 f_k = f_k.to(self.args.device)
 
-                small_loss_idxs = self.get_small_loss_samples(logit, labels, self.args.forget_rate)
+                small_loss_idxs = self.get_small_loss_samples(logit, labels, self.args.forget_rate, self.args)
 
                 y_k_tilde = torch.zeros(self.args.local_bs, device=self.args.device)
                 mask = torch.zeros(self.args.local_bs, device=self.args.device)
                 for i in small_loss_idxs:
-                    y_k_tilde[i] = torch.argmax(self.sim(f_k, torch.reshape(feature[i], (1, self.args.feature_dim))))
+                    y_k_tilde[i] = torch.argmax(self.sim(f_k, torch.reshape(feature[i], (1, net.fc1.in_features))))
                     if y_k_tilde[i] == labels[i]:
                         mask[i] = 1
 
@@ -288,7 +289,7 @@ class LocalUpdateRFL:
                 optimizer.step()
 
                 # obtain loss based average features f_k,j_hat from small loss dataset
-                f_kj_hat = torch.zeros(self.args.num_classes, self.args.feature_dim, device=self.args.device)
+                f_kj_hat = torch.zeros(self.args.num_classes, net.fc1.in_features, device=self.args.device)
                 n = torch.zeros(self.args.num_classes, 1, device=self.args.device)
                 for i in small_loss_idxs:
                     f_kj_hat[labels[i]] += feature[i]
@@ -332,7 +333,7 @@ def globaltest(net, test_dataset, args):
         for images, labels in test_loader:
             images = images.to(args.device)
             labels = labels.to(args.device)
-            outputs = net(images)
+            outputs, _ = net(images)
             # outputs = net(images)
             _, predicted = torch.max(outputs.data, 1)
             total += labels.size(0)
@@ -344,130 +345,3 @@ def globaltest(net, test_dataset, args):
 
 def personalizedtest(args, p_models, dataset_test):
     pass
-#     num_samples = []
-#     tot_correct = []
-#     for p_model in p_models:
-#         self.model.eval()
-#         test_acc = 0
-#         self.update_parameters(self.persionalized_model_bar)
-#         for x, y in self.testloaderfull:
-#             x, y = x.to(self.device), y.to(self.device)
-#             output = self.model(x)
-#             test_acc += (torch.sum(torch.argmax(output, dim=1) == y)).item()
-#             # @loss += self.loss(output, y)
-#             # print(self.id + ", Test Accuracy:", test_acc / y.shape[0] )
-#             # print(self.id + ", Test Loss:", loss)
-#         self.update_parameters(self.local_model)
-#         test_acc, y.shape[0]
-#
-#
-#
-#
-#
-#
-#         ct, ns = c.test_persionalized_model()
-#         tot_correct.append(ct * 1.0)
-#         num_samples.append(ns)
-#     ids = [c.id for c in self.users]
-#
-#     return ids, num_samples, tot_correct
-#
-#
-#     stats = test_persionalized_model()
-#         stats_train = train_error_and_loss_persionalized_model()
-#         glob_acc = np.sum(stats[2])*1.0/np.sum(stats[1])
-#         train_acc = np.sum(stats_train[2])*1.0/np.sum(stats_train[1])
-#         # train_loss = np.dot(stats_train[3], stats_train[1])*1.0/np.sum(stats_train[1])
-#         train_loss = sum([x * y for (x, y) in zip(stats_train[1], stats_train[3])]).item() / np.sum(stats_train[1])
-#         rs_glob_acc_per.append(glob_acc)
-#         rs_train_acc_per.append(train_acc)
-#         rs_train_loss_per.append(train_loss)
-#         #print("stats_train[1]",stats_train[3][0])
-#         print("Average Personal Accurancy: ", glob_acc)
-#         print("Average Personal Trainning Accurancy: ", train_acc)
-#         print("Average Personal Trainning Loss: ",train_loss)
-
-
-# class CoteachingCRLoss(CrossEntropyLoss):
-#     __constants__ = ['weight', 'ignore_index', 'reduction']
-#
-#     def __init__(self, weight=None, ignore_index=-100, reduction='mean'):
-#         super(CoteachingCRLoss, self).__init__(weight, reduction)
-#         self.ignore_index = ignore_index
-#
-#     @staticmethod
-#     def is_clean_judge(input1, input2, target):
-#         loss1 = F.cross_entropy(input1, target, reduction='none')
-#         loss2 = F.cross_entropy(input2, target, reduction='none')
-#         loss1_ = -torch.log(F.softmax(input1, dim=1) + 1e-8)
-#         loss2_ = -torch.log(F.softmax(input2, dim=1) + 1e-8)
-#
-#         loss1 = loss1 - torch.mean(loss1_, 1)
-#         loss2 = loss2 - torch.mean(loss2_, 1)
-#
-#         thre = -0.0
-#
-#         ind_1 = (loss1.data.cpu().numpy() <= thre)  # global model Sieve
-#         ind_2 = (loss2.data.cpu().numpy() <= thre)  # private model Sieve
-#         return [ind_1, ind_2]
-#
-#     @staticmethod
-#     def cal_prf(is_clean_real, is_clean_judge):
-#         is_clean_judge_1 = is_clean_judge[0]
-#         is_clean_judge_2 = is_clean_judge[1]
-#         pure_ratio_1 = 100 * np.sum(is_clean_real * is_clean_judge_1) / (np.sum(is_clean_judge_1) + 1e-8)
-#         pure_ratio_2 = 100 * np.sum(is_clean_real * is_clean_judge_2) / (np.sum(is_clean_judge_2) + 1e-8)
-#
-#         Recall_1 = 100 * np.sum(is_clean_real * is_clean_judge_1) / (np.sum(is_clean_real) + 1e-8)
-#         Recall_2 = 100 * np.sum(is_clean_real * is_clean_judge_2) / (np.sum(is_clean_real) + 1e-8)
-#
-#         F_score1 = 2 * pure_ratio_1 * Recall_1 / (pure_ratio_1 + Recall_1 + 1e-8)
-#         F_score2 = 2 * pure_ratio_2 * Recall_2 / (pure_ratio_2 + Recall_2 + 1e-8)
-#         # clean_num = np.sum(ind_2)
-#         return {'pure_ratio': [pure_ratio_1, pure_ratio_2],
-#                 'recall': [Recall_1, Recall_2],
-#                 'F_score': [F_score1, F_score2]}
-#
-#     def forward(self, input1, input2, target, round, noise_prior, epoch, begin_sel):
-#         # input1: global_model output
-#         # input2: private_model output
-#         beta = self.f_beta((round - 1) * 5 + epoch)
-#         [is_clean_judge_1, is_clean_judge_2] = FedTwinCRLoss.is_clean_judge(input1, input2, target)
-#
-#         if begin_sel:
-#             if np.sum(is_clean_judge_2) == 0:
-#                 loss_1_update = F.cross_entropy(input1, target, reduction='none')
-#                 loss1 = torch.sum(loss_1_update) / len(is_clean_judge_2) * 1e-8
-#             else:
-#                 is_clean_judge_2 = torch.tensor(is_clean_judge_2)
-#                 loss_1_update = F.cross_entropy(input1[is_clean_judge_2], target[is_clean_judge_2], reduction='none') - beta * torch.sum(
-#                     torch.mul(noise_prior, -torch.log(F.softmax(input1[is_clean_judge_2], dim=1) + 1e-8)), 1)
-#                 loss1 = torch.sum(loss_1_update) / np.sum(is_clean_judge_2.data.cpu().numpy())
-#             if np.sum(is_clean_judge_1) == 0:
-#                 loss_2_update = F.cross_entropy(input2, target, reduction='none')
-#                 loss2 = torch.sum(loss_2_update) / len(is_clean_judge_1) * 1e-8
-#                 # loss2 = None
-#             else:
-#                 ind_1 = torch.tensor(is_clean_judge_1)
-#                 loss_2_update = F.cross_entropy(input2[ind_1], target[ind_1], reduction='none') - beta * torch.sum(
-#                     torch.mul(noise_prior, -torch.log(F.softmax(input2[ind_1], dim=1) + 1e-8)), 1)
-#                 loss2 = torch.sum(loss_2_update) / np.sum(ind_1.data.cpu().numpy())
-#         else:
-#             loss_1_update = F.cross_entropy(input1, target, reduction='none') - beta * torch.sum(
-#                 torch.mul(noise_prior, -torch.log(F.softmax(input1, dim=1) + 1e-8)), 1)
-#             loss_2_update = F.cross_entropy(input2, target, reduction='none') - beta * torch.sum(
-#                 torch.mul(noise_prior, -torch.log(F.softmax(input2, dim=1) + 1e-8)), 1)
-#             loss1 = torch.sum(loss_1_update) / len(is_clean_judge_1)
-#             loss2 = torch.sum(loss_2_update) / len(is_clean_judge_2)
-#
-#         return [loss1, loss2]
-#
-#     def f_beta(self, batch):
-#         max_beta = 0.1
-#         beta1 = np.linspace(0.0, 0.0, num=1)
-#         beta2 = np.linspace(0.0, max_beta, num=50)
-#         beta3 = np.linspace(max_beta, max_beta, num=5000)
-#
-#         beta = np.concatenate((beta1, beta2, beta3), axis=0)
-#         return beta[batch]
-

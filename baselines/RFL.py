@@ -9,7 +9,7 @@ from util.local_training import globaltest, get_local_update_objects
 
 
 def RFL(args):
-    f_acc = open(args.txtpath + '_acc.txt', 'a')
+    f_acc = open(args.txtname + '_acc.txt', 'a')
     ##############################
     #  Load Dataset
     ##############################
@@ -30,11 +30,11 @@ def RFL(args):
 
     forget_rate = args.forget_rate
     exponent = 1
-    forget_rate_schedule = np.ones(args.epochs) * forget_rate
+    forget_rate_schedule = np.ones(args.rounds2) * forget_rate
     forget_rate_schedule[:args.num_gradual] = np.linspace(0, forget_rate ** exponent, args.num_gradual)
 
     # Initialize f_G
-    f_G = torch.randn(args.num_classes, args.feature_dim, device=args.device)
+    f_G = torch.randn(args.num_classes, net_glob.fc1.in_features, device=args.device)
 
     m = max(int(args.frac2 * args.num_users), 1)
     prob = [1 / args.num_users for i in range(args.num_users)]
