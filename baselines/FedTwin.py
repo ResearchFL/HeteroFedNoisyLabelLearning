@@ -9,9 +9,8 @@ from util.local_training import FedTwinLocalUpdate, globaltest, personalizedtest
 # from fed_utils.loss import *
 
 
-
 def FedTwin(args):
-    f_save = open(args.txtpath + '_acc.txt', 'w')
+    f_save = open(args.save_dir + args.txtname + f'_lamda_{args.lamda}_gamma_{args.gamma}_acc.txt', 'w')
     # load dataset
     dataset_train, dataset_test, dict_users, y_train, gamma_s = load_data_with_noisy_label(args)
 
@@ -49,6 +48,6 @@ def FedTwin(args):
         show_info_test_acc = "global test acc  %.4f \n\n" % (acc_s2)
         print(show_info_loss)
         print(show_info_test_acc)
-        f_save.write(show_info_test_acc)
         f_save.write(show_info_loss)
+        f_save.write(show_info_test_acc)
         f_save.flush()
