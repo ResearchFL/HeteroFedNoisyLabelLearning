@@ -12,6 +12,7 @@ from util.local_training import LocalUpdate, globaltest
 import copy
 from util.aggregation import FedAvg
 import time
+import math
 
 def MR(args):
 # ======================================================数据划分，加噪===============================================================
@@ -55,8 +56,10 @@ def MR(args):
     print("即将使用benchmark_dataset_train开始训练benchmark model")
     # 然后benchmark dataset train用于训练benchmark model
     # 获取模型
+    print("使用设备为")
+    print(args.device)
     benchmark_model = build_model(args)
-    benchmark_model = benchmark_model.to(args.device)
+
     # dataloader
     benchmark_train_dataloader = DataLoader(benchmark_dataset_train, batch_size=16)
     benchmark_test_dataloader = DataLoader(benchmark_dataset_test, batch_size=16)
@@ -64,7 +67,7 @@ def MR(args):
     loss_fn = nn.CrossEntropyLoss() 
     loss_fn = loss_fn.to(args.device)
     # 学习率、优化器
-    learning_rate = 1e-2 # 0.01 
+    learning_rate = args.lr
     optimizer = torch.optim.SGD(benchmark_model.parameters(), lr=learning_rate)
     # 训练参数
     total_train_step = 0 
@@ -75,7 +78,10 @@ def MR(args):
     list_loss_benchmark = []
     list_loss_fliter = {}
     # 开始训练
-    for i in range(epoch):
+    max_val = math.inf
+    counter_convergence_reached = 0
+    i = 0
+    while counter_convergence_reached < 200:
         print("----------benchmark模型第{}轮训练开始----------".format(i+1))
         for data in benchmark_train_dataloader:
             imgs, targets = data
@@ -108,11 +114,19 @@ def MR(args):
         print("benchmark模型整体测试集上的正确率：{}".format(total_accuracy / test_size))
         total_test_step += 1
 
-        if i == epoch - 1:
+        if total_test_loss < max_val:
+            max_val = total_test_loss
+            counter_convergence_reached = 0
+        else:
+            if i > 10:
+                counter_convergence_reached += 1
+
+        i = i + 1
+        if i > 10000:
             with torch.no_grad():
                 for data in benchmark_dataset_test:
                     img, target = data
-                    img = torch.reshape(img, (1,3,32,32)).to(args.device)
+                    img = torch.from_numpy(np.array([img])).to(args.device)
                     target = torch.from_numpy(np.array([target])).to(args.device)
                     output, _ = benchmark_model(img)
                     loss = loss_fn(output, target).cpu().numpy()
@@ -123,7 +137,30 @@ def MR(args):
             with torch.no_grad():
                 for data in fliter_dataset_train:
                     img, target = data
-                    img = torch.reshape(img, (1,3,32,32)).to(args.device)
+                    img = torch.from_numpy(np.array([img])).to(args.device)
+                    target = torch.from_numpy(np.array([target])).to(args.device)
+                    output, _ = benchmark_model(img)
+                    loss = loss_fn(output, target).cpu().numpy()
+                    list_loss_fliter[count1] = loss
+                    count1 += 1
+            break
+
+        if counter_convergence_reached == 200:
+            with torch.no_grad():
+                for data in benchmark_dataset_test:
+                    img, target = data
+                    iimg = torch.from_numpy(np.array([img])).to(args.device)
+                    target = torch.from_numpy(np.array([target])).to(args.device)
+                    output, _ = benchmark_model(img)
+                    loss = loss_fn(output, target).cpu().numpy()
+                    list_loss_benchmark.append(loss)
+
+            count1 = 0 
+
+            with torch.no_grad():
+                for data in fliter_dataset_train:
+                    img, target = data
+                    img = torch.from_numpy(np.array([img])).to(args.device)
                     target = torch.from_numpy(np.array([target])).to(args.device)
                     output, _ = benchmark_model(img)
                     loss = loss_fn(output, target).cpu().numpy()
