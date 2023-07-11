@@ -1,5 +1,5 @@
 
-# nohup bash run_experiments.sh >> ./result/${date}.log 2>&1 &
+# nohup bash run_experiments.sh >> ./record/${date}.log 2>&1 &
 
 
 # fraction of noisy clients

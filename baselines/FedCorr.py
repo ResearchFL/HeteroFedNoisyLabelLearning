@@ -12,13 +12,13 @@ from util.load_data import load_data_with_noisy_label
 import time
 
 def FedCorr(args):
-    if args.mixup:
-        args.txtname += "_Mix_%.1f" % (args.alpha)
-    if args.fine_tuning:
-        args.txtname += "_FT"
-    if args.correction:
-        args.txtname += "_CORR"
-    f_save = open(args.save_dir + args.txtname + '_acc.txt', 'a')
+    # if args.mixup:
+    #     args.txtname += "_Mix_%.1f" % (args.alpha)
+    # if args.fine_tuning:
+    #     args.txtname += "_FT"
+    # if args.correction:
+    #     args.txtname += "_CORR"
+    # f_save = open(args.save_dir + args.txtname + '_acc.txt', 'a')
     ##############################
     #  Load Dataset
     ##############################

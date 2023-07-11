@@ -9,7 +9,7 @@ from util.local_training import globaltest, get_local_update_objects
 import time
 
 def RFL(args):
-    f_save = open(args.save_dir + args.txtname + '_acc.txt', 'a')
+    # f_save = open(args.save_dir + args.txtname + '_acc.txt', 'a')
     ##############################
     #  Load Dataset
     ##############################
