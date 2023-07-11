@@ -5,15 +5,13 @@ import numpy as np
 from util.load_data import load_data_with_noisy_label
 # from data.dataloader_getter_utils import *
 from util.local_training import FedTwinLocalUpdate, globaltest, personalizedtest
-# from fed_utils.others import *
-# from fed_utils.loss import *
-
+import time
 
 def FedTwin(args):
     f_save = open(args.save_dir + args.txtname + f'_lamda_{args.lamda}_gamma_{args.gamma}_acc.txt', 'w')
     # load dataset
     dataset_train, dataset_test, dict_users, y_train, gamma_s = load_data_with_noisy_label(args)
-
+    start = time.time()
     # begin training
     netglob = build_model(args)
     # parameter
@@ -48,6 +46,11 @@ def FedTwin(args):
         show_info_test_acc = "global test acc  %.4f \n\n" % (acc_s2)
         print(show_info_loss)
         print(show_info_test_acc)
-        f_save.write(show_info_loss)
-        f_save.write(show_info_test_acc)
-        f_save.flush()
+        # print("time :", time.time() - start)
+        #f_save.write(show_info_loss)
+        #f_save.write(show_info_test_acc)
+        #f_save.flush()
+    show_time_info = f"time : {time.time() - start}"
+    print(show_time_info)
+    #f_save.write(show_time_info)
+    #f_save.flush()

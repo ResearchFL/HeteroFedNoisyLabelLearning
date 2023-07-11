@@ -63,7 +63,7 @@ class FedTwinCRLoss(CrossEntropyLoss):
     def forward(self, input_p, input_g, target, rounds, args, noise_prior=None):
         coresloss = CORESLoss(reduction=self.reduction)
         Beta = f_beta(rounds, args)
-        if rounds <= args.begin_sel:  # 如果在前30epoch集中式，对应联邦应该是30/local_epoch
+        if rounds < args.begin_sel:  # 如果在前30epoch集中式，对应联邦应该是30/local_epoch
             loss_p_update = coresloss(input_p, target, Beta, noise_prior)
             loss_g_update = coresloss(input_g, target, Beta, noise_prior)
         else:

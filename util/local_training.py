@@ -72,18 +72,18 @@ class LocalUpdate(object):
         for iter in range(epoch):
             batch_loss = []
             # use/load data from split training set "ldr_train"
-            for batch_idx, (images, labels) in enumerate(self.ldr_train):
+            for batch_idx, (images, labels, _) in enumerate(self.ldr_train):
                 images, labels = images.to(self.args.device), labels.to(self.args.device)
 
                 if self.args.mixup:
                     inputs, targets_a, targets_b, lam = mixup_data(images, labels, self.args.alpha)
                     net.zero_grad()
-                    log_probs = net(inputs)
+                    log_probs, _ = net(inputs)
                     loss = mixup_criterion(self.loss_func, log_probs, targets_a, targets_b, lam)
                 else:
                     labels = labels.long()
                     net.zero_grad()
-                    log_probs = net(images)
+                    log_probs, _ = net(images)
                     loss = self.loss_func(log_probs, labels)
 
                 if self.args.beta > 0:
@@ -123,10 +123,10 @@ class FedTwinLocalUpdate:
         # train and update
         optimizer_theta = TwinOptimizer(net_p.parameters(), lr=self.args.plr, lamda=self.args.lamda)
         optimizer_w = torch.optim.SGD(net_glob.parameters(), lr=self.args.plr)
-        lr = args.lr
-        # adjust_learning_rate(rounds, args, optimizer_theta)
-        # adjust_learning_rate(rounds, args, optimizer_w)
-        # lr = adjust_learning_rate(rounds, args)
+        # lr = args.lr
+        adjust_learning_rate(rounds, args, optimizer_theta)
+        adjust_learning_rate(rounds, args, optimizer_w)
+        lr = adjust_learning_rate(rounds, args)
         epoch_loss = []
         n_bar_k = []
         for iter in range(args.local_ep):
@@ -279,7 +279,7 @@ class LocalUpdateRFL:
 
                 # For loss calculating
                 new_labels = mask[small_loss_idxs] * labels[small_loss_idxs] + (1 - mask[small_loss_idxs]) * \
-                             self.pseudo_labels[idx[small_loss_idxs]]
+                             self.pseudo_labels[idx.to(self.args.device)[small_loss_idxs.to(self.args.device)]]
                 new_labels = new_labels.type(torch.LongTensor).to(self.args.device)
 
                 loss = self.RFLloss(logit, labels, feature, f_k, mask, small_loss_idxs, new_labels)

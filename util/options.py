@@ -6,7 +6,7 @@ import argparse
 def args_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument('-algo', "--algorithm", type=str, default="FedTwin")
-    parser.add_argument('-gpu', type=int, default=0, help="GPU ID, -1 for CPU")
+    parser.add_argument('--gpu', type=int, default=0, help="GPU ID, -1 for CPU")
 
     #######################################################################
     ################### federated common arguments#########################
@@ -27,7 +27,7 @@ def args_parser():
     parser.add_argument('--num_classes', type=int, default=10, help="number of classes")
     ## noise arguments
     parser.add_argument('--LID_k', type=int, default=20, help="lid")
-    parser.add_argument('--level_n_system', type=float, default=0.4, help="fraction of noisy clients")
+    parser.add_argument('--level_n_system', type=float, default=1, help="fraction of noisy clients")
     parser.add_argument('--level_n_lowerb', type=float, default=0.5, help="lower bound of noise level")
 
 
@@ -48,7 +48,6 @@ def args_parser():
     ## ablation study
     parser.add_argument('--fine_tuning', action='store_false', help='whether to include fine-tuning stage')
     parser.add_argument('--correction', action='store_false', help='whether to correct noisy labels')
-
 
 
     ###### RFL arguments###################

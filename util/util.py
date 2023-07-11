@@ -38,10 +38,10 @@ def get_output(loader, net, args, latent=False, criterion=None):
             labels = labels.to(args.device)
             labels = labels.long()
             if latent == False:
-                outputs = net(images)
+                outputs, _ = net(images)
                 outputs = F.softmax(outputs, dim=1)
             else:
-                outputs = net(images, True)
+                outputs, _ = net(images, True)
             loss = criterion(outputs, labels)
             if i == 0:
                 output_whole = np.array(outputs.cpu())

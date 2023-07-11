@@ -6,7 +6,7 @@ from model.build_model import build_model
 from util.aggregation import FedAvg
 from util.load_data import load_data_with_noisy_label
 from util.local_training import globaltest, get_local_update_objects
-
+import time
 
 def RFL(args):
     f_save = open(args.save_dir + args.txtname + '_acc.txt', 'a')
@@ -15,6 +15,7 @@ def RFL(args):
     ##############################
     dataset_train, dataset_test, dict_users, y_train, gamma_s = load_data_with_noisy_label(args)
 
+    start = time.time()
     ##############################
     # Build model
     ##############################
@@ -31,8 +32,10 @@ def RFL(args):
     forget_rate = args.forget_rate
     exponent = 1
     forget_rate_schedule = np.ones(args.rounds2) * forget_rate
-    forget_rate_schedule[:args.num_gradual] = np.linspace(0, forget_rate ** exponent, args.num_gradual)
-
+    if args.rounds2 >= args.num_gradual:
+        forget_rate_schedule[:args.num_gradual] = np.linspace(0, forget_rate ** exponent, args.num_gradual)
+    else:
+        forget_rate_schedule[:args.rounds2] = np.linspace(0, forget_rate ** exponent, args.rounds2)
     # Initialize f_G
     f_G = torch.randn(args.num_classes, net_glob.fc1.in_features, device=args.device)
 
@@ -90,10 +93,14 @@ def RFL(args):
         f_G = torch.div(tmp, w_sum)
 
         acc_s2 = globaltest(net_glob.to(args.device), dataset_test, args)
-        show_info_test_acc = "global test acc  %.4f \n" % (acc_s2)
+        show_info_test_acc = "Round %d global test acc  %.4f \n" % (rnd, acc_s2)
         print(show_info_test_acc)
-        f_save.write(show_info_test_acc)
-        f_save.flush()
+        #f_save.write(show_info_test_acc)
+        #f_save.flush()
+    show_time_info = f"time : {time.time() - start}"
+    print(show_time_info)
+    #f_save.write(show_time_info)
+    #f_save.flush()
     #     # logging
     #     train_acc, train_loss = test_img(net_glob, log_train_data_loader, args)
     #     test_acc, test_loss = test_img(net_glob, log_test_data_loader, args)
@@ -106,5 +113,3 @@ def RFL(args):
     #     logger.write(epoch=rnd + 1, **results)
     #
     # logger.close()
-
-    # print("time :", time.time() - start)

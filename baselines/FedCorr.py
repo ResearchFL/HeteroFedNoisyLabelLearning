@@ -9,7 +9,7 @@ import torch.nn as nn
 import copy
 from util.util import lid_term, get_output
 from util.load_data import load_data_with_noisy_label
-
+import time
 
 def FedCorr(args):
     if args.mixup:
@@ -18,7 +18,7 @@ def FedCorr(args):
         args.txtname += "_FT"
     if args.correction:
         args.txtname += "_CORR"
-    f_acc = open(args.save_dir + args.txtname + '_acc.txt', 'a')
+    f_save = open(args.save_dir + args.txtname + '_acc.txt', 'a')
     ##############################
     #  Load Dataset
     ##############################
@@ -28,6 +28,7 @@ def FedCorr(args):
     # torch.cuda.manual_seed(args.seed)
     # torch.cuda.manual_seed_all(args.seed)
     # build model
+    start = time.time()
     ##############################
     # Build model
     ##############################
@@ -76,8 +77,8 @@ def FedCorr(args):
                 net_local.load_state_dict(copy.deepcopy(w))
                 w_locals.append(copy.deepcopy(w))
                 acc_t = globaltest(copy.deepcopy(net_local).to(args.device), dataset_test, args)
-                f_acc.write("iteration %d, client %d, acc: %.4f \n" % (iteration, idx, acc_t))
-                f_acc.flush()
+                #f_save.write("iteration %d, client %d, acc: %.4f \n" % (iteration, idx, acc_t))
+                #f_save.flush()
 
                 local_output, loss = get_output(loader, net_local.to(args.device), args, False, criterion)
                 LID_local = list(lid_term(local_output, local_output))
@@ -159,8 +160,8 @@ def FedCorr(args):
             net_glob.load_state_dict(copy.deepcopy(w_glob_fl))
 
             acc_s2 = globaltest(copy.deepcopy(net_glob).to(args.device), dataset_test, args)
-            f_acc.write("fine tuning stage round %d, test acc  %.4f \n" % (rnd, acc_s2))
-            f_acc.flush()
+            #f_save.write("fine tuning stage round %d, test acc  %.4f \n" % (rnd, acc_s2))
+            #f_save.flush()
 
         if args.correction:
             relabel_idx_whole = []
@@ -197,5 +198,11 @@ def FedCorr(args):
         net_glob.load_state_dict(copy.deepcopy(w_glob_fl))
 
         acc_s2 = globaltest(copy.deepcopy(net_glob).to(args.device), dataset_test, args)
-        f_acc.write("third stage round %d, test acc  %.4f \n" % (rnd, acc_s2))
-        f_acc.flush()
+        show_info_test_acc = "Round %d global test acc  %.4f \n" % (rnd, acc_s2)
+        print(show_info_test_acc)
+        # f_save.write(show_info_test_acc)
+        # f_save.flush()
+    show_time_info = f"time : {time.time() - start}"
+    print(show_time_info)
+    # f_save.write(show_time_info)
+    # f_save.flush()
