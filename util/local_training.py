@@ -123,19 +123,19 @@ class FedTwinLocalUpdate:
         # train and update
         optimizer_theta = TwinOptimizer(net_p.parameters(), lr=self.args.plr, lamda=self.args.lamda)
         optimizer_w = torch.optim.SGD(net_glob.parameters(), lr=self.args.plr)
-        # lr = args.lr
-        adjust_learning_rate(rounds, args, optimizer_theta)
-        adjust_learning_rate(rounds, args, optimizer_w)
-        plr=optimizer_theta.param_groups[0]['lr']
-        print(f"plr={plr}")
-        lr = adjust_learning_rate(rounds, args)
-        print(f"lr={lr}")
         epoch_loss = []
         n_bar_k = []
         for iter in range(args.local_ep):
             batch_loss = []
             # use/load data from split training set "ldr_train"
             b_bar_p = []
+            # lr = args.lr
+            adjust_learning_rate(rounds * args.local_ep + iter, args, optimizer_theta)
+            adjust_learning_rate(rounds * args.local_ep + iter, args, optimizer_w)
+            plr = optimizer_theta.param_groups[0]['lr']
+            print(f"plr={plr}")
+            lr = adjust_learning_rate(rounds * args.local_ep + iter, args)
+            print(f"lr={lr}")
             for batch_idx, (images, labels, _)  in enumerate(self.ldr_train):
                 images, labels = images.to(self.args.device), labels.to(self.args.device)
                 # K = 30 # K is number of personalized steps

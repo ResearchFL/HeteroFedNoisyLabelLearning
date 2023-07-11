@@ -55,24 +55,14 @@ def filter_noisy_data(input: Tensor, target: Tensor):
     return Variable(torch.from_numpy(loss_v)).bool()
 
 
-def f_beta(local_ep, args):
-    # beta1 = np.linspace(0.0, 0.0, num=2)
-    # beta2 = np.linspace(0.0, 2, num=6)
-    # beta3 = np.linspace(2, 2, num=100-8)
-    #
-    # beta = np.concatenate((beta1, beta2, beta3), axis=0)
-    # max_beta = 1
-    # beta1 = np.linspace(0.0, 0.0, num=2)
-    # beta2 = np.linspace(0.0, max_beta, num=20)
-    # beta3 = np.linspace(max_beta, max_beta, num=5000)
-    #
-    # beta = np.concatenate((beta1, beta2, beta3), axis=0)
-    max_beta = 1.0
-    beta1 = np.linspace(0.0, 0.0, num=1)
-    beta2 = np.linspace(0.0, max_beta, num=args.begin_sel * args.local_ep)
-    beta3 = np.linspace(max_beta, max_beta, num=args.rounds2 * args.local_ep)
-    beta = np.concatenate((beta1, beta2, beta3), axis=0)
-    return beta[local_ep]
+def f_beta(epoch, args):
+    max_beta = 2.0
+    beta1 = np.linspace(0.0, 0.0, num=args.local_ep * 1)
+    beta2 = np.linspace(0.0, max_beta/2, num=args.local_ep * 8)
+    beta3 = np.linspace(1.0, max_beta, num=args.local_ep * args.begin_sel)
+    beta4 = np.linspace(max_beta, max_beta, num=args.rounds2 * args.local_ep)
+    beta = np.concatenate((beta1, beta2, beta3, beta4), axis=0)
+    return beta[epoch]
 
 
 # Adjust learning rate and for SGD Optimizer
@@ -85,12 +75,12 @@ def f_beta(local_ep, args):
 #         for param_group in optimizer.param_groups:
 #             param_group['lr']= alpha_plan[round] / (1 + f_beta(round, args))
 
-def adjust_learning_rate(round, epoch, args, optimizer=None):
-    alpha_plan = [[args.plr] * args.local_ep + [args.plr * 0.1] * args.rounds2,
-                  [args.lr] * args.local_ep + [args.lr * 0.1] * args.rounds2]
+def adjust_learning_rate(epoch, args, optimizer=None):
+    alpha_plan = [[args.plr] * args.local_ep * args.rounds2 * args.local_ep/2 + [args.plr * 0.1] * args.rounds2 * args.local_ep,
+                  [args.lr] * args.local_ep * args.rounds2 * args.local_ep/2 + [args.lr * 0.1] * args.rounds2 * args.local_ep]
     if optimizer is None:
-        lr = alpha_plan[1][round] / (1 + f_beta(round*args.local_ep + epoch, args))
+        lr = alpha_plan[1][epoch] / (1 + f_beta(epoch, args))
         return lr
     else:
         for param_group in optimizer.param_groups:
-            param_group['lr'] = alpha_plan[0][round] / (1 + f_beta(round*args.local_ep + epoch, args))
+            param_group['lr'] = alpha_plan[0][epoch] / (1 + f_beta(epoch, args))
