@@ -1,4 +1,4 @@
-# nohup bash MR.sh >> ./record/${date}.log 2>&1 &
+# nohup bash -u MR.sh >> ./record/20230711.log 2>&1 &
 
 level_n=1
 gpu_num=1
