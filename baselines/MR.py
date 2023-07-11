@@ -105,7 +105,7 @@ def MR(args):
                 imgs, targets = data
                 imgs = imgs.to(args.device)
                 targets = targets.to(args.device)
-                outputs = benchmark_model(imgs)
+                outputs, _ = benchmark_model(imgs)
                 loss = loss_fn(outputs, targets)
                 total_test_loss += loss.item()
                 accuracy = (outputs.argmax(1) == targets).sum()
@@ -122,7 +122,7 @@ def MR(args):
                 counter_convergence_reached += 1
 
         i = i + 1
-        if i > 10000:
+        if i > 10000 or counter_convergence_reached == 200:
             with torch.no_grad():
                 for data in benchmark_dataset_test:
                     img, target = data
@@ -144,29 +144,6 @@ def MR(args):
                     list_loss_fliter[count1] = loss
                     count1 += 1
             break
-
-        if counter_convergence_reached == 200:
-            with torch.no_grad():
-                for data in benchmark_dataset_test:
-                    img, target = data
-                    iimg = torch.from_numpy(np.array([img])).to(args.device)
-                    target = torch.from_numpy(np.array([target])).to(args.device)
-                    output, _ = benchmark_model(img)
-                    loss = loss_fn(output, target).cpu().numpy()
-                    list_loss_benchmark.append(loss)
-
-            count1 = 0 
-
-            with torch.no_grad():
-                for data in fliter_dataset_train:
-                    img, target = data
-                    img = torch.from_numpy(np.array([img])).to(args.device)
-                    target = torch.from_numpy(np.array([target])).to(args.device)
-                    output, _ = benchmark_model(img)
-                    loss = loss_fn(output, target).cpu().numpy()
-                    list_loss_fliter[count1] = loss
-                    count1 += 1
-
 
 # ======================================================噪声过滤===============================================================
     # 将fliter训练集集loss排序并保存

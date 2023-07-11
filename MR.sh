@@ -1,4 +1,4 @@
-# nohup bash run_main.sh >> ./record/${date}.log 2>&1 &
+# nohup bash run_main.sh >> _p.log 2>&1 &
 
 level_n=1
 gpu_num=1
