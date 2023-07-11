@@ -11,6 +11,7 @@ from baselines.FedCorr import FedCorr
 from baselines.RFL import RFL
 from baselines.FedTwin import FedTwin
 from baselines.MR import MR
+from baselines.FedAvg import FedAVG
 np.set_printoptions(threshold=np.inf)
 """
 Major framework of noise FL
