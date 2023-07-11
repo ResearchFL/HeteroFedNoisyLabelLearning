@@ -8,7 +8,7 @@ from util.local_training import FedTwinLocalUpdate, globaltest, personalizedtest
 import time
 
 def FedTwin(args):
-    f_save = open(args.save_dir + args.txtname + f'_lamda_{args.lamda}_gamma_{args.gamma}_acc.txt', 'w')
+    # f_save = open(args.save_dir + args.txtname + f'_lamda_{args.lamda}_gamma_{args.gamma}_acc.txt', 'w')
     # load dataset
     dataset_train, dataset_test, dict_users, y_train, gamma_s = load_data_with_noisy_label(args)
     start = time.time()
