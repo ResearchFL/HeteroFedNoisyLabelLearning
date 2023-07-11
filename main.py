@@ -59,4 +59,5 @@ if __name__ == '__main__':
     args.lr = float(args.lr)
     args.plr = float(args.plr)
     args.frac2 = float(args.frac2)
+    args.begin_sel = float(args.begin_sel)
     run(args)
