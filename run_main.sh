@@ -5,7 +5,7 @@
 # fraction of noisy clients
 level_n=1
 gpu_num=0
-begin_sel_r=5
+begin_sel_r=10
 for((c = 1; c < 2; c ++))
 do
 	#fedvag local only

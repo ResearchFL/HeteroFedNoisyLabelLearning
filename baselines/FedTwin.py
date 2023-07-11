@@ -18,7 +18,7 @@ def FedTwin(args):
     m = max(int(args.frac2 * args.num_users), 1)  # num_select_clients
     prob = [1 / args.num_users for i in range(args.num_users)]
     for rnd in range(args.rounds2):
-        if rnd <=args.begin_sel:
+        if rnd <= args.begin_sel:
             print("\rRounds {:d} early training:"
               .format(rnd), end='\n', flush=True)
         else:

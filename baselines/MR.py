@@ -17,7 +17,7 @@ import math
 def MR(args):
 # ======================================================数据划分，加噪===============================================================
     # 首先从原始数据集中拆分出benchmark dataset 剩余其他数据
-    benchmark_dataset, fliter_dataset_train, fliter_dataset_test = split_data(args);
+    benchmark_dataset, fliter_dataset_train, fliter_dataset_test = split_data(args)
     print("benchmark数据集拆分出来了")
     print("fliter_dataset_train的形状是：{}".format(len(fliter_dataset_train)))
     print(len(fliter_dataset_train[0]))

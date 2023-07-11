@@ -126,7 +126,10 @@ class FedTwinLocalUpdate:
         # lr = args.lr
         adjust_learning_rate(rounds, args, optimizer_theta)
         adjust_learning_rate(rounds, args, optimizer_w)
+        plr=optimizer_theta.param_groups[0]['lr']
+        print(f"plr={plr}")
         lr = adjust_learning_rate(rounds, args)
+        print(f"lr={lr}")
         epoch_loss = []
         n_bar_k = []
         for iter in range(args.local_ep):
@@ -141,7 +144,7 @@ class FedTwinLocalUpdate:
                 log_probs_p, _ = net_p(images)
                 log_probs_g, _ = net_glob(images)
                 # log_probs = net(images)
-                loss_p, loss_g, len_loss_p, len_loss_g = self.loss_func(log_probs_p, log_probs_g, labels, rounds, args)
+                loss_p, loss_g, len_loss_p, len_loss_g = self.loss_func(log_probs_p, log_probs_g, labels, rounds, iter, args)
                 for i in range(self.args.K):
                     net_p.zero_grad()
                     if i == (self.args.K - 1):
