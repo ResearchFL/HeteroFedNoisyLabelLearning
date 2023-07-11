@@ -21,7 +21,7 @@ def FedAVG(args):
         idxs_users = np.random.choice(range(args.num_users), m, replace=False, p=prob)
         for idx in idxs_users:  # training over the subset
             local = LocalUpdate(args=args, dataset=dataset_train, idxs=dict_users[idx])
-            w_local, loss_local = local.update_weights(net=copy.deepcopy(model).to(args.device), seed=args.seed,
+            w_local, loss_local = local.update_weights(net=copy.deepcopy(model).to(args.device),
                                                         w_g=model.to(args.device), epoch=args.local_ep, mu=0)
             w_locals.append(copy.deepcopy(w_local))  # store every updated model
             loss_locals.append(copy.deepcopy(loss_local))
