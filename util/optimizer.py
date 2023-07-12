@@ -55,15 +55,21 @@ def filter_noisy_data(input: Tensor, target: Tensor):
     return Variable(torch.from_numpy(loss_v)).bool()
 
 
+# def f_beta(epoch, args):
+#     max_beta = 2.0
+#     beta1 = np.linspace(0.0, 0.0, num=1)  # 这么搞是用来让刚开始学习的时候学习率要稳定一些
+#     # beta2 = np.linspace(0.0, max_beta/2, num=args.local_ep * 9)
+#     beta2 = np.linspace(0, max_beta, num=args.local_ep * args.begin_sel)
+#     beta3 = np.linspace(max_beta, max_beta, num=args.rounds2 * args.local_ep)
+#     beta = np.concatenate((beta1, beta2, beta3), axis=0)
+#     return beta[epoch]
 def f_beta(epoch, args):
     max_beta = 2.0
-    beta1 = np.linspace(0.0, 0.0, num=args.local_ep * 1)
-    beta2 = np.linspace(0.0, max_beta/2, num=args.local_ep * 8)
-    beta3 = np.linspace(1.0, max_beta, num=args.local_ep * args.begin_sel)
-    beta4 = np.linspace(max_beta, max_beta, num=args.rounds2 * args.local_ep)
-    beta = np.concatenate((beta1, beta2, beta3, beta4), axis=0)
+    beta1 = np.linspace(0.0, 0.0, num=args.local_ep * 2)
+    beta2 = np.linspace(0.0, max_beta, num=args.local_ep * args.begin_sel)
+    beta3 = np.linspace(max_beta, max_beta, num=args.rounds2 * args.local_ep)
+    beta = np.concatenate((beta1, beta2, beta3), axis=0)
     return beta[epoch]
-
 
 # Adjust learning rate and for SGD Optimizer
 # def adjust_learning_rate(optimizer, round, args):
@@ -75,9 +81,21 @@ def f_beta(epoch, args):
 #         for param_group in optimizer.param_groups:
 #             param_group['lr']= alpha_plan[round] / (1 + f_beta(round, args))
 
+# def adjust_learning_rate(epoch, args, optimizer=None):
+#     alpha_plan = [[args.plr] * int(args.local_ep)
+#                   + [args.plr * 0.1] * int(args.local_ep * args.rounds2),
+#                   [args.lr] * int(args.local_ep)
+#                   + [args.lr * 0.1] * int(args.local_ep * args.rounds2)]
+#     if optimizer is None:
+#         lr = alpha_plan[1][epoch] / (1 + f_beta(epoch, args))
+#         return lr
+#     else:
+#         for param_group in optimizer.param_groups:
+#             param_group['lr'] = alpha_plan[0][epoch] / (1 + f_beta(epoch, args))
 def adjust_learning_rate(epoch, args, optimizer=None):
-    alpha_plan = [[args.plr] * args.local_ep * args.rounds2 * args.local_ep/2 + [args.plr * 0.1] * args.rounds2 * args.local_ep,
-                  [args.lr] * args.local_ep * args.rounds2 * args.local_ep/2 + [args.lr * 0.1] * args.rounds2 * args.local_ep]
+    # 需要后期再确认一次是否是args.begin_sel，之前是10
+    alpha_plan = [[args.plr] * args.local_ep * args.begin_sel + [args.plr * 0.1] * args.local_ep * args.rounds2,
+                  [args.lr] * args.local_ep * args.begin_sel + [args.lr * 0.1] * args.local_ep * args.rounds2]
     if optimizer is None:
         lr = alpha_plan[1][epoch] / (1 + f_beta(epoch, args))
         return lr
