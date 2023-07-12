@@ -38,3 +38,4 @@ def build_model(args):
         exit('Error: unrecognized model')
 
     return netglob
+
