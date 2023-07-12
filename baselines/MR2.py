@@ -40,12 +40,14 @@ def MR2(args):
         download=True,
         train=True,
         transform=trans_mnist_train,
+        split="byclass"
     )
     EMNIST_dataset_test = EMNIST(
         root=data_path,
         download=True,
         train=False,
         transform=trans_mnist_train,
+        split="byclass"
     )
     benchmark_ratio = 0.03  # benchmark dataset比例
     fliter_ratio = 0.97  # 待过滤 dataset比例
