@@ -23,6 +23,7 @@ def MR2(args):
     # ======================================================数据划分，加噪===============================================================
     # 首先从Fedminist数据集中拆分出benchmark dataset 剩余其他数据
     data_path = '../data/mnist'
+
     trans_mnist_train = transforms.Compose([
         transforms.RandomCrop(28, padding=4),
         transforms.RandomHorizontalFlip(),
@@ -39,13 +40,13 @@ def MR2(args):
         root=data_path,
         download=True,
         train=True,
-        transform=trans_mnist_train
+        transform=trans_mnist_train,
     )
     EMNIST_dataset_test = EMNIST(
         root=data_path,
         download=True,
         train=False,
-        transform=trans_mnist_train
+        transform=trans_mnist_train,
     )
     benchmark_ratio = 0.03  # benchmark dataset比例
     fliter_ratio = 0.97  # 待过滤 dataset比例

@@ -1,4 +1,4 @@
-# nohup bash -u MR.sh >> ./record/eminist_minist_MR.log 2>&1 &
+# nohup bash MR.sh >> ./record/eminist_minist_MR.log 2>&1 &
 
 level_n=1
 gpu_num=1
