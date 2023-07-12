@@ -1,5 +1,5 @@
 from util.dataMR import split_data, my_split, get_n_sample_to_keep, MyDataset, wash_data
-from model.build_model import build_model, eminist_build_model
+from model.build_model import build_model
 import torch.utils.data as data
 from torch.utils.data import DataLoader
 from torch import nn
@@ -75,7 +75,7 @@ def MR2(args):
     # 获取模型
     print("使用设备为")
     print(args.device)
-    benchmark_model = eminist_build_model(args)
+    benchmark_model = build_model(args)
 
     # dataloader
     benchmark_train_dataloader = DataLoader(benchmark_dataset_train, batch_size=16)

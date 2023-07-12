@@ -1,4 +1,4 @@
-from model.lenet import LeNet, eminist_LeNet
+from model.lenet import LeNet
 from model.model_resnet import ResNet18, ResNet34
 from model.model_resnet_official import ResNet50
 import torchvision.models as models
@@ -39,5 +39,3 @@ def build_model(args):
 
     return netglob
 
-def eminist_build_model(args):
-    return eminist_LeNet(1).to(args.device)
