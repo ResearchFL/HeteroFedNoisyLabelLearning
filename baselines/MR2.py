@@ -15,7 +15,6 @@ import math
 
 from torchvision import transforms
 from torchvision.datasets import EMNIST
-from torchvision.transforms import Compose, ToTensor, Normalize
 from util.load_data import load_data_with_noisy_label
 
 
