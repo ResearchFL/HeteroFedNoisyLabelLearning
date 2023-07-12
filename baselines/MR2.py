@@ -1,5 +1,5 @@
 from util.dataMR import split_data, my_split, get_n_sample_to_keep, MyDataset, wash_data
-from model.build_model import build_model
+from model.build_model import build_model, eminist_build_model
 import torch.utils.data as data
 from torch.utils.data import DataLoader
 from torch import nn
@@ -19,8 +19,8 @@ from util.load_data import load_data_with_noisy_label
 
 
 def MR2(args):
-    # ======================================================数据划分，加噪===============================================================
-    # 首先从Fedminist数据集中拆分出benchmark dataset 剩余其他数据
+
+    # =======================================================获取Fedminist数据集并拆分出benchmark_dataset_train/test=======================================================
     data_path = '../data/mnist'
 
     trans_mnist_train = transforms.Compose([
@@ -57,8 +57,6 @@ def MR2(args):
                                          dataset=EMNIST_dataset_test);
     benchmark_dataset = torch.utils.data.ConcatDataset([benchmark_dataset_train, benchmark_dataset_test])
 
-    dataset_train, dataset_test, dict_users, y_train, gamma_s = load_data_with_noisy_label(args)
-
     # 将benchmark_dataset划分成train和test
     train_ratio = 1 / 1.3  # benchmark dataset比例
     test_ratio = 1 - 1 / 1.3  # 待过滤 dataset比例
@@ -67,6 +65,9 @@ def MR2(args):
     benchmark_dataset_train, benchmark_dataset_test = my_split(args, train_ratio, test_ratio, benchmark_dataset)
     print("将benchmark_dataset划分成train和test了")
 
+    # =======================================================获取待训练数据集并加噪=======================================================
+    dataset_train, dataset_test, dict_users, y_train, gamma_s = load_data_with_noisy_label(args)
+
     # ======================================================benchmark model训练===============================================================
 
     print("即将使用benchmark_dataset_train开始训练benchmark model")
@@ -74,7 +75,7 @@ def MR2(args):
     # 获取模型
     print("使用设备为")
     print(args.device)
-    benchmark_model = build_model(args)
+    benchmark_model = eminist_build_model(args)
 
     # dataloader
     benchmark_train_dataloader = DataLoader(benchmark_dataset_train, batch_size=16)
