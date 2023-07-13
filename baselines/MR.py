@@ -8,7 +8,7 @@ from util.sampling import iid_sampling, non_iid_dirichlet_sampling
 import torch
 import numpy as np
 from util.util import add_noise
-from util.local_training import LocalUpdate, globaltest
+from util.local_training import FedTAVGLocalUpdate, globaltest
 import copy
 from util.aggregation import FedAvg
 import time
@@ -166,12 +166,13 @@ def MR(args):
     for rnd in range(args.rounds2):
         w_locals, loss_locals = [], []
         idxs_users = np.random.choice(range(args.num_users), m, replace=False, p=prob)
+
         for idx in idxs_users:  # training over the subset
-            local = LocalUpdate(args=args, dataset=fliter_dataset_train, idxs=dict_users[idx])
-            w_local, loss_local = local.update_weights(net=copy.deepcopy(model).to(args.device),
-                                                        w_g=model.to(args.device), epoch=args.local_ep, mu=0)
+            local = FedTAVGLocalUpdate(args=args, dataset=fliter_dataset_train, idxs=dict_users[idx])
+            w_local, loss_local = local.update_weights(net=copy.deepcopy(model).to(args.device))
             w_locals.append(copy.deepcopy(w_local))  # store every updated model
             loss_locals.append(copy.deepcopy(loss_local))
+
         loss_round = sum(loss_locals)/len(loss_locals)
         dict_len = [len(dict_users[idx]) for idx in idxs_users]
         w_glob_fl = FedAvg(w_locals, dict_len)

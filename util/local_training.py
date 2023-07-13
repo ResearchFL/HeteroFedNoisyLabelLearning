@@ -10,6 +10,7 @@ from util.loss import FedTwinCRLoss
 import numpy as np
 from util.optimizer import TwinOptimizer, adjust_learning_rate
 
+
 def mixup_data(x, y, alpha=1.0, use_cuda=True):
     '''Returns mixed inputs, pairs of targets, and lambda'''
     if alpha > 0:
@@ -99,7 +100,7 @@ class LocalUpdate(object):
 
                 batch_loss.append(loss.item())
 
-            epoch_loss.append(sum(batch_loss)/len(batch_loss))
+            epoch_loss.append(sum(batch_loss) / len(batch_loss))
         return net.state_dict(), sum(epoch_loss) / len(epoch_loss)
 
 
@@ -136,7 +137,7 @@ class FedTwinLocalUpdate:
             # print(f"plr={plr}")
             lr = adjust_learning_rate(rounds * args.local_ep + iter, args)
             # print(f"lr={lr}")
-            for batch_idx, (images, labels, _)  in enumerate(self.ldr_train):
+            for batch_idx, (images, labels, _) in enumerate(self.ldr_train):
                 images, labels = images.to(self.args.device), labels.to(self.args.device)
                 # K = 30 # K is number of personalized steps
 
@@ -144,7 +145,8 @@ class FedTwinLocalUpdate:
                 log_probs_p, _ = net_p(images)
                 log_probs_g, _ = net_glob(images)
                 # log_probs = net(images)
-                loss_p, loss_g, len_loss_p, len_loss_g = self.loss_func(log_probs_p, log_probs_g, labels, rounds, iter, args)
+                loss_p, loss_g, len_loss_p, len_loss_g = self.loss_func(log_probs_p, log_probs_g, labels, rounds, iter,
+                                                                        args)
                 for i in range(self.args.K):
                     net_p.zero_grad()
                     if i == (self.args.K - 1):
@@ -157,7 +159,7 @@ class FedTwinLocalUpdate:
                 # update local weight after finding aproximate theta
                 for new_param, localweight in zip(self.persionalized_model_bar, net_glob.parameters()):
                     localweight.data = localweight.data - self.args.lamda * lr * (
-                                localweight.data - new_param.data)
+                            localweight.data - new_param.data)
 
                 for param, new_param in zip(net_glob.parameters(), net_glob.parameters()):
                     param.data = new_param.data.clone()
@@ -168,12 +170,12 @@ class FedTwinLocalUpdate:
                 batch_loss.append(loss_g.item())
                 b_bar_p.append(len_loss_g)
             n_bar_k.append(sum(b_bar_p))
-            epoch_loss.append(sum(batch_loss)/len(batch_loss))
+            epoch_loss.append(sum(batch_loss) / len(batch_loss))
             print("\rRounds {:d} Client {:d} Epoch {:d}: train loss {:.4f}"
                   .format(rounds, self.client_idx, iter, sum(epoch_loss) / len(epoch_loss)), end='\n', flush=True)
             # if any(math.isnan(loss) for loss in epoch_loss):
             #     print("debug epoch_loss")
-        n_bar_k = sum(n_bar_k)/len(n_bar_k)
+        n_bar_k = sum(n_bar_k) / len(n_bar_k)
         return net_p, net_glob.state_dict(), sum(epoch_loss) / len(epoch_loss), n_bar_k
 
 
@@ -190,11 +192,13 @@ class LocalUpdateRFL:
         self.ldr_train, self.ldr_test = self.train_test(dataset, list(idxs))
         # self.ldr_train = DataLoader(DatasetSplitRFL(dataset, idxs), batch_size=self.args.local_bs, shuffle=True)
         self.ldr_train_tmp = DataLoader(DatasetSplit(dataset, idxs), batch_size=1, shuffle=True)
+
     def train_test(self, dataset, idxs):
         # split training set, validation set and test set
         train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True)
         test = DataLoader(dataset, batch_size=128)
         return train, test
+
     def RFLloss(self, logit, labels, feature, f_k, mask, small_loss_idxs, new_labels):
         mse = torch.nn.MSELoss(reduction='none')
         ce = torch.nn.CrossEntropyLoss()
@@ -305,13 +309,44 @@ class LocalUpdateRFL:
                 # update local centroid f_k
                 one = torch.ones(self.args.num_classes, 1, device=self.args.device)
                 f_k = (one - self.sim(f_k, f_kj_hat).reshape(self.args.num_classes, 1) ** 2) * f_k + (
-                            self.sim(f_k, f_kj_hat).reshape(self.args.num_classes, 1) ** 2) * f_kj_hat
+                        self.sim(f_k, f_kj_hat).reshape(self.args.num_classes, 1) ** 2) * f_kj_hat
 
                 batch_loss.append(loss.item())
 
             epoch_loss.append(sum(batch_loss) / len(batch_loss))
 
         return net.state_dict(), sum(epoch_loss) / len(epoch_loss), f_k
+
+
+class FedTAVGLocalUpdate:
+    def __init__(self, args, dataset=None, idxs=None):
+        self.args = args
+        self.loss_func = CrossEntropyLoss()  # loss function -- cross entropy
+        self.ldr_train, self.ldr_test = self.train_test(dataset, list(idxs))
+
+    def train_test(self, dataset, idxs):
+        # split training set, validation set and test set
+        train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True)
+        test = DataLoader(dataset, batch_size=128)
+        return train, test
+
+    def update_weights(self, net):
+        net.train()
+        optimizer = torch.optim.SGD(net.parameters(), lr=self.args.lr)
+        epoch_loss = []
+        for iter in range(self.args.local_ep):
+            batch_loss = []
+            for batch_idx, (images, labels, _) in enumerate(self.ldr_train):
+                images, labels = images.to(self.args.device), labels.to(self.args.device)
+                net.zero_grad()
+                outputs, _ = net(images)
+                loss = self.loss_func(outputs, outputs)
+                loss.backward()
+                optimizer.step()
+                batch_loss.append(loss.item())
+            epoch_loss.append(sum(batch_loss) / len(batch_loss))
+        return net.state_dict(), sum(epoch_loss) / len(epoch_loss)
+
 
 def get_local_update_objects(args, dataset_train, dict_users=None, net_glob=None):
     local_update_objects = []
@@ -342,7 +377,7 @@ def globaltest(net, test_dataset, args):
             total += labels.size(0)
             correct += (predicted == labels).sum().item()
 
-    acc = (correct / total)*100
+    acc = (correct / total) * 100
     return acc
 
 
