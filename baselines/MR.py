@@ -18,11 +18,11 @@ def MR(args):
 # ======================================================数据划分，加噪===============================================================
     # 首先从原始数据集中拆分出benchmark dataset 剩余其他数据
     benchmark_dataset, fliter_dataset_train, fliter_dataset_test = split_data(args)
-    print("benchmark数据集拆分出来了")
-    print("fliter_dataset_train的形状是：{}".format(len(fliter_dataset_train)))
+    print("benchmark dataset is finished")
+    print("the shape of fliter_dataset_train is：{}".format(len(fliter_dataset_train)))
     print(len(fliter_dataset_train[0]))
     # 按照客户端划分
-    print("正在按照客户端划分fliter_dataset_train")
+    print("split dataset --> fliter_dataset_train")
     n_train = len(fliter_dataset_train)
     # y_train = np.array(fliter_dataset_train.targets)
     print(type(fliter_dataset_train[0][1]))
@@ -31,7 +31,7 @@ def MR(args):
         dict_users = iid_sampling(n_train, args.num_users, args.seed)
     else:
         dict_users = non_iid_dirichlet_sampling(y_train, args.num_classes, args.non_iid_prob_class, args.num_users, args.seed, args.alpha_dirichlet)
-    print("正在加噪声")
+    print("add noise")
     # fliter_dataset_train数据进行加噪得到noise dataset
     y_train_noisy, gamma_s, real_noise_level = add_noise(args, y_train, dict_users)
     x_train = [img for img, _ in fliter_dataset_train]
@@ -41,7 +41,7 @@ def MR(args):
         img, label = data
         if label != y_train_noisy[i]:
             print("true")
-    print("加噪声完毕")
+    print("process of adding noise is finished.")
 
     # 将benchmark_dataset划分成train和test
     train_ratio = 1 / 1.3  # benchmark dataset比例
