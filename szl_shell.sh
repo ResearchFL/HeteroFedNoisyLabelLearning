@@ -1,4 +1,5 @@
 # touch ./record/FedTwin_minist.log && nohup bash szl_shell.sh >> ./record/FedTwin_minist.log 2>&1 &
+
 run_times=5
 level_n=1
 gpu_num=1
