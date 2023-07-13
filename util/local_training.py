@@ -318,7 +318,7 @@ class LocalUpdateRFL:
         return net.state_dict(), sum(epoch_loss) / len(epoch_loss), f_k
 
 
-class FedTAVGLocalUpdate:
+class FedAVGLocalUpdate:
     def __init__(self, args, dataset=None, idxs=None):
         self.args = args
         self.loss_func = CrossEntropyLoss()  # loss function -- cross entropy
@@ -336,15 +336,19 @@ class FedTAVGLocalUpdate:
         epoch_loss = []
         for iter in range(self.args.local_ep):
             batch_loss = []
-            for batch_idx, (images, labels, _) in enumerate(self.ldr_train):
+            for images, labels, _ in self.ldr_train:
                 images, labels = images.to(self.args.device), labels.to(self.args.device)
                 net.zero_grad()
                 outputs, _ = net(images)
-                loss = self.loss_func(outputs, outputs)
+                loss = self.loss_func(outputs, labels)
+                # print("outputs={}, labels={}".format(outputs, labels))
+                # print("loss={}".format(loss))
                 loss.backward()
                 optimizer.step()
                 batch_loss.append(loss.item())
+                # print("batch_loss={}".format(batch_loss))
             epoch_loss.append(sum(batch_loss) / len(batch_loss))
+            # print("epoch_loss={}".format(epoch_loss))
         return net.state_dict(), sum(epoch_loss) / len(epoch_loss)
 
 

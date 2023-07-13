@@ -2,7 +2,7 @@ from util.load_data import load_data_with_noisy_label
 import time
 from model.build_model import build_model
 import numpy as np
-from util.local_training import FedTAVGLocalUpdate, globaltest
+from util.local_training import FedAVGLocalUpdate, globaltest
 import copy
 from util.aggregation import FedAvg
 
@@ -23,18 +23,18 @@ def FedAVG(args):
         idxs_users = np.random.choice(range(args.num_users), m, replace=False, p=prob)
 
         for idx in idxs_users:  # training over the subset
-            local = FedTAVGLocalUpdate(args=args, dataset=dataset_train, idxs=dict_users[idx])
+            local = FedAVGLocalUpdate(args=args, dataset=dataset_train, idxs=dict_users[idx])
             w_local, loss_local = local.update_weights(net=copy.deepcopy(model).to(args.device))
             w_locals.append(copy.deepcopy(w_local))  # store every updated model
             loss_locals.append(copy.deepcopy(loss_local))
 
         loss_round = sum(loss_locals)/len(loss_locals)
 
-        dict_len = [len(dict_users[idx]) for idx in idxs_users]
-
+        dict_len = [len(dict_users[idx]) for idx in idxs_users
+]
         w_glob_fl = FedAvg(w_locals, dict_len)
 
-        model.load_state_dict(copy.deepcopy(w_glob_fl))
+        model.load_state_dict(copy.deepcopy(w_glob_fl)) # 全局模型
 
         acc_s2 = globaltest(copy.deepcopy(model).to(args.device), dataset_test, args)
 
