@@ -180,7 +180,7 @@ def MR(args):
         acc_s2 = globaltest(copy.deepcopy(model).to(args.device), fliter_dataset_test, args)
         show_info_loss = "Round %d train loss  %.4f\n" % (rnd, loss_round)
         show_info_test_acc = "global test acc  %.4f \n\n" % (acc_s2)
-        print(show_info_loss)
+        # print(show_info_loss)
         print(show_info_test_acc)
     show_time_info = f"time : {time.time() - start}"
     print(show_time_info)
