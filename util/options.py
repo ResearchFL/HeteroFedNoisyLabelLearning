@@ -14,25 +14,23 @@ def args_parser():
     parser.add_argument('--save_dir', type=str, default='./record/', help="name of save directory")
     parser.add_argument('--rounds2', type=int, default=300, help="rounds of training in usual training stage")
     parser.add_argument('--local_ep', type=int, default=5, help="number of local epochs")
-    parser.add_argument('--frac2', type=float, default=0.1,
-                        help="fration of selected clients in fine-tuning and usual training stage")
+    parser.add_argument('--frac2', type=float, default=0.1, help="fration of selected clients in fine-tuning and usual training stage")
     parser.add_argument('--num_users', type=int, default=100, help="number of uses: K")
     parser.add_argument('--local_bs', type=int, default=32, help="local batch size: B")
     parser.add_argument('--lr', type=float, default=0.1, help="learning rate") #0.01
     parser.add_argument('--model', type=str, default='lenet', help="model name")
-    parser.add_argument('--dataset', type=str, default='mnist', help="name of dataset")
-    parser.add_argument('--iid', action='store_true', help="i.i.d. or non-i.i.d.")
-    parser.add_argument('--non_iid_prob_class', type=float, default=0.7, help="non iid sampling prob for class")
-    parser.add_argument('--alpha_dirichlet', type=float, default=10)
-    parser.add_argument('--num_classes', type=int, default=10, help="number of classes")
+
     ## noise arguments
-    parser.add_argument('--LID_k', type=int, default=20, help="lid")
+    parser.add_argument('--num_classes', type=int, default=10, help="number of classes")
     parser.add_argument('--level_n_system', type=float, default=1, help="fraction of noisy clients")
     parser.add_argument('--level_n_lowerb', type=float, default=0.5, help="lower bound of noise level")
-
-
+    parser.add_argument('--alpha_dirichlet', type=float, default=10)
+    parser.add_argument('--non_iid_prob_class', type=float, default=0.7, help="non iid sampling prob for class")
+    parser.add_argument('--dataset', type=str, default='mnist', help="name of dataset")
+    parser.add_argument('--iid', action='store_true', help="i.i.d. or non-i.i.d.")
 
     ###### FedCorr ####################
+    parser.add_argument('--LID_k', type=int, default=20, help="lid")
     parser.add_argument('--iteration1', type=int, default=5, help="enumerate iteration in preprocessing stage")
     parser.add_argument('--rounds1', type=int, default=200, help="rounds of training in fine_tuning stage")
     parser.add_argument('--frac1', type=float, default=0.01, help="fration of selected clients in preprocessing stage")
@@ -54,14 +52,6 @@ def args_parser():
     parser.add_argument('--T_pl', type=int, help='T_pl: When to start using global guided pseudo labeling', default=100)
     parser.add_argument('--lambda_cen', type=float, help='lambda_cen', default=1.0)
     parser.add_argument('--lambda_e', type=float, help='lambda_e', default=0.8)
-
-
-    # uncheck parameter
-    parser.add_argument('--num_shards', type=int, default=200, help="number of shards")
-    # noise arguments
-    parser.add_argument('--noise_type', type=str, default='symmetric', choices=['symmetric', 'pairflip', 'clean'],
-                        help='noise type of each clients')
-    parser.add_argument('--noise_rate', type=float, default=0.2, help="noise rate of each clients")
     parser.add_argument('--num_gradual', type=int, default=10, help='T_k')
     parser.add_argument('--forget_rate', type=float, default=0.2, help="forget rate")
     parser.add_argument('--lr_decay', type=float, default=0.1, help="learning rate decay size")
