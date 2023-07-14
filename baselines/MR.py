@@ -18,20 +18,20 @@ def MR(args):
 # ======================================================数据划分，加噪===============================================================
     # 首先从原始数据集中拆分出benchmark dataset 剩余其他数据
     benchmark_dataset, fliter_dataset_train, fliter_dataset_test = split_data(args)
-    print("benchmark dataset is finished")
-    print("the shape of fliter_dataset_train is：{}".format(len(fliter_dataset_train)))
-    print(len(fliter_dataset_train[0]))
+    # print("benchmark dataset is finished")
+    # print("the shape of fliter_dataset_train is：{}".format(len(fliter_dataset_train)))
+    # print(len(fliter_dataset_train[0]))
     # 按照客户端划分
-    print("split dataset --> fliter_dataset_train")
+    # print("split dataset --> fliter_dataset_train")
     n_train = len(fliter_dataset_train)
     # y_train = np.array(fliter_dataset_train.targets)
-    print(type(fliter_dataset_train[0][1]))
+    # print(type(fliter_dataset_train[0][1]))
     y_train = np.array([label for _, label in fliter_dataset_train])
     if args.iid:
         dict_users = iid_sampling(n_train, args.num_users, args.seed)
     else:
         dict_users = non_iid_dirichlet_sampling(y_train, args.num_classes, args.non_iid_prob_class, args.num_users, args.seed, args.alpha_dirichlet)
-    print("add noise")
+    # print("add noise")
     # fliter_dataset_train数据进行加噪得到noise dataset
     y_train_noisy, gamma_s, real_noise_level = add_noise(args, y_train, dict_users)
     x_train = [img for img, _ in fliter_dataset_train]
@@ -41,7 +41,7 @@ def MR(args):
         img, label = data
         if label != y_train_noisy[i]:
             print("true")
-    print("process of adding noise is finished.")
+    # print("process of adding noise is finished.")
 
     # 将benchmark_dataset划分成train和test
     train_ratio = 1 / 1.3  # benchmark dataset比例
@@ -49,15 +49,15 @@ def MR(args):
     train_size = int(train_ratio * len(benchmark_dataset))
     test_size = int(len(benchmark_dataset) - train_size)
     benchmark_dataset_train, benchmark_dataset_test = my_split(args, train_ratio, test_ratio, benchmark_dataset)
-    print("将benchmark_dataset划分成train和test了")
+    # print("将benchmark_dataset划分成train和test了")
 
 # ======================================================benchmark model训练===============================================================
 
-    print("即将使用benchmark_dataset_train开始训练benchmark model")
+    # print("即将使用benchmark_dataset_train开始训练benchmark model")
     # 然后benchmark dataset train用于训练benchmark model
     # 获取模型
-    print("使用设备为")
-    print(args.device)
+    # print("使用设备为")
+    # print(args.device)
     benchmark_model = build_model(args)
 
     # dataloader
@@ -82,7 +82,7 @@ def MR(args):
     counter_convergence_reached = 0
     i = 0
     while counter_convergence_reached < 200:
-        print("----------benchmark模型第{}轮训练开始----------".format(i+1))
+        # print("----------benchmark模型第{}轮训练开始----------".format(i+1))
         for data in benchmark_train_dataloader:
             imgs, targets = data
             imgs = imgs.to(args.device)
@@ -95,8 +95,8 @@ def MR(args):
             optimizer.step()
 
             total_train_step += 1 
-            if total_train_step % 100 == 0:
-                print("benchmark模型训练次数：{}，loss：{}".format(total_train_step, loss.item()))
+            # if total_train_step % 100 == 0:
+                # print("benchmark模型训练次数：{}，loss：{}".format(total_train_step, loss.item()))
 
         total_test_loss = 0
         total_accuracy = 0
@@ -110,8 +110,8 @@ def MR(args):
                 total_test_loss += loss.item()
                 accuracy = (outputs.argmax(1) == targets).sum()
                 total_accuracy += accuracy
-        print("benchmark模型整体测试集上的loss：{}".format(total_test_loss))
-        print("benchmark模型整体测试集上的正确率：{}".format(total_accuracy / test_size))
+        # print("benchmark模型整体测试集上的loss：{}".format(total_test_loss))
+        # print("benchmark模型整体测试集上的正确率：{}".format(total_accuracy / test_size))
         total_test_step += 1
 
         if total_test_loss < max_val:
@@ -157,7 +157,7 @@ def MR(args):
 # ======================================================联邦训练===============================================================
 
     # 开始联邦学习阶段
-    print("下面开始联邦训练阶段：")
+    # print("下面开始联邦训练阶段：")
     start = time.time()
     # 获取模型
     model = build_model(args)
@@ -179,7 +179,7 @@ def MR(args):
         model.load_state_dict(copy.deepcopy(w_glob_fl))
         acc_s2 = globaltest(copy.deepcopy(model).to(args.device), fliter_dataset_test, args)
         show_info_loss = "Round %d train loss  %.4f\n" % (rnd, loss_round)
-        show_info_test_acc = "global test acc  %.4f \n\n" % (acc_s2)
+        show_info_test_acc = "Round %d global test acc  %.4f" % (rnd, acc_s2)
         # print(show_info_loss)
         print(show_info_test_acc)
     show_time_info = f"time : {time.time() - start}"

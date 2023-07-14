@@ -10,7 +10,7 @@ def FedAVG(args):
     dataset_train, dataset_test, dict_users, y_train, gamma_s = load_data_with_noisy_label(args)
 
     # 开始联邦学习阶段
-    print("FedAVG：")
+    # print("FedAVG：")
     start = time.time()
     # 获取模型
     model = build_model(args)
@@ -38,8 +38,8 @@ def FedAVG(args):
 
         acc_s2 = globaltest(copy.deepcopy(model).to(args.device), dataset_test, args)
 
-        show_info_loss = "Round %d train loss  %.4f\n" % (rnd, loss_round)
-        show_info_test_acc = "global test acc  %.4f \n\n" % (acc_s2)
+        show_info_loss = "Round %d train loss  %.4f" % (rnd, loss_round)
+        show_info_test_acc = "global test acc  %.4f" % (acc_s2)
 
         # print(show_info_loss)
         print(show_info_test_acc)

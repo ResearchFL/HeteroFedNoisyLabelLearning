@@ -49,8 +49,8 @@ def RFL(args):
         args.g_epoch = rnd
 
         if (rnd + 1) in args.schedule:
-            print("Learning Rate Decay Epoch {}".format(rnd + 1))
-            print("{} => {}".format(args.lr, args.lr * args.lr_decay))
+            # print("Learning Rate Decay Epoch {}".format(rnd + 1))
+            # print("{} => {}".format(args.lr, args.lr * args.lr_decay))
             args.lr *= args.lr_decay
 
         if len(forget_rate_schedule) > 0:
@@ -93,7 +93,7 @@ def RFL(args):
         f_G = torch.div(tmp, w_sum)
 
         acc_s2 = globaltest(net_glob.to(args.device), dataset_test, args)
-        show_info_test_acc = "Round %d global test acc  %.4f \n" % (rnd, acc_s2)
+        show_info_test_acc = "Round %d global test acc  %.4f" % (rnd, acc_s2)
         print(show_info_test_acc)
         #f_save.write(show_info_test_acc)
         #f_save.flush()

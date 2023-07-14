@@ -56,7 +56,6 @@ def run(args):
 if __name__ == '__main__':
     # parse args
     args = args_parser()
-    print(args)
     # float for some parameters
     args.lr = float(args.lr)
     args.plr = float(args.plr)

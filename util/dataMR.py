@@ -21,8 +21,8 @@ def split_data(args):
 
     dataset_train, dataset_test, dict_users = get_dataset(args)
     img, target = dataset_train[0]
-    print(img.shape)
-    print(target)
+    # print(img.shape)
+    # print(target)
 
     # 合并训练集和测试集
     # dataset = data.ConcatDataset([dataset_train, dataset_test])
@@ -105,7 +105,7 @@ def get_n_sample_to_keep(sorted_d, list_loss_benchmark): # select n_sample to ke
         max_each_cut.append(max_value)
 
     n_sample_to_keep=steps[np.argmin(max_each_cut)]
-    print('n sample to keep',n_sample_to_keep)
+    # print('n sample to keep',n_sample_to_keep)
 
     indices_to_keep = []
     for i in range(0, n_sample_to_keep):

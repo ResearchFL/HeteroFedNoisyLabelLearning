@@ -198,7 +198,7 @@ def FedCorr(args):
         net_glob.load_state_dict(copy.deepcopy(w_glob_fl))
 
         acc_s2 = globaltest(copy.deepcopy(net_glob).to(args.device), dataset_test, args)
-        show_info_test_acc = "Round %d global test acc  %.4f \n" % (rnd, acc_s2)
+        show_info_test_acc = "Round %d global test acc  %.4f" % (rnd, acc_s2)
         print(show_info_test_acc)
         # f_save.write(show_info_test_acc)
         # f_save.flush()
