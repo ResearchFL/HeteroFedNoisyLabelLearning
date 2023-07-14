@@ -31,6 +31,7 @@ done
 
 currentdate=$(date +%Y%m%d)
 
+
 mkdir ./record/"${currentdate}"
 mkdir ./record/"${currentdate}"/MR ./record/"${currentdate}"/FedAVG ./record/"${currentdate}"/FedTwin
 touch ./record/"${currentdate}"/MR/MR_minist.log ./record/"${currentdate}"/MR/MR_cifar10.log ./record/"${currentdate}"/MR/MR_cifar100.log
