@@ -24,7 +24,7 @@ def args_parser():
     parser.add_argument('--num_classes', type=int, default=10, help="number of classes")
     parser.add_argument('--level_n_system', type=float, default=1, help="fraction of noisy clients")
     parser.add_argument('--level_n_lowerb', type=float, default=0.5, help="lower bound of noise level")
-    parser.add_argument('--alpha_dirichlet', type=float, default=10)
+    parser.add_argument('--alpha_dirichlet', type=float, default=1)
     parser.add_argument('--non_iid_prob_class', type=float, default=0.7, help="non iid sampling prob for class")
     parser.add_argument('--dataset', type=str, default='mnist', help="name of dataset")
     parser.add_argument('--iid', action='store_true', help="i.i.d. or non-i.i.d.")
