@@ -19,6 +19,10 @@ listModel=(lenet resnet18 resnet34 renet50)
 listRound=(200 450 450 50)
 #客户端数量---对应数据集
 listClient=(100 100 50 300)
+#frac2---对应数据集
+listFrac2=(0.1 0.1 0.2 0.3)
+#lr---对应数据集
+listLr=(0.1 0.01 0.01 0.001)
 
 #方法
 listMethod=(FedAVG MR FedTwin FedCorr RFL)
@@ -59,7 +63,8 @@ do
                     touch "${logFile}"
 
                     python -u main.py --alg "${listMethod[j]}" --dataset "${listDataset[i]}" --model "${listModel[i]}" --rounds2 "${listRound[i]}" --num_users "${listClient[i]}" \
-                        --lr 0.01 --plr 0.01 --frac2 0.2 --begin_sel $begin_sel_r --gpu $gpu_num \
+                        --lr "${listLr[i]}" --plr "${listLr[i]}" --frac2 "${listFrac2[i]}" \
+                        --begin_sel $begin_sel_r --gpu $gpu_num \
                         --level_n_system "${listRou[q]}" --level_n_lowerb "${listTau[q]}" \
                         --iid \
                         >> "${logFile}" 2>&1
@@ -72,7 +77,8 @@ do
                     touch "${logFile}"
 
                     python -u main.py --alg "${listMethod[j]}" --dataset "${listDataset[i]}" --model "${listModel[i]}" --rounds2 "${listRound[i]}" --num_users "${listClient[i]}"  \
-                        --lr 0.01 --plr 0.01 --frac2 0.2 --begin_sel $begin_sel_r --gpu $gpu_num \
+                        --lr "${listLr[i]}" --plr "${listLr[i]}" --frac2 "${listFrac2[i]}" \
+                        --begin_sel $begin_sel_r --gpu $gpu_num \
                         --level_n_system "${listRou[q]}" --level_n_lowerb "${listTau[q]}" \
                         \
                         >> "${logFile}" 2>&1
