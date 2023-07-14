@@ -42,9 +42,9 @@ MakeDir "${date_path}"
 for ((time=1;time<="${run_times}";time++))
 do
 
-    for ((i=0;i<=3;i++))    #遍历数据集
+    for ((i=0;i<${#listDataset[@]};i++))    #遍历数据集
     do
-        for ((j=0;j<=3;j++))        #遍历方法
+        for ((j=0;j<${#listMethod[@]};j++))        #遍历方法
         do
             for ((p=0;p<=1;p++))            #遍历IID情况
             do
