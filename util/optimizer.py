@@ -58,10 +58,11 @@ def filter_noisy_data(input: Tensor, target: Tensor):
 def f_beta(epoch, args):
     if args.dataset == 'cifar100':
         max_beta = 20.0
-    elif args.dataset == 'cifar10':
+    elif args.dataset == 'cifar10' or 'mnist':
         max_beta = 2.0
     elif args.dataset == 'clothing1m':
         max_beta = 2.8
+
     beta1 = np.linspace(0.0, 0.0, num=args.local_ep * 2)
     beta2 = np.linspace(0.0, max_beta, num=args.local_ep * args.begin_sel)
     beta3 = np.linspace(max_beta, max_beta, num=args.rounds2 * args.local_ep)
