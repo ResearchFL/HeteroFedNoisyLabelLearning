@@ -25,7 +25,10 @@ def add_noise(args, y_train, dict_users):
         print("Client %d, noise level: %.4f (%.4f), real noise ratio: %.4f" % (
             i, gamma_c[i], gamma_c[i] * 0.9, noise_ratio))
         real_noise_level[i] = noise_ratio
-    return (y_train_noisy, gamma_s, real_noise_level)
+    # By comparing the labels of the dataset before and after adding noise
+    # we can determine which samples have been affected by the noise
+    noisy_samples_idx = np.where(y_train != y_train_noisy)[0]
+    return (y_train_noisy, gamma_s, real_noise_level, noisy_samples_idx)
 
 
 def get_output(loader, net, args, latent=False, criterion=None):

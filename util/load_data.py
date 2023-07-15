@@ -6,9 +6,9 @@ def load_data_with_noisy_label(args):
     dataset_train, dataset_test, dict_users = get_dataset(args)
     # ---------------------Add Noise ---------------------------
     y_train = np.array(dataset_train.targets)
-    y_train_noisy, gamma_s, real_noise_level = add_noise(args, y_train, dict_users)
+    y_train_noisy, gamma_s, real_noise_level, noisy_sample_idx = add_noise(args, y_train, dict_users)
     dataset_train.targets = y_train_noisy
-    return dataset_train, dataset_test, dict_users, y_train, gamma_s
+    return dataset_train, dataset_test, dict_users, y_train, gamma_s, noisy_sample_idx
 
 
     # start = time.time()
