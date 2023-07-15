@@ -43,10 +43,9 @@ MakeDir ./record
 MakeDir "${date_path}"
 
 #开始训练
-for ((time=1;time<="${run_times}";time++))
+for ((i=0;i<${#listDataset[@]};i++))    #遍历数据集
 do
-
-    for ((i=0;i<${#listDataset[@]};i++))    #遍历数据集
+    for ((time=1;time<="${run_times}";time++))
     do
         for ((j=0;j<${#listMethod[@]};j++))        #遍历方法
         do

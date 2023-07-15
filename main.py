@@ -12,15 +12,10 @@ from baselines.RFL import RFL
 from baselines.FedTwin import FedTwin
 from baselines.MR import MR
 from baselines.FedAvg import FedAVG
-import signal
 np.set_printoptions(threshold=np.inf)
 """
 Major framework of noise FL
 """
-
-def signal_handler(signum, frame):
-    # 处理信号
-    print(f"Received signal {signum}")
 
 
 def run(args):
@@ -59,13 +54,6 @@ def run(args):
 
 
 if __name__ == '__main__':
-    # 获取所有可捕获的信号列表
-    valid_signals = [sig for sig in range(1, signal.NSIG) if sig not in {signal.SIGKILL, signal.SIGSTOP}]
-
-    # 将所有可捕获的信号与 signal_handler 函数关联
-    for sig in valid_signals:
-        signal.signal(sig, signal_handler)
-
     # parse args
     args = args_parser()
     # float for some parameters
