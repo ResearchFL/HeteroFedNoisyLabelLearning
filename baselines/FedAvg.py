@@ -39,7 +39,7 @@ def FedAVG(args):
         acc_s2 = globaltest(copy.deepcopy(model).to(args.device), dataset_test, args)
 
         show_info_loss = "Round %d train loss  %.4f" % (rnd, loss_round)
-        show_info_test_acc = "global test acc  %.4f" % (acc_s2)
+        show_info_test_acc = "Round %d global test acc  %.4f" % (rnd, acc_s2)
 
         # print(show_info_loss)
         print(show_info_test_acc)
