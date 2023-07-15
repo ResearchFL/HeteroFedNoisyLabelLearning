@@ -57,7 +57,7 @@ do
 
                     "0")                    #IID
 
-                    logFile="$date_path"/"${listDataset[i]}"_"${listMethod[j]}"_IID_rou_"${listRou[q]}"_tau_"${listRou[q]}".log  #文件路径
+                    logFile="$date_path"/"${listDataset[i]}"_"${listMethod[j]}"_IID_rou_"${listRou[q]}"_tau_"${listTau[q]}".log  #文件路径
 
                     touch "${logFile}"
 
@@ -71,7 +71,7 @@ do
 
                     "1")                    #NonIID
 
-                    logFile="$date_path"/"${listDataset[i]}"_"${listMethod[j]}"_nonIID_rou_"${listRou[q]}"_tau_"${listRou[q]}".log  #文件路径
+                    logFile="$date_path"/"${listDataset[i]}"_"${listMethod[j]}"_nonIID_rou_"${listRou[q]}"_tau_"${listTau[q]}".log  #文件路径
 
                     touch "${logFile}"
 
