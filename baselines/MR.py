@@ -33,7 +33,7 @@ def MR(args):
         dict_users = non_iid_dirichlet_sampling(y_train, args.num_classes, args.non_iid_prob_class, args.num_users, args.seed, args.alpha_dirichlet)
     # print("add noise")
     # fliter_dataset_train数据进行加噪得到noise dataset
-    y_train_noisy, gamma_s, real_noise_level = add_noise(args, y_train, dict_users)
+    y_train_noisy, gamma_s, real_noise_level, _ = add_noise(args, y_train, dict_users)
     x_train = [img for img, _ in fliter_dataset_train]
     fliter_dataset_train = MyDataset(x_train, y_train_noisy)
     for i in range(100):

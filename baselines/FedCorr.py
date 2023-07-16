@@ -1,5 +1,5 @@
 from model.build_model import build_model
-from util.local_training import LocalUpdate, globaltest
+from util.local_training import FedCorrLocalUpdate, globaltest
 from util.aggregation import FedAvg
 import numpy as np
 import torch
@@ -10,6 +10,7 @@ import copy
 from util.util import lid_term, get_output
 from util.load_data import load_data_with_noisy_label
 import time
+
 
 def FedCorr(args):
     # if args.mixup:
@@ -22,7 +23,7 @@ def FedCorr(args):
     ##############################
     #  Load Dataset
     ##############################
-    dataset_train, dataset_test, dict_users, y_train, gamma_s = load_data_with_noisy_label(args)
+    dataset_train, dataset_test, dict_users, y_train, gamma_s, _ = load_data_with_noisy_label(args)
 
     # torch.manual_seed(args.seed)
     # torch.cuda.manual_seed(args.seed)
@@ -70,7 +71,7 @@ def FedCorr(args):
 
                 # proximal term operation
                 mu_i = mu_list[idx]
-                local = LocalUpdate(args=args, dataset=dataset_train, idxs=sample_idx)
+                local = FedCorrLocalUpdate(args=args, dataset=dataset_train, idxs=sample_idx)
                 w, loss = local.update_weights(net=copy.deepcopy(net_local).to(args.device),
                                                w_g=net_glob.to(args.device), epoch=args.local_ep, mu=mu_i)
 
@@ -149,7 +150,7 @@ def FedCorr(args):
             w_locals, loss_locals = [], []
             idxs_users = np.random.choice(range(args.num_users), m, replace=False, p=prob)
             for idx in idxs_users:  # training over the subset
-                local = LocalUpdate(args=args, dataset=dataset_train, idxs=dict_users[idx])
+                local = FedCorrLocalUpdate(args=args, dataset=dataset_train, idxs=dict_users[idx])
                 w_local, loss_local = local.update_weights(net=copy.deepcopy(net_glob).to(args.device),
                                                            w_g=net_glob.to(args.device), epoch=args.local_ep, mu=0)
                 w_locals.append(copy.deepcopy(w_local))  # store every updated model
@@ -185,7 +186,7 @@ def FedCorr(args):
         w_locals, loss_locals = [], []
         idxs_users = np.random.choice(range(args.num_users), m, replace=False, p=prob)
         for idx in idxs_users:  # training over the subset
-            local = LocalUpdate(args=args, dataset=dataset_train, idxs=dict_users[idx])
+            local = FedCorrLocalUpdate(args=args, dataset=dataset_train, idxs=dict_users[idx])
             w_local, loss_local = local.update_weights(net=copy.deepcopy(net_glob).to(args.device),
                                                        w_g=net_glob.to(args.device), epoch=args.local_ep, mu=0)
             w_locals.append(copy.deepcopy(w_local))  # store every updated model

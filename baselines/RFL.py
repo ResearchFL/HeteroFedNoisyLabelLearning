@@ -13,7 +13,7 @@ def RFL(args):
     ##############################
     #  Load Dataset
     ##############################
-    dataset_train, dataset_test, dict_users, y_train, gamma_s = load_data_with_noisy_label(args)
+    dataset_train, dataset_test, dict_users, y_train, gamma_s, _ = load_data_with_noisy_label(args)
 
     start = time.time()
     ##############################

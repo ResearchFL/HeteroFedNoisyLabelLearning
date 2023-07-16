@@ -67,4 +67,7 @@ def args_parser():
     parser.add_argument("--K", type=int, default=5, help="personalized computation steps")
     parser.add_argument('--gamma', type=float, default=1, help="personalized aggregation")
     parser.add_argument('--begin_sel', type=float, default=10, help="which rounds to begin select clean samples")
+
+    ######### FedProx #################
+    parser.add_argument('--mu', type=float, default=0.01, help='proximal term constant')
     return parser.parse_args()

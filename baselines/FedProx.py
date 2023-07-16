@@ -2,11 +2,12 @@ from util.load_data import load_data_with_noisy_label
 import time
 from model.build_model import build_model
 import numpy as np
-from util.local_training import FedAVGLocalUpdate, globaltest
+from util.local_training import FedAVGLocalUpdate, FedProxLocalUpdate, globaltest
 import copy
 from util.aggregation import FedAvg
 
-def FedAVG(args):
+
+def FedProx(args):
     dataset_train, dataset_test, dict_users, y_train, gamma_s, _ = load_data_with_noisy_label(args)
 
     # 开始联邦学习阶段
@@ -23,7 +24,7 @@ def FedAVG(args):
         idxs_users = np.random.choice(range(args.num_users), m, replace=False, p=prob)
 
         for idx in idxs_users:  # training over the subset
-            local = FedAVGLocalUpdate(args=args, dataset=dataset_train, idxs=dict_users[idx])
+            local = FedProxLocalUpdate(args=args, dataset=dataset_train, idxs=dict_users[idx])
             w_local, loss_local = local.update_weights(net=copy.deepcopy(model).to(args.device))
             w_locals.append(copy.deepcopy(w_local))  # store every updated model
             loss_locals.append(copy.deepcopy(loss_local))

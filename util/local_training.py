@@ -9,7 +9,7 @@ from torch.utils.data import DataLoader, Dataset
 from util.loss import FedTwinCRLoss
 import numpy as np
 from util.optimizer import TwinOptimizer, adjust_learning_rate
-
+from util.optimizer import FedProxOptimizer
 
 def mixup_data(x, y, alpha=1.0, use_cuda=True):
     '''Returns mixed inputs, pairs of targets, and lambda'''
@@ -47,7 +47,7 @@ class DatasetSplit(Dataset):
         return image, label, self.idxs[item]
 
 
-class LocalUpdate(object):
+class FedCorrLocalUpdate(object):
     def __init__(self, args, dataset, idxs):
         self.args = args
         self.loss_func = CrossEntropyLoss()  # loss function -- cross entropy
@@ -179,7 +179,7 @@ class FedTwinLocalUpdate:
         return net_p, net_glob.state_dict(), sum(epoch_loss) / len(epoch_loss), n_bar_k
 
 
-class LocalUpdateRFL:
+class RFLLocalUpdate:
     def __init__(self, args, dataset=None, user_idx=None, idxs=None):
         self.args = args
         self.dataset = dataset
@@ -352,6 +352,41 @@ class FedAVGLocalUpdate:
         return net.state_dict(), sum(epoch_loss) / len(epoch_loss)
 
 
+class FedProxLocalUpdate:
+    def __init__(self, args, dataset=None, idxs=None):
+        self.args = args
+        self.loss_func = CrossEntropyLoss()  # loss function -- cross entropy
+        self.ldr_train, self.ldr_test = self.train_test(dataset, list(idxs))
+
+    def train_test(self, dataset, idxs):
+        # split training set, validation set and test set
+        train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True)
+        test = DataLoader(dataset, batch_size=128)
+        return train, test
+
+    def update_weights(self, net):
+        old_net = copy.deepcopy(net)
+        net.train()
+        optimizer = FedProxOptimizer(net.parameters(), lr=self.args.lr, lamda=self.args.mu)
+        epoch_loss = []
+        for iter in range(self.args.local_ep):
+            batch_loss = []
+            for images, labels, _ in self.ldr_train:
+                images, labels = images.to(self.args.device), labels.to(self.args.device)
+                net.zero_grad()
+                outputs, _ = net(images)
+                loss = self.loss_func(outputs, labels)
+                # print("outputs={}, labels={}".format(outputs, labels))
+                # print("loss={}".format(loss))
+                loss.backward()
+                optimizer.step(list(old_net.parameters()))
+                batch_loss.append(loss.item())
+                # print("batch_loss={}".format(batch_loss))
+            epoch_loss.append(sum(batch_loss) / len(batch_loss))
+            # print("epoch_loss={}".format(epoch_loss))
+        return net.state_dict(), sum(epoch_loss) / len(epoch_loss)
+
+
 def get_local_update_objects(args, dataset_train, dict_users=None, net_glob=None):
     local_update_objects = []
     for idx in range(args.num_users):
@@ -361,7 +396,7 @@ def get_local_update_objects(args, dataset_train, dict_users=None, net_glob=None
             dataset=dataset_train,
             idxs=dict_users[idx],
         )
-        local_update_objects.append(LocalUpdateRFL(**local_update_args))
+        local_update_objects.append(RFLLocalUpdate(**local_update_args))
 
     return local_update_objects
 
