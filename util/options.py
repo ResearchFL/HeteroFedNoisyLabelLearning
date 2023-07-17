@@ -67,6 +67,8 @@ def args_parser():
     parser.add_argument("--K", type=int, default=5, help="personalized computation steps")
     parser.add_argument('--gamma', type=float, default=1, help="personalized aggregation")
     parser.add_argument('--begin_sel', type=float, default=10, help="which rounds to begin select clean samples")
+    parser.add_argument('--max_beta', type=float, default=2,
+                        help="beta for coresloss，2 for mnist/cifar10,  20 for cifar100, 2.8 for clothing1M")
 
     ######### FedProx #################
     parser.add_argument('--mu', type=float, default=0.01, help='proximal term constant')

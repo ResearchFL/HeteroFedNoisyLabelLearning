@@ -103,8 +103,8 @@ def f_beta(epoch, args):
 
 def adjust_learning_rate(epoch, args, optimizer=None):
     # 需要后期再确认一次是否是args.begin_sel，之前是10
-    alpha_plan = [[args.plr] * args.local_ep * args.begin_sel + [args.plr * 0.1] * args.local_ep * args.rounds2,
-                  [args.lr] * args.local_ep * args.begin_sel + [args.lr * 0.1] * args.local_ep * args.rounds2]
+    alpha_plan = [[args.plr] * int(args.local_ep * args.rounds2/2) + [args.plr * 0.1] * args.local_ep * args.rounds2,
+                  [args.lr] * int(args.local_ep * args.rounds2/2) + [args.lr * 0.1] * args.local_ep * args.rounds2]
     if optimizer is None:
         lr = alpha_plan[1][epoch] / (1 + f_beta(epoch, args))
         return lr

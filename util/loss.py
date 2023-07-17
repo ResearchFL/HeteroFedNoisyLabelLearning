@@ -1,5 +1,7 @@
 from typing import Optional
 from torch import Tensor
+from torch.autograd import Variable
+import numpy as np
 import torch
 import torch.nn.functional as F
 from util.optimizer import filter_noisy_data, f_beta
@@ -61,11 +63,13 @@ class FedTwinCRLoss(CrossEntropyLoss):
         self.reduction = reduction
 
     def forward(self, input_p, input_g, target, rounds, epoch, args, noise_prior=None):
-        coresloss = CORESLoss(reduction=self.reduction)
+        coresloss = CORESLoss(reduction='none')
         Beta = f_beta(rounds * args.local_ep + epoch, args)
         if rounds <= args.begin_sel:  # 如果在前30epoch集中式，对应联邦应该是30/local_epoch
             loss_p_update = coresloss(input_p, target, Beta, noise_prior)
             loss_g_update = coresloss(input_g, target, Beta, noise_prior)
+
+            ind_g_update = Variable(torch.from_numpy(np.ones(len(loss_p_update)))).bool()
         else:
             ind_p_update = filter_noisy_data(input_p, target)
             ind_g_update = filter_noisy_data(input_g, target)
@@ -84,4 +88,4 @@ class FedTwinCRLoss(CrossEntropyLoss):
             loss_g = torch.mean(loss_g) / 100000000
         else:
             loss_g = torch.sum(loss_g_update) / len(loss_batch_g)
-        return loss_p, loss_g, len(loss_batch_p), len(loss_batch_g)
+        return loss_p, loss_g, len(loss_batch_p), len(loss_batch_g), ind_g_update

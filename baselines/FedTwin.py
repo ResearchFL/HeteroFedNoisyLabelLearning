@@ -55,11 +55,12 @@ def FedTwin(args):
         )
 
         if rnd % 10 == 0:
-            print("CE:")
-            print("clean_loss:")
-            print(clean_loss_s)
-            print("noisy_loss:")
-            print(noisy_loss_s)
+            pass
+            # print("CE:")
+            # print("clean_loss:")
+            # print(clean_loss_s)
+            # print("noisy_loss:")
+            # print(noisy_loss_s)
 
         Beta = f_beta(rnd * args.local_ep + args.local_ep, args)
         clean_loss_s, noisy_loss_s = get_clean_noisy_sample_loss(
@@ -71,12 +72,13 @@ def FedTwin(args):
             beta = Beta
         )
 
-        if  rnd % 10 == 0:
-            print("CORE:")
-            print("clean_loss:")
-            print(clean_loss_s)
-            print("noisy_loss:")
-            print(noisy_loss_s)
+        if rnd % 10 == 0:
+            pass
+            # print("CORE:")
+            # print("clean_loss:")
+            # print(clean_loss_s)
+            # print("noisy_loss:")
+            # print(noisy_loss_s)
 
         # acc_s1 = personalizedtest(args, p_models, dataset_test)
         acc_s2 = globaltest(netglob.to(args.device), dataset_test, args)

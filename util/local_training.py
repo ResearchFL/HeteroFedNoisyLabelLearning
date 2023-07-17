@@ -9,7 +9,7 @@ from torch.utils.data import DataLoader, Dataset
 from util.loss import FedTwinCRLoss
 import numpy as np
 from util.optimizer import TwinOptimizer, adjust_learning_rate
-from util.optimizer import FedProxOptimizer
+from util.optimizer import FedProxOptimizer, f_beta
 
 def mixup_data(x, y, alpha=1.0, use_cuda=True):
     '''Returns mixed inputs, pairs of targets, and lambda'''
@@ -107,7 +107,8 @@ class FedCorrLocalUpdate(object):
 class FedTwinLocalUpdate:
     def __init__(self, args, dataset, idxs, client_idx):
         self.args = args
-        self.loss_func = FedTwinCRLoss(reduction='none')  # loss function -- cross entropy
+        self.loss_func = FedTwinCRLoss()  # loss function -- cross entropy
+        self.cores_loss_fun = CORESLoss(reduction='none')
         self.ldr_train, self.ldr_test = self.train_test(dataset, list(idxs))
         self.client_idx = client_idx
 
@@ -145,24 +146,24 @@ class FedTwinLocalUpdate:
                 log_probs_p, _ = net_p(images)
                 log_probs_g, _ = net_glob(images)
                 # log_probs = net(images)
-                loss_p, loss_g, len_loss_p, len_loss_g = self.loss_func(log_probs_p, log_probs_g, labels, rounds, iter,
-                                                                        args)
+                loss_p, loss_g, len_loss_g, len_loss_g, ind_g = self.loss_func(log_probs_p, log_probs_g, labels, rounds, iter, args)
                 for i in range(self.args.K):
                     net_p.zero_grad()
-                    if i == (self.args.K - 1):
+                    if i == 0:
                         loss_p.backward()
+                        self.persionalized_model_bar, _ = optimizer_theta.step(list(net_glob.parameters()))
                     else:
-                        loss_p.backward(retain_graph=True)
-                    self.persionalized_model_bar, _ = optimizer_theta.step(list(net_glob.parameters()))
+                        log_probs_p, _ = net_p(images)
+                        Beta = f_beta(rounds * args.local_ep + iter, args)
+                        loss_p = self.cores_loss_fun(log_probs_p, labels, Beta)
+                        loss_p = torch.sum(loss_p[ind_g]) / len(loss_p[ind_g])
+                        self.persionalized_model_bar, _ = optimizer_theta.step(list(net_glob.parameters()))
 
                 # batch_loss.append(loss.item())
                 # update local weight after finding aproximate theta
                 for new_param, localweight in zip(self.persionalized_model_bar, net_glob.parameters()):
                     localweight.data = localweight.data - self.args.lamda * plr * (
                             localweight.data - new_param.data)
-
-                for param, new_param in zip(net_glob.parameters(), net_glob.parameters()):
-                    param.data = new_param.data.clone()
 
                 net_glob.zero_grad()
                 loss_g.backward()
