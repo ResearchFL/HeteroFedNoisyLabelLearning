@@ -1,0 +1,307 @@
+/Users/jixinyuan/opt/anaconda3/envs/pytorch/bin/python /Applications/PyCharm.app/Contents/plugins/python/helpers/pydev/pydevd.py --multiprocess --qt-support=auto --client 127.0.0.1 --port 49858 --file /Users/jixinyuan/我的研究/代码/FedNoisyLabelLearning/main.py -algo FedTwin
+已连接到 pydev 调试器(内部版本号 223.8617.48)('algorithm', 'FedTwin')
+('gpu', 0)
+('seed', 13)
+('save_dir', './record/')
+('rounds2', 300)
+('local_ep', 5)
+('frac2', 0.1)
+('num_users', 100)
+('local_bs', 32)
+('lr', 0.1)
+('model', 'lenet')
+('num_classes', 10)
+('level_n_system', 1)
+('level_n_lowerb', 0.5)
+('alpha_dirichlet', 10)
+('non_iid_prob_class', 0.7)
+('dataset', 'mnist')
+('iid', False)
+('LID_k', 20)
+('iteration1', 5)
+('rounds1', 200)
+('frac1', 0.01)
+('pretrained', False)
+('mixup', False)
+('alpha', 1)
+('beta', 5)
+('relabel_ratio', 0.5)
+('confidence_thres', 0.5)
+('clean_set_thres', 0.1)
+('fine_tuning', True)
+('correction', True)
+('T_pl', 100)
+('lambda_cen', 1.0)
+('lambda_e', 0.8)
+('num_gradual', 10)
+('forget_rate', 0.2)
+('lr_decay', 0.1)
+('schedule', [])
+('momentum', 0.5)
+('weight_decay', 0.0001)
+('feature_dim', 128)
+('plr', 0.1)
+('lamda', 15)
+('K', 5)
+('gamma', 1)
+('begin_sel', 10)
+('max_beta', 2)
+('mu', 0.01)
+('device', device(type='cpu'))
+Client 0, noise level: 0.8484 (0.7635), real noise ratio: 0.7560
+Client 1, noise level: 0.9815 (0.8834), real noise ratio: 0.8836
+Client 2, noise level: 0.6389 (0.5750), real noise ratio: 0.5859
+Client 3, noise level: 0.6168 (0.5551), real noise ratio: 0.5282
+Client 4, noise level: 0.9228 (0.8306), real noise ratio: 0.8376
+Client 5, noise level: 0.6121 (0.5509), real noise ratio: 0.5354
+Client 6, noise level: 0.8445 (0.7600), real noise ratio: 0.7468
+Client 7, noise level: 0.5767 (0.5191), real noise ratio: 0.4941
+Client 8, noise level: 0.6018 (0.5416), real noise ratio: 0.5693
+Client 9, noise level: 0.5338 (0.4804), real noise ratio: 0.4698
+Client 10, noise level: 0.8747 (0.7873), real noise ratio: 0.7910
+Client 11, noise level: 0.5900 (0.5310), real noise ratio: 0.5223
+Client 12, noise level: 0.5621 (0.5059), real noise ratio: 0.5229
+Client 13, noise level: 0.6124 (0.5512), real noise ratio: 0.5098
+Client 14, noise level: 0.6397 (0.5758), real noise ratio: 0.5687
+Client 15, noise level: 0.5169 (0.4652), real noise ratio: 0.4687
+Client 16, noise level: 0.6272 (0.5645), real noise ratio: 0.5382
+Client 17, noise level: 0.8344 (0.7510), real noise ratio: 0.7437
+Client 18, noise level: 0.8800 (0.7920), real noise ratio: 0.8122
+Client 19, noise level: 0.6130 (0.5517), real noise ratio: 0.5450
+Client 20, noise level: 0.8059 (0.7253), real noise ratio: 0.7477
+Client 21, noise level: 0.9561 (0.8605), real noise ratio: 0.8850
+Client 22, noise level: 0.7708 (0.6937), real noise ratio: 0.7213
+Client 23, noise level: 0.6870 (0.6183), real noise ratio: 0.6038
+Client 24, noise level: 0.5066 (0.4559), real noise ratio: 0.4389
+Client 25, noise level: 0.9147 (0.8232), real noise ratio: 0.8302
+Client 26, noise level: 0.9083 (0.8175), real noise ratio: 0.8270
+Client 27, noise level: 0.5399 (0.4859), real noise ratio: 0.4742
+Client 28, noise level: 0.5858 (0.5273), real noise ratio: 0.5407
+Client 29, noise level: 0.9191 (0.8272), real noise ratio: 0.8395
+Client 30, noise level: 0.7821 (0.7039), real noise ratio: 0.7004
+Client 31, noise level: 0.6749 (0.6074), real noise ratio: 0.6164
+Client 32, noise level: 0.5725 (0.5153), real noise ratio: 0.5022
+Client 33, noise level: 0.5493 (0.4943), real noise ratio: 0.5014
+Client 34, noise level: 0.7801 (0.7021), real noise ratio: 0.6947
+Client 35, noise level: 0.8550 (0.7695), real noise ratio: 0.7844
+Client 36, noise level: 0.9754 (0.8779), real noise ratio: 0.8818
+Client 37, noise level: 0.8740 (0.7866), real noise ratio: 0.7907
+Client 38, noise level: 0.6861 (0.6175), real noise ratio: 0.6518
+Client 39, noise level: 0.8792 (0.7913), real noise ratio: 0.7873
+Client 40, noise level: 0.5355 (0.4820), real noise ratio: 0.4785
+Client 41, noise level: 0.8109 (0.7298), real noise ratio: 0.7151
+Client 42, noise level: 0.8604 (0.7743), real noise ratio: 0.7760
+Client 43, noise level: 0.5209 (0.4688), real noise ratio: 0.4627
+Client 44, noise level: 0.6976 (0.6279), real noise ratio: 0.6729
+Client 45, noise level: 0.5807 (0.5226), real noise ratio: 0.5331
+Client 46, noise level: 0.6380 (0.5742), real noise ratio: 0.5643
+Client 47, noise level: 0.6133 (0.5519), real noise ratio: 0.5399
+Client 48, noise level: 0.6523 (0.5871), real noise ratio: 0.5671
+Client 49, noise level: 0.5681 (0.5113), real noise ratio: 0.4913
+Client 50, noise level: 0.8471 (0.7624), real noise ratio: 0.7598
+Client 51, noise level: 0.5264 (0.4738), real noise ratio: 0.4834
+Client 52, noise level: 0.7907 (0.7116), real noise ratio: 0.6959
+Client 53, noise level: 0.5899 (0.5309), real noise ratio: 0.5084
+Client 54, noise level: 0.7533 (0.6780), real noise ratio: 0.6698
+Client 55, noise level: 0.6408 (0.5767), real noise ratio: 0.5928
+Client 56, noise level: 0.6850 (0.6165), real noise ratio: 0.6271
+Client 57, noise level: 0.7523 (0.6770), real noise ratio: 0.7048
+Client 58, noise level: 0.5612 (0.5050), real noise ratio: 0.4621
+Client 59, noise level: 0.5653 (0.5088), real noise ratio: 0.5422
+Client 60, noise level: 0.9222 (0.8300), real noise ratio: 0.8401
+Client 61, noise level: 0.6961 (0.6265), real noise ratio: 0.6476
+Client 62, noise level: 0.5848 (0.5263), real noise ratio: 0.5178
+Client 63, noise level: 0.9006 (0.8105), real noise ratio: 0.8043
+Client 64, noise level: 0.9551 (0.8596), real noise ratio: 0.8548
+Client 65, noise level: 0.9148 (0.8233), real noise ratio: 0.8341
+Client 66, noise level: 0.8570 (0.7713), real noise ratio: 0.7561
+Client 67, noise level: 0.5497 (0.4947), real noise ratio: 0.5049
+Client 68, noise level: 0.9567 (0.8610), real noise ratio: 0.8659
+Client 69, noise level: 0.7890 (0.7101), real noise ratio: 0.6973
+Client 70, noise level: 0.9501 (0.8551), real noise ratio: 0.8671
+Client 71, noise level: 0.7818 (0.7036), real noise ratio: 0.7149
+Client 72, noise level: 0.5049 (0.4544), real noise ratio: 0.4590
+Client 73, noise level: 0.9971 (0.8974), real noise ratio: 0.8942
+Client 74, noise level: 0.5662 (0.5096), real noise ratio: 0.5356
+Client 75, noise level: 0.8463 (0.7617), real noise ratio: 0.7688
+Client 76, noise level: 0.6671 (0.6004), real noise ratio: 0.5550
+Client 77, noise level: 0.5901 (0.5311), real noise ratio: 0.5161
+Client 78, noise level: 0.5703 (0.5133), real noise ratio: 0.5427
+Client 79, noise level: 0.8346 (0.7512), real noise ratio: 0.7432
+Client 80, noise level: 0.6519 (0.5867), real noise ratio: 0.6231
+Client 81, noise level: 0.8068 (0.7261), real noise ratio: 0.7030
+Client 82, noise level: 0.9678 (0.8710), real noise ratio: 0.8990
+Client 83, noise level: 0.6015 (0.5413), real noise ratio: 0.5333
+Client 84, noise level: 0.5598 (0.5038), real noise ratio: 0.4892
+Client 85, noise level: 0.6961 (0.6265), real noise ratio: 0.6347
+Client 86, noise level: 0.8473 (0.7625), real noise ratio: 0.7667
+Client 87, noise level: 0.9725 (0.8752), real noise ratio: 0.8649
+Client 88, noise level: 0.5817 (0.5235), real noise ratio: 0.5187
+Client 89, noise level: 0.7294 (0.6564), real noise ratio: 0.6343
+Client 90, noise level: 0.6394 (0.5755), real noise ratio: 0.5640
+Client 91, noise level: 0.6023 (0.5421), real noise ratio: 0.5223
+Client 92, noise level: 0.6542 (0.5888), real noise ratio: 0.5620
+Client 93, noise level: 0.8978 (0.8080), real noise ratio: 0.8160
+Client 94, noise level: 0.5464 (0.4918), real noise ratio: 0.4641
+Client 95, noise level: 0.9345 (0.8411), real noise ratio: 0.8136
+Client 96, noise level: 0.9169 (0.8252), real noise ratio: 0.8161
+Client 97, noise level: 0.8409 (0.7568), real noise ratio: 0.7565
+Client 98, noise level: 0.6479 (0.5831), real noise ratio: 0.6003
+Client 99, noise level: 0.5831 (0.5248), real noise ratio: 0.5380
+Rounds 0 early training:
+Round 0 train loss  2.2419
+Round 0 global test acc  21.6100
+Rounds 1 early training:
+Round 1 train loss  2.2113
+Round 1 global test acc  35.5200
+Rounds 2 early training:
+Round 2 train loss  2.0592
+Round 2 global test acc  46.5200
+Rounds 3 early training:
+Round 3 train loss  1.7086
+Round 3 global test acc  58.4200
+Rounds 4 early training:
+Round 4 train loss  1.3497
+Round 4 global test acc  48.8100
+Rounds 5 early training:
+Round 5 train loss  1.0056
+Round 5 global test acc  48.0800
+Rounds 6 early training:
+Round 6 train loss  0.6886
+Round 6 global test acc  19.3900
+Rounds 7 early training:
+Round 7 train loss  -0.1460
+Round 7 global test acc  13.4800
+Rounds 8 early training:
+Round 8 train loss  -1.2344
+Round 8 global test acc  31.9200
+Rounds 9 early training:
+Round 9 train loss  -1.6436
+Round 9 global test acc  47.6700
+Rounds 10 early training:
+Round 10 train loss  -3.0016
+Round 10 global test acc  58.6200
+Rounds 11 filter noisy data:
+Round 11 train loss  -14.7744
+Round 11 global test acc  66.5900
+Rounds 12 filter noisy data:
+Round 12 train loss  -17.8521
+Round 12 global test acc  75.8500
+Rounds 13 filter noisy data:
+Round 13 train loss  -20.2682
+Round 13 global test acc  76.4900
+Rounds 14 filter noisy data:
+Round 14 train loss  -22.8761
+Round 14 global test acc  75.6800
+Rounds 15 filter noisy data:
+Round 15 train loss  -24.7907
+Round 15 global test acc  81.3300
+Rounds 16 filter noisy data:
+Round 16 train loss  -28.1657
+Round 16 global test acc  84.7900
+Rounds 17 filter noisy data:
+Round 17 train loss  -30.2448
+Round 17 global test acc  81.7600
+Rounds 18 filter noisy data:
+Round 18 train loss  -27.0254
+Round 18 global test acc  81.7300
+Rounds 19 filter noisy data:
+Round 19 train loss  -29.0805
+Round 19 global test acc  86.6600
+Rounds 20 filter noisy data:
+Round 20 train loss  -30.0787
+Round 20 global test acc  87.0600
+Rounds 21 filter noisy data:
+Round 21 train loss  -29.9972
+Round 21 global test acc  86.9600
+Rounds 22 filter noisy data:
+Round 22 train loss  -29.9289
+Round 22 global test acc  88.2800
+Rounds 23 filter noisy data:
+Round 23 train loss  -29.6895
+Round 23 global test acc  87.9300
+Rounds 24 filter noisy data:
+Round 24 train loss  -29.5791
+Round 24 global test acc  87.8900
+Rounds 25 filter noisy data:
+Round 25 train loss  -29.4345
+Round 25 global test acc  88.3600
+Rounds 26 filter noisy data:
+Round 26 train loss  -29.7012
+Round 26 global test acc  83.2700
+Rounds 27 filter noisy data:
+Round 27 train loss  -29.9136
+Round 27 global test acc  87.5000
+Rounds 28 filter noisy data:
+Round 28 train loss  -31.1045
+Round 28 global test acc  90.9800
+Rounds 29 filter noisy data:
+Round 29 train loss  -29.2912
+Round 29 global test acc  91.5400
+Rounds 30 filter noisy data:
+Round 30 train loss  -28.9847
+Round 30 global test acc  88.9100
+Rounds 31 filter noisy data:
+Round 31 train loss  -29.3978
+Round 31 global test acc  90.3800
+Rounds 32 filter noisy data:
+Round 32 train loss  -31.1475
+Round 32 global test acc  90.8700
+Rounds 33 filter noisy data:
+Round 33 train loss  -29.9365
+Round 33 global test acc  90.2900
+Rounds 34 filter noisy data:
+Round 34 train loss  -30.3239
+Round 34 global test acc  91.6700
+Rounds 35 filter noisy data:
+Round 35 train loss  -30.4667
+Round 35 global test acc  92.1400
+Rounds 36 filter noisy data:
+Round 36 train loss  -29.2950
+Round 36 global test acc  91.7900
+Rounds 37 filter noisy data:
+Round 37 train loss  -29.6884
+Round 37 global test acc  90.8900
+Rounds 38 filter noisy data:
+Round 38 train loss  -30.7816
+Round 38 global test acc  92.2200
+Rounds 39 filter noisy data:
+Round 39 train loss  -31.2841
+Round 39 global test acc  92.9500
+Rounds 40 filter noisy data:
+Round 40 train loss  -29.6626
+Round 40 global test acc  91.6700
+Rounds 41 filter noisy data:
+Round 41 train loss  -28.9153
+Round 41 global test acc  92.0100
+Rounds 42 filter noisy data:
+Round 42 train loss  -29.7830
+Round 42 global test acc  92.5300
+Rounds 43 filter noisy data:
+Round 43 train loss  -29.8093
+Round 43 global test acc  89.4000
+Rounds 44 filter noisy data:
+Round 44 train loss  -30.6962
+Round 44 global test acc  92.7800
+Rounds 45 filter noisy data:
+Round 45 train loss  -29.6953
+Round 45 global test acc  92.4500
+Rounds 46 filter noisy data:
+Round 46 train loss  -30.4920
+Round 46 global test acc  93.6000
+Rounds 47 filter noisy data:
+Round 47 train loss  -29.5519
+Round 47 global test acc  92.6800
+Rounds 48 filter noisy data:
+Round 48 train loss  -30.6599
+Round 48 global test acc  93.4600
+Rounds 49 filter noisy data:
+Round 49 train loss  -31.4195
+Round 49 global test acc  93.2400
+Rounds 50 filter noisy data:
+Round 50 train loss  -30.3797
+Round 50 global test acc  92.6400
+Rounds 51 filter noisy data:
+Round 51 train loss  -31.0426
+Round 51 global test acc  93.8000
+Rounds 52 filter noisy data:

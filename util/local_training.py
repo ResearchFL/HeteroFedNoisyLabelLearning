@@ -157,6 +157,7 @@ class FedTwinLocalUpdate:
                         Beta = f_beta(rounds * args.local_ep + iter, args)
                         loss_p = self.cores_loss_fun(log_probs_p, labels, Beta)
                         loss_p = torch.sum(loss_p[ind_g]) / len(loss_p[ind_g])
+                        loss_p.backward()
                         self.persionalized_model_bar, _ = optimizer_theta.step(list(net_glob.parameters()))
 
                 # batch_loss.append(loss.item())

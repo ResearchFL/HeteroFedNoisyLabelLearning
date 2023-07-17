@@ -95,7 +95,7 @@ def f_beta(epoch, args):
         max_beta = 2.8
 
     beta1 = np.linspace(0.0, 0.0, num=args.local_ep * 2)
-    beta2 = np.linspace(0.0, max_beta, num=args.local_ep * args.begin_sel)
+    beta2 = np.linspace(0.0, max_beta, num=int(args.local_ep * args.begin_sel * 1.5))
     beta3 = np.linspace(max_beta, max_beta, num=args.rounds2 * args.local_ep)
     beta = np.concatenate((beta1, beta2, beta3), axis=0)
     return beta[epoch]
