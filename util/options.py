@@ -64,7 +64,7 @@ def args_parser():
     ###### FedTwin ####################
     parser.add_argument('--plr', help="--personal_learning_rate", type=str, default=0.1)
     parser.add_argument("--lamda", type=int, default=15, help="regularization term")
-    parser.add_argument("--K", type=int, default=5, help="personalized computation steps")
+    parser.add_argument("--K", type=int, default=1, help="personalized computation steps")
     parser.add_argument('--gamma', type=float, default=1, help="personalized aggregation")
     parser.add_argument('--begin_sel', type=float, default=10, help="which rounds to begin select clean samples")
     parser.add_argument('--max_beta', type=float, default=2,

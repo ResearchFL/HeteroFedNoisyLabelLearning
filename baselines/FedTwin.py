@@ -12,6 +12,7 @@ import torch.nn as nn
 from util.loss import CORESLoss
 from util.optimizer import f_beta
 
+
 def FedTwin(args):
     # f_save = open(args.save_dir + args.txtname + f'_lamda_{args.lamda}_gamma_{args.gamma}_acc.txt', 'w')
     # load dataset
@@ -25,7 +26,7 @@ def FedTwin(args):
     for rnd in range(args.rounds2):
         if rnd <= args.begin_sel:
             print("\rRounds {:d} early training:"
-              .format(rnd), end='\n', flush=True)
+                  .format(rnd), end='\n', flush=True)
         else:
             print("\rRounds {:d} filter noisy data:"
                   .format(rnd), end='\n', flush=True)
@@ -34,24 +35,25 @@ def FedTwin(args):
         for idx in idxs_users:  # training over the subset
             local = FedTwinLocalUpdate(args=args, dataset=dataset_train, idxs=dict_users[idx], client_idx=idx)
             p_model, w_local, loss_local, n_bar_k = local.update_weights(net_p=copy.deepcopy(netglob).to(args.device),
-                                                                         net_glob=copy.deepcopy(netglob).to(args.device), rounds=rnd, args=args)
+                                                                         net_glob=copy.deepcopy(netglob).to(
+                                                                             args.device), rounds=rnd, args=args)
             w_locals.append(copy.deepcopy(w_local))  # store every updated model
             p_models.append(p_model)
             loss_locals.append(loss_local)
             n_bar.append(n_bar_k)
             # print('\n')
-        loss_round = sum(loss_locals)/len(loss_locals)
+        loss_round = sum(loss_locals) / len(loss_locals)
         # dict_len = [len(dict_users[idx]) for idx in idxs_users]
         w_glob_fl = personalized_aggregation(netglob.state_dict(), w_locals, n_bar, args.gamma)
         netglob.load_state_dict(w_glob_fl)
 
         # Record the loss for clean and noisy samples separately
         clean_loss_s, noisy_loss_s = get_clean_noisy_sample_loss(
-            model = netglob,
-            loss_fn = nn.CrossEntropyLoss(reduction = 'none'),
-            dataset = dataset_train,
-            noisy_sample_idx = noisy_sample_idx,
-            round = rnd
+            model=netglob,
+            loss_fn=nn.CrossEntropyLoss(reduction='none'),
+            dataset=dataset_train,
+            noisy_sample_idx=noisy_sample_idx,
+            round=rnd
         )
 
         if rnd % 10 == 0:
@@ -64,12 +66,12 @@ def FedTwin(args):
 
         Beta = f_beta(rnd * args.local_ep + args.local_ep, args)
         clean_loss_s, noisy_loss_s = get_clean_noisy_sample_loss(
-            model = netglob,
-            loss_fn = CORESLoss(),
-            dataset = dataset_train,
-            noisy_sample_idx = noisy_sample_idx,
-            round = rnd,
-            beta = Beta
+            model=netglob,
+            loss_fn=CORESLoss(),
+            dataset=dataset_train,
+            noisy_sample_idx=noisy_sample_idx,
+            round=rnd,
+            beta=Beta
         )
 
         if rnd % 10 == 0:
@@ -88,10 +90,10 @@ def FedTwin(args):
         print(show_info_loss)
         print(show_info_test_acc)
         # print("time :", time.time() - start)
-        #f_save.write(show_info_loss)
-        #f_save.write(show_info_test_acc)
-        #f_save.flush()
+        # f_save.write(show_info_loss)
+        # f_save.write(show_info_test_acc)
+        # f_save.flush()
     show_time_info = f"time : {time.time() - start}"
     print(show_time_info)
-    #f_save.write(show_time_info)
-    #f_save.flush()
+    # f_save.write(show_time_info)
+    # f_save.flush()
