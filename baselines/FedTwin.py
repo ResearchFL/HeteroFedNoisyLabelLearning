@@ -49,13 +49,13 @@ def FedTwin(args):
         netglob.load_state_dict(w_glob_fl)
 
         # Record the loss for clean and noisy samples separately
-        clean_loss_s, noisy_loss_s = get_clean_noisy_sample_loss(
-            model=netglob,
-            loss_fn=nn.CrossEntropyLoss(reduction='none'),
-            dataset=dataset_train,
-            noisy_sample_idx=noisy_sample_idx,
-            round=rnd
-        )
+        # clean_loss_s, noisy_loss_s = get_clean_noisy_sample_loss(
+        #     model=netglob,
+        #     loss_fn=nn.CrossEntropyLoss(reduction='none'),
+        #     dataset=dataset_train,
+        #     noisy_sample_idx=noisy_sample_idx,
+        #     round=rnd
+        # )
 
         if rnd % 10 == 0:
             pass
@@ -65,15 +65,15 @@ def FedTwin(args):
             # print("noisy_loss:")
             # print(noisy_loss_s)
 
-        Beta = f_beta(rnd * args.local_ep + args.local_ep, args)
-        clean_loss_s, noisy_loss_s = get_clean_noisy_sample_loss(
-            model=netglob,
-            loss_fn=CORESLoss(),
-            dataset=dataset_train,
-            noisy_sample_idx=noisy_sample_idx,
-            round=rnd,
-            beta=Beta
-        )
+        # Beta = f_beta(rnd * args.local_ep + args.local_ep, args)
+        # clean_loss_s, noisy_loss_s = get_clean_noisy_sample_loss(
+        #     model=netglob,
+        #     loss_fn=CORESLoss(),
+        #     dataset=dataset_train,
+        #     noisy_sample_idx=noisy_sample_idx,
+        #     round=rnd,
+        #     beta=Beta
+        # )
 
         if rnd % 10 == 0:
             pass
