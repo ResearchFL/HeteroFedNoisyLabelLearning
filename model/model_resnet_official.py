@@ -283,7 +283,7 @@ class ResNet(nn.Module):
             output = out
         else:
             output = feat
-        return output
+        return output, feat
 
 
 def _resnet(
