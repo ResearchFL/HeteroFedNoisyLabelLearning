@@ -71,7 +71,7 @@ do
                         --begin_sel $begin_sel_r --gpu $gpu_num \
                         --level_n_system "${listRou[q]}" --level_n_lowerb "${listTau[q]}" \
                         --iid \
-                        >> "${logFile}" 2>&1
+                        >> "${logFile}" 2>&1 &
                     ;;
 
                     "1")                    #NonIID
@@ -85,7 +85,7 @@ do
                         --begin_sel $begin_sel_r --gpu $gpu_num \
                         --level_n_system "${listRou[q]}" --level_n_lowerb "${listTau[q]}" \
                         \
-                        >> "${logFile}" 2>&1
+                        >> "${logFile}" 2>&1 &
                     ;;
                     esac
 
