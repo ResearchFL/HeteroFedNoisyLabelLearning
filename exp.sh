@@ -45,6 +45,8 @@ date_path=./record/"${currentDate}"
 MakeDir ./record
 MakeDir "${date_path}"
 
+gpu=0
+
 #开始训练
 for ((i=1;i<3;i++))    #遍历数据集
 do
@@ -66,10 +68,10 @@ do
 
                     python -u main.py --alg "${listMethod[j]}" --dataset "${listDataset[i]}" --model "${listModel[i]}" --rounds2 "${listRound[i]}" --num_users "${listClient[i]}" \
                         --lr "${listLr[i]}" --plr "${listLr[i]}" --frac2 "${listFrac2[i]}" \
-                        --begin_sel $begin_sel_r --gpu "${gpu_nums[i]}" \
+                        --begin_sel $begin_sel_r --gpu "${gpu_nums[gpu]}" \
                         --level_n_system "${listRou[q]}" --level_n_lowerb "${listTau[q]}" \
                         --iid \
-                        >> "${logFile}" 2>&1 &
+                        >> "${logFile}" 2>&1
                     ;;
 
                     "1")                    #NonIID
@@ -80,15 +82,19 @@ do
 
                     python -u main.py --alg "${listMethod[j]}" --dataset "${listDataset[i]}" --model "${listModel[i]}" --rounds2 "${listRound[i]}" --num_users "${listClient[i]}"  \
                         --lr "${listLr[i]}" --plr "${listLr[i]}" --frac2 "${listFrac2[i]}" \
-                        --begin_sel $begin_sel_r --gpu "${gpu_nums[i]}" \
+                        --begin_sel $begin_sel_r --gpu "${gpu_nums[gpu]}" \
                         --level_n_system "${listRou[q]}" --level_n_lowerb "${listTau[q]}" \
                         \
-                        >> "${logFile}" 2>&1 &
+                        >> "${logFile}" 2>&1
                     ;;
                     esac
+
+                    gpu=$(($((gpu+1))%4))
                 done
             done
         done
     done
 done
+
+
 
