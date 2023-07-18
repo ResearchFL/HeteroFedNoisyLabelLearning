@@ -1,8 +1,4 @@
 
-
-
-
-
 # 脚本运行 nohup bash test.sh &
 run_times=5
 gpu_num=0
@@ -17,10 +13,9 @@ MakeDir(){
 }
 
 #数据集
-#listDataset=(mnist cifar10 cifar100 clothing1m)
-listDataset=(mnist cifar10 cifar100)
-#服务器---对应数据集
-hostnames=("orichalcum.liacs.nl" "dimeritium.liacs.nl" "carbonite.liacs.nl" "vibranium.liacs.nl")
+listDataset=(mnist cifar10 cifar100 clothing1m)
+#GPU-- 对应数据集
+gpu_nums=(0 1 2 3)
 #模型---对应数据集
 listModel=(lenet resnet18 resnet34 renet50)
 #轮次---对应数据集
@@ -51,51 +46,49 @@ MakeDir ./record
 MakeDir "${date_path}"
 
 #开始训练
-for ((i=0;i<${#listDataset[@]};i++))    #遍历数据集
+for ((i=1;i<3;i++))    #遍历数据集
 do
-    { if [ "$(hostname)" == "${hostnames[i]}" ]; then
-        for ((time=1;time<="${run_times}";time++))
+    for ((time=1;time<="${run_times}";time++))
+    do
+        for ((j=0;j<${#listMethod[@]};j++))        #遍历方法
         do
-            for ((j=0;j<${#listMethod[@]};j++))        #遍历方法
+            for ((p=0;p<=1;p++))            #遍历IID情况
             do
-                for ((p=0;p<=1;p++))            #遍历IID情况
+                for ((q=0;q<=2;q++))            #遍历Rou和Tau
                 do
-                    for ((q=0;q<=2;q++))            #遍历Rou和Tau
-                    do
-                        case ${listIID[p]} in
+                    case ${listIID[p]} in
 
-                        "0")                    #IID
+                    "0")                    #IID
 
-                        logFile="$date_path"/"${listDataset[i]}"_"${listMethod[j]}"_IID_rou_"${listRou[q]}"_tau_"${listTau[q]}"_"${i}".log  #文件路径
+                    logFile="$date_path"/"${listDataset[i]}"_"${listMethod[j]}"_IID_rou_"${listRou[q]}"_tau_"${listTau[q]}"_"${i}".log  #文件路径
 
-                        touch "${logFile}"
+                    touch "${logFile}"
 
-                        python -u main.py --alg "${listMethod[j]}" --dataset "${listDataset[i]}" --model "${listModel[i]}" --rounds2 "${listRound[i]}" --num_users "${listClient[i]}" \
-                            --lr "${listLr[i]}" --plr "${listLr[i]}" --frac2 "${listFrac2[i]}" \
-                            --begin_sel $begin_sel_r --gpu $gpu_num \
-                            --level_n_system "${listRou[q]}" --level_n_lowerb "${listTau[q]}" \
-                            --iid \
-                            >> "${logFile}" 2>&1
-                        ;;
+                    python -u main.py --alg "${listMethod[j]}" --dataset "${listDataset[i]}" --model "${listModel[i]}" --rounds2 "${listRound[i]}" --num_users "${listClient[i]}" \
+                        --lr "${listLr[i]}" --plr "${listLr[i]}" --frac2 "${listFrac2[i]}" \
+                        --begin_sel $begin_sel_r --gpu "${gpu_nums[i]}" \
+                        --level_n_system "${listRou[q]}" --level_n_lowerb "${listTau[q]}" \
+                        --iid \
+                        >> "${logFile}" 2>&1 &
+                    ;;
 
-                        "1")                    #NonIID
+                    "1")                    #NonIID
 
-                        logFile="$date_path"/"${listDataset[i]}"_"${listMethod[j]}"_nonIID_rou_"${listRou[q]}"_tau_"${listTau[q]}"_"${i}".log  #文件路径
+                    logFile="$date_path"/"${listDataset[i]}"_"${listMethod[j]}"_nonIID_rou_"${listRou[q]}"_tau_"${listTau[q]}"_"${i}".log  #文件路径
 
-                        touch "${logFile}"
+                    touch "${logFile}"
 
-                        python -u main.py --alg "${listMethod[j]}" --dataset "${listDataset[i]}" --model "${listModel[i]}" --rounds2 "${listRound[i]}" --num_users "${listClient[i]}"  \
-                            --lr "${listLr[i]}" --plr "${listLr[i]}" --frac2 "${listFrac2[i]}" \
-                            --begin_sel $begin_sel_r --gpu $gpu_num \
-                            --level_n_system "${listRou[q]}" --level_n_lowerb "${listTau[q]}" \
-                            \
-                            >> "${logFile}" 2>&1
-                        ;;
-                        esac
-                    done
+                    python -u main.py --alg "${listMethod[j]}" --dataset "${listDataset[i]}" --model "${listModel[i]}" --rounds2 "${listRound[i]}" --num_users "${listClient[i]}"  \
+                        --lr "${listLr[i]}" --plr "${listLr[i]}" --frac2 "${listFrac2[i]}" \
+                        --begin_sel $begin_sel_r --gpu "${gpu_nums[i]}" \
+                        --level_n_system "${listRou[q]}" --level_n_lowerb "${listTau[q]}" \
+                        \
+                        >> "${logFile}" 2>&1 &
+                    ;;
+                    esac
                 done
             done
         done
-    fi } &
+    done
 done
 
