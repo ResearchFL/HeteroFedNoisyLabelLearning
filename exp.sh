@@ -68,7 +68,7 @@ do
 
                     CUDA_VISIBLE_DEVICES=$gpu python -u main.py --alg "${listMethod[j]}" --dataset "${listDataset[i]}" --model "${listModel[i]}" --rounds2 "${listRound[i]}" --num_users "${listClient[i]}" \
                         --lr "${listLr[i]}" --plr "${listLr[i]}" --frac2 "${listFrac2[i]}" \
-                        --begin_sel $begin_sel_r --gpu gpu_num \
+                        --begin_sel $begin_sel_r --gpu $gpu_num \
                         --level_n_system "${listRou[q]}" --level_n_lowerb "${listTau[q]}" \
                         --iid \
                         >> "${logFile}" 2>&1
