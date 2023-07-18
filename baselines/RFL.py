@@ -7,6 +7,7 @@ from util.aggregation import FedAvg
 from util.load_data import load_data_with_noisy_label
 from util.local_training import globaltest, get_local_update_objects
 import time
+from metrics import cal_fscore
 
 def RFL(args):
     # f_save = open(args.save_dir + args.txtname + '_acc.txt', 'a')
@@ -97,6 +98,16 @@ def RFL(args):
         print(show_info_test_acc)
         #f_save.write(show_info_test_acc)
         #f_save.flush()
+
+        f_scores = []
+        if rnd == args.rounds2 - 1:
+            for idx in idxs_users:
+                f_scores.append(cal_fscore(args, net_glob.to(args.device), dataset_train, y_train, idx))
+        file_name = "./fscore_" + args.algorithm + ".txt"
+        f = open(file_name, "w")
+        f.writelines(f_scores)
+        f.close()
+
     show_time_info = f"time : {time.time() - start}"
     print(show_time_info)
     #f_save.write(show_time_info)

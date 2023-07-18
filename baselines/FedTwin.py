@@ -11,6 +11,7 @@ from util.get_loss_of_clean_noisy_sample import get_clean_noisy_sample_loss
 import torch.nn as nn
 from util.loss import CORESLoss
 from util.optimizer import f_beta
+from metrics import cal_fscore
 
 
 def FedTwin(args):
@@ -93,6 +94,16 @@ def FedTwin(args):
         # f_save.write(show_info_loss)
         # f_save.write(show_info_test_acc)
         # f_save.flush()
+
+        f_scores = []
+        if rnd == args.rounds2 - 1:
+            for idx in idxs_users:
+                f_scores.append(cal_fscore(args, netglob.to(args.device), dataset_train, y_train, idx))
+        file_name = "./fscore_" + args.algorithm + ".txt"
+        f = open(file_name, "w")
+        f.writelines(f_scores)
+        f.close()
+
     show_time_info = f"time : {time.time() - start}"
     print(show_time_info)
     # f_save.write(show_time_info)

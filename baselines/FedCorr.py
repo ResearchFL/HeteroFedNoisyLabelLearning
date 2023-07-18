@@ -10,7 +10,7 @@ import copy
 from util.util import lid_term, get_output
 from util.load_data import load_data_with_noisy_label
 import time
-
+from metrics import cal_fscore
 
 def FedCorr(args):
     # if args.mixup:
@@ -203,6 +203,16 @@ def FedCorr(args):
         print(show_info_test_acc)
         # f_save.write(show_info_test_acc)
         # f_save.flush()
+
+        f_scores = []
+        if rnd == args.rounds2 - 1:
+            for idx in idxs_users:
+                f_scores.append(cal_fscore(args, netglob.to(args.device), dataset_train, y_train, idx))
+        file_name = "./fscore_" + args.algorithm + ".txt"
+        f = open(file_name, "w")
+        f.writelines(f_scores)
+        f.close()
+
     show_time_info = f"time : {time.time() - start}"
     print(show_time_info)
     # f_save.write(show_time_info)

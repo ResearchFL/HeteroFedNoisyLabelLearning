@@ -12,7 +12,8 @@ MakeDir(){
 }
 
 #数据集
-listDataset=(mnist cifar10 cifar100 clothing1m)
+#listDataset=(mnist cifar10 cifar100 clothing1m)
+listDataset=(mnist cifar10 cifar100)
 #模型---对应数据集
 listModel=(lenet resnet18 resnet34 renet50)
 #轮次---对应数据集

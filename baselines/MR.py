@@ -13,6 +13,7 @@ import copy
 from util.aggregation import FedAvg
 import time
 import math
+from metrics import cal_fscore
 
 def MR(args):
 # ======================================================数据划分，加噪===============================================================
@@ -182,6 +183,16 @@ def MR(args):
         show_info_test_acc = "Round %d global test acc  %.4f" % (rnd, acc_s2)
         # print(show_info_loss)
         print(show_info_test_acc)
+
+        f_scores = []
+        if rnd == args.rounds2 - 1:
+            for idx in idxs_users:
+                f_scores.append(cal_fscore(args, model.to(args.device), fliter_dataset_train, y_train, idx))
+        file_name = "./fscore_" + args.algorithm + ".txt"
+        f = open(file_name, "w")
+        f.writelines(f_scores)
+        f.close()
+
     show_time_info = f"time : {time.time() - start}"
     print(show_time_info)
 

@@ -2,6 +2,8 @@ import os
 import re
 import numpy as np
 
+
+
 # 定义数据集、算法、rho 和 tau 的值
 datasets = ['mnist', 'cifar10', 'cifar100', 'clothing1m']
 methods = ['LocalCORES', 'LocalKNN', 'GlobalCORES', 'GlobalKNN', 'FedAVG', 'FedProx', 'FedLSR', 'FedCorr', 'RFL', 'MR', 'FedTwin']
@@ -18,7 +20,8 @@ table = np.empty((len(datasets), len(methods), len(IID_or_not), len(rhos)), dtyp
 table.fill("~")
 
 # 遍历 log 文件
-file_list = os.listdir('.')
+basePath = "./resultMnist/"
+file_list = os.listdir(basePath)
 for filename in file_list:
     if filename.endswith('.log'):
         # 解析文件名获取参数值
@@ -38,7 +41,7 @@ for filename in file_list:
             rho_idx = rhos.index(float(rho))
             iid_idx = IID_or_not.index(iid)
             # 读取 log 文件内容并计算平均值
-            with open(filename, 'r') as file:
+            with open(basePath+filename, 'r') as file:
                 contents = file.read()
                 # start = contents.find(f"Round {Rounds[dataset_idx]-1} global test acc")
                 # if start != -1:
@@ -50,7 +53,8 @@ for filename in file_list:
                 values = re.findall(r'Round {} global test acc  (\d+\.\d+)'.format(Rounds[dataset_idx]-1), contents)
                 if values:
                     average = np.mean([float(value) for value in values])
-                    table[dataset_idx, method_idx, iid_idx, rho_idx] = f"{average:.2f}"
+                    std = np.std([float(value) for value in values], ddof=1)
+                    table[dataset_idx, method_idx, iid_idx, rho_idx] = f"{average:.2f}" + f"+{std:.2f}"
 print('\n')
 # 打印表格的 LaTeX 代码
 print("\\begin{table*}[!ht]")
