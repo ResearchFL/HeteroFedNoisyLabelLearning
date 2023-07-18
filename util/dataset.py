@@ -8,7 +8,6 @@ import torch.utils
 
 
 def get_dataset(args):
-    args.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
     if args.dataset == 'mnist':
         data_path = '../data/mnist'
