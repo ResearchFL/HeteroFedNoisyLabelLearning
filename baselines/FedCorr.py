@@ -205,13 +205,17 @@ def FedCorr(args):
         # f_save.flush()
 
         f_scores = []
+        all_idxs_users = [i for i in range(args.num_users)]
         if rnd == args.rounds2 - 1:
-            for idx in idxs_users:
-                f_scores.append(cal_fscore(args, netglob.to(args.device), dataset_train, y_train, idx))
-        file_name = "./fscore_" + args.algorithm + ".txt"
-        f = open(file_name, "w")
-        f.writelines(f_scores)
-        f.close()
+            for idx in all_idxs_users:
+                f_scores.append(cal_fscore(args, netglob.to(args.device), dataset_train, y_train, dict_users[idx]))
+        show_info_Fscore = "Round %d Fscore \n" % (rnd)
+        print(show_info_Fscore)
+        print(str(f_scores))
+        # file_name = "./fscore_" + args.algorithm + ".txt"
+        # f = open(file_name, "w")
+        # f.writelines(f_scores.to)
+        # f.close()
 
     show_time_info = f"time : {time.time() - start}"
     print(show_time_info)

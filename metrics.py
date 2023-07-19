@@ -32,5 +32,5 @@ def cal_fscore(args, net, dataset_train, y_train, idxs):
     rec = sum(temp_list) / match_num
     # 计算f1-score
     f1_score = 2 * pre * rec / (pre + rec)
-    return f1_score
+    return f1_score.numpy().item()
 
