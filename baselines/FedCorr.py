@@ -33,8 +33,8 @@ def FedCorr(args):
     ##############################
     # Build model
     ##############################
-    net_glob = build_model(args)
-    print(net_glob)
+    netglob = build_model(args)
+    print(netglob)
     net_local = build_model(args)
 
     # client_p_index = np.where(gamma_s == 0)[0]
@@ -64,7 +64,7 @@ def FedCorr(args):
                 if sum(prob) > 0:
                     prob = [prob[i] / sum(prob) for i in range(len(prob))]
 
-                net_local.load_state_dict(net_glob.state_dict())
+                net_local.load_state_dict(netglob.state_dict())
                 sample_idx = np.array(list(dict_users[idx]))
                 dataset_client = Subset(dataset_train, sample_idx)
                 loader = torch.utils.data.DataLoader(dataset=dataset_client, batch_size=100, shuffle=False)
@@ -73,7 +73,7 @@ def FedCorr(args):
                 mu_i = mu_list[idx]
                 local = FedCorrLocalUpdate(args=args, dataset=dataset_train, idxs=sample_idx)
                 w, loss = local.update_weights(net=copy.deepcopy(net_local).to(args.device),
-                                               w_g=net_glob.to(args.device), epoch=args.local_ep, mu=mu_i)
+                                               w_g=netglob.to(args.device), epoch=args.local_ep, mu=mu_i)
 
                 net_local.load_state_dict(copy.deepcopy(w))
                 w_locals.append(copy.deepcopy(w))
@@ -90,7 +90,7 @@ def FedCorr(args):
             dict_len = [len(dict_users[idx]) for idx in idxs_users]
             w_glob = FedAvg(w_locals, dict_len)
 
-            net_glob.load_state_dict(copy.deepcopy(w_glob))
+            netglob.load_state_dict(copy.deepcopy(w_glob))
 
         LID_accumulative_client = LID_accumulative_client + np.array(LID_client)
         loss_accumulative_whole = loss_accumulative_whole + np.array(loss_whole)
@@ -124,7 +124,7 @@ def FedCorr(args):
                 dataset_client = Subset(dataset_train, sample_idx)
                 loader = torch.utils.data.DataLoader(dataset=dataset_client, batch_size=100, shuffle=False)
                 loss = np.array(loss_accumulative_whole[sample_idx])
-                local_output, _ = get_output(loader, net_glob.to(args.device), args, False, criterion)
+                local_output, _ = get_output(loader, netglob.to(args.device), args, False, criterion)
                 relabel_idx = (-loss).argsort()[:int(len(sample_idx) * estimated_noisy_level[idx] * args.relabel_ratio)]
                 relabel_idx = list(
                     set(np.where(np.max(local_output, axis=1) > args.confidence_thres)[0]) & set(relabel_idx))
@@ -144,23 +144,23 @@ def FedCorr(args):
         prob[selected_clean_idx] = 1 / len(selected_clean_idx)
         m = max(int(args.frac2 * args.num_users), 1)  # num_select_clients
         m = min(m, len(selected_clean_idx))
-        net_glob = copy.deepcopy(net_glob)
+        netglob = copy.deepcopy(netglob)
         # add fl training
         for rnd in range(args.rounds1):
             w_locals, loss_locals = [], []
             idxs_users = np.random.choice(range(args.num_users), m, replace=False, p=prob)
             for idx in idxs_users:  # training over the subset
                 local = FedCorrLocalUpdate(args=args, dataset=dataset_train, idxs=dict_users[idx])
-                w_local, loss_local = local.update_weights(net=copy.deepcopy(net_glob).to(args.device),
-                                                           w_g=net_glob.to(args.device), epoch=args.local_ep, mu=0)
+                w_local, loss_local = local.update_weights(net=copy.deepcopy(netglob).to(args.device),
+                                                           w_g=netglob.to(args.device), epoch=args.local_ep, mu=0)
                 w_locals.append(copy.deepcopy(w_local))  # store every updated model
                 loss_locals.append(copy.deepcopy(loss_local))
 
             dict_len = [len(dict_users[idx]) for idx in idxs_users]
             w_glob_fl = FedAvg(w_locals, dict_len)
-            net_glob.load_state_dict(copy.deepcopy(w_glob_fl))
+            netglob.load_state_dict(copy.deepcopy(w_glob_fl))
 
-            acc_s2 = globaltest(copy.deepcopy(net_glob).to(args.device), dataset_test, args)
+            acc_s2 = globaltest(copy.deepcopy(netglob).to(args.device), dataset_test, args)
             #f_save.write("fine tuning stage round %d, test acc  %.4f \n" % (rnd, acc_s2))
             #f_save.flush()
 
@@ -170,7 +170,7 @@ def FedCorr(args):
                 sample_idx = np.array(list(dict_users[idx]))
                 dataset_client = Subset(dataset_train, sample_idx)
                 loader = torch.utils.data.DataLoader(dataset=dataset_client, batch_size=100, shuffle=False)
-                glob_output, _ = get_output(loader, net_glob.to(args.device), args, False, criterion)
+                glob_output, _ = get_output(loader, netglob.to(args.device), args, False, criterion)
                 y_predicted = np.argmax(glob_output, axis=1)
                 relabel_idx = np.where(np.max(glob_output, axis=1) > args.confidence_thres)[0]
                 y_train_noisy_new = np.array(dataset_train.targets)
@@ -187,8 +187,8 @@ def FedCorr(args):
         idxs_users = np.random.choice(range(args.num_users), m, replace=False, p=prob)
         for idx in idxs_users:  # training over the subset
             local = FedCorrLocalUpdate(args=args, dataset=dataset_train, idxs=dict_users[idx])
-            w_local, loss_local = local.update_weights(net=copy.deepcopy(net_glob).to(args.device),
-                                                       w_g=net_glob.to(args.device), epoch=args.local_ep, mu=0)
+            w_local, loss_local = local.update_weights(net=copy.deepcopy(netglob).to(args.device),
+                                                       w_g=netglob.to(args.device), epoch=args.local_ep, mu=0)
             w_locals.append(copy.deepcopy(w_local))  # store every updated model
             loss_locals.append(copy.deepcopy(loss_local))
 
@@ -196,9 +196,9 @@ def FedCorr(args):
         # if args.iid:
         dict_len = [len(dict_users[idx]) for idx in idxs_users]
         w_glob_fl = FedAvg(w_locals, dict_len)
-        net_glob.load_state_dict(copy.deepcopy(w_glob_fl))
+        netglob.load_state_dict(copy.deepcopy(w_glob_fl))
 
-        acc_s2 = globaltest(copy.deepcopy(net_glob).to(args.device), dataset_test, args)
+        acc_s2 = globaltest(copy.deepcopy(netglob).to(args.device), dataset_test, args)
         show_info_test_acc = "Round %d global test acc  %.4f" % (rnd, acc_s2)
         print(show_info_test_acc)
         # f_save.write(show_info_test_acc)
