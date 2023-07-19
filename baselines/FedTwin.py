@@ -100,9 +100,9 @@ def FedTwin(args):
         if rnd == args.rounds2 - 1:
             for idx in all_idxs_users:
                 f_scores.append(cal_fscore(args, netglob.to(args.device), dataset_train, y_train, dict_users[idx]))
-        show_info_Fscore = "Round %d Fscore \n" % (rnd)
-        print(show_info_Fscore)
-        print(str(f_scores))
+            show_info_Fscore = "Round %d Fscore \n" % (rnd)
+            print(show_info_Fscore)
+            print(str(f_scores))
         # file_name = "./fscore_" + args.algorithm + ".txt"
         # f = open(file_name, "w")
         # f.writelines(f_scores.to)
