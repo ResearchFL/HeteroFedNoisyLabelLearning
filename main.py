@@ -36,9 +36,7 @@ def run(args):
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = True
     if args.dataset == "mnist":
-       args.K = 5
-    else:
-       args.K = 5
+       args.plr = args.lr/2
     for x in vars(args).items():
         print(x)
     # run Algorithm
