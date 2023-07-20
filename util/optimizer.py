@@ -105,9 +105,12 @@ def adjust_learning_rate(epoch, args, optimizer=None):
     # 需要后期再确认一次是否是args.begin_sel，之前是10
     alpha_plan = [[args.plr] * int(args.local_ep * args.rounds2/2) + [args.plr * 0.1] * args.local_ep * args.rounds2,
                   [args.lr] * int(args.local_ep * args.rounds2/2) + [args.lr * 0.1] * args.local_ep * args.rounds2]
-    if optimizer is None:
-        lr = alpha_plan[1][epoch] / (1 + f_beta(epoch, args))
+    if optimizer == 'plr':
+        lr = alpha_plan[0][epoch] / (1 + f_beta(epoch, args))
         return lr
+    elif optimizer == 'lr':
+        plr = alpha_plan[1][epoch] / (1 + f_beta(epoch, args))
+        return plr
     else:
         for param_group in optimizer.param_groups:
             param_group['lr'] = alpha_plan[0][epoch] / (1 + f_beta(epoch, args))

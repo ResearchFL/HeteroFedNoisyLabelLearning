@@ -134,9 +134,9 @@ class FedTwinLocalUpdate:
             # lr = args.lr
             adjust_learning_rate(rounds * args.local_ep + iter, args, optimizer_theta)
             adjust_learning_rate(rounds * args.local_ep + iter, args, optimizer_w)
-            # print(f"plr={plr}")
-            plr = adjust_learning_rate(rounds * args.local_ep + iter, args)
-            # print(f"lr={lr}")
+            plr = adjust_learning_rate(rounds * args.local_ep + iter, args, 'plr')
+            lr = adjust_learning_rate(rounds * args.local_ep + iter, args, 'lr')
+
             for batch_idx, (images, labels, _) in enumerate(self.ldr_train):
                 images, labels = images.to(self.args.device), labels.to(self.args.device)
                 # K = 30 # K is number of personalized steps
@@ -162,7 +162,7 @@ class FedTwinLocalUpdate:
                 # batch_loss.append(loss.item())
                 # update local weight after finding aproximate theta
                 for new_param, localweight in zip(self.persionalized_model_bar, net_glob.parameters()):
-                    localweight.data = localweight.data - self.args.lamda * plr * (
+                    localweight.data = localweight.data - self.args.lamda * lr * (
                             localweight.data - new_param.data)
 
                 net_glob.zero_grad()
