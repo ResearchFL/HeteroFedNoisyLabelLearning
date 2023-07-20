@@ -36,7 +36,7 @@ def run(args):
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = True
     if args.dataset == "mnist":
-       args.K = 1
+       args.K = 5
     else:
        args.K = 5
     for x in vars(args).items():
