@@ -123,7 +123,7 @@ class FedTwinLocalUpdate:
         net_glob.train()
         # net_global_param = copy.deepcopy(list(net_glob.parameters()))
         # train and update
-        optimizer_theta = TwinOptimizer(net_p.parameters(), lr=self.args.lr, lamda=self.args.lamda)
+        optimizer_theta = TwinOptimizer(net_p.parameters(), lr=self.args.plr, lamda=self.args.lamda)
         optimizer_w = torch.optim.SGD(net_glob.parameters(), lr=self.args.lr)
         epoch_loss = []
         n_bar_k = []
@@ -134,7 +134,6 @@ class FedTwinLocalUpdate:
             # lr = args.lr
             adjust_learning_rate(rounds * args.local_ep + iter, args, optimizer_theta)
             adjust_learning_rate(rounds * args.local_ep + iter, args, optimizer_w)
-            lr = optimizer_theta.param_groups[0]['lr']
             # print(f"plr={plr}")
             plr = adjust_learning_rate(rounds * args.local_ep + iter, args)
             # print(f"lr={lr}")
