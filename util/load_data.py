@@ -2,12 +2,21 @@ from util.dataset import get_dataset
 from util.util import add_noise
 import numpy as np
 
+
 def load_data_with_noisy_label(args):
     dataset_train, dataset_test, dict_users = get_dataset(args)
     # ---------------------Add Noise ---------------------------
-    y_train = np.array(dataset_train.targets)
-    y_train_noisy, gamma_s, real_noise_level, noisy_sample_idx = add_noise(args, y_train, dict_users)
-    dataset_train.targets = y_train_noisy
+    if args.dataset == 'clothing1m':
+        y_train_noisy = np.array(dataset_train.targets)
+        dataset_train.targets = y_train_noisy
+        gamma_s = None
+        noisy_sample_idx = None
+        y_train = None
+        print(f"len(dataset_train)= {len(dataset_train)}, len(dataset_test) = {len(dataset_test)}")
+    else:
+        y_train = np.array(dataset_train.targets)
+        y_train_noisy, gamma_s, real_noise_level, noisy_sample_idx = add_noise(args, y_train, dict_users)
+        dataset_train.targets = y_train_noisy
     return dataset_train, dataset_test, dict_users, y_train, gamma_s, noisy_sample_idx
 
 

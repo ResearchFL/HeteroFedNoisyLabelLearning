@@ -55,7 +55,10 @@ class FedCorrLocalUpdate(object):
 
     def train_test(self, dataset, idxs):
         # split training set, validation set and test set
-        train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True)
+        if self.args.dataset == 'clothing1m':
+            train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True, num_workers=3)
+        else:
+            train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True)
         test = DataLoader(dataset, batch_size=128)
         return train, test
 
@@ -100,6 +103,11 @@ class FedCorrLocalUpdate(object):
 
                 batch_loss.append(loss.item())
 
+                if self.args.dataset == 'clothing1m':
+                    if batch_idx >= 100:
+                        print(f'use 100 batches as one mini-epoch')
+                        break
+
             epoch_loss.append(sum(batch_loss) / len(batch_loss))
         return net.state_dict(), sum(epoch_loss) / len(epoch_loss)
 
@@ -114,7 +122,10 @@ class FedTwinLocalUpdate:
 
     def train_test(self, dataset, idxs):
         # split training set, validation set and test set
-        train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True)
+        if self.args.dataset == 'clothing1m':
+            train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True, num_workers=3)
+        else:
+            train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True)
         test = DataLoader(dataset, batch_size=128)
         return train, test
 
@@ -170,6 +181,12 @@ class FedTwinLocalUpdate:
                 optimizer_w.step()
                 batch_loss.append(loss_g.item())
                 b_bar_p.append(len_loss_g)
+
+                if self.args.dataset == 'clothing1m':
+                    if batch_idx >= 100:
+                        print(f'use 100 batches as one mini-epoch')
+                        break
+
             n_bar_k.append(sum(b_bar_p))
             epoch_loss.append(sum(batch_loss) / len(batch_loss))
             # print("\rRounds {:d} Client {:d} Epoch {:d}: train loss {:.4f}"
@@ -196,7 +213,10 @@ class RFLLocalUpdate:
 
     def train_test(self, dataset, idxs):
         # split training set, validation set and test set
-        train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True)
+        if self.args.dataset == 'clothing1m':
+            train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True, num_workers=3)
+        else:
+            train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True)
         test = DataLoader(dataset, batch_size=128)
         return train, test
 
@@ -314,6 +334,11 @@ class RFLLocalUpdate:
 
                 batch_loss.append(loss.item())
 
+                if self.args.dataset == 'clothing1m':
+                    if batch_idx >= 100:
+                        print(f'use 100 batches as one mini-epoch')
+                        break
+
             epoch_loss.append(sum(batch_loss) / len(batch_loss))
 
         return net.state_dict(), sum(epoch_loss) / len(epoch_loss), f_k
@@ -327,7 +352,10 @@ class FedAVGLocalUpdate:
 
     def train_test(self, dataset, idxs):
         # split training set, validation set and test set
-        train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True)
+        if self.args.dataset == 'clothing1m':
+            train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True, num_workers=3)
+        else:
+            train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True)
         test = DataLoader(dataset, batch_size=128)
         return train, test
 
@@ -337,7 +365,7 @@ class FedAVGLocalUpdate:
         epoch_loss = []
         for iter in range(self.args.local_ep):
             batch_loss = []
-            for images, labels, _ in self.ldr_train:
+            for batch_idx, (images, labels, _) in enumerate(self.ldr_train):
                 images, labels = images.to(self.args.device), labels.to(self.args.device)
                 net.zero_grad()
                 outputs, _ = net(images)
@@ -347,6 +375,12 @@ class FedAVGLocalUpdate:
                 loss.backward()
                 optimizer.step()
                 batch_loss.append(loss.item())
+
+                if self.args.dataset == 'clothing1m':
+                    if batch_idx >= 100:
+                        print(f'use 100 batches as one mini-epoch')
+                        break
+
                 # print("batch_loss={}".format(batch_loss))
             epoch_loss.append(sum(batch_loss) / len(batch_loss))
             # print("epoch_loss={}".format(epoch_loss))
@@ -361,7 +395,10 @@ class FedProxLocalUpdate:
 
     def train_test(self, dataset, idxs):
         # split training set, validation set and test set
-        train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True)
+        if self.args.dataset == 'clothing1m':
+            train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True, num_workers=3)
+        else:
+            train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True)
         test = DataLoader(dataset, batch_size=128)
         return train, test
 
@@ -372,7 +409,7 @@ class FedProxLocalUpdate:
         epoch_loss = []
         for iter in range(self.args.local_ep):
             batch_loss = []
-            for images, labels, _ in self.ldr_train:
+            for batch_idx, (mages, labels, _) in enumerate(self.ldr_train):
                 images, labels = images.to(self.args.device), labels.to(self.args.device)
                 net.zero_grad()
                 outputs, _ = net(images)
@@ -382,6 +419,12 @@ class FedProxLocalUpdate:
                 loss.backward()
                 optimizer.step(list(old_net.parameters()))
                 batch_loss.append(loss.item())
+
+                if self.args.dataset == 'clothing1m':
+                    if batch_idx >= 100:
+                        print(f'use 100 batches as one mini-epoch')
+                        break
+
                 # print("batch_loss={}".format(batch_loss))
             epoch_loss.append(sum(batch_loss) / len(batch_loss))
             # print("epoch_loss={}".format(epoch_loss))
