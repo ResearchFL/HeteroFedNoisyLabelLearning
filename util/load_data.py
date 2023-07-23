@@ -11,7 +11,7 @@ def load_data_with_noisy_label(args):
         dataset_train.targets = y_train_noisy
         gamma_s = None
         noisy_sample_idx = None
-        y_train = None
+        y_train = y_train_noisy
         print(f"len(dataset_train)= {len(dataset_train)}, len(dataset_test) = {len(dataset_test)}")
     else:
         y_train = np.array(dataset_train.targets)
