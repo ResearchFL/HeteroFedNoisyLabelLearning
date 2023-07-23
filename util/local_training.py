@@ -105,7 +105,7 @@ class FedCorrLocalUpdate(object):
 
                 if self.args.dataset == 'clothing1m':
                     if batch_idx >= 100:
-                        print(f'use 100 batches as one mini-epoch')
+                        # print(f'use 100 batches as one mini-epoch')
                         break
 
             epoch_loss.append(sum(batch_loss) / len(batch_loss))
@@ -184,7 +184,7 @@ class FedTwinLocalUpdate:
 
                 if self.args.dataset == 'clothing1m':
                     if batch_idx >= 100:
-                        print(f'use 100 batches as one mini-epoch')
+                        # print(f'use 100 batches as one mini-epoch')
                         break
 
             n_bar_k.append(sum(b_bar_p))
@@ -336,7 +336,7 @@ class RFLLocalUpdate:
 
                 if self.args.dataset == 'clothing1m':
                     if batch_idx >= 100:
-                        print(f'use 100 batches as one mini-epoch')
+                        # print(f'use 100 batches as one mini-epoch')
                         break
 
             epoch_loss.append(sum(batch_loss) / len(batch_loss))
@@ -378,7 +378,7 @@ class FedAVGLocalUpdate:
 
                 if self.args.dataset == 'clothing1m':
                     if batch_idx >= 100:
-                        print(f'use 100 batches as one mini-epoch')
+                        # print(f'use 100 batches as one mini-epoch')
                         break
 
                 # print("batch_loss={}".format(batch_loss))
@@ -422,7 +422,7 @@ class FedProxLocalUpdate:
 
                 if self.args.dataset == 'clothing1m':
                     if batch_idx >= 100:
-                        print(f'use 100 batches as one mini-epoch')
+                        # print(f'use 100 batches as one mini-epoch')
                         break
 
                 # print("batch_loss={}".format(batch_loss))
