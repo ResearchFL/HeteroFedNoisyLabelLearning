@@ -9,7 +9,9 @@ from torch.utils.data import DataLoader, Dataset
 from util.loss import FedTwinCRLoss
 import numpy as np
 from util.optimizer import TwinOptimizer, adjust_learning_rate
-from util.optimizer import FedProxOptimizer, f_beta
+from util.optimizer import FedProxOptimizer, f_beta, filter_noisy_data
+from torch.autograd import Variable
+
 
 def mixup_data(x, y, alpha=1.0, use_cuda=True):
     '''Returns mixed inputs, pairs of targets, and lambda'''
@@ -55,10 +57,7 @@ class FedCorrLocalUpdate(object):
 
     def train_test(self, dataset, idxs):
         # split training set, validation set and test set
-        if self.args.dataset == 'clothing1m':
-            train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True, num_workers=3)
-        else:
-            train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True)
+        train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True)
         test = DataLoader(dataset, batch_size=128)
         return train, test
 
@@ -122,14 +121,11 @@ class FedTwinLocalUpdate:
 
     def train_test(self, dataset, idxs):
         # split training set, validation set and test set
-        if self.args.dataset == 'clothing1m':
-            train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True, num_workers=3)
-        else:
-            train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True)
+        train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True)
         test = DataLoader(dataset, batch_size=128)
         return train, test
 
-    def update_weights(self, net_p, net_glob, rounds, args):
+    def update_weights(self, net_p, net_glob, rounds):
         net_p.train()
         net_glob.train()
         # net_global_param = copy.deepcopy(list(net_glob.parameters()))
@@ -138,15 +134,15 @@ class FedTwinLocalUpdate:
         optimizer_w = torch.optim.SGD(net_glob.parameters(), lr=self.args.lr)
         epoch_loss = []
         n_bar_k = []
-        for iter in range(args.local_ep):
+        for iter in range(self.args.local_ep):
             batch_loss = []
             # use/load data from split training set "ldr_train"
             b_bar_p = []
             # lr = args.lr
-            adjust_learning_rate(rounds * args.local_ep + iter, args, optimizer_theta)
-            adjust_learning_rate(rounds * args.local_ep + iter, args, optimizer_w)
-            plr = adjust_learning_rate(rounds * args.local_ep + iter, args, 'plr')
-            lr = adjust_learning_rate(rounds * args.local_ep + iter, args, 'lr')
+            adjust_learning_rate(rounds * self.args.local_ep + iter, self.args, optimizer_theta)
+            adjust_learning_rate(rounds * self.args.local_ep + iter, self.args, optimizer_w)
+            plr = adjust_learning_rate(rounds * self.args.local_ep + iter, self.args, 'plr')
+            lr = adjust_learning_rate(rounds * self.args.local_ep + iter, self.args, 'lr')
 
             for batch_idx, (images, labels, _) in enumerate(self.ldr_train):
                 images, labels = images.to(self.args.device), labels.to(self.args.device)
@@ -156,7 +152,8 @@ class FedTwinLocalUpdate:
                 log_probs_p, _ = net_p(images)
                 log_probs_g, _ = net_glob(images)
                 # log_probs = net(images)
-                loss_p, loss_g, len_loss_g, len_loss_g, ind_g = self.loss_func(log_probs_p, log_probs_g, labels, rounds, iter, args)
+                loss_p, loss_g, len_loss_g, len_loss_g, ind_g = self.loss_func(log_probs_p, log_probs_g,
+                                                                               labels, rounds, iter, self.args)
                 for i in range(self.args.K):
                     net_p.zero_grad()
                     if i == 0:
@@ -164,7 +161,7 @@ class FedTwinLocalUpdate:
                         self.persionalized_model_bar, _ = optimizer_theta.step(list(net_glob.parameters()))
                     else:
                         log_probs_p, _ = net_p(images)
-                        Beta = f_beta(rounds * args.local_ep + iter, args)
+                        Beta = f_beta(rounds * self.args.local_ep + iter, self.args)
                         loss_p = self.cores_loss_fun(log_probs_p, labels, Beta)
                         loss_p = torch.sum(loss_p[ind_g]) / len(loss_p[ind_g])
                         loss_p.backward()
@@ -213,10 +210,7 @@ class RFLLocalUpdate:
 
     def train_test(self, dataset, idxs):
         # split training set, validation set and test set
-        if self.args.dataset == 'clothing1m':
-            train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True, num_workers=3)
-        else:
-            train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True)
+        train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True)
         test = DataLoader(dataset, batch_size=128)
         return train, test
 
@@ -352,10 +346,7 @@ class FedAVGLocalUpdate:
 
     def train_test(self, dataset, idxs):
         # split training set, validation set and test set
-        if self.args.dataset == 'clothing1m':
-            train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True, num_workers=3)
-        else:
-            train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True)
+        train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True)
         test = DataLoader(dataset, batch_size=128)
         return train, test
 
@@ -395,10 +386,7 @@ class FedProxLocalUpdate:
 
     def train_test(self, dataset, idxs):
         # split training set, validation set and test set
-        if self.args.dataset == 'clothing1m':
-            train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True, num_workers=3)
-        else:
-            train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True)
+        train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True)
         test = DataLoader(dataset, batch_size=128)
         return train, test
 
@@ -466,3 +454,65 @@ def globaltest(net, test_dataset, args):
 
 def personalizedtest(args, p_models, dataset_test):
     pass
+
+
+class LocalCORESUpdate:
+    def __init__(self, args, dataset=None, idxs=None):
+        self.args = args
+        self.loss_func = CrossEntropyLoss()  # loss function -- cross entropy
+        self.cores_loss_func = CORESLoss(reduction='none')
+        self.ldr_train, self.ldr_test = self.train_test(dataset, list(idxs))
+
+    def train_test(self, dataset, idxs):
+        # split training set, validation set and test set
+        train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True)
+        test = DataLoader(dataset, batch_size=128)
+        return train, test
+
+    def update_weights(self, net, pnet, rounds):
+        net.train()
+        pnet.train()
+        optimizer = torch.optim.SGD(net.parameters(), lr=self.args.lr)
+        optimizer_p = torch.optim.SGD(pnet.parameters(), lr=self.args.lr)
+        epoch_loss = []
+        for iter in range(self.args.local_ep):
+            batch_loss = []
+            adjust_learning_rate(rounds * self.args.local_ep + iter, self.args, optimizer_p)
+            for batch_idx, (images, labels, _) in enumerate(self.ldr_train):
+                images, labels = images.to(self.args.device), labels.to(self.args.device)
+
+                # filtered noisy samples
+                log_probs_p, _ = pnet(images)
+                Beta = f_beta(rounds * self.args.local_ep + iter, self.args)
+                if rounds <= self.args.begin_sel:
+                    loss_p_update = self.cores_loss_func(log_probs_p, labels, Beta)
+                    ind_p_update = Variable(torch.from_numpy(np.ones(len(loss_p_update)))).bool()
+                else:
+                    ind_p_update = filter_noisy_data(log_probs_p, labels)
+                    loss_p_update = self.cores_loss_func(log_probs_p[ind_p_update], labels[ind_p_update], Beta)
+                loss_batch_p = loss_p_update.data.cpu().numpy()
+                if len(loss_batch_p) == 0.0:
+                    loss_p = self.cores_loss_func(log_probs_p, labels, Beta)
+                    loss_p = torch.mean(loss_p) / 100000000
+                else:
+                    loss_p = torch.sum(loss_p_update) / len(loss_batch_p)
+                # p model updates
+                pnet.zero_grad()
+                loss_p.backward()
+                optimizer_p.step()
+
+                # global model updates
+                net.zero_grad()
+                outputs, _ = net(images)
+                loss = self.loss_func(outputs[ind_p_update], labels[ind_p_update])
+                loss.backward()
+                optimizer.step()
+                batch_loss.append(loss.item())
+
+                if self.args.dataset == 'clothing1m':
+                    if batch_idx >= 100:
+                        # print(f'use 100 batches as one mini-epoch')
+                        break
+
+            epoch_loss.append(sum(batch_loss) / len(batch_loss))
+        return net.state_dict(), sum(epoch_loss) / len(epoch_loss)

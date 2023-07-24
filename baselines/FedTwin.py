@@ -37,7 +37,7 @@ def FedTwin(args):
             local = FedTwinLocalUpdate(args=args, dataset=dataset_train, idxs=dict_users[idx], client_idx=idx)
             p_model, w_local, loss_local, n_bar_k = local.update_weights(net_p=copy.deepcopy(netglob).to(args.device),
                                                                          net_glob=copy.deepcopy(netglob).to(
-                                                                             args.device), rounds=rnd, args=args)
+                                                                             args.device), rounds=rnd)
             w_locals.append(copy.deepcopy(w_local))  # store every updated model
             p_models.append(p_model)
             loss_locals.append(loss_local)

@@ -13,6 +13,7 @@ from baselines.FedTwin import FedTwin
 from baselines.MR import MR
 from baselines.FedAvg import FedAVG
 from baselines.FedProx import FedProx
+from baselines.LocalCORES import LocalCORES
 np.set_printoptions(threshold=np.inf)
 """
 Major framework of noise FL
