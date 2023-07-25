@@ -25,8 +25,9 @@ def build_model(args):
         netglob = ResNet50(pretrained=False)
         if args.pretrained:
             model = models.resnet50(pretrained=True)
-            model['fc1'] = model['fc']
-            del model['fc']
+            # Rename the 'fc' layer to 'fc1'
+            model.fc1 = model.fc
+            del model.fc
             netglob.load_state_dict(model.state_dict())
 
         netglob.fc1 = nn.Linear(2048, args.num_classes)
