@@ -26,6 +26,8 @@ def build_model(args):
         if args.pretrained:
             model = models.resnet50(pretrained=True)
             netglob.load_state_dict(model.state_dict())
+            netglob['fc1'] = netglob['fc']
+            del netglob['fc']
         netglob.fc1 = nn.Linear(2048, args.num_classes)
         netglob = netglob.to(args.device)
 
