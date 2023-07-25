@@ -3,6 +3,7 @@
 
 import argparse
 
+
 def args_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument('-algo', "--algorithm", type=str, default="FedTwin")
@@ -14,10 +15,11 @@ def args_parser():
     parser.add_argument('--save_dir', type=str, default='./record/', help="name of save directory")
     parser.add_argument('--rounds2', type=int, default=300, help="rounds of training in usual training stage")
     parser.add_argument('--local_ep', type=int, default=5, help="number of local epochs")
-    parser.add_argument('--frac2', type=float, default=0.1, help="fration of selected clients in fine-tuning and usual training stage")
+    parser.add_argument('--frac2', type=float, default=0.1,
+                        help="fration of selected clients in fine-tuning and usual training stage")
     parser.add_argument('--num_users', type=int, default=100, help="number of uses: K")
     parser.add_argument('--local_bs', type=int, default=32, help="local batch size: B")
-    parser.add_argument('--lr', type=float, default=0.1, help="learning rate") #0.01
+    parser.add_argument('--lr', type=float, default=0.1, help="learning rate")  # 0.01
     parser.add_argument('--model', type=str, default='lenet', help="model name")
 
     ## noise arguments
@@ -38,15 +40,18 @@ def args_parser():
     parser.add_argument('--mixup', action='store_true')
     parser.add_argument('--alpha', type=float, default=1, help="0.1,1,5")
     # momentum same with RFL
-    parser.add_argument('--beta', type=float, default=5, help="coefficient for local proximal，0 for fedavg, 1 for fedprox, 5 for noise fl")
+    parser.add_argument('--beta', type=float, default=5,
+                        help="coefficient for local proximal，0 for fedavg, 1 for fedprox, 5 for noise fl")
     ## correction
-    parser.add_argument('--relabel_ratio', type=float, default=0.5, help="proportion of relabeled samples among selected noisy samples")
-    parser.add_argument('--confidence_thres', type=float, default=0.5, help="threshold of model's confidence on each sample")
-    parser.add_argument('--clean_set_thres', type=float, default=0.1, help="threshold of estimated noise level to filter 'clean' set used in fine-tuning stage")
+    parser.add_argument('--relabel_ratio', type=float, default=0.5,
+                        help="proportion of relabeled samples among selected noisy samples")
+    parser.add_argument('--confidence_thres', type=float, default=0.5,
+                        help="threshold of model's confidence on each sample")
+    parser.add_argument('--clean_set_thres', type=float, default=0.1,
+                        help="threshold of estimated noise level to filter 'clean' set used in fine-tuning stage")
     ## ablation study
     parser.add_argument('--fine_tuning', action='store_false', help='whether to include fine-tuning stage')
     parser.add_argument('--correction', action='store_false', help='whether to correct noisy labels')
-
 
     ###### RFL arguments###################
     parser.add_argument('--T_pl', type=int, help='T_pl: When to start using global guided pseudo labeling', default=100)
@@ -59,7 +64,6 @@ def args_parser():
     parser.add_argument('--momentum', type=float, default=0.5, help="SGD momentum (default: 0.5)")
     parser.add_argument('--weight_decay', type=float, default=0.0001, help="sgd weight decay")
     parser.add_argument('--feature_dim', type=int, help='feature dimension', default=128)
-
 
     ###### FedTwin ####################
     parser.add_argument('--plr', help="--personal_learning_rate", type=str, default=0.1)

@@ -14,9 +14,9 @@ def LocalCORES(args):
     start = time.time()
     # 获取模型
     model = build_model(args)
-    pnet = [copy.deepcopy(model) for i in range(args.num_users)]
+    pnets = [copy.deepcopy(model.state_dict()) for _ in range(args.num_users)]
     m = max(int(args.frac2 * args.num_users), 1)  # num_select_clients
-    prob = [1/args.num_users for i in range(args.num_users)]
+    prob = [1 / args.num_users for i in range(args.num_users)]
 
     for rnd in range(args.rounds2):
         w_locals, loss_locals = [], []
@@ -24,7 +24,7 @@ def LocalCORES(args):
 
         for idx in idxs_users:  # training over the subset
             local = LocalCORESUpdate(args=args, dataset=dataset_train, idxs=dict_users[idx])
-            w_local, loss_local = local.update_weights(net=copy.deepcopy(model).to(args.device), pnet=pnet[idx], rounds=rnd)
+            w_local, loss_local = local.update_weights(net=copy.deepcopy(model).to(args.device), pnet_dict=pnets[idx], rounds=rnd)
             w_locals.append(copy.deepcopy(w_local))  # store every updated model
             loss_locals.append(copy.deepcopy(loss_local))
 
@@ -39,7 +39,6 @@ def LocalCORES(args):
 
         show_info_loss = "Round %d train loss  %.4f" % (rnd, loss_round)
         show_info_test_acc = "Round %d global test acc  %.4f" % (rnd, acc_s2)
-
 
         # print(show_info_loss)
         print(show_info_test_acc)

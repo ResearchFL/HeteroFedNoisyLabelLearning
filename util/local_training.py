@@ -469,7 +469,10 @@ class LocalCORESUpdate:
         test = DataLoader(dataset, batch_size=128)
         return train, test
 
-    def update_weights(self, net, pnet, rounds):
+    def update_weights(self, net, pnet_dict, rounds):
+        pnet = copy.deepcopy(net)
+        pnet.load_state_dict(pnet_dict)
+        pnet.to(self.args.device)
         net.train()
         pnet.train()
         optimizer = torch.optim.SGD(net.parameters(), lr=self.args.lr)
@@ -515,4 +518,5 @@ class LocalCORESUpdate:
                         break
 
             epoch_loss.append(sum(batch_loss) / len(batch_loss))
+        pnet_dict.update(pnet.state_dict())
         return net.state_dict(), sum(epoch_loss) / len(epoch_loss)
