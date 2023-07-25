@@ -26,7 +26,7 @@ def build_model(args):
         if args.pretrained:
             model = models.resnet50(pretrained=True)
             model['fc1'] = model['fc']
-            del netglob['fc']
+            del model['fc']
             netglob.load_state_dict(model.state_dict())
 
         netglob.fc1 = nn.Linear(2048, args.num_classes)
