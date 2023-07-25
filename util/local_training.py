@@ -520,3 +520,57 @@ class LocalCORESUpdate:
             epoch_loss.append(sum(batch_loss) / len(batch_loss))
         pnet_dict.update(pnet.state_dict())
         return net.state_dict(), sum(epoch_loss) / len(epoch_loss)
+
+
+class GlobalCORESUpdate:
+    def __init__(self, args, dataset=None, idxs=None):
+        self.args = args
+        # self.loss_func = CrossEntropyLoss()  # loss function -- cross entropy
+        self.cores_loss_func = CORESLoss(reduction='none')
+        self.ldr_train, self.ldr_test = self.train_test(dataset, list(idxs))
+
+    def train_test(self, dataset, idxs):
+        # split training set, validation set and test set
+        train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True)
+        test = DataLoader(dataset, batch_size=128)
+        return train, test
+
+    def update_weights(self, net, rounds):
+        net.train()
+        optimizer = torch.optim.SGD(net.parameters(), lr=self.args.lr)
+        epoch_loss = []
+        for iter in range(self.args.local_ep):
+            batch_loss = []
+            adjust_learning_rate(rounds * self.args.local_ep + iter, self.args, optimizer)
+            for batch_idx, (images, labels, _) in enumerate(self.ldr_train):
+                images, labels = images.to(self.args.device), labels.to(self.args.device)
+
+                # filtered noisy samples
+                log_probs_g, _ = net(images)
+                Beta = f_beta(rounds * self.args.local_ep + iter, self.args)
+                if rounds <= self.args.begin_sel:
+                    loss_g_update = self.cores_loss_func(log_probs_g, labels, Beta)
+                else:
+                    ind_g_update = filter_noisy_data(log_probs_g, labels)
+                    loss_g_update = self.cores_loss_func(log_probs_g[ind_g_update], labels[ind_g_update], Beta)
+                loss_batch_g = loss_g_update.data.cpu().numpy()
+                if len(loss_batch_g) == 0.0:
+                    loss_g = self.cores_loss_func(log_probs_g, labels, Beta)
+                    loss_g = torch.mean(loss_g) / 100000000
+                else:
+                    loss_g = torch.sum(loss_g_update) / len(loss_batch_g)
+
+                # loss = self.loss_func(outputs, labels)
+
+                net.zero_grad()
+                loss_g.backward()
+                optimizer.step()
+                batch_loss.append(loss_g.item())
+
+                if self.args.dataset == 'clothing1m':
+                    if batch_idx >= 100:
+                        # print(f'use 100 batches as one mini-epoch')
+                        break
+
+            epoch_loss.append(sum(batch_loss) / len(batch_loss))
+        return net.state_dict(), sum(epoch_loss) / len(epoch_loss)
