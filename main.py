@@ -39,6 +39,12 @@ def run(args):
     torch.backends.cudnn.benchmark = True
     if args.dataset == "mnist":
        args.plr = args.lr/2
+    if args.dataset == 'cifar100':
+        args.max_beta = 2.0
+    elif args.dataset == 'cifar10' or 'mnist':
+        args.max_beta = 2.0
+    elif args.dataset == 'clothing1m':
+        args.max_beta = 2.8
     for x in vars(args).items():
         print(x)
     # run Algorithm
