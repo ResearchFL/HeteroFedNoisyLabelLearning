@@ -57,7 +57,7 @@ class FedCorrLocalUpdate(object):
 
     def train_test(self, dataset, idxs):
         # split training set, validation set and test set
-        train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True)
+        train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True, num_workers=3)
         test = DataLoader(dataset, batch_size=128)
         return train, test
 
@@ -121,7 +121,7 @@ class FedTwinLocalUpdate:
 
     def train_test(self, dataset, idxs):
         # split training set, validation set and test set
-        train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True)
+        train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True, num_workers=3)
         test = DataLoader(dataset, batch_size=128)
         return train, test
 
@@ -210,7 +210,7 @@ class RFLLocalUpdate:
 
     def train_test(self, dataset, idxs):
         # split training set, validation set and test set
-        train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True)
+        train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True, num_workers=3)
         test = DataLoader(dataset, batch_size=128)
         return train, test
 
@@ -346,7 +346,7 @@ class FedAVGLocalUpdate:
 
     def train_test(self, dataset, idxs):
         # split training set, validation set and test set
-        train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True)
+        train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True, num_workers=3)
         test = DataLoader(dataset, batch_size=128)
         return train, test
 
@@ -386,7 +386,7 @@ class FedProxLocalUpdate:
 
     def train_test(self, dataset, idxs):
         # split training set, validation set and test set
-        train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True)
+        train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True, num_workers=3)
         test = DataLoader(dataset, batch_size=128)
         return train, test
 
@@ -465,7 +465,7 @@ class LocalCORESUpdate:
 
     def train_test(self, dataset, idxs):
         # split training set, validation set and test set
-        train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True)
+        train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True, num_workers=3)
         test = DataLoader(dataset, batch_size=128)
         return train, test
 
@@ -531,7 +531,7 @@ class GlobalCORESUpdate:
 
     def train_test(self, dataset, idxs):
         # split training set, validation set and test set
-        train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True)
+        train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True, num_workers=3)
         test = DataLoader(dataset, batch_size=128)
         return train, test
 
