@@ -162,7 +162,7 @@ def FedCorr(args):
             netglob.load_state_dict(copy.deepcopy(w_glob_fl))
 
             acc_s2 = globaltest(copy.deepcopy(netglob).to(args.device), dataset_test, args)
-            #f_save.write("fine tuning stage round %d, test acc  %.4f \n" % (rnd, acc_s2))
+            print("fine tuning stage round %d, test acc  %.4f \n" % (rnd, acc_s2))
             #f_save.flush()
 
         if args.correction:
