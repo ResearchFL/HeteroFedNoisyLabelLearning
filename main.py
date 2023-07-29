@@ -10,6 +10,8 @@ from util.options import args_parser
 from baselines.FedCorr import FedCorr
 from baselines.RFL import RFL
 from baselines.FedTwin import FedTwin
+from baselines.FedTwin1 import FedTwin1
+from baselines.FedTwin2 import FedTwin2
 from baselines.MR import MR
 from baselines.FedAvg import FedAVG
 from baselines.FedProx import FedProx

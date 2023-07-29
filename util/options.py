@@ -76,4 +76,6 @@ def args_parser():
 
     ######### FedProx #################
     parser.add_argument('--mu', type=float, default=0.01, help='proximal term constant')
+
+    parser.add_argument('--unsupervised', action='store_true')
     return parser.parse_args()

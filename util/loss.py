@@ -65,6 +65,7 @@ class FedTwinCRLoss(CrossEntropyLoss):
     def forward(self, input_p, input_g, target, rounds, epoch, args, noise_prior=None):
         coresloss = CORESLoss(reduction='none')
         Beta = f_beta(rounds * args.local_ep + epoch, args)
+        ind_noise = []
         if rounds <= args.begin_sel:  # 如果在前30epoch集中式，对应联邦应该是30/local_epoch
             loss_p_update = coresloss(input_p, target, Beta, noise_prior)
             loss_g_update = coresloss(input_g, target, Beta, noise_prior)
@@ -73,6 +74,9 @@ class FedTwinCRLoss(CrossEntropyLoss):
         else:
             ind_p_update = filter_noisy_data(input_p, target)
             ind_g_update = filter_noisy_data(input_g, target)
+
+            ind_noise = [not x for x in ind_p_update]
+            # print("ind_noise: {}".format(ind_noise))
 
             loss_p_update = coresloss(input_p[ind_g_update], target[ind_g_update], Beta, noise_prior)
             loss_g_update = coresloss(input_g[ind_p_update], target[ind_p_update], Beta, noise_prior)
@@ -88,4 +92,4 @@ class FedTwinCRLoss(CrossEntropyLoss):
             loss_g = torch.mean(loss_g) / 100000000
         else:
             loss_g = torch.sum(loss_g_update) / len(loss_batch_g)
-        return loss_p, loss_g, len(loss_batch_p), len(loss_batch_g), ind_g_update
+        return loss_p, loss_g, len(loss_batch_p), len(loss_batch_g), ind_g_update, ind_noise

@@ -144,7 +144,8 @@ class FedTwinLocalUpdate:
             plr = adjust_learning_rate(rounds * self.args.local_ep + iter, self.args, 'plr')
             lr = adjust_learning_rate(rounds * self.args.local_ep + iter, self.args, 'lr')
 
-            for batch_idx, (images, labels, _) in enumerate(self.ldr_train):
+            local_ind_noise = {}
+            for batch_idx, (images, labels, indexes) in enumerate(self.ldr_train):
                 images, labels = images.to(self.args.device), labels.to(self.args.device)
                 # K = 30 # K is number of personalized steps
 
@@ -152,8 +153,13 @@ class FedTwinLocalUpdate:
                 log_probs_p, _ = net_p(images)
                 log_probs_g, _ = net_glob(images)
                 # log_probs = net(images)
-                loss_p, loss_g, len_loss_g, len_loss_g, ind_g = self.loss_func(log_probs_p, log_probs_g,
+                loss_p, loss_g, len_loss_g, len_loss_g, ind_g, ind_noise = self.loss_func(log_probs_p, log_probs_g,
                                                                                labels, rounds, iter, self.args)
+
+                if iter == self.args.local_ep - 1:
+                    if self.args.unsupervised:
+                        local_ind_noise[indexes] = ind_noise
+
                 for i in range(self.args.K):
                     net_p.zero_grad()
                     if i == 0:
@@ -191,7 +197,7 @@ class FedTwinLocalUpdate:
             # if any(math.isnan(loss) for loss in epoch_loss):
             #     print("debug epoch_loss")
         n_bar_k = sum(n_bar_k) / len(n_bar_k)
-        return net_p, net_glob.state_dict(), sum(epoch_loss) / len(epoch_loss), n_bar_k
+        return net_p, net_glob.state_dict(), sum(epoch_loss) / len(epoch_loss), n_bar_k, local_ind_noise
 
 
 class RFLLocalUpdate:

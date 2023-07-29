@@ -1,6 +1,7 @@
-# 脚本运行 nohup bash test.sh &
-run_times=5
-gpu_num=0
+
+# 脚本运行 nohup bash run_fedtwin12.sh &
+run_times=1
+gpu_num=3
 begin_sel_r=10
 
 #文件夹创建函数
@@ -12,8 +13,7 @@ MakeDir(){
 }
 
 #数据集
-#listDataset=(mnist cifar10 cifar100 clothing1m)
-listDataset=(mnist cifar10 cifar100)
+listDataset=(mnist cifar10 cifar100 clothing1m)
 #模型---对应数据集
 listModel=(lenet resnet18 resnet34 renet50)
 #轮次---对应数据集
@@ -26,7 +26,7 @@ listFrac2=(0.1 0.1 0.2 0.3)
 listLr=(0.1 0.01 0.01 0.001)
 
 #方法
-listMethod=(FedAVG MR FedTwin FedCorr RFL)
+listMethod=(FedTwin1 FedTwin2)
 
 #定义ρ和τ
 listRou=(0.0 0.5 1)
@@ -44,21 +44,21 @@ MakeDir ./record
 MakeDir "${date_path}"
 
 #开始训练
-for ((i=0;i<${#listDataset[@]};i++))    #遍历数据集
+for ((i=0;i<1;i++))    #遍历数据集
 do
     for ((time=1;time<="${run_times}";time++))
     do
         for ((j=0;j<${#listMethod[@]};j++))        #遍历方法
         do
-            for ((p=0;p<=1;p++))            #遍历IID情况
+            for ((p=1;p<=1;p++))            #遍历IID情况1
             do
-                for ((q=0;q<=2;q++))            #遍历Rou和Tau
+                for ((q=1;q<=1;q++))            #遍历Rou和Tau1
                 do
                     case ${listIID[p]} in
 
                     "0")                    #IID
 
-                    logFile="$date_path"/"${listDataset[i]}"_"${listMethod[j]}"_IID_rou_"${listRou[q]}"_tau_"${listTau[q]}".log  #文件路径
+                    logFile="$date_path"/"${listDataset[i]}"_"${listMethod[j]}"_IID_rou_"${listRou[q]}"_tau_"${listTau[q]}"_"${i}".log  #文件路径
 
                     touch "${logFile}"
 
@@ -72,7 +72,7 @@ do
 
                     "1")                    #NonIID
 
-                    logFile="$date_path"/"${listDataset[i]}"_"${listMethod[j]}"_nonIID_rou_"${listRou[q]}"_tau_"${listTau[q]}".log  #文件路径
+                    logFile="$date_path"/"${listDataset[i]}"_"${listMethod[j]}"_nonIID_rou_"${listRou[q]}"_tau_"${listTau[q]}"_"${i}".log  #文件路径
 
                     touch "${logFile}"
 
@@ -89,4 +89,6 @@ do
         done
     done
 done
+
+
 
