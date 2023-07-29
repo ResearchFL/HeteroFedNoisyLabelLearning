@@ -35,7 +35,7 @@ def args_parser():
     parser.add_argument('--LID_k', type=int, default=20, help="lid")
     parser.add_argument('--iteration1', type=int, default=5, help="enumerate iteration in preprocessing stage")
     parser.add_argument('--rounds1', type=int, default=200, help="rounds of training in fine_tuning stage")
-    parser.add_argument('--frac1', type=float, default=0.01, help="fration of selected clients in preprocessing stage")
+    parser.add_argument('--frac1', type=float, default=0.001, help="fration of selected clients in preprocessing stage")
     parser.add_argument('--pretrained', action='store_true', help="whether to use pre-trained model")
     parser.add_argument('--mixup', action='store_true')
     parser.add_argument('--alpha', type=float, default=1, help="0.1,1,5")

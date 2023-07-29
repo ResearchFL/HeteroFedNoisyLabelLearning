@@ -11,7 +11,7 @@ from util.util import lid_term, get_output
 from util.load_data import load_data_with_noisy_label
 import time
 from metrics import cal_fscore
-
+from math import ceil
 
 def FedCorr(args):
     # if args.mixup:
@@ -58,7 +58,7 @@ def FedCorr(args):
         prob = [1 / args.num_users] * args.num_users
 
         for _ in range(int(1 / args.frac1)):
-            idxs_users = np.random.choice(range(args.num_users), int(args.num_users * args.frac1), p=prob)
+            idxs_users = np.random.choice(range(args.num_users), ceil(args.num_users * args.frac1), p=prob)
             w_locals = []
             for idx in idxs_users:
                 prob[idx] = 0
@@ -79,7 +79,7 @@ def FedCorr(args):
                 net_local.load_state_dict(copy.deepcopy(w))
                 w_locals.append(copy.deepcopy(w))
                 acc_t = globaltest(copy.deepcopy(net_local).to(args.device), dataset_test, args)
-                #f_save.write("iteration %d, client %d, acc: %.4f \n" % (iteration, idx, acc_t))
+                print("iteration %d, client %d, acc: %.4f \n" % (iteration, idx, acc_t))
                 #f_save.flush()
 
                 local_output, loss = get_output(loader, net_local.to(args.device), args, False, criterion)
