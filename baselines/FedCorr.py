@@ -56,9 +56,9 @@ def FedCorr(args):
             mu_list = estimated_noisy_level
 
         prob = [1 / args.num_users] * args.num_users
-
+        prob_normalized = prob / np.sum(prob)
         for _ in range(int(1 / args.frac1)):
-            idxs_users = np.random.choice(range(args.num_users), ceil(args.num_users * args.frac1), p=prob)
+            idxs_users = np.random.choice(range(args.num_users), ceil(args.num_users * args.frac1), p=prob_normalized)
             w_locals = []
             for idx in idxs_users:
                 prob[idx] = 0
