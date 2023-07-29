@@ -54,7 +54,7 @@ def FedTwin2(args):
     m = max(int(args.frac2 * args.num_users), 1)  # num_select_clients
     prob = [1/args.num_users for i in range(args.num_users)]
 
-    for rnd in range(args.rounds2):
+    for rnd in range(200):
         w_locals, loss_locals = [], []
 
         idxs_users = np.random.choice(range(args.num_users), m, replace=False, p=prob)

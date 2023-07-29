@@ -17,7 +17,7 @@ listDataset=(mnist cifar10 cifar100 clothing1m)
 #模型---对应数据集
 listModel=(lenet resnet18 resnet34 renet50)
 #轮次---对应数据集
-listRound=(200 450 450 50)
+listRound=(30 450 450 50)
 #客户端数量---对应数据集
 listClient=(100 100 50 300)
 #frac2---对应数据集
