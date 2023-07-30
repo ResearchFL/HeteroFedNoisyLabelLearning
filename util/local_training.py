@@ -118,7 +118,10 @@ class FedTwinLocalUpdate:
     def __init__(self, args, dataset, idxs, client_idx):
         self.args = args
         self.loss_func = FedTwinCRLoss()  # loss function -- cross entropy
-        self.cores_loss_fun = CORESLoss(reduction='none')
+        if args.without_CR:
+            self.cores_loss_fun = CrossEntropyLoss(reduction='none')
+        else:
+            self.cores_loss_fun = CORESLoss(reduction='none')
         self.ldr_train, self.ldr_test = self.train_test(dataset, list(idxs))
         self.client_idx = client_idx
 
