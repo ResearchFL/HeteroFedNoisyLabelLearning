@@ -4,7 +4,7 @@ from torch.utils.data import DataLoader, TensorDataset, Subset
 from util.local_training import DatasetSplit
 
 
-def cal_fscore(args, net, dataset_train, y_train, idxs):
+def cal_fscore(args, loss_fn, beta, net, dataset_train, y_train, idxs):
     net.eval()
     # 判断dataset_train.target与y_train对应下标是否相同
     client_y_train = y_train[list(idxs)]
@@ -19,7 +19,7 @@ def cal_fscore(args, net, dataset_train, y_train, idxs):
             labels = labels.long()
             log_probs_g, _ = net(images)
 
-            ind_g_update = filter_noisy_data(log_probs_g, labels)
+            ind_g_update = filter_noisy_data(log_probs_g, labels, loss_fn, beta)
             filter_list.extend(ind_g_update)
             target_list.extend(labels)
     match_list = [1 if target == client_y_train[idx] else 0 for idx, target in enumerate(target_list)]

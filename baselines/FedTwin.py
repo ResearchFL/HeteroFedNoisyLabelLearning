@@ -46,13 +46,38 @@ def FedTwin(args):
         w_glob_fl = personalized_aggregation(netglob.state_dict(), w_locals, n_bar, args.gamma)
         netglob.load_state_dict(w_glob_fl)
 
+        # acc_s1 = personalizedtest(args, p_models, dataset_test)
+        acc_s2 = globaltest(netglob.to(args.device), dataset_test, args)
+        # f_acc.write("third stage round %d, personalized test acc  %.4f \n" % (rnd, acc_s1))
+        show_info_loss = "Round %d train loss  %.4f" % (rnd, loss_round)
+        show_info_test_acc = "Round %d global test acc  %.4f \n" % (rnd, acc_s2)
+        print(show_info_loss)
+        print(show_info_test_acc)
+        # print("time :", time.time() - start)
+        # f_save.write(show_info_loss)
+        # f_save.write(show_info_test_acc)
+        # f_save.flush()
+        if args.without_CR:
+            loss_fn = nn.CrossEntropyLoss(reduction='none')
+        else:
+            loss_fn = CORESLoss(reduction='none')
+        Beta = f_beta(rnd * args.local_ep + args.local_ep, args)
+
+        f_scores = []
+        all_idxs_users = [i for i in range(args.num_users)]
+        if rnd == args.rounds2 - 1:
+            for idx in all_idxs_users:
+                f_scores.append(cal_fscore(args, loss_fn, Beta, netglob.to(args.device), dataset_train, y_train, dict_users[idx]))
+            show_info_Fscore = "Round %d Fscore \n" % (rnd)
+            print(show_info_Fscore)
+            print(str(f_scores))
+        # file_name = "./fscore_" + args.algorithm + ".txt"
+        # f = open(file_name, "w")
+        # f.writelines(f_scores.to)
+        # f.close()
+
         if rnd == 50 or rnd == (args.rounds2-1):
             # Record the loss for clean and noisy samples separately
-            if args.without_CR:
-                loss_fn = nn.CrossEntropyLoss(reduction='none')
-            else:
-                loss_fn = CORESLoss(reduction='none')
-            Beta = f_beta(rnd * args.local_ep + args.local_ep, args)
             clean_loss_s, noisy_loss_s = get_clean_noisy_sample_loss(
                 model=netglob,
                 loss_fn=loss_fn,
@@ -66,31 +91,6 @@ def FedTwin(args):
             print(clean_loss_s)
             print("noisy_loss:")
             print(noisy_loss_s)
-
-        # acc_s1 = personalizedtest(args, p_models, dataset_test)
-        acc_s2 = globaltest(netglob.to(args.device), dataset_test, args)
-        # f_acc.write("third stage round %d, personalized test acc  %.4f \n" % (rnd, acc_s1))
-        show_info_loss = "Round %d train loss  %.4f" % (rnd, loss_round)
-        show_info_test_acc = "Round %d global test acc  %.4f \n" % (rnd, acc_s2)
-        print(show_info_loss)
-        print(show_info_test_acc)
-        # print("time :", time.time() - start)
-        # f_save.write(show_info_loss)
-        # f_save.write(show_info_test_acc)
-        # f_save.flush()
-
-        f_scores = []
-        all_idxs_users = [i for i in range(args.num_users)]
-        if rnd == args.rounds2 - 1:
-            for idx in all_idxs_users:
-                f_scores.append(cal_fscore(args, netglob.to(args.device), dataset_train, y_train, dict_users[idx]))
-            show_info_Fscore = "Round %d Fscore \n" % (rnd)
-            print(show_info_Fscore)
-            print(str(f_scores))
-        # file_name = "./fscore_" + args.algorithm + ".txt"
-        # f = open(file_name, "w")
-        # f.writelines(f_scores.to)
-        # f.close()
 
     show_time_info = f"time : {time.time() - start}"
     print(show_time_info)

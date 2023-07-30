@@ -23,7 +23,10 @@ def get_loss(model, loss_fn, dataset, *args, **kwargs):
         features, labels = batch
         output = model(features)[0]
         loss_ = -torch.log(F.softmax(output, dim=1) + 1e-8)
-        loss = loss_fn(output, labels, *args, **kwargs)
+        if loss_fn.__class__.__name__ == "CrossEntropyLoss":
+            loss = loss_fn(output, labels)
+        else:
+            loss = loss_fn(output, labels, *args, **kwargs)
         loss_sel = loss - torch.mean(loss_, 1) + kwargs['beta'] * torch.mean(loss_, 1)
         loss_list += loss_sel.tolist()
     return loss_list
