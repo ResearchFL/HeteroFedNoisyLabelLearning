@@ -40,9 +40,9 @@ def run(args):
     if args.dataset == "mnist":
        args.plr = args.lr/2
     if args.dataset == 'cifar100':
-        args.max_beta = 2.0
-    elif args.dataset == 'cifar10':
         args.max_beta = 1.0
+    elif args.dataset == 'cifar10':
+        args.max_beta = 2.0
     elif args.dataset == 'mnist':
         args.max_beta = 2.0
     elif args.dataset == 'clothing1m':
