@@ -89,12 +89,18 @@ class FedTwinCRLoss(CrossEntropyLoss):
         loss_batch_p = loss_p_update.data.cpu().numpy() # number of batch loss1
         loss_batch_g = loss_g_update.data.cpu().numpy()  # number of batch loss1
         if len(loss_batch_p) == 0.0:
-            loss_p = loss(input_p, target, Beta, noise_prior)
+            if args.without_CR:
+                loss_p = loss(input_p, target)
+            else:
+                loss_p = loss(input_p, target, Beta, noise_prior)
             loss_p = torch.mean(loss_p) / 100000000
         else:
             loss_p = torch.sum(loss_p_update) / len(loss_batch_p)
         if len(loss_batch_g) == 0.0:
-            loss_g = loss(input_g, target, Beta, noise_prior)
+            if args.without_CR:
+                loss_g = loss(input_g, target)
+            else:
+                loss_g = loss(input_g, target, Beta, noise_prior)
             loss_g = torch.mean(loss_g) / 100000000
         else:
             loss_g = torch.sum(loss_g_update) / len(loss_batch_g)
