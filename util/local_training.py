@@ -118,7 +118,10 @@ class FedTwinLocalUpdate:
     def __init__(self, args, dataset, idxs, client_idx):
         self.args = args
         self.loss_func = FedTwinCRLoss()  # loss function -- cross entropy
-        self.cores_loss_fun = CORESLoss(reduction='none')
+        if args.without_CR:
+            self.loss_fun = CrossEntropyLoss(reduction='none')
+        else:
+            self.loss_fun = CORESLoss(reduction='none')
         self.ldr_train, self.ldr_test = self.train_test(dataset, list(idxs))
         self.client_idx = client_idx
 
@@ -168,7 +171,10 @@ class FedTwinLocalUpdate:
                     else:
                         log_probs_p, _ = net_p(images)
                         Beta = f_beta(rounds * self.args.local_ep + iter, self.args)
-                        loss_p = self.cores_loss_fun(log_probs_p, labels, Beta)
+                        if self.args.without_CR:
+                            loss_p = self.loss_fun(log_probs_p, labels)
+                        else:
+                            loss_p = self.loss_fun(log_probs_p, labels, Beta)
                         loss_p = torch.sum(loss_p[ind_g]) / len(loss_p[ind_g])
                         loss_p.backward()
                         self.persionalized_model_bar, _ = optimizer_theta.step(list(net_glob.parameters()))

@@ -74,6 +74,12 @@ def args_parser():
     parser.add_argument('--max_beta', type=float, default=2,
                         help="beta for coresloss，2 for mnist/cifar10,  20 for cifar100, 2.8 for clothing1M")
 
+    # for ablation study
+    parser.add_argument('--with_correction', action='store_true', help='whether to correct noisy labels')
+    parser.add_argument('--without_CR', action='store_true', help='whether with CR loss')
+    parser.add_argument('--without_alternative_update', action='store_true', help='whether with alternative update')
+    parser.add_argument('--without_regularization_term', action='store_true', help='whether with regularization term')
+
     ######### FedProx #################
     parser.add_argument('--mu', type=float, default=0.01, help='proximal term constant')
     return parser.parse_args()
