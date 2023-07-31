@@ -203,7 +203,7 @@ class FedTwinLocalUpdate:
             # if any(math.isnan(loss) for loss in epoch_loss):
             #     print("debug epoch_loss")
         n_bar_k = sum(n_bar_k) / len(n_bar_k)
-        return net_p, net_glob.state_dict(), sum(epoch_loss) / len(epoch_loss), n_bar_k
+        return net_p.state_dict(), net_glob.state_dict(), sum(epoch_loss) / len(epoch_loss), n_bar_k
 
 
 class RFLLocalUpdate:

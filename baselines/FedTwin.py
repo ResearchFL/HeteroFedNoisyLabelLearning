@@ -38,7 +38,7 @@ def FedTwin(args):
                                                                          net_glob=copy.deepcopy(netglob).to(
                                                                              args.device), rounds=rnd)
             w_locals.append(copy.deepcopy(w_local))  # store every updated model
-            p_models.append(p_model)
+            # p_models.append(p_model)
             loss_locals.append(loss_local)
             n_bar.append(n_bar_k)
             # print('\n')
@@ -67,7 +67,8 @@ def FedTwin(args):
         all_idxs_users = [i for i in range(args.num_users)]
         if rnd == args.rounds2 - 1:
             for idx in all_idxs_users:
-                f_scores.append(cal_fscore(args, loss_fn, Beta, netglob.to(args.device), dataset_train, y_train, dict_users[idx]))
+                f_scores.append(
+                    cal_fscore(args, loss_fn, Beta, netglob.to(args.device), dataset_train, y_train, dict_users[idx]))
             show_info_Fscore = "Round %d Fscore \n" % (rnd)
             print(show_info_Fscore)
             print(str(f_scores))
@@ -76,7 +77,7 @@ def FedTwin(args):
         # f.writelines(f_scores.to)
         # f.close()
 
-        if rnd == 1 or rnd == (args.rounds2-1):
+        if rnd == 50 or rnd == (args.rounds2 - 1):
             # Record the loss for clean and noisy samples separately
             clean_loss_s, noisy_loss_s = get_clean_noisy_sample_loss(
                 model=netglob.to(args.device),
