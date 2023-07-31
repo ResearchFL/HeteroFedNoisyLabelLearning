@@ -48,8 +48,8 @@ def split_clean_noisy_loss(loss_s, noisy_sample_idx):
     return clean_loss_s, noisy_loss_s
 
 
-def get_clean_noisy_sample_loss(model, loss_fn, dataset, noisy_sample_idx, round, device, *args, **kwargs):
-    loss_s = get_loss(model, loss_fn, dataset, device, *args, **kwargs)
+def get_clean_noisy_sample_loss(model, dataset, noisy_sample_idx, round, device, *args, **kwargs):
+    loss_s = get_loss(model, dataset, device, *args, **kwargs)
     clean_loss_s, noisy_loss_s = split_clean_noisy_loss(loss_s, noisy_sample_idx)
 
     return clean_loss_s, noisy_loss_s
