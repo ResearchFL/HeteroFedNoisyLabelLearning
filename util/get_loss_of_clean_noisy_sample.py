@@ -15,12 +15,14 @@ import torch.nn.functional as F
 #
 #     return loss_list
 
-def get_loss(model, loss_fn, dataset, *args, **kwargs):
+def get_loss(model, loss_fn, dataset, device, *args, **kwargs):
     loss_list = []
     data_loader = DataLoader(dataset, batch_size=128, shuffle=False)
 
     for batch in data_loader:
         features, labels = batch
+        features = features.to(device)
+        labels = labels.to(device)
         output = model(features)[0]
         loss_ = -torch.log(F.softmax(output, dim=1) + 1e-8)
         if loss_fn.__class__.__name__ == "CrossEntropyLoss":
@@ -48,8 +50,8 @@ def split_clean_noisy_loss(loss_s, noisy_sample_idx):
     return clean_loss_s, noisy_loss_s
 
 
-def get_clean_noisy_sample_loss(model, loss_fn, dataset, noisy_sample_idx, round, *args, **kwargs):
-    loss_s = get_loss(model, loss_fn, dataset, *args, **kwargs)
+def get_clean_noisy_sample_loss(model, loss_fn, dataset, noisy_sample_idx, round, device, *args, **kwargs):
+    loss_s = get_loss(model, loss_fn, dataset, device, *args, **kwargs)
     clean_loss_s, noisy_loss_s = split_clean_noisy_loss(loss_s, noisy_sample_idx)
 
     return clean_loss_s, noisy_loss_s
