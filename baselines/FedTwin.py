@@ -77,7 +77,7 @@ def FedTwin(args):
         # f.writelines(f_scores.to)
         # f.close()
 
-        if rnd == 50 or rnd == (args.rounds2 - 1):
+        if rnd == 1 or rnd == 20 or rnd == 50 or rnd == (args.rounds2 - 1):
             # Record the loss for clean and noisy samples separately
             clean_loss_s, noisy_loss_s = get_clean_noisy_sample_loss(
                 model=netglob.to(args.device),
