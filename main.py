@@ -48,6 +48,8 @@ def run(args):
     elif args.dataset == 'clothing1m':
         args.max_beta = 1.0
     print(f"max_beta = {args.max_beta}")
+    if args.without_regularization_term:
+        args.lamda = 0
     for x in vars(args).items():
         print(x)
     # run Algorithm
