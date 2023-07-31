@@ -69,24 +69,14 @@ class FedProxOptimizer(Optimizer):
         return group['params']
 
 
-def filter_noisy_data(input: Tensor, target: Tensor, loss_fn, beta):
-    if loss_fn.__class__.__name__ == "CrossEntropyLoss":
-        loss = loss_fn(input, target)
-    else:
-        loss = loss_fn(input, target, beta)
+def filter_noisy_data(input: Tensor, target: Tensor):
+    loss = F.cross_entropy(input, target, reduction='none')
     loss_numpy = loss.data.cpu().numpy()
     num_batch = len(loss_numpy)  # number of batch
     loss_v = np.zeros(num_batch)  # selected tag
     loss_ = -torch.log(F.softmax(input, dim=1) + 1e-8)
     # sel metric
-    loss_sel = loss - torch.mean(loss_, 1) + beta * torch.mean(loss_, 1) # LOSS - alpha
-    # loss = F.cross_entropy(input, target, reduction='none')  # crossentropy loss
-    # loss_numpy = loss.data.cpu().numpy()
-    # num_batch = len(loss_numpy)  # number of batch
-    # loss_v = np.zeros(num_batch)  # selected tag
-    # loss_ = -torch.log(F.softmax(input, dim=1) + 1e-8)
-    # # sel metric
-    # loss_sel = loss - torch.mean(loss_, 1)  # CRLOSS - alpha
+    loss_sel = loss - torch.mean(loss_, 1) # LOSS - alpha
     loss_div_numpy = loss_sel.data.cpu().numpy()
     for i in range(len(loss_numpy)):
         if loss_div_numpy[i] <= 0:

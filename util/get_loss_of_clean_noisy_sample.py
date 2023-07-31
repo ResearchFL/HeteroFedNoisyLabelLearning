@@ -15,7 +15,8 @@ import torch.nn.functional as F
 #
 #     return loss_list
 
-def get_loss(model, loss_fn, dataset, device, *args, **kwargs):
+
+def get_loss(model, dataset, device, *args, **kwargs):
     loss_list = []
     data_loader = DataLoader(dataset, batch_size=128, shuffle=False)
 
@@ -23,13 +24,10 @@ def get_loss(model, loss_fn, dataset, device, *args, **kwargs):
         features, labels = batch
         features = features.to(device)
         labels = labels.to(device)
-        output = model(features)[0]
+        output, _ = model(features)
+        loss = F.cross_entropy(output, labels, reduction='none')
         loss_ = -torch.log(F.softmax(output, dim=1) + 1e-8)
-        if loss_fn.__class__.__name__ == "CrossEntropyLoss":
-            loss = loss_fn(output, labels)
-        else:
-            loss = loss_fn(output, labels, *args, **kwargs)
-        loss_sel = loss - torch.mean(loss_, 1) + kwargs['beta'] * torch.mean(loss_, 1)
+        loss_sel = loss - torch.mean(loss_, 1)
         loss_list += loss_sel.tolist()
     return loss_list
 
