@@ -81,7 +81,6 @@ def FedTwin(args):
             # Record the loss for clean and noisy samples separately
             clean_loss_s, noisy_loss_s = get_clean_noisy_sample_loss(
                 model=netglob.to(args.device),
-                loss_fn=loss_fn,
                 dataset=dataset_train,
                 noisy_sample_idx=noisy_sample_idx,
                 round=rnd,
