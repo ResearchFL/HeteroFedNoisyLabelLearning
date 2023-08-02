@@ -37,16 +37,18 @@ def run(args):
 
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = True
-    if args.dataset == "mnist":
-       args.plr = args.lr/2
+
     if args.dataset == 'cifar100':
         args.max_beta = 1.0
+        args.lamda = 10
     elif args.dataset == 'cifar10':
         args.max_beta = 2.0
     elif args.dataset == 'mnist':
+        args.plr = args.lr / 2
         args.max_beta = 2.0
     elif args.dataset == 'clothing1m':
         args.max_beta = 1.0
+        args.lamda = 10
     print(f"max_beta = {args.max_beta}")
     if args.without_regularization_term:
         args.lamda = 0
