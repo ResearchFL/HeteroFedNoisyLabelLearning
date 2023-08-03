@@ -50,6 +50,7 @@ def run(args):
     elif args.dataset == 'clothing1m':
         args.max_beta = 1.0
         args.lamda = 10
+        args.begin_sel = 5
     print(f"max_beta = {args.max_beta}")
     if args.without_regularization_term:
         args.lamda = 0
