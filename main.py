@@ -41,7 +41,7 @@ def run(args):
     if args.dataset == 'cifar100':
         args.max_beta = 1.0
         args.lamda = 10
-        args.begin_sel = 15
+        args.begin_sel = 20
     elif args.dataset == 'cifar10':
         args.max_beta = 2.0
     elif args.dataset == 'mnist':
