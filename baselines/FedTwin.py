@@ -31,14 +31,25 @@ def FedTwin(args):
             print("\rRounds {:d} filter noisy data:"
                   .format(rnd), end='\n', flush=True)
         w_locals, p_models, loss_locals, n_bar = [], [], [], []
+        if args.without_regularization_term:
+            p_models = [netglob.state_dict() for _ in range(args.num_users)]
         idxs_users = np.random.choice(range(args.num_users), m, replace=False, p=prob)
         for idx in idxs_users:  # training over the subset
             local = FedTwinLocalUpdate(args=args, dataset=dataset_train, idxs=dict_users[idx], client_idx=idx)
-            p_model, w_local, loss_local, n_bar_k = local.update_weights(net_p=copy.deepcopy(netglob).to(args.device),
+            if args.without_regularization_term:
+                net_p = copy.deepcopy(netglob)
+                net_p.load_state_dict(p_models[idx])
+                p_model, w_local, loss_local, n_bar_k = local.update_weights(
+                    net_p=net_p.to(args.device),
+                    net_glob=copy.deepcopy(netglob).to(
+                        args.device), rounds=rnd)
+            else:
+                p_model, w_local, loss_local, n_bar_k = local.update_weights(net_p=copy.deepcopy(netglob).to(args.device),
                                                                          net_glob=copy.deepcopy(netglob).to(
                                                                              args.device), rounds=rnd)
             w_locals.append(copy.deepcopy(w_local))  # store every updated model
-            # p_models.append(p_model)
+            if args.without_regularization_term:
+                p_models[idx] = p_model
             loss_locals.append(loss_local)
             n_bar.append(n_bar_k)
             # print('\n')
@@ -46,7 +57,6 @@ def FedTwin(args):
         w_glob_fl = personalized_aggregation(netglob.state_dict(), w_locals, n_bar, args.gamma)
         netglob.load_state_dict(w_glob_fl)
 
-        # acc_s1 = personalizedtest(args, p_models, dataset_test)
         acc_s2 = globaltest(netglob.to(args.device), dataset_test, args)
         # f_acc.write("third stage round %d, personalized test acc  %.4f \n" % (rnd, acc_s1))
         show_info_loss = "Round %d train loss  %.4f" % (rnd, loss_round)
@@ -57,11 +67,6 @@ def FedTwin(args):
         # f_save.write(show_info_loss)
         # f_save.write(show_info_test_acc)
         # f_save.flush()
-        if args.without_CR:
-            loss_fn = nn.CrossEntropyLoss(reduction='none')
-        else:
-            loss_fn = CORESLoss(reduction='none')
-        Beta = f_beta(rnd * args.local_ep + args.local_ep, args)
 
         f_scores = []
         all_idxs_users = [i for i in range(args.num_users)]

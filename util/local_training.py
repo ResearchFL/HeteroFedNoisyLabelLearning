@@ -170,10 +170,10 @@ class FedTwinLocalUpdate:
                         self.persionalized_model_bar, _ = optimizer_theta.step(list(net_glob.parameters()))
                     else:
                         log_probs_p, _ = net_p(images)
-                        Beta = f_beta(rounds * self.args.local_ep + iter, self.args)
                         if self.args.without_CR:
                             loss_p = self.loss_fun(log_probs_p, labels)
                         else:
+                            Beta = f_beta(rounds * self.args.local_ep + iter, self.args)
                             loss_p = self.loss_fun(log_probs_p, labels, Beta)
                         loss_p = torch.sum(loss_p[ind_g]) / len(loss_p[ind_g])
                         loss_p.backward()
