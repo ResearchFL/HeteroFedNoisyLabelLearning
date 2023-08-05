@@ -118,10 +118,6 @@ class FedTwinLocalUpdate:
     def __init__(self, args, dataset, idxs, client_idx):
         self.args = args
         self.loss_func = FedTwinCRLoss()  # loss function -- cross entropy
-        if args.without_CR:
-            self.loss_fun = CrossEntropyLoss(reduction='none')
-        else:
-            self.loss_fun = CORESLoss(reduction='none')
         self.ldr_train, self.ldr_test = self.train_test(dataset, list(idxs))
         self.client_idx = client_idx
 
@@ -155,29 +151,16 @@ class FedTwinLocalUpdate:
 
             for batch_idx, (images, labels, _) in enumerate(self.ldr_train):
                 images, labels = images.to(self.args.device), labels.to(self.args.device)
-                # K = 30 # K is number of personalized steps
-
                 labels = labels.long()
-                log_probs_p, _ = net_p(images)
-                log_probs_g, _ = net_glob(images)
-                # log_probs = net(images)
-                loss_p, loss_g, len_loss_g, len_loss_g, ind_g = self.loss_func(log_probs_p, log_probs_g,
-                                                                               labels, rounds, iter, self.args)
-                for i in range(self.args.K):
+                for _ in range(self.args.K):
+                    log_probs_p, _ = net_p(images)
+                    log_probs_g, _ = net_glob(images)
+                    # log_probs = net(images)
+                    loss_p, loss_g, len_loss_p, len_loss_g = self.loss_func(log_probs_p, log_probs_g,
+                                                                                   labels, rounds, iter, self.args)
                     net_p.zero_grad()
-                    if i == 0:
-                        loss_p.backward()
-                        self.persionalized_model_bar, _ = optimizer_theta.step(list(net_glob.parameters()))
-                    else:
-                        log_probs_p, _ = net_p(images)
-                        if self.args.without_CR:
-                            loss_p = self.loss_fun(log_probs_p, labels)
-                        else:
-                            Beta = f_beta(rounds * self.args.local_ep + iter, self.args)
-                            loss_p = self.loss_fun(log_probs_p, labels, Beta)
-                        loss_p = torch.sum(loss_p[ind_g]) / len(loss_p[ind_g])
-                        loss_p.backward()
-                        self.persionalized_model_bar, _ = optimizer_theta.step(list(net_glob.parameters()))
+                    loss_p.backward()
+                    self.persionalized_model_bar, _ = optimizer_theta.step(list(net_glob.parameters()))
 
                 # batch_loss.append(loss.item())
                 # update local weight after finding aproximate theta

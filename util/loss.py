@@ -104,4 +104,4 @@ class FedTwinCRLoss(CrossEntropyLoss):
             loss_g = torch.mean(loss_g) / 100000000
         else:
             loss_g = torch.sum(loss_g_update) / len(loss_batch_g)
-        return loss_p, loss_g, len(loss_batch_p), len(loss_batch_g), ind_g_update
+        return loss_p, loss_g, len(loss_batch_p), len(loss_batch_g)
