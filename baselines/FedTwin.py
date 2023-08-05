@@ -12,7 +12,7 @@ import torch.nn as nn
 from util.loss import CORESLoss
 from util.optimizer import f_beta
 from metrics import cal_fscore
-
+import torch
 
 def FedTwin(args):
     # load dataset
@@ -58,15 +58,10 @@ def FedTwin(args):
         netglob.load_state_dict(w_glob_fl)
 
         acc_s2 = globaltest(netglob.to(args.device), dataset_test, args)
-        # f_acc.write("third stage round %d, personalized test acc  %.4f \n" % (rnd, acc_s1))
         show_info_loss = "Round %d train loss  %.4f" % (rnd, loss_round)
         show_info_test_acc = "Round %d global test acc  %.4f \n" % (rnd, acc_s2)
         print(show_info_loss)
         print(show_info_test_acc)
-        # print("time :", time.time() - start)
-        # f_save.write(show_info_loss)
-        # f_save.write(show_info_test_acc)
-        # f_save.flush()
 
         f_scores = []
         all_idxs_users = [i for i in range(args.num_users)]
@@ -77,29 +72,7 @@ def FedTwin(args):
             show_info_Fscore = "Round %d Fscore \n" % (rnd)
             print(show_info_Fscore)
             print(str(f_scores))
-        # file_name = "./fscore_" + args.algorithm + ".txt"
-        # f = open(file_name, "w")
-        # f.writelines(f_scores.to)
-        # f.close()
-
-        if rnd == 1 or rnd == 20 or rnd == 50 or rnd == (args.rounds2 - 1):
-            # Record the loss for clean and noisy samples separately
-            # clean_loss_s, noisy_loss_s = get_clean_noisy_sample_loss(
-            #     model=netglob.to(args.device),
-            #     dataset=dataset_train,
-            #     noisy_sample_idx=noisy_sample_idx,
-            #     round=rnd,
-            #     device=args.device,
-            #     beta=Beta
-            # )
-            # print(f"{loss_fn.__class__.__name__}:")
-            # print("clean_loss:")
-            # print(clean_loss_s)
-            # print("noisy_loss:")
-            # print(noisy_loss_s)
-            pass
 
     show_time_info = f"time : {time.time() - start}"
     print(show_time_info)
-    # f_save.write(show_time_info)
-    # f_save.flush()
+    torch.save(netglob.state_dict(), f'{args.save_dir}_{time.time()}_fedtwin.pt')

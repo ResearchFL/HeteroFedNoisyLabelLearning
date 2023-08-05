@@ -28,7 +28,7 @@ def add_noise(args, y_train, dict_users):
     # By comparing the labels of the dataset before and after adding noise
     # we can determine which samples have been affected by the noise
     noisy_samples_idx = np.where(y_train != y_train_noisy)[0]
-    return (y_train_noisy, gamma_s, real_noise_level, noisy_samples_idx)
+    return y_train_noisy, gamma_s, real_noise_level, noisy_samples_idx
 
 
 def get_output(loader, net, args, latent=False, criterion=None):
@@ -75,3 +75,20 @@ def lid_term(X, batch, k=20):
     distances_ = distances[tuple(idx)]
     lids = np.apply_along_axis(f, axis=1, arr=distances_)
     return lids
+
+#
+# if rnd == 1 or rnd == 20 or rnd == 50 or rnd == (args.rounds2 - 1):
+#     # Record the loss for clean and noisy samples separately
+#     clean_loss_s, noisy_loss_s = get_clean_noisy_sample_loss(
+#         model=netglob.to(args.device),
+#         dataset=dataset_train,
+#         noisy_sample_idx=noisy_sample_idx,
+#         round=rnd,
+#         device=args.device,
+#         beta=Beta
+#     )
+#     print(f"{loss_fn.__class__.__name__}:")
+#     print("clean_loss:")
+#     print(clean_loss_s)
+#     print("noisy_loss:")
+#     print(noisy_loss_s)
