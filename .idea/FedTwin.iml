@@ -3,7 +3,7 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$" />
     <content url="file://$MODULE_DIR$/../Robust_FL" />
-    <orderEntry type="jdk" jdkName="general" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="pytorch" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="PyDocumentationSettings">

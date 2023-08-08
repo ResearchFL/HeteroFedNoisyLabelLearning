@@ -35,7 +35,7 @@ def FedTwin(args):
         idxs_users = np.random.choice(range(args.num_users), m, replace=False, p=prob)
         for idx in idxs_users:  # training over the subset
             local = FedTwinLocalUpdate(args=args, dataset=dataset_train, idxs=dict_users[idx], client_idx=idx)
-            p_model, w_local, loss_local, n_bar_k = local.update_weights(net_p=copy.deepcopy(netglob).to(args.device),
+            p_model, w_local, loss_local, n_bar_k, local_ind_noise = local.update_weights(net_p=copy.deepcopy(netglob).to(args.device),
                                                                          net_glob=copy.deepcopy(netglob).to(
                                                                              args.device), rounds=rnd)
             w_locals.append(copy.deepcopy(w_local))  # store every updated model
