@@ -50,6 +50,12 @@ class CORESLoss(CrossEntropyLoss):
         return loss_
 
 
+class CrossEntropyLoss(torch.nn.CrossEntropyLoss):
+    def __init__(self, *args, **kwargs):
+        super(CrossEntropyLoss, self).__init__(*args, **kwargs)
+    def forward(self, input, target, *args, **kwargs):
+        return super(CrossEntropyLoss, self).forward(input, target)
+
 class FedTwinCRLoss(CrossEntropyLoss):
     __constants__ = ['ignore_index', 'reduction', 'label_smoothing']
     ignore_index: int
@@ -69,38 +75,25 @@ class FedTwinCRLoss(CrossEntropyLoss):
             loss = CORESLoss(reduction='none')
         Beta = f_beta(rounds * args.local_ep + epoch, args)
         if rounds <= args.begin_sel:  # 如果在前30epoch集中式，对应联邦应该是30/local_epoch
-            if args.without_CR:
-                loss_p_update = loss(input_p, target)
-                loss_g_update = loss(input_g, target)
-            else:
-                loss_p_update = loss(input_p, target, Beta, noise_prior)
-                loss_g_update = loss(input_g, target, Beta, noise_prior)
+            loss_p_update = loss(input_p, target, Beta, noise_prior)
+            loss_g_update = loss(input_g, target, Beta, noise_prior)
 
             ind_g_update = Variable(torch.from_numpy(np.ones(len(loss_p_update)))).bool()
         else:
             ind_p_update = filter_noisy_data(input_p, target)
             ind_g_update = filter_noisy_data(input_g, target)
-            if args.without_CR:
-                loss_p_update = loss(input_p[ind_g_update], target[ind_g_update])
-                loss_g_update = loss(input_g[ind_p_update], target[ind_p_update])
-            else:
-                loss_p_update = loss(input_p[ind_g_update], target[ind_g_update], Beta, noise_prior)
-                loss_g_update = loss(input_g[ind_p_update], target[ind_p_update], Beta, noise_prior)
+            
+            loss_p_update = loss(input_p[ind_g_update], target[ind_g_update], Beta, noise_prior)
+            loss_g_update = loss(input_g[ind_p_update], target[ind_p_update], Beta, noise_prior)
         loss_batch_p = loss_p_update.data.cpu().numpy() # number of batch loss1
         loss_batch_g = loss_g_update.data.cpu().numpy()  # number of batch loss1
         if len(loss_batch_p) == 0.0:
-            if args.without_CR:
-                loss_p = loss(input_p, target)
-            else:
-                loss_p = loss(input_p, target, Beta, noise_prior)
+            loss_p = loss(input_p, target, Beta, noise_prior)
             loss_p = torch.mean(loss_p) / 100000000
         else:
             loss_p = torch.sum(loss_p_update) / len(loss_batch_p)
         if len(loss_batch_g) == 0.0:
-            if args.without_CR:
-                loss_g = loss(input_g, target)
-            else:
-                loss_g = loss(input_g, target, Beta, noise_prior)
+            loss_g = loss(input_g, target, Beta, noise_prior)
             loss_g = torch.mean(loss_g) / 100000000
         else:
             loss_g = torch.sum(loss_g_update) / len(loss_batch_g)
