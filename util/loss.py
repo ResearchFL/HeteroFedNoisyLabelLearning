@@ -80,6 +80,8 @@ class FedTwinCRLoss(CrossEntropyLoss):
         else:
             ind_p_update = filter_noisy_data(input_p, target)
             ind_g_update = filter_noisy_data(input_g, target)
+            if args.without_alternative_update:
+                ind_p_update, ind_g_update = ind_g_update, ind_p_update
             if args.without_CR:
                 loss_p_update = loss(input_p[ind_g_update], target[ind_g_update])
                 loss_g_update = loss(input_g[ind_p_update], target[ind_p_update])
