@@ -106,6 +106,37 @@ def get_dataset(args):
         n_train = len(dataset_train)
         y_train = np.array(dataset_train.targets)
 
+    elif args.dataset == 'fashion':
+        pass
+        data_path = '../data/fashion'
+        args.num_classes = 10
+        
+        trans_fashion_train = transforms.Compose([
+            transforms.RandomCrop(28, padding=4),
+            transforms.RandomHorizontalFlip(),
+            transforms.Resize((32, 32)),
+            transforms.ToTensor(),
+        ])
+        trans_fashion_val = transforms.Compose([
+            transforms.Resize((32, 32)),
+            transforms.ToTensor(),
+        ])
+
+        dataset_train = datasets.FashionMNIST(
+            root=data_path,
+            download=True,
+            train=True,
+            transform=trans_fashion_train
+        )
+        dataset_test = datasets.FashionMNIST(
+            root=data_path,
+            download=True,
+            train=False,
+            transform=trans_fashion_val,
+        )
+        n_train = len(dataset_train)
+        y_train = np.array(dataset_train.targets)
+
     else:
         exit('Error: unrecognized dataset')
 

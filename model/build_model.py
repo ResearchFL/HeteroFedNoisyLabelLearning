@@ -10,6 +10,8 @@ def build_model(args):
     if args.model == 'lenet':
         if args.dataset == 'mnist':
             netglob = LeNet(1).to(args.device)
+        elif args.dataset == 'fashion':
+            netglob = LeNet(1).to(args.device)
         else:
             netglob = LeNet().to(args.device)
 
