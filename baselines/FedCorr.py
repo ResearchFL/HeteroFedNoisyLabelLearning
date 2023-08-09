@@ -13,6 +13,7 @@ import time
 from metrics import cal_fscore
 from math import ceil
 
+
 def FedCorr(args):
     # if args.mixup:
     #     args.txtname += "_Mix_%.1f" % (args.alpha)
@@ -80,7 +81,7 @@ def FedCorr(args):
                 w_locals.append(copy.deepcopy(w))
                 acc_t = globaltest(copy.deepcopy(net_local).to(args.device), dataset_test, args)
                 print("iteration %d, client %d, acc: %.4f \n" % (iteration, idx, acc_t))
-                #f_save.flush()
+                # f_save.flush()
 
                 local_output, loss = get_output(loader, net_local.to(args.device), args, False, criterion)
                 LID_local = list(lid_term(local_output, local_output))
@@ -163,7 +164,7 @@ def FedCorr(args):
 
             acc_s2 = globaltest(copy.deepcopy(netglob).to(args.device), dataset_test, args)
             print("fine tuning stage round %d, test acc  %.4f \n" % (rnd, acc_s2))
-            #f_save.flush()
+            # f_save.flush()
 
         if args.correction:
             relabel_idx_whole = []
@@ -205,18 +206,18 @@ def FedCorr(args):
         # f_save.write(show_info_test_acc)
         # f_save.flush()
 
-        f_scores = []
-        all_idxs_users = [i for i in range(args.num_users)]
-        if rnd == args.rounds2 - 1:
-            for idx in all_idxs_users:
-                f_scores.append(cal_fscore(args, netglob.to(args.device), dataset_train, y_train, dict_users[idx]))
-        show_info_Fscore = "Round %d Fscore \n" % (rnd)
-        print(show_info_Fscore)
-        print(str(f_scores))
-        # file_name = "./fscore_" + args.algorithm + ".txt"
-        # f = open(file_name, "w")
-        # f.writelines(f_scores.to)
-        # f.close()
+    f_scores = []
+    all_idxs_users = [i for i in range(args.num_users)]
+    if rnd == args.rounds2 - 1:
+        for idx in all_idxs_users:
+            f_scores.append(cal_fscore(args, netglob.to(args.device), dataset_train, y_train, dict_users[idx]))
+    show_info_Fscore = "Round %d Fscore \n" % (rnd)
+    print(show_info_Fscore)
+    print(str(f_scores))
+    # file_name = "./fscore_" + args.algorithm + ".txt"
+    # f = open(file_name, "w")
+    # f.writelines(f_scores.to)
+    # f.close()
 
     show_time_info = f"time : {time.time() - start}"
     print(show_time_info)
