@@ -437,13 +437,13 @@ def get_local_update_objects(args, dataset_train, dict_users=None, net_glob=None
     return local_update_objects
 
 
-def globaltest(net, test_dataset, args):
+def globaltest(net, dataset, args):
     net.eval()
-    test_loader = torch.utils.data.DataLoader(dataset=test_dataset, batch_size=100, shuffle=False)
+    data_loader = torch.utils.data.DataLoader(dataset=dataset, batch_size=100, shuffle=False)
     with torch.no_grad():
         correct = 0
         total = 0
-        for images, labels in test_loader:
+        for images, labels in data_loader:
             images = images.to(args.device)
             labels = labels.to(args.device)
             outputs, _ = net(images)
