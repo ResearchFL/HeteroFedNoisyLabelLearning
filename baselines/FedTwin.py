@@ -24,7 +24,8 @@ def FedTwin(args):
     # parameter
     m = max(int(args.frac2 * args.num_users), 1)  # num_select_clients
     prob = [1 / args.num_users for i in range(args.num_users)]
-    p_models = [netglob.state_dict() for _ in range(args.num_users)]
+    if args.without_regularization_term:
+        p_models = [netglob.state_dict() for _ in range(args.num_users)]
     for rnd in range(args.rounds2):
         if rnd <= args.begin_sel:
             print("\rRounds {:d} early training:"
@@ -37,13 +38,15 @@ def FedTwin(args):
         for idx in idxs_users:  # training over the subset
             local = FedTwinLocalUpdate(args=args, dataset=dataset_train, idxs=dict_users[idx], client_idx=idx)
             net_p = copy.deepcopy(netglob)
-            net_p.load_state_dict(p_models[idx])
+            if args.without_regularization_term:
+                net_p.load_state_dict(p_models[idx])
             p_model, w_local, loss_local, n_bar_k = local.update_weights(
                 net_p=net_p.to(args.device),
                 net_glob=copy.deepcopy(netglob).to(
                     args.device), rounds=rnd)
             w_locals.append(copy.deepcopy(w_local))  # store every updated model
-            p_models[idx] = p_model
+            if args.without_regularization_term:
+                p_models[idx] = p_model
             loss_locals.append(loss_local)
             n_bar.append(n_bar_k)
             # print('\n')
@@ -58,13 +61,13 @@ def FedTwin(args):
         print(show_info_loss)
         print(show_info_train_acc)
         print(show_info_test_acc)
-    show_Fscore(args, rnd, dict_users, netglob, p_models, dataset_train, y_train)
+    show_Fscore(args, rnd, dict_users, netglob, dataset_train, y_train)
     show_time_info = f"time : {time.time() - start}"
     print(show_time_info)
     torch.save(netglob.state_dict(), f'{args.save_dir}_{time.time()}_fedtwin.pt')
 
 
-def show_Fscore(args, rnd, dict_users, netglob, p_models, dataset_train, y_train):
+def show_Fscore(args, rnd, dict_users, netglob, dataset_train, y_train):
     # f_score of global model
     f_scores = []
     all_idxs_users = [i for i in range(args.num_users)]
@@ -75,13 +78,13 @@ def show_Fscore(args, rnd, dict_users, netglob, p_models, dataset_train, y_train
     print(show_info_Fscore)
     print(str(f_scores))
     # f_score of personalized model
-    f_scores = []
-    all_idxs_users = [i for i in range(args.num_users)]
-    for idx in all_idxs_users:
-        net_p = copy.deepcopy(netglob)
-        net_p.load_state_dict(p_models[idx])
-        f_scores.append(
-            cal_fscore(args, net_p.to(args.device), dataset_train, y_train, dict_users[idx]))
-    show_info_Fscore = "Round %d personalized model Fscore \n" % (rnd)
-    print(show_info_Fscore)
-    print(str(f_scores))
+    # f_scores = []
+    # all_idxs_users = [i for i in range(args.num_users)]
+    # for idx in all_idxs_users:
+    #     net_p = copy.deepcopy(netglob)
+    #     net_p.load_state_dict(p_models[idx])
+    #     f_scores.append(
+    #         cal_fscore(args, net_p.to(args.device), dataset_train, y_train, dict_users[idx]))
+    # show_info_Fscore = "Round %d personalized model Fscore \n" % (rnd)
+    # print(show_info_Fscore)
+    # print(str(f_scores))
