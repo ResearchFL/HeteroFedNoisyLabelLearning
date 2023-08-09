@@ -50,7 +50,7 @@ class CORESLoss(CrossEntropyLoss):
         return loss_
 
 
-class CrossEntropyLoss(torch.nn.CrossEntropyLoss):
+class CrossEntropyLoss(CrossEntropyLoss):
     def __init__(self, *args, **kwargs):
         super(CrossEntropyLoss, self).__init__(*args, **kwargs)
     def forward(self, input, target, *args, **kwargs):
