@@ -46,7 +46,7 @@ def run(args):
     if args.dataset == 'mnist':
         args.plr = args.lr / 2
     #     args.max_beta = 2.0
-    # elif args.dataset == 'clothing1m':
+    elif args.dataset == 'clothing1m':
         args.max_beta = 1.0
     #     args.begin_sel = 5
     print(f"max_beta = {args.max_beta}")
