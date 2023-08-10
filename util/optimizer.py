@@ -88,7 +88,7 @@ def filter_noisy_data(input: Tensor, target: Tensor):
 
 def f_beta(epoch, args):
 
-    beta1 = np.linspace(0.0, 0.0, num=args.local_ep * 2)
+    beta1 = np.linspace(0.0, 0.0, num=args.local_ep * args.begin_sel/5)
     beta2 = np.linspace(0.0, args.max_beta, num=int(args.local_ep * args.begin_sel))
     beta3 = np.linspace(args.max_beta, args.max_beta, num=args.rounds2 * args.local_ep)
     beta = np.concatenate((beta1, beta2, beta3), axis=0)
@@ -100,9 +100,7 @@ def adjust_learning_rate(epoch, args, optimizer=None):
     # if args.dataset == 'cifar10':
     alpha_plan = [[args.plr] * int(args.local_ep * args.rounds2/2) + [args.plr] * args.local_ep * args.rounds2,
                   [args.lr] * int(args.local_ep * args.rounds2/2) + [args.lr] * args.local_ep * args.rounds2]
-    # else:
-    #     alpha_plan = [[args.plr] * int(args.local_ep * args.rounds2/2) + [args.plr * 0.1] * args.local_ep * args.rounds2,
-    #                   [args.lr] * int(args.local_ep * args.rounds2/2) + [args.lr * 0.1] * args.local_ep * args.rounds2]
+
     if optimizer == 'plr':
         lr = alpha_plan[0][epoch] / (1 + f_beta(epoch, args))
         return lr
