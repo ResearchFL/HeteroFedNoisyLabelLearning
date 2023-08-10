@@ -88,7 +88,7 @@ def filter_noisy_data(input: Tensor, target: Tensor):
 
 def f_beta(epoch, args):
 
-    beta1 = np.linspace(0.0, 0.0, num=args.local_ep * args.begin_sel/5)
+    beta1 = np.linspace(0.0, 0.0, num=args.local_ep * int(args.begin_sel/5))
     beta2 = np.linspace(0.0, args.max_beta, num=int(args.local_ep * args.begin_sel))
     beta3 = np.linspace(args.max_beta, args.max_beta, num=args.rounds2 * args.local_ep)
     beta = np.concatenate((beta1, beta2, beta3), axis=0)
