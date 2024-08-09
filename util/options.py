@@ -31,6 +31,12 @@ def args_parser():
     parser.add_argument('--dataset', type=str, default='mnist', help="name of dataset")
     parser.add_argument('--iid', action='store_true', help="i.i.d. or non-i.i.d.")
 
+    # noise non-iid
+    parser.add_argument('--noise_non_iid', action='store_true', help="Client-side direct noise label heterogeneity")
+    parser.add_argument('--add_noise_method', type=str, default='sample_level', help="sample level, client level and global level")
+    parser.add_argument('--average_noisy_level', type=float, default=0.5, help="average noisy level")
+    parser.add_argument('--noise_dirichlet_alpha', type=float, default=1, help="alpha for dirichlet distribution in noise non-iid")
+
     ###### FedCorr ####################
     parser.add_argument('--LID_k', type=int, default=20, help="lid")
     parser.add_argument('--iteration1', type=int, default=5, help="enumerate iteration in preprocessing stage")

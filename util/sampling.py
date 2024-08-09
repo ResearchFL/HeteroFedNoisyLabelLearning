@@ -33,5 +33,5 @@ def non_iid_dirichlet_sampling(y_train, num_classes, p, num_users, seed, alpha_d
             if client_k in dict_users:
                 dict_users[client_k] = set(dict_users[client_k] | set(all_idxs[(assignment == client_k)]))
             else:
-                dict_users[client_k] = set(all_idxs[(assignment == client_k)]) 
+                dict_users[client_k] = set(all_idxs[(assignment == client_k)])
     return dict_users
