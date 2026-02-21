@@ -1,0 +1,105 @@
+('algorithm', 'FedAVG')
+('gpu', 5)
+('seed', 13)
+('save_dir', './record/')
+('rounds2', 50)
+('local_ep', 5)
+('frac2', 0.03)
+('num_users', 300)
+('local_bs', 32)
+('lr', 0.001)
+('model', 'resnet50')
+('num_classes', 10)
+('level_n_system', 1.0)
+('level_n_lowerb', 0.3)
+('alpha_dirichlet', 10)
+('non_iid_prob_class', 0.7)
+('dataset', 'clothing1m')
+('iid', False)
+('LID_k', 20)
+('iteration1', 5)
+('rounds1', 200)
+('frac1', 0.01)
+('pretrained', True)
+('mixup', False)
+('alpha', 1)
+('beta', 5)
+('relabel_ratio', 0.5)
+('confidence_thres', 0.5)
+('clean_set_thres', 0.1)
+('fine_tuning', True)
+('correction', True)
+('T_pl', 100)
+('lambda_cen', 1.0)
+('lambda_e', 0.8)
+('num_gradual', 10)
+('forget_rate', 0.2)
+('lr_decay', 0.1)
+('schedule', [])
+('momentum', 0.5)
+('weight_decay', 0.0001)
+('feature_dim', 128)
+('plr', 0.001)
+('lamda', 15)
+('K', 5)
+('gamma', 1)
+('begin_sel', 10)
+('max_beta', 2)
+('mu', 0.01)
+('device', device(type='cuda', index=5))
+len(dataset_train)= 1000000, len(dataset_test) = 10526
+/home/xinyuan/.conda/envs/fedTwin/lib/python3.8/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/home/xinyuan/.conda/envs/fedTwin/lib/python3.8/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=ResNet50_Weights.IMAGENET1K_V1`. You can also use `weights=ResNet50_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Round 0 global test acc  22.6772
+Round 1 global test acc  40.2147
+Round 2 global test acc  39.7397
+Round 3 global test acc  46.4469
+Round 4 global test acc  48.4705
+Round 5 global test acc  54.7786
+Round 6 global test acc  53.8476
+Round 7 global test acc  58.7973
+Round 8 global test acc  60.4598
+Round 9 global test acc  63.0344
+Round 10 global test acc  62.5689
+Round 11 global test acc  65.0295
+Round 12 global test acc  63.7754
+Round 13 global test acc  58.3222
+Round 14 global test acc  65.2955
+Round 15 global test acc  66.4070
+Round 16 global test acc  65.0105
+Round 17 global test acc  65.3145
+Round 18 global test acc  63.5474
+Round 19 global test acc  62.2649
+Round 20 global test acc  66.9200
+Round 21 global test acc  66.0935
+Round 22 global test acc  64.4214
+Round 23 global test acc  68.1645
+Round 24 global test acc  64.4689
+Round 25 global test acc  67.7370
+Round 26 global test acc  66.6255
+Round 27 global test acc  67.8415
+Round 28 global test acc  66.4545
+Round 29 global test acc  68.1930
+Round 30 global test acc  68.6681
+Round 31 global test acc  63.9939
+Round 32 global test acc  66.7395
+Round 33 global test acc  65.0485
+Round 34 global test acc  63.3099
+Round 35 global test acc  65.3240
+Round 36 global test acc  69.0576
+Round 37 global test acc  67.8985
+Round 38 global test acc  67.7465
+Round 39 global test acc  68.3070
+Round 40 global test acc  65.3525
+Round 41 global test acc  62.9584
+Round 42 global test acc  69.7036
+Round 43 global test acc  66.7965
+Round 44 global test acc  67.6230
+Round 45 global test acc  69.7606
+Round 46 global test acc  68.5446
+Round 47 global test acc  65.3810
+Round 48 global test acc  64.6969
+Round 49 global test acc  66.7490
+time : 197438.5937912464

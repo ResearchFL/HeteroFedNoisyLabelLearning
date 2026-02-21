@@ -43,7 +43,7 @@ class CORESLoss(CrossEntropyLoss):
         loss = F.cross_entropy(input, target, reduction=self.reduction) # crossentropy loss
         loss_ = -torch.log(F.softmax(input, dim=1) + 1e-8)
         if noise_prior is None:
-            loss = loss - beta * torch.mean(loss_, 1)  # CORESLoss
+            loss = loss - beta * torch.mean(loss_, 1)  # CORESLoss （真实分布默认每个类占比一样）
         else:
             loss = loss - beta * torch.sum(torch.mul(noise_prior, loss_), 1)
         loss_ = loss

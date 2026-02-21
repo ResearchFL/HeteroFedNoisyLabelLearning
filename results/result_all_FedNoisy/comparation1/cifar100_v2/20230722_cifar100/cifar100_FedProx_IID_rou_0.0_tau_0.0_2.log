@@ -1,0 +1,1009 @@
+('algorithm', 'FedProx')
+('gpu', 1)
+('seed', 13)
+('save_dir', './record/')
+('rounds2', 450)
+('local_ep', 5)
+('frac2', 0.2)
+('num_users', 50)
+('local_bs', 32)
+('lr', 0.01)
+('model', 'resnet34')
+('num_classes', 10)
+('level_n_system', 0.0)
+('level_n_lowerb', 0.0)
+('alpha_dirichlet', 10)
+('non_iid_prob_class', 0.7)
+('dataset', 'cifar100')
+('iid', True)
+('LID_k', 20)
+('iteration1', 5)
+('rounds1', 200)
+('frac1', 0.01)
+('pretrained', False)
+('mixup', False)
+('alpha', 1)
+('beta', 5)
+('relabel_ratio', 0.5)
+('confidence_thres', 0.5)
+('clean_set_thres', 0.1)
+('fine_tuning', True)
+('correction', True)
+('T_pl', 100)
+('lambda_cen', 1.0)
+('lambda_e', 0.8)
+('num_gradual', 10)
+('forget_rate', 0.2)
+('lr_decay', 0.1)
+('schedule', [])
+('momentum', 0.5)
+('weight_decay', 0.0001)
+('feature_dim', 128)
+('plr', 0.01)
+('lamda', 15)
+('K', 5)
+('gamma', 1)
+('begin_sel', 10)
+('max_beta', 2)
+('mu', 0.01)
+('device', device(type='cuda', index=1))
+Files already downloaded and verified
+Files already downloaded and verified
+Round 0 global test acc  1.0000
+Round 1 global test acc  3.5100
+Round 2 global test acc  10.0800
+Round 3 global test acc  14.5100
+Round 4 global test acc  17.4500
+Round 5 global test acc  19.8600
+Round 6 global test acc  22.3400
+Round 7 global test acc  23.5300
+Round 8 global test acc  25.2800
+Round 9 global test acc  26.7600
+Round 10 global test acc  28.1300
+Round 11 global test acc  30.1700
+Round 12 global test acc  31.1100
+Round 13 global test acc  32.6100
+Round 14 global test acc  33.5000
+Round 15 global test acc  34.5000
+Round 16 global test acc  35.6100
+Round 17 global test acc  37.3500
+Round 18 global test acc  38.9700
+Round 19 global test acc  39.2500
+Round 20 global test acc  40.9900
+Round 21 global test acc  41.3200
+Round 22 global test acc  41.6900
+Round 23 global test acc  43.6900
+Round 24 global test acc  44.4000
+Round 25 global test acc  44.8400
+Round 26 global test acc  45.0100
+Round 27 global test acc  46.1100
+Round 28 global test acc  46.9900
+Round 29 global test acc  47.6500
+Round 30 global test acc  47.3300
+Round 31 global test acc  48.4800
+Round 32 global test acc  48.8400
+Round 33 global test acc  49.6300
+Round 34 global test acc  50.1800
+Round 35 global test acc  50.4500
+Round 36 global test acc  50.4900
+Round 37 global test acc  51.4900
+Round 38 global test acc  51.6500
+Round 39 global test acc  51.6500
+Round 40 global test acc  52.2800
+Round 41 global test acc  52.5500
+Round 42 global test acc  53.7300
+Round 43 global test acc  53.9200
+Round 44 global test acc  54.0100
+Round 45 global test acc  53.5800
+Round 46 global test acc  54.4500
+Round 47 global test acc  54.9700
+Round 48 global test acc  55.5300
+Round 49 global test acc  55.7300
+Round 50 global test acc  55.8600
+Round 51 global test acc  55.7400
+Round 52 global test acc  55.8100
+Round 53 global test acc  56.3300
+Round 54 global test acc  56.7200
+Round 55 global test acc  56.7300
+Round 56 global test acc  57.4000
+Round 57 global test acc  56.9300
+Round 58 global test acc  57.7600
+Round 59 global test acc  57.6600
+Round 60 global test acc  57.9500
+Round 61 global test acc  58.3400
+Round 62 global test acc  58.5000
+Round 63 global test acc  58.6700
+Round 64 global test acc  58.6400
+Round 65 global test acc  58.9200
+Round 66 global test acc  59.1900
+Round 67 global test acc  59.3300
+Round 68 global test acc  59.5200
+Round 69 global test acc  59.5800
+Round 70 global test acc  59.8500
+Round 71 global test acc  59.5000
+Round 72 global test acc  60.1200
+Round 73 global test acc  60.3600
+Round 74 global test acc  60.4400
+Round 75 global test acc  60.6100
+Round 76 global test acc  60.6700
+Round 77 global test acc  60.9200
+Round 78 global test acc  60.6500
+Round 79 global test acc  61.0200
+Round 80 global test acc  61.6300
+Round 81 global test acc  60.7300
+Round 82 global test acc  61.5300
+Round 83 global test acc  61.5000
+Round 84 global test acc  62.0600
+Round 85 global test acc  61.8500
+Round 86 global test acc  61.9100
+Round 87 global test acc  62.1000
+Round 88 global test acc  61.7300
+Round 89 global test acc  61.7600
+Round 90 global test acc  61.9700
+Round 91 global test acc  61.9700
+Round 92 global test acc  62.3300
+Round 93 global test acc  62.0500
+Round 94 global test acc  62.3500
+Round 95 global test acc  62.1400
+Round 96 global test acc  62.7900
+Round 97 global test acc  63.1100
+Round 98 global test acc  63.1000
+Round 99 global test acc  63.1700
+Round 100 global test acc  63.3700
+Round 101 global test acc  63.1800
+Round 102 global test acc  63.1300
+Round 103 global test acc  63.5100
+Round 104 global test acc  63.6400
+Round 105 global test acc  63.6500
+Round 106 global test acc  64.0300
+Round 107 global test acc  63.6700
+Round 108 global test acc  63.7400
+Round 109 global test acc  63.1600
+Round 110 global test acc  63.5500
+Round 111 global test acc  63.7900
+Round 112 global test acc  64.1100
+Round 113 global test acc  63.8900
+Round 114 global test acc  64.2900
+Round 115 global test acc  64.0000
+Round 116 global test acc  63.8900
+Round 117 global test acc  64.1800
+Round 118 global test acc  64.0100
+Round 119 global test acc  64.5500
+Round 120 global test acc  64.5400
+Round 121 global test acc  64.6400
+Round 122 global test acc  64.7100
+Round 123 global test acc  64.4200
+Round 124 global test acc  64.4200
+Round 125 global test acc  64.6900
+Round 126 global test acc  64.6700
+Round 127 global test acc  65.1200
+Round 128 global test acc  64.7500
+Round 129 global test acc  64.5100
+Round 130 global test acc  64.6700
+Round 131 global test acc  65.3000
+Round 132 global test acc  64.6100
+Round 133 global test acc  65.4600
+Round 134 global test acc  65.5000
+Round 135 global test acc  65.0700
+Round 136 global test acc  64.9400
+Round 137 global test acc  65.0100
+Round 138 global test acc  65.0100
+Round 139 global test acc  65.1200
+Round 140 global test acc  65.4800
+Round 141 global test acc  65.5100
+Round 142 global test acc  65.6400
+Round 143 global test acc  65.3800
+Round 144 global test acc  65.7100
+Round 145 global test acc  65.2900
+Round 146 global test acc  65.7700
+Round 147 global test acc  65.8600
+Round 148 global test acc  65.3200
+Round 149 global test acc  65.7400
+Round 150 global test acc  65.7600
+Round 151 global test acc  65.9200
+Round 152 global test acc  65.8100
+Round 153 global test acc  66.0800
+Round 154 global test acc  65.9200
+Round 155 global test acc  66.4100
+Round 156 global test acc  66.3300
+Round 157 global test acc  66.1700
+Round 158 global test acc  66.2500
+Round 159 global test acc  66.1700
+Round 160 global test acc  66.2900
+Round 161 global test acc  66.0800
+Round 162 global test acc  66.1900
+Round 163 global test acc  66.2100
+Round 164 global test acc  66.1100
+Round 165 global test acc  66.0400
+Round 166 global test acc  66.2700
+Round 167 global test acc  66.4300
+Round 168 global test acc  66.7500
+Round 169 global test acc  66.6900
+Round 170 global test acc  66.2900
+Round 171 global test acc  67.0300
+Round 172 global test acc  66.4300
+Round 173 global test acc  66.2300
+Round 174 global test acc  66.4000
+Round 175 global test acc  66.6400
+Round 176 global test acc  66.4600
+Round 177 global test acc  66.9500
+Round 178 global test acc  66.9800
+Round 179 global test acc  67.0200
+Round 180 global test acc  66.7500
+Round 181 global test acc  67.0600
+Round 182 global test acc  67.3100
+Round 183 global test acc  66.5200
+Round 184 global test acc  66.9200
+Round 185 global test acc  67.2700
+Round 186 global test acc  66.9300
+Round 187 global test acc  66.9900
+Round 188 global test acc  67.0600
+Round 189 global test acc  66.8200
+Round 190 global test acc  67.1100
+Round 191 global test acc  67.0200
+Round 192 global test acc  66.5300
+Round 193 global test acc  66.9500
+Round 194 global test acc  66.6400
+Round 195 global test acc  66.9800
+Round 196 global test acc  66.6500
+Round 197 global test acc  67.3200
+Round 198 global test acc  67.4800
+Round 199 global test acc  66.9800
+Round 200 global test acc  67.0600
+Round 201 global test acc  67.4700
+Round 202 global test acc  67.0100
+Round 203 global test acc  67.2700
+Round 204 global test acc  67.2500
+Round 205 global test acc  67.6300
+Round 206 global test acc  67.3500
+Round 207 global test acc  67.6000
+Round 208 global test acc  67.4800
+Round 209 global test acc  67.5800
+Round 210 global test acc  67.5700
+Round 211 global test acc  67.9100
+Round 212 global test acc  67.2900
+Round 213 global test acc  67.7100
+Round 214 global test acc  67.5400
+Round 215 global test acc  67.5000
+Round 216 global test acc  67.8500
+Round 217 global test acc  67.5200
+Round 218 global test acc  67.3300
+Round 219 global test acc  67.4400
+Round 220 global test acc  68.0800
+Round 221 global test acc  67.8800
+Round 222 global test acc  67.9500
+Round 223 global test acc  67.3000
+Round 224 global test acc  67.5200
+Round 225 global test acc  67.4400
+Round 226 global test acc  67.6200
+Round 227 global test acc  67.5500
+Round 228 global test acc  67.5800
+Round 229 global test acc  67.7500
+Round 230 global test acc  67.7800
+Round 231 global test acc  68.1900
+Round 232 global test acc  68.0800
+Round 233 global test acc  67.6800
+Round 234 global test acc  68.0100
+Round 235 global test acc  67.9400
+Round 236 global test acc  67.5600
+Round 237 global test acc  68.1000
+Round 238 global test acc  67.9800
+Round 239 global test acc  67.6800
+Round 240 global test acc  68.1900
+Round 241 global test acc  68.0100
+Round 242 global test acc  67.5400
+Round 243 global test acc  67.5800
+Round 244 global test acc  68.0300
+Round 245 global test acc  68.3800
+Round 246 global test acc  67.9600
+Round 247 global test acc  67.7000
+Round 248 global test acc  68.0300
+Round 249 global test acc  68.1900
+Round 250 global test acc  67.8700
+Round 251 global test acc  67.9900
+Round 252 global test acc  68.2100
+Round 253 global test acc  68.4200
+Round 254 global test acc  68.3200
+Round 255 global test acc  68.1900
+Round 256 global test acc  68.4500
+Round 257 global test acc  68.4100
+Round 258 global test acc  67.9000
+Round 259 global test acc  68.4000
+Round 260 global test acc  68.7300
+Round 261 global test acc  68.6200
+Round 262 global test acc  68.3200
+Round 263 global test acc  68.4000
+Round 264 global test acc  68.5500
+Round 265 global test acc  68.2900
+Round 266 global test acc  68.7600
+Round 267 global test acc  68.2100
+Round 268 global test acc  68.4200
+Round 269 global test acc  68.6000
+Round 270 global test acc  68.3000
+Round 271 global test acc  68.7100
+Round 272 global test acc  68.7000
+Round 273 global test acc  68.7000
+Round 274 global test acc  68.7400
+Round 275 global test acc  68.6700
+Round 276 global test acc  68.6400
+Round 277 global test acc  68.2300
+Round 278 global test acc  68.6800
+Round 279 global test acc  68.7200
+Round 280 global test acc  68.1800
+Round 281 global test acc  68.5300
+Round 282 global test acc  68.8800
+Round 283 global test acc  68.6400
+Round 284 global test acc  68.6200
+Round 285 global test acc  68.5500
+Round 286 global test acc  68.7600
+Round 287 global test acc  68.9700
+Round 288 global test acc  68.8400
+Round 289 global test acc  68.5700
+Round 290 global test acc  69.0800
+Round 291 global test acc  69.2500
+Round 292 global test acc  68.7200
+Round 293 global test acc  68.9200
+Round 294 global test acc  68.7100
+Round 295 global test acc  69.0600
+Round 296 global test acc  69.1500
+Round 297 global test acc  69.3400
+Round 298 global test acc  69.0900
+Round 299 global test acc  69.2900
+Round 300 global test acc  68.9900
+Round 301 global test acc  68.5200
+Round 302 global test acc  69.0600
+Round 303 global test acc  69.1600
+Round 304 global test acc  69.0000
+Round 305 global test acc  69.2300
+Round 306 global test acc  68.8800
+Round 307 global test acc  69.3200
+Round 308 global test acc  68.9800
+Round 309 global test acc  68.9200
+Round 310 global test acc  68.8700
+Round 311 global test acc  68.9700
+Round 312 global test acc  69.0600
+Round 313 global test acc  68.8200
+Round 314 global test acc  68.9000
+Round 315 global test acc  69.1600
+Round 316 global test acc  69.2700
+Round 317 global test acc  69.0400
+Round 318 global test acc  69.0800
+Round 319 global test acc  68.8700
+Round 320 global test acc  68.9700
+Round 321 global test acc  69.5100
+Round 322 global test acc  69.2500
+Round 323 global test acc  69.6000
+Round 324 global test acc  69.4000
+Round 325 global test acc  69.2200
+Round 326 global test acc  69.1100
+Round 327 global test acc  69.1000
+Round 328 global test acc  69.0100
+Round 329 global test acc  69.2500
+Round 330 global test acc  69.3100
+Round 331 global test acc  69.3400
+Round 332 global test acc  69.2500
+Round 333 global test acc  69.4100
+Round 334 global test acc  69.2100
+Round 335 global test acc  69.2500
+Round 336 global test acc  69.1000
+Round 337 global test acc  68.9600
+Round 338 global test acc  69.1200
+Round 339 global test acc  69.3500
+Round 340 global test acc  69.3500
+Round 341 global test acc  69.3200
+Round 342 global test acc  69.1900
+Round 343 global test acc  69.6900
+Round 344 global test acc  68.8400
+Round 345 global test acc  69.4300
+Round 346 global test acc  69.5900
+Round 347 global test acc  69.3100
+Round 348 global test acc  69.2300
+Round 349 global test acc  69.0500
+Round 350 global test acc  69.5200
+Round 351 global test acc  69.6200
+Round 352 global test acc  69.3200
+Round 353 global test acc  69.7200
+Round 354 global test acc  69.6700
+Round 355 global test acc  69.3900
+Round 356 global test acc  69.7400
+Round 357 global test acc  69.3300
+Round 358 global test acc  69.6600
+Round 359 global test acc  69.5900
+Round 360 global test acc  69.7100
+Round 361 global test acc  69.7000
+Round 362 global test acc  69.7000
+Round 363 global test acc  69.7700
+Round 364 global test acc  69.7500
+Round 365 global test acc  69.6200
+Round 366 global test acc  69.2600
+Round 367 global test acc  69.5100
+Round 368 global test acc  69.8100
+Round 369 global test acc  69.3700
+Round 370 global test acc  69.9500
+Round 371 global test acc  69.3800
+Round 372 global test acc  69.4200
+Round 373 global test acc  69.6600
+Round 374 global test acc  69.5000
+Round 375 global test acc  69.4800
+Round 376 global test acc  69.6700
+Round 377 global test acc  69.7100
+Round 378 global test acc  69.1300
+Round 379 global test acc  69.4000
+Round 380 global test acc  69.4800
+Round 381 global test acc  69.5200
+Round 382 global test acc  70.0500
+Round 383 global test acc  69.6600
+Round 384 global test acc  69.8800
+Round 385 global test acc  69.6000
+Round 386 global test acc  69.5800
+Round 387 global test acc  69.4100
+Round 388 global test acc  69.6000
+Round 389 global test acc  69.0500
+Round 390 global test acc  69.5900
+Round 391 global test acc  69.7900
+Round 392 global test acc  69.8600
+Round 393 global test acc  69.4000
+Round 394 global test acc  69.6000
+Round 395 global test acc  69.8000
+Round 396 global test acc  70.0100
+Round 397 global test acc  69.5000
+Round 398 global test acc  69.7700
+Round 399 global test acc  69.8100
+Round 400 global test acc  69.4200
+Round 401 global test acc  69.7300
+Round 402 global test acc  69.8300
+Round 403 global test acc  69.5500
+Round 404 global test acc  69.6300
+Round 405 global test acc  69.6900
+Round 406 global test acc  69.8900
+Round 407 global test acc  70.0200
+Round 408 global test acc  69.7400
+Round 409 global test acc  69.9000
+Round 410 global test acc  69.8100
+Round 411 global test acc  70.2200
+Round 412 global test acc  70.2200
+Round 413 global test acc  70.1100
+Round 414 global test acc  69.7200
+Round 415 global test acc  70.4700
+Round 416 global test acc  70.1500
+Round 417 global test acc  69.7900
+Round 418 global test acc  70.2800
+Round 419 global test acc  69.9000
+Round 420 global test acc  70.0100
+Round 421 global test acc  69.9400
+Round 422 global test acc  69.7800
+Round 423 global test acc  70.3200
+Round 424 global test acc  70.6800
+Round 425 global test acc  70.4500
+Round 426 global test acc  69.6600
+Round 427 global test acc  70.0400
+Round 428 global test acc  70.2900
+Round 429 global test acc  70.3600
+Round 430 global test acc  69.9700
+Round 431 global test acc  69.4600
+Round 432 global test acc  70.0000
+Round 433 global test acc  70.3200
+Round 434 global test acc  70.3100
+Round 435 global test acc  70.2700
+Round 436 global test acc  70.0700
+Round 437 global test acc  70.4700
+Round 438 global test acc  70.4300
+Round 439 global test acc  70.3000
+Round 440 global test acc  69.9100
+Round 441 global test acc  70.1900
+Round 442 global test acc  70.3300
+Round 443 global test acc  70.2200
+Round 444 global test acc  70.2700
+Round 445 global test acc  70.2400
+Round 446 global test acc  70.4600
+Round 447 global test acc  70.1000
+Round 448 global test acc  69.7200
+Round 449 global test acc  70.1700
+time : 43503.55548119545
+max_beta = 1.0
+('algorithm', 'FedProx')
+('gpu', 1)
+('seed', 13)
+('save_dir', './record/')
+('rounds2', 450)
+('local_ep', 5)
+('frac2', 0.2)
+('num_users', 50)
+('local_bs', 32)
+('lr', 0.01)
+('model', 'resnet34')
+('num_classes', 10)
+('level_n_system', 0.0)
+('level_n_lowerb', 0.0)
+('alpha_dirichlet', 10)
+('non_iid_prob_class', 0.7)
+('dataset', 'cifar100')
+('iid', True)
+('LID_k', 20)
+('iteration1', 5)
+('rounds1', 200)
+('frac1', 0.001)
+('pretrained', False)
+('mixup', False)
+('alpha', 1)
+('beta', 5)
+('relabel_ratio', 0.5)
+('confidence_thres', 0.5)
+('clean_set_thres', 0.1)
+('fine_tuning', True)
+('correction', True)
+('T_pl', 100)
+('lambda_cen', 1.0)
+('lambda_e', 0.8)
+('num_gradual', 10)
+('forget_rate', 0.2)
+('lr_decay', 0.1)
+('schedule', [])
+('momentum', 0.5)
+('weight_decay', 0.0001)
+('feature_dim', 128)
+('plr', 0.01)
+('lamda', 15)
+('K', 5)
+('gamma', 1)
+('begin_sel', 10)
+('max_beta', 1.0)
+('with_correction', False)
+('without_CR', False)
+('without_alternative_update', False)
+('without_regularization_term', False)
+('mu', 0.01)
+('device', device(type='cuda', index=1))
+Files already downloaded and verified
+Files already downloaded and verified
+Round 0 global test acc  1.0500
+Round 1 global test acc  3.4200
+Round 2 global test acc  10.6200
+Round 3 global test acc  13.9100
+Round 4 global test acc  17.4600
+Round 5 global test acc  19.3800
+Round 6 global test acc  22.0200
+Round 7 global test acc  22.4900
+Round 8 global test acc  25.3100
+Round 9 global test acc  26.1900
+Round 10 global test acc  28.2100
+Round 11 global test acc  30.0600
+Round 12 global test acc  31.3800
+Round 13 global test acc  32.8800
+Round 14 global test acc  34.0700
+Round 15 global test acc  34.7900
+Round 16 global test acc  35.7500
+Round 17 global test acc  37.5800
+Round 18 global test acc  39.2100
+Round 19 global test acc  39.7100
+Round 20 global test acc  40.6500
+Round 21 global test acc  41.6300
+Round 22 global test acc  41.5500
+Round 23 global test acc  44.0300
+Round 24 global test acc  44.6800
+Round 25 global test acc  44.0500
+Round 26 global test acc  45.2700
+Round 27 global test acc  46.4500
+Round 28 global test acc  46.8800
+Round 29 global test acc  47.8300
+Round 30 global test acc  47.6700
+Round 31 global test acc  48.8300
+Round 32 global test acc  49.4500
+Round 33 global test acc  50.5200
+Round 34 global test acc  50.2000
+Round 35 global test acc  50.7600
+Round 36 global test acc  50.6600
+Round 37 global test acc  51.9900
+Round 38 global test acc  51.5800
+Round 39 global test acc  53.1400
+Round 40 global test acc  52.5200
+Round 41 global test acc  53.1600
+Round 42 global test acc  53.4100
+Round 43 global test acc  53.7200
+Round 44 global test acc  54.2400
+Round 45 global test acc  53.7700
+Round 46 global test acc  55.2600
+Round 47 global test acc  55.6300
+Round 48 global test acc  56.4900
+Round 49 global test acc  56.2300
+Round 50 global test acc  56.3800
+Round 51 global test acc  56.1800
+Round 52 global test acc  56.3200
+Round 53 global test acc  57.4200
+Round 54 global test acc  57.6300
+Round 55 global test acc  57.8600
+Round 56 global test acc  58.5200
+Round 57 global test acc  58.3000
+Round 58 global test acc  58.2500
+Round 59 global test acc  58.7000
+Round 60 global test acc  58.8600
+Round 61 global test acc  59.2100
+Round 62 global test acc  59.2900
+Round 63 global test acc  59.6700
+Round 64 global test acc  59.7800
+Round 65 global test acc  59.6800
+Round 66 global test acc  60.0000
+Round 67 global test acc  59.9600
+Round 68 global test acc  60.3000
+Round 69 global test acc  60.3100
+Round 70 global test acc  59.8300
+Round 71 global test acc  60.5700
+Round 72 global test acc  60.9100
+Round 73 global test acc  61.1000
+Round 74 global test acc  60.8000
+Round 75 global test acc  61.8100
+Round 76 global test acc  61.5700
+Round 77 global test acc  61.5200
+Round 78 global test acc  61.5300
+Round 79 global test acc  62.1800
+Round 80 global test acc  62.1700
+Round 81 global test acc  62.0400
+Round 82 global test acc  62.1800
+Round 83 global test acc  62.6100
+Round 84 global test acc  62.1400
+Round 85 global test acc  62.4400
+Round 86 global test acc  62.6900
+Round 87 global test acc  63.1400
+Round 88 global test acc  62.9500
+Round 89 global test acc  62.8800
+Round 90 global test acc  62.6300
+Round 91 global test acc  63.1500
+Round 92 global test acc  62.6400
+Round 93 global test acc  62.8700
+Round 94 global test acc  63.0400
+Round 95 global test acc  63.1400
+Round 96 global test acc  63.5700
+Round 97 global test acc  63.4900
+Round 98 global test acc  63.3300
+Round 99 global test acc  62.9300
+Round 100 global test acc  63.2800
+Round 101 global test acc  63.4000
+Round 102 global test acc  63.8000
+Round 103 global test acc  63.7600
+Round 104 global test acc  64.0000
+Round 105 global test acc  64.1100
+Round 106 global test acc  64.3700
+Round 107 global test acc  64.2200
+Round 108 global test acc  64.5200
+Round 109 global test acc  64.5600
+Round 110 global test acc  63.7800
+Round 111 global test acc  64.3800
+Round 112 global test acc  64.4600
+Round 113 global test acc  64.3800
+Round 114 global test acc  64.6100
+Round 115 global test acc  64.5300
+Round 116 global test acc  64.5900
+Round 117 global test acc  64.6000
+Round 118 global test acc  64.3900
+Round 119 global test acc  65.2100
+Round 120 global test acc  65.2300
+Round 121 global test acc  65.0100
+Round 122 global test acc  65.0700
+Round 123 global test acc  64.7700
+Round 124 global test acc  65.1600
+Round 125 global test acc  65.2500
+Round 126 global test acc  65.0800
+Round 127 global test acc  65.2900
+Round 128 global test acc  65.3900
+Round 129 global test acc  65.3300
+Round 130 global test acc  65.1900
+Round 131 global test acc  65.6200
+Round 132 global test acc  65.4400
+Round 133 global test acc  65.7200
+Round 134 global test acc  65.9900
+Round 135 global test acc  65.8100
+Round 136 global test acc  66.0800
+Round 137 global test acc  65.9900
+Round 138 global test acc  65.8700
+Round 139 global test acc  66.1100
+Round 140 global test acc  66.2100
+Round 141 global test acc  66.0000
+Round 142 global test acc  65.9600
+Round 143 global test acc  66.3800
+Round 144 global test acc  66.1500
+Round 145 global test acc  66.5700
+Round 146 global test acc  66.2100
+Round 147 global test acc  66.5800
+Round 148 global test acc  66.3700
+Round 149 global test acc  66.6700
+Round 150 global test acc  66.8300
+Round 151 global test acc  66.1900
+Round 152 global test acc  66.5500
+Round 153 global test acc  66.4000
+Round 154 global test acc  66.5500
+Round 155 global test acc  66.1600
+Round 156 global test acc  66.6700
+Round 157 global test acc  66.6600
+Round 158 global test acc  66.6400
+Round 159 global test acc  66.6100
+Round 160 global test acc  66.6000
+Round 161 global test acc  66.4500
+Round 162 global test acc  66.6700
+Round 163 global test acc  66.8900
+Round 164 global test acc  66.4600
+Round 165 global test acc  66.8200
+Round 166 global test acc  66.6700
+Round 167 global test acc  66.6400
+Round 168 global test acc  67.1400
+Round 169 global test acc  67.1900
+Round 170 global test acc  66.8300
+Round 171 global test acc  67.1400
+Round 172 global test acc  66.7800
+Round 173 global test acc  67.0300
+Round 174 global test acc  67.1900
+Round 175 global test acc  66.7500
+Round 176 global test acc  66.8100
+Round 177 global test acc  67.5700
+Round 178 global test acc  67.5300
+Round 179 global test acc  66.9900
+Round 180 global test acc  67.2300
+Round 181 global test acc  67.0400
+Round 182 global test acc  67.4100
+Round 183 global test acc  67.2800
+Round 184 global test acc  67.3200
+Round 185 global test acc  67.7900
+Round 186 global test acc  67.4100
+Round 187 global test acc  66.8000
+Round 188 global test acc  67.6600
+Round 189 global test acc  67.7300
+Round 190 global test acc  67.4300
+Round 191 global test acc  67.4500
+Round 192 global test acc  67.1000
+Round 193 global test acc  67.5100
+Round 194 global test acc  67.5200
+Round 195 global test acc  67.3000
+Round 196 global test acc  67.9500
+Round 197 global test acc  67.6300
+Round 198 global test acc  67.2100
+Round 199 global test acc  67.6300
+Round 200 global test acc  67.6000
+Round 201 global test acc  68.1300
+Round 202 global test acc  68.0100
+Round 203 global test acc  67.9400
+Round 204 global test acc  67.7900
+Round 205 global test acc  68.0900
+Round 206 global test acc  67.5800
+Round 207 global test acc  67.6300
+Round 208 global test acc  68.0200
+Round 209 global test acc  68.2700
+Round 210 global test acc  67.1600
+Round 211 global test acc  68.0100
+Round 212 global test acc  67.8900
+Round 213 global test acc  68.1300
+Round 214 global test acc  68.3400
+Round 215 global test acc  67.7000
+Round 216 global test acc  67.5200
+Round 217 global test acc  68.2200
+Round 218 global test acc  68.0800
+Round 219 global test acc  68.4900
+Round 220 global test acc  68.2200
+Round 221 global test acc  68.1500
+Round 222 global test acc  68.2900
+Round 223 global test acc  68.5900
+Round 224 global test acc  67.7000
+Round 225 global test acc  67.8200
+Round 226 global test acc  68.1200
+Round 227 global test acc  68.3500
+Round 228 global test acc  67.8500
+Round 229 global test acc  68.3500
+Round 230 global test acc  68.1600
+Round 231 global test acc  68.5200
+Round 232 global test acc  68.4800
+Round 233 global test acc  68.2500
+Round 234 global test acc  68.0600
+Round 235 global test acc  68.4600
+Round 236 global test acc  68.4000
+Round 237 global test acc  68.4400
+Round 238 global test acc  68.3300
+Round 239 global test acc  68.3600
+Round 240 global test acc  68.6500
+Round 241 global test acc  68.6500
+Round 242 global test acc  67.9700
+Round 243 global test acc  68.4300
+Round 244 global test acc  68.4900
+Round 245 global test acc  68.4100
+Round 246 global test acc  68.2700
+Round 247 global test acc  68.1600
+Round 248 global test acc  68.2200
+Round 249 global test acc  68.5400
+Round 250 global test acc  68.7700
+Round 251 global test acc  68.8300
+Round 252 global test acc  68.6100
+Round 253 global test acc  68.7100
+Round 254 global test acc  68.6100
+Round 255 global test acc  68.9300
+Round 256 global test acc  68.6300
+Round 257 global test acc  69.0400
+Round 258 global test acc  69.0000
+Round 259 global test acc  68.7800
+Round 260 global test acc  68.5400
+Round 261 global test acc  68.9800
+Round 262 global test acc  69.0300
+Round 263 global test acc  68.6100
+Round 264 global test acc  68.9700
+Round 265 global test acc  69.0200
+Round 266 global test acc  68.8100
+Round 267 global test acc  68.8000
+Round 268 global test acc  68.5800
+Round 269 global test acc  69.0300
+Round 270 global test acc  68.9200
+Round 271 global test acc  68.7700
+Round 272 global test acc  68.6600
+Round 273 global test acc  68.9900
+Round 274 global test acc  68.8300
+Round 275 global test acc  69.2700
+Round 276 global test acc  68.6500
+Round 277 global test acc  69.0600
+Round 278 global test acc  68.7900
+Round 279 global test acc  68.8800
+Round 280 global test acc  68.4600
+Round 281 global test acc  68.9000
+Round 282 global test acc  68.8600
+Round 283 global test acc  69.3700
+Round 284 global test acc  69.1700
+Round 285 global test acc  68.9600
+Round 286 global test acc  69.1100
+Round 287 global test acc  69.0700
+Round 288 global test acc  68.5000
+Round 289 global test acc  68.9900
+Round 290 global test acc  68.9700
+Round 291 global test acc  68.9900
+Round 292 global test acc  68.9900
+Round 293 global test acc  69.1500
+Round 294 global test acc  69.0600
+Round 295 global test acc  69.1100
+Round 296 global test acc  68.7800
+Round 297 global test acc  69.3700
+Round 298 global test acc  68.8400
+Round 299 global test acc  69.3000
+Round 300 global test acc  69.2900
+Round 301 global test acc  69.4800
+Round 302 global test acc  69.0800
+Round 303 global test acc  69.3000
+Round 304 global test acc  69.0100
+Round 305 global test acc  68.8000
+Round 306 global test acc  69.2100
+Round 307 global test acc  69.8400
+Round 308 global test acc  69.3300
+Round 309 global test acc  68.9900
+Round 310 global test acc  69.3900
+Round 311 global test acc  69.0800
+Round 312 global test acc  69.5600
+Round 313 global test acc  69.3000
+Round 314 global test acc  68.9900
+Round 315 global test acc  69.2900
+Round 316 global test acc  68.9600
+Round 317 global test acc  69.4700
+Round 318 global test acc  69.1200
+Round 319 global test acc  69.2600
+Round 320 global test acc  69.1500
+Round 321 global test acc  69.6000
+Round 322 global test acc  69.2300
+Round 323 global test acc  69.6700
+Round 324 global test acc  69.6200
+Round 325 global test acc  69.3800
+Round 326 global test acc  69.2300
+Round 327 global test acc  69.5600
+Round 328 global test acc  69.2700
+Round 329 global test acc  69.4100
+Round 330 global test acc  69.4900
+Round 331 global test acc  69.8000
+Round 332 global test acc  69.2200
+Round 333 global test acc  69.2200
+Round 334 global test acc  69.2600
+Round 335 global test acc  69.5500
+Round 336 global test acc  69.4700
+Round 337 global test acc  69.6400
+Round 338 global test acc  69.7600
+Round 339 global test acc  69.3700
+Round 340 global test acc  69.4700
+Round 341 global test acc  69.4900
+Round 342 global test acc  69.3800
+Round 343 global test acc  69.4800
+Round 344 global test acc  69.6600
+Round 345 global test acc  69.6700
+Round 346 global test acc  69.2500
+Round 347 global test acc  69.4800
+Round 348 global test acc  69.8100
+Round 349 global test acc  69.9200
+Round 350 global test acc  69.7500
+Round 351 global test acc  70.0300
+Round 352 global test acc  69.3900
+Round 353 global test acc  69.9000
+Round 354 global test acc  69.5800
+Round 355 global test acc  69.8300
+Round 356 global test acc  69.6300
+Round 357 global test acc  69.5700
+Round 358 global test acc  70.4100
+Round 359 global test acc  69.5400
+Round 360 global test acc  69.8300
+Round 361 global test acc  69.6700
+Round 362 global test acc  69.9900
+Round 363 global test acc  69.8100
+Round 364 global test acc  70.2000
+Round 365 global test acc  69.8100
+Round 366 global test acc  70.0100
+Round 367 global test acc  69.1800
+Round 368 global test acc  69.8200
+Round 369 global test acc  70.2800
+Round 370 global test acc  70.0100
+Round 371 global test acc  69.3800
+Round 372 global test acc  69.8500
+Round 373 global test acc  69.6300
+Round 374 global test acc  69.2700
+Round 375 global test acc  69.8700
+Round 376 global test acc  69.7900
+Round 377 global test acc  69.9200
+Round 378 global test acc  69.9800
+Round 379 global test acc  69.7200
+Round 380 global test acc  69.9100
+Round 381 global test acc  69.9800
+Round 382 global test acc  70.2500
+Round 383 global test acc  70.1800
+Round 384 global test acc  70.0600
+Round 385 global test acc  70.3400
+Round 386 global test acc  69.9800
+Round 387 global test acc  70.3100
+Round 388 global test acc  69.9900
+Round 389 global test acc  69.9900
+Round 390 global test acc  69.5300
+Round 391 global test acc  69.6000
+Round 392 global test acc  70.3400
+Round 393 global test acc  70.0400
+Round 394 global test acc  70.0500
+Round 395 global test acc  70.2300
+Round 396 global test acc  70.5800
+Round 397 global test acc  70.4300
+Round 398 global test acc  70.3600
+Round 399 global test acc  70.2700
+Round 400 global test acc  69.7500
+Round 401 global test acc  70.2400
+Round 402 global test acc  69.7800
+Round 403 global test acc  70.2300
+Round 404 global test acc  70.3500
+Round 405 global test acc  70.3500
+Round 406 global test acc  69.7800
+Round 407 global test acc  70.3400
+Round 408 global test acc  70.0500
+Round 409 global test acc  70.4900
+Round 410 global test acc  70.1600
+Round 411 global test acc  70.6000
+Round 412 global test acc  70.0200
+Round 413 global test acc  70.1500
+Round 414 global test acc  70.0900
+Round 415 global test acc  70.6900
+Round 416 global test acc  70.2200
+Round 417 global test acc  70.7800
+Round 418 global test acc  70.6400
+Round 419 global test acc  70.3600
+Round 420 global test acc  70.3400
+Round 421 global test acc  70.6800
+Round 422 global test acc  70.2900
+Round 423 global test acc  70.3300
+Round 424 global test acc  70.3300
+Round 425 global test acc  70.7900
+Round 426 global test acc  70.1100
+Round 427 global test acc  70.5900
+Round 428 global test acc  70.4900
+Round 429 global test acc  70.4300
+Round 430 global test acc  70.2400
+Round 431 global test acc  70.4600
+Round 432 global test acc  70.4000
+Round 433 global test acc  70.8300
+Round 434 global test acc  70.9600
+Round 435 global test acc  70.2800
+Round 436 global test acc  70.2800
+Round 437 global test acc  71.0600
+Round 438 global test acc  70.8000
+Round 439 global test acc  69.8300
+Round 440 global test acc  70.1700
+Round 441 global test acc  70.6900
+Round 442 global test acc  70.9100
+Round 443 global test acc  70.1200
+Round 444 global test acc  70.3400
+Round 445 global test acc  70.4400
+Round 446 global test acc  70.5900
+Round 447 global test acc  70.1700
+Round 448 global test acc  70.4800
+Round 449 global test acc  70.6200
+time : 33045.50401067734

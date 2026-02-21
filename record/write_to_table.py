@@ -5,10 +5,10 @@ import numpy as np
 
 
 # 定义数据集、算法、rho 和 tau 的值
-datasets = ['mnist', 'cifar10', 'cifar100', 'clothing1m']
-methods = ['LocalCORES', 'LocalKNN', 'GlobalCORES', 'GlobalKNN', 'FedAVG', 'FedProx', 'FedLSR', 'FedCorr', 'RFL', 'MR', 'FedTwin']
-datasets_label = ['MNIST', 'CIFAR-10', 'CIFAR-100', 'Clothing1M']
-methods_label = ['Local + CORES', 'Local + KNN', 'Global + CORES', 'Global + KNN', 'FedAVG', 'FedProx', 'FedLSR', 'FedCorr', 'RFL', 'MR', 'FedTwin']
+datasets = ['mnist', 'cifar10', 'cifar100']
+methods = ['LocalCORES', 'LocalKNN', 'GlobalCORES', 'GlobalKNN', 'FedAVG', 'FedProx', 'FedCorr', 'RFL', 'MR', 'FedTwin']
+datasets_label = ['MNIST', 'CIFAR-10', 'CIFAR-100']
+methods_label = ['Local + CORES', 'Local + KNN', 'Global + CORES', 'Global + KNN', 'FedAvg', 'FedProx', 'FedCorr', 'RFL', 'MR', 'FedTwin']
 rhos = [0.0, 0.5, 1]
 taus = [0.0, 0.5, 1]
 taus_true = [0.0, 0.3, 0.5]
@@ -20,7 +20,7 @@ table = np.empty((len(datasets), len(methods), len(IID_or_not), len(rhos)), dtyp
 table.fill("~")
 
 # 遍历 log 文件
-basePath = "./resultMnist/"
+basePath = "./"
 file_list = os.listdir(basePath)
 for filename in file_list:
     if filename.endswith('.log'):
@@ -54,11 +54,14 @@ for filename in file_list:
                 if values:
                     average = np.mean([float(value) for value in values])
                     std = np.std([float(value) for value in values], ddof=1)
-                    table[dataset_idx, method_idx, iid_idx, rho_idx] = f"{average:.2f}" + f"+{std:.2f}"
+                    table[dataset_idx, method_idx, iid_idx, rho_idx] = f"{average:.2f} $\pm$ {std:.2f}"
+        else:
+            print(filename)
 print('\n')
 # 打印表格的 LaTeX 代码
 print("\\begin{table*}[!ht]")
 print("    \\centering")
+print("    \\\scalebox{0.9}{")
 print("    \\begin{tabular}{c|l|ccc|ccc}")
 print("    \\hline")
 print("        \\multirow{2}{*}{Datasets} & \\multirow{2}{*}{Methods} & \\multicolumn{3}{c|}{\\multirow{2}{*}{IID}} & \\multicolumn{3}{c}{\\multirow{2}{*}{nonIID}} \\\\")
@@ -84,4 +87,5 @@ for i, dataset in enumerate(datasets_label):
     print("\\hline\\hline")
 
 print("\\end{tabular}")
+print("\\}")
 print("\\end{table*}")

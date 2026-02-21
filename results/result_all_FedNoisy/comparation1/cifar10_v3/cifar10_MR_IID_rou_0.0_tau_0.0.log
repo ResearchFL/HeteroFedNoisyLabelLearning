@@ -1,0 +1,6559 @@
+('algorithm', 'MR')
+('gpu', 0)
+('seed', 13)
+('save_dir', './record/')
+('rounds2', 450)
+('local_ep', 5)
+('frac2', 0.1)
+('num_users', 100)
+('local_bs', 32)
+('lr', 0.01)
+('model', 'resnet18')
+('num_classes', 10)
+('level_n_system', 0.0)
+('level_n_lowerb', 0.0)
+('alpha_dirichlet', 10)
+('non_iid_prob_class', 0.7)
+('dataset', 'cifar10')
+('iid', True)
+('LID_k', 20)
+('iteration1', 5)
+('rounds1', 200)
+('frac1', 0.01)
+('pretrained', False)
+('mixup', False)
+('alpha', 1)
+('beta', 5)
+('relabel_ratio', 0.5)
+('confidence_thres', 0.5)
+('clean_set_thres', 0.1)
+('fine_tuning', True)
+('correction', True)
+('T_pl', 100)
+('lambda_cen', 1.0)
+('lambda_e', 0.8)
+('num_gradual', 10)
+('forget_rate', 0.2)
+('lr_decay', 0.1)
+('schedule', [])
+('momentum', 0.5)
+('weight_decay', 0.0001)
+('feature_dim', 128)
+('plr', 0.01)
+('lamda', 15)
+('K', 1)
+('gamma', 1)
+('begin_sel', 10)
+('max_beta', 2)
+('mu', 0.01)
+('device', device(type='cuda', index=0))
+Files already downloaded and verified
+Files already downloaded and verified
+Round 0 global test acc  22.7113
+Round 1 global test acc  31.1753
+Round 2 global test acc  32.7320
+Round 3 global test acc  38.6392
+Round 4 global test acc  40.1546
+Round 5 global test acc  42.5876
+Round 6 global test acc  46.3402
+Round 7 global test acc  48.0928
+Round 8 global test acc  48.0928
+Round 9 global test acc  49.8660
+Round 10 global test acc  51.6907
+Round 11 global test acc  53.0619
+Round 12 global test acc  53.7113
+Round 13 global test acc  53.7938
+Round 14 global test acc  55.8660
+Round 15 global test acc  56.3918
+Round 16 global test acc  57.3608
+Round 17 global test acc  57.2577
+Round 18 global test acc  57.9485
+Round 19 global test acc  57.5361
+Round 20 global test acc  58.1237
+Round 21 global test acc  58.9691
+Round 22 global test acc  59.2990
+Round 23 global test acc  59.8763
+Round 24 global test acc  60.4021
+Round 25 global test acc  60.8763
+Round 26 global test acc  60.0515
+Round 27 global test acc  59.7526
+Round 28 global test acc  60.9691
+Round 29 global test acc  61.2165
+Round 30 global test acc  61.0928
+Round 31 global test acc  60.7835
+Round 32 global test acc  62.3402
+Round 33 global test acc  62.6701
+Round 34 global test acc  62.6082
+Round 35 global test acc  62.7835
+Round 36 global test acc  63.2577
+Round 37 global test acc  63.4021
+Round 38 global test acc  62.0103
+Round 39 global test acc  64.1340
+Round 40 global test acc  62.8763
+Round 41 global test acc  64.2268
+Round 42 global test acc  64.8660
+Round 43 global test acc  65.2577
+Round 44 global test acc  62.4330
+Round 45 global test acc  63.7835
+Round 46 global test acc  64.2371
+Round 47 global test acc  64.6598
+Round 48 global test acc  65.0206
+Round 49 global test acc  65.8144
+Round 50 global test acc  65.7938
+Round 51 global test acc  66.1134
+Round 52 global test acc  64.5773
+Round 53 global test acc  66.2990
+Round 54 global test acc  64.5052
+Round 55 global test acc  64.7423
+Round 56 global test acc  66.1340
+Round 57 global test acc  64.5567
+Round 58 global test acc  66.7216
+Round 59 global test acc  67.2474
+Round 60 global test acc  67.3196
+Round 61 global test acc  65.9897
+Round 62 global test acc  67.1340
+Round 63 global test acc  66.6804
+Round 64 global test acc  67.3196
+Round 65 global test acc  66.0515
+Round 66 global test acc  66.2371
+Round 67 global test acc  66.4536
+Round 68 global test acc  67.5979
+Round 69 global test acc  67.2165
+Round 70 global test acc  67.6392
+Round 71 global test acc  67.1856
+Round 72 global test acc  66.6495
+Round 73 global test acc  67.7216
+Round 74 global test acc  67.8969
+Round 75 global test acc  68.5155
+Round 76 global test acc  68.3608
+Round 77 global test acc  65.9794
+Round 78 global test acc  67.2784
+Round 79 global test acc  68.3918
+Round 80 global test acc  64.6495
+Round 81 global test acc  66.2990
+Round 82 global test acc  65.8144
+Round 83 global test acc  68.0515
+Round 84 global test acc  67.1031
+Round 85 global test acc  67.8866
+Round 86 global test acc  68.8454
+Round 87 global test acc  67.3093
+Round 88 global test acc  65.9691
+Round 89 global test acc  67.9588
+Round 90 global test acc  68.2577
+Round 91 global test acc  68.4948
+Round 92 global test acc  68.6907
+Round 93 global test acc  68.3505
+Round 94 global test acc  68.2784
+Round 95 global test acc  67.7526
+Round 96 global test acc  67.7113
+Round 97 global test acc  68.2165
+Round 98 global test acc  68.6701
+Round 99 global test acc  68.8660
+Round 100 global test acc  68.2371
+Round 101 global test acc  68.7629
+Round 102 global test acc  67.4536
+Round 103 global test acc  67.8041
+Round 104 global test acc  68.0825
+Round 105 global test acc  67.1546
+Round 106 global test acc  67.7835
+Round 107 global test acc  68.8454
+Round 108 global test acc  67.8763
+Round 109 global test acc  69.2062
+Round 110 global test acc  65.2990
+Round 111 global test acc  69.3196
+Round 112 global test acc  68.5361
+Round 113 global test acc  68.1237
+Round 114 global test acc  68.2680
+Round 115 global test acc  68.9588
+Round 116 global test acc  68.3711
+Round 117 global test acc  66.9691
+Round 118 global test acc  68.4330
+Round 119 global test acc  69.1856
+Round 120 global test acc  67.0619
+Round 121 global test acc  69.2577
+Round 122 global test acc  69.9278
+Round 123 global test acc  69.2577
+Round 124 global test acc  68.2371
+Round 125 global test acc  68.5567
+Round 126 global test acc  68.7320
+Round 127 global test acc  69.7113
+Round 128 global test acc  67.8351
+Round 129 global test acc  68.5773
+Round 130 global test acc  68.6907
+Round 131 global test acc  67.7423
+Round 132 global test acc  69.2680
+Round 133 global test acc  66.0928
+Round 134 global test acc  69.5464
+Round 135 global test acc  69.2990
+Round 136 global test acc  68.4124
+Round 137 global test acc  69.8969
+Round 138 global test acc  69.6186
+Round 139 global test acc  69.1546
+Round 140 global test acc  68.4021
+Round 141 global test acc  69.4124
+Round 142 global test acc  70.1856
+Round 143 global test acc  69.9381
+Round 144 global test acc  68.1546
+Round 145 global test acc  67.6082
+Round 146 global test acc  69.6804
+Round 147 global test acc  69.0722
+Round 148 global test acc  69.2784
+Round 149 global test acc  68.2680
+Round 150 global test acc  66.4021
+Round 151 global test acc  70.0928
+Round 152 global test acc  68.0515
+Round 153 global test acc  68.4742
+Round 154 global test acc  67.6289
+Round 155 global test acc  69.8660
+Round 156 global test acc  65.8144
+Round 157 global test acc  69.0825
+Round 158 global test acc  68.6082
+Round 159 global test acc  69.2165
+Round 160 global test acc  69.8144
+Round 161 global test acc  69.4536
+Round 162 global test acc  69.6082
+Round 163 global test acc  69.1134
+Round 164 global test acc  69.6082
+Round 165 global test acc  68.8351
+Round 166 global test acc  70.7010
+Round 167 global test acc  69.3918
+Round 168 global test acc  70.6289
+Round 169 global test acc  68.8969
+Round 170 global test acc  70.8144
+Round 171 global test acc  69.4948
+Round 172 global test acc  70.6701
+Round 173 global test acc  70.5670
+Round 174 global test acc  69.5567
+Round 175 global test acc  67.5670
+Round 176 global test acc  70.2268
+Round 177 global test acc  69.8041
+Round 178 global test acc  70.5155
+Round 179 global test acc  70.6186
+Round 180 global test acc  69.4124
+Round 181 global test acc  70.0825
+Round 182 global test acc  70.6289
+Round 183 global test acc  70.5670
+Round 184 global test acc  69.7526
+Round 185 global test acc  70.3918
+Round 186 global test acc  70.3505
+Round 187 global test acc  70.2577
+Round 188 global test acc  70.0103
+Round 189 global test acc  69.8351
+Round 190 global test acc  69.5876
+Round 191 global test acc  68.9175
+Round 192 global test acc  70.6804
+Round 193 global test acc  70.2474
+Round 194 global test acc  70.2062
+Round 195 global test acc  70.4536
+Round 196 global test acc  69.7216
+Round 197 global test acc  67.6907
+Round 198 global test acc  69.7938
+Round 199 global test acc  70.7010
+Round 200 global test acc  70.4948
+Round 201 global test acc  70.9485
+Round 202 global test acc  70.9588
+Round 203 global test acc  70.4021
+Round 204 global test acc  70.7423
+Round 205 global test acc  69.2990
+Round 206 global test acc  71.1649
+Round 207 global test acc  69.4948
+Round 208 global test acc  69.7629
+Round 209 global test acc  70.3608
+Round 210 global test acc  67.9794
+Round 211 global test acc  70.7938
+Round 212 global test acc  71.1959
+Round 213 global test acc  71.2371
+Round 214 global test acc  68.0515
+Round 215 global test acc  69.5670
+Round 216 global test acc  71.0309
+Round 217 global test acc  70.3093
+Round 218 global test acc  69.6082
+Round 219 global test acc  69.3402
+Round 220 global test acc  70.1649
+Round 221 global test acc  69.8866
+Round 222 global test acc  71.0722
+Round 223 global test acc  70.1237
+Round 224 global test acc  69.0000
+Round 225 global test acc  69.2577
+Round 226 global test acc  70.9175
+Round 227 global test acc  70.4433
+Round 228 global test acc  70.4639
+Round 229 global test acc  67.9381
+Round 230 global test acc  70.1340
+Round 231 global test acc  70.7835
+Round 232 global test acc  70.6082
+Round 233 global test acc  70.7423
+Round 234 global test acc  70.4639
+Round 235 global test acc  70.7629
+Round 236 global test acc  70.4021
+Round 237 global test acc  71.0000
+Round 238 global test acc  70.6186
+Round 239 global test acc  70.4330
+Round 240 global test acc  70.7423
+Round 241 global test acc  70.0309
+Round 242 global test acc  70.5773
+Round 243 global test acc  69.9175
+Round 244 global test acc  70.5670
+Round 245 global test acc  71.6186
+Round 246 global test acc  70.9381
+Round 247 global test acc  70.5052
+Round 248 global test acc  70.8969
+Round 249 global test acc  69.8454
+Round 250 global test acc  69.1443
+Round 251 global test acc  70.3918
+Round 252 global test acc  69.2062
+Round 253 global test acc  71.3093
+Round 254 global test acc  71.2165
+Round 255 global test acc  71.0825
+Round 256 global test acc  70.2062
+Round 257 global test acc  70.8144
+Round 258 global test acc  71.2268
+Round 259 global test acc  69.1753
+Round 260 global test acc  70.8247
+Round 261 global test acc  71.3196
+Round 262 global test acc  70.5052
+Round 263 global test acc  70.5464
+Round 264 global test acc  70.3814
+Round 265 global test acc  69.7835
+Round 266 global test acc  69.9072
+Round 267 global test acc  69.1237
+Round 268 global test acc  70.9897
+Round 269 global test acc  70.3918
+Round 270 global test acc  70.1753
+Round 271 global test acc  71.0000
+Round 272 global test acc  71.2165
+Round 273 global test acc  71.1031
+Round 274 global test acc  71.3196
+Round 275 global test acc  70.0412
+Round 276 global test acc  71.0722
+Round 277 global test acc  70.7320
+Round 278 global test acc  69.3196
+Round 279 global test acc  70.0515
+Round 280 global test acc  71.2062
+Round 281 global test acc  69.1237
+Round 282 global test acc  70.8247
+Round 283 global test acc  70.9278
+Round 284 global test acc  71.3093
+Round 285 global test acc  71.5567
+Round 286 global test acc  71.2062
+Round 287 global test acc  68.0309
+Round 288 global test acc  71.3196
+Round 289 global test acc  70.9485
+Round 290 global test acc  71.1340
+Round 291 global test acc  70.7113
+Round 292 global test acc  70.4948
+Round 293 global test acc  71.0412
+Round 294 global test acc  71.1753
+Round 295 global test acc  71.0309
+Round 296 global test acc  71.2680
+Round 297 global test acc  71.3711
+Round 298 global test acc  70.7216
+Round 299 global test acc  70.6804
+Round 300 global test acc  69.8454
+Round 301 global test acc  70.8969
+Round 302 global test acc  70.0515
+Round 303 global test acc  70.8969
+Round 304 global test acc  70.2577
+Round 305 global test acc  70.2990
+Round 306 global test acc  71.5464
+Round 307 global test acc  70.7938
+Round 308 global test acc  71.1959
+Round 309 global test acc  71.0206
+Round 310 global test acc  70.6495
+Round 311 global test acc  71.3814
+Round 312 global test acc  70.5876
+Round 313 global test acc  69.5567
+Round 314 global test acc  71.2680
+Round 315 global test acc  71.1649
+Round 316 global test acc  70.2784
+Round 317 global test acc  71.5361
+Round 318 global test acc  71.3196
+Round 319 global test acc  71.0722
+Round 320 global test acc  69.9588
+Round 321 global test acc  70.9175
+Round 322 global test acc  71.2680
+Round 323 global test acc  71.0928
+Round 324 global test acc  71.2062
+Round 325 global test acc  71.1856
+Round 326 global test acc  70.4742
+Round 327 global test acc  70.8351
+Round 328 global test acc  70.6598
+Round 329 global test acc  71.0825
+Round 330 global test acc  70.2165
+Round 331 global test acc  69.6907
+Round 332 global test acc  70.7320
+Round 333 global test acc  70.4124
+Round 334 global test acc  70.8144
+Round 335 global test acc  71.1959
+Round 336 global test acc  69.9485
+Round 337 global test acc  71.0722
+Round 338 global test acc  70.8454
+Round 339 global test acc  71.1031
+Round 340 global test acc  71.3814
+Round 341 global test acc  71.0928
+Round 342 global test acc  70.7010
+Round 343 global test acc  71.4227
+Round 344 global test acc  71.2474
+Round 345 global test acc  71.3505
+Round 346 global test acc  70.5567
+Round 347 global test acc  65.1031
+Round 348 global test acc  71.2371
+Round 349 global test acc  71.2784
+Round 350 global test acc  71.0825
+Round 351 global test acc  70.6598
+Round 352 global test acc  71.4330
+Round 353 global test acc  71.0515
+Round 354 global test acc  71.1649
+Round 355 global test acc  69.6701
+Round 356 global test acc  70.7320
+Round 357 global test acc  71.3196
+Round 358 global test acc  71.0722
+Round 359 global test acc  70.7113
+Round 360 global test acc  70.9588
+Round 361 global test acc  70.8866
+Round 362 global test acc  68.5567
+Round 363 global test acc  71.4639
+Round 364 global test acc  67.9278
+Round 365 global test acc  71.7732
+Round 366 global test acc  71.8351
+Round 367 global test acc  69.1340
+Round 368 global test acc  67.6082
+Round 369 global test acc  70.3402
+Round 370 global test acc  71.8557
+Round 371 global test acc  71.1546
+Round 372 global test acc  71.3093
+Round 373 global test acc  71.5979
+Round 374 global test acc  71.6598
+Round 375 global test acc  70.4124
+Round 376 global test acc  71.6186
+Round 377 global test acc  69.2887
+Round 378 global test acc  71.8247
+Round 379 global test acc  71.1856
+Round 380 global test acc  71.0000
+Round 381 global test acc  70.4124
+Round 382 global test acc  70.8866
+Round 383 global test acc  70.8763
+Round 384 global test acc  69.2887
+Round 385 global test acc  71.1959
+Round 386 global test acc  70.2165
+Round 387 global test acc  71.0722
+Round 388 global test acc  71.3918
+Round 389 global test acc  71.8247
+Round 390 global test acc  71.8763
+Round 391 global test acc  69.4536
+Round 392 global test acc  71.4124
+Round 393 global test acc  71.7526
+Round 394 global test acc  70.4124
+Round 395 global test acc  70.7938
+Round 396 global test acc  71.0206
+Round 397 global test acc  71.1959
+Round 398 global test acc  70.6495
+Round 399 global test acc  70.5979
+Round 400 global test acc  71.1753
+Round 401 global test acc  69.4330
+Round 402 global test acc  70.9072
+Round 403 global test acc  71.0103
+Round 404 global test acc  70.5773
+Round 405 global test acc  70.5876
+Round 406 global test acc  70.3608
+Round 407 global test acc  69.8969
+Round 408 global test acc  70.4845
+Round 409 global test acc  70.5464
+Round 410 global test acc  71.7010
+Round 411 global test acc  71.2165
+Round 412 global test acc  71.2887
+Round 413 global test acc  71.8866
+Round 414 global test acc  70.1649
+Round 415 global test acc  71.0103
+Round 416 global test acc  71.3608
+Round 417 global test acc  71.1134
+Round 418 global test acc  69.9175
+Round 419 global test acc  70.2371
+Round 420 global test acc  71.3402
+Round 421 global test acc  70.7320
+Round 422 global test acc  70.3299
+Round 423 global test acc  71.2165
+Round 424 global test acc  71.0825
+Round 425 global test acc  70.5052
+Round 426 global test acc  70.5258
+Round 427 global test acc  70.8866
+Round 428 global test acc  70.7423
+Round 429 global test acc  70.6186
+Round 430 global test acc  71.1856
+Round 431 global test acc  71.0515
+Round 432 global test acc  71.4433
+Round 433 global test acc  71.0619
+Round 434 global test acc  71.1340
+Round 435 global test acc  71.2577
+Round 436 global test acc  71.0619
+Round 437 global test acc  69.9072
+Round 438 global test acc  71.4124
+Round 439 global test acc  71.1649
+Round 440 global test acc  70.6289
+Round 441 global test acc  71.6701
+Round 442 global test acc  71.0619
+Round 443 global test acc  67.1443
+Round 444 global test acc  71.5979
+Round 445 global test acc  71.4948
+Round 446 global test acc  71.4742
+Round 447 global test acc  71.1031
+Round 448 global test acc  71.4227
+Round 449 global test acc  71.1443
+
+('algorithm', 'MR')
+('gpu', 0)
+('seed', 13)
+('save_dir', './record/')
+('rounds2', 450)
+('local_ep', 5)
+('frac2', 0.1)
+('num_users', 100)
+('local_bs', 32)
+('lr', 0.01)
+('model', 'resnet18')
+('num_classes', 10)
+('level_n_system', 0.0)
+('level_n_lowerb', 0.0)
+('alpha_dirichlet', 10)
+('non_iid_prob_class', 0.7)
+('dataset', 'cifar10')
+('iid', True)
+('LID_k', 20)
+('iteration1', 5)
+('rounds1', 200)
+('frac1', 0.01)
+('pretrained', False)
+('mixup', False)
+('alpha', 1)
+('beta', 5)
+('relabel_ratio', 0.5)
+('confidence_thres', 0.5)
+('clean_set_thres', 0.1)
+('fine_tuning', True)
+('correction', True)
+('T_pl', 100)
+('lambda_cen', 1.0)
+('lambda_e', 0.8)
+('num_gradual', 10)
+('forget_rate', 0.2)
+('lr_decay', 0.1)
+('schedule', [])
+('momentum', 0.5)
+('weight_decay', 0.0001)
+('feature_dim', 128)
+('plr', 0.01)
+('lamda', 15)
+('K', 5)
+('gamma', 1)
+('begin_sel', 10)
+('max_beta', 2)
+('mu', 0.01)
+('device', device(type='cuda', index=0))
+Files already downloaded and verified
+Files already downloaded and verified
+Round 0 global test acc  21.6392
+Round 0 Fscore 
+
+[]
+Round 1 global test acc  31.8866
+Round 1 Fscore 
+
+[]
+Round 2 global test acc  35.1649
+Round 2 Fscore 
+
+[]
+Round 3 global test acc  39.4124
+Round 3 Fscore 
+
+[]
+Round 4 global test acc  36.8969
+Round 4 Fscore 
+
+[]
+Round 5 global test acc  44.1031
+Round 5 Fscore 
+
+[]
+Round 6 global test acc  45.1443
+Round 6 Fscore 
+
+[]
+Round 7 global test acc  48.8144
+Round 7 Fscore 
+
+[]
+Round 8 global test acc  49.5670
+Round 8 Fscore 
+
+[]
+Round 9 global test acc  50.1340
+Round 9 Fscore 
+
+[]
+Round 10 global test acc  51.5155
+Round 10 Fscore 
+
+[]
+Round 11 global test acc  49.1134
+Round 11 Fscore 
+
+[]
+Round 12 global test acc  53.1237
+Round 12 Fscore 
+
+[]
+Round 13 global test acc  54.7835
+Round 13 Fscore 
+
+[]
+Round 14 global test acc  56.5876
+Round 14 Fscore 
+
+[]
+Round 15 global test acc  57.5567
+Round 15 Fscore 
+
+[]
+Round 16 global test acc  57.2371
+Round 16 Fscore 
+
+[]
+Round 17 global test acc  57.2577
+Round 17 Fscore 
+
+[]
+Round 18 global test acc  58.2887
+Round 18 Fscore 
+
+[]
+Round 19 global test acc  59.1443
+Round 19 Fscore 
+
+[]
+Round 20 global test acc  58.6186
+Round 20 Fscore 
+
+[]
+Round 21 global test acc  60.5670
+Round 21 Fscore 
+
+[]
+Round 22 global test acc  60.0412
+Round 22 Fscore 
+
+[]
+Round 23 global test acc  60.0206
+Round 23 Fscore 
+
+[]
+Round 24 global test acc  61.4639
+Round 24 Fscore 
+
+[]
+Round 25 global test acc  60.8247
+Round 25 Fscore 
+
+[]
+Round 26 global test acc  60.8763
+Round 26 Fscore 
+
+[]
+Round 27 global test acc  61.7010
+Round 27 Fscore 
+
+[]
+Round 28 global test acc  60.9794
+Round 28 Fscore 
+
+[]
+Round 29 global test acc  62.1443
+Round 29 Fscore 
+
+[]
+Round 30 global test acc  60.2784
+Round 30 Fscore 
+
+[]
+Round 31 global test acc  61.9072
+Round 31 Fscore 
+
+[]
+Round 32 global test acc  61.2887
+Round 32 Fscore 
+
+[]
+Round 33 global test acc  62.4948
+Round 33 Fscore 
+
+[]
+Round 34 global test acc  62.6907
+Round 34 Fscore 
+
+[]
+Round 35 global test acc  63.0928
+Round 35 Fscore 
+
+[]
+Round 36 global test acc  63.9897
+Round 36 Fscore 
+
+[]
+Round 37 global test acc  63.6598
+Round 37 Fscore 
+
+[]
+Round 38 global test acc  64.3299
+Round 38 Fscore 
+
+[]
+Round 39 global test acc  64.5361
+Round 39 Fscore 
+
+[]
+Round 40 global test acc  64.6392
+Round 40 Fscore 
+
+[]
+Round 41 global test acc  65.0309
+Round 41 Fscore 
+
+[]
+Round 42 global test acc  64.4124
+Round 42 Fscore 
+
+[]
+Round 43 global test acc  64.5052
+Round 43 Fscore 
+
+[]
+Round 44 global test acc  62.9072
+Round 44 Fscore 
+
+[]
+Round 45 global test acc  64.6907
+Round 45 Fscore 
+
+[]
+Round 46 global test acc  63.9278
+Round 46 Fscore 
+
+[]
+Round 47 global test acc  65.4227
+Round 47 Fscore 
+
+[]
+Round 48 global test acc  65.6392
+Round 48 Fscore 
+
+[]
+Round 49 global test acc  66.1237
+Round 49 Fscore 
+
+[]
+Round 50 global test acc  61.4021
+Round 50 Fscore 
+
+[]
+Round 51 global test acc  65.2577
+Round 51 Fscore 
+
+[]
+Round 52 global test acc  64.9381
+Round 52 Fscore 
+
+[]
+Round 53 global test acc  65.0412
+Round 53 Fscore 
+
+[]
+Round 54 global test acc  66.2680
+Round 54 Fscore 
+
+[]
+Round 55 global test acc  65.8351
+Round 55 Fscore 
+
+[]
+Round 56 global test acc  66.0515
+Round 56 Fscore 
+
+[]
+Round 57 global test acc  66.3711
+Round 57 Fscore 
+
+[]
+Round 58 global test acc  66.7629
+Round 58 Fscore 
+
+[]
+Round 59 global test acc  63.1443
+Round 59 Fscore 
+
+[]
+Round 60 global test acc  67.7320
+Round 60 Fscore 
+
+[]
+Round 61 global test acc  67.3299
+Round 61 Fscore 
+
+[]
+Round 62 global test acc  67.2165
+Round 62 Fscore 
+
+[]
+Round 63 global test acc  67.4639
+Round 63 Fscore 
+
+[]
+Round 64 global test acc  66.0103
+Round 64 Fscore 
+
+[]
+Round 65 global test acc  66.9175
+Round 65 Fscore 
+
+[]
+Round 66 global test acc  65.6907
+Round 66 Fscore 
+
+[]
+Round 67 global test acc  67.6289
+Round 67 Fscore 
+
+[]
+Round 68 global test acc  67.5464
+Round 68 Fscore 
+
+[]
+Round 69 global test acc  67.3918
+Round 69 Fscore 
+
+[]
+Round 70 global test acc  67.8557
+Round 70 Fscore 
+
+[]
+Round 71 global test acc  67.2887
+Round 71 Fscore 
+
+[]
+Round 72 global test acc  67.1546
+Round 72 Fscore 
+
+[]
+Round 73 global test acc  67.2887
+Round 73 Fscore 
+
+[]
+Round 74 global test acc  66.9794
+Round 74 Fscore 
+
+[]
+Round 75 global test acc  67.7113
+Round 75 Fscore 
+
+[]
+Round 76 global test acc  67.0825
+Round 76 Fscore 
+
+[]
+Round 77 global test acc  67.3093
+Round 77 Fscore 
+
+[]
+Round 78 global test acc  68.9381
+Round 78 Fscore 
+
+[]
+Round 79 global test acc  67.2990
+Round 79 Fscore 
+
+[]
+Round 80 global test acc  66.5464
+Round 80 Fscore 
+
+[]
+Round 81 global test acc  67.2371
+Round 81 Fscore 
+
+[]
+Round 82 global test acc  68.1443
+Round 82 Fscore 
+
+[]
+Round 83 global test acc  67.9485
+Round 83 Fscore 
+
+[]
+Round 84 global test acc  68.7320
+Round 84 Fscore 
+
+[]
+Round 85 global test acc  68.0309
+Round 85 Fscore 
+
+[]
+Round 86 global test acc  68.1753
+Round 86 Fscore 
+
+[]
+Round 87 global test acc  68.1649
+Round 87 Fscore 
+
+[]
+Round 88 global test acc  69.0412
+Round 88 Fscore 
+
+[]
+Round 89 global test acc  69.0103
+Round 89 Fscore 
+
+[]
+Round 90 global test acc  67.1649
+Round 90 Fscore 
+
+[]
+Round 91 global test acc  68.8351
+Round 91 Fscore 
+
+[]
+Round 92 global test acc  68.3093
+Round 92 Fscore 
+
+[]
+Round 93 global test acc  68.8247
+Round 93 Fscore 
+
+[]
+Round 94 global test acc  69.4330
+Round 94 Fscore 
+
+[]
+Round 95 global test acc  69.1443
+Round 95 Fscore 
+
+[]
+Round 96 global test acc  67.3299
+Round 96 Fscore 
+
+[]
+Round 97 global test acc  69.4742
+Round 97 Fscore 
+
+[]
+Round 98 global test acc  68.7629
+Round 98 Fscore 
+
+[]
+Round 99 global test acc  69.3505
+Round 99 Fscore 
+
+[]
+Round 100 global test acc  69.3918
+Round 100 Fscore 
+
+[]
+Round 101 global test acc  69.1443
+Round 101 Fscore 
+
+[]
+Round 102 global test acc  69.5361
+Round 102 Fscore 
+
+[]
+Round 103 global test acc  67.8557
+Round 103 Fscore 
+
+[]
+Round 104 global test acc  69.1649
+Round 104 Fscore 
+
+[]
+Round 105 global test acc  68.3402
+Round 105 Fscore 
+
+[]
+Round 106 global test acc  68.7526
+Round 106 Fscore 
+
+[]
+Round 107 global test acc  69.3608
+Round 107 Fscore 
+
+[]
+Round 108 global test acc  69.1340
+Round 108 Fscore 
+
+[]
+Round 109 global test acc  69.7526
+Round 109 Fscore 
+
+[]
+Round 110 global test acc  69.3814
+Round 110 Fscore 
+
+[]
+Round 111 global test acc  68.1649
+Round 111 Fscore 
+
+[]
+Round 112 global test acc  68.3918
+Round 112 Fscore 
+
+[]
+Round 113 global test acc  69.2062
+Round 113 Fscore 
+
+[]
+Round 114 global test acc  66.1649
+Round 114 Fscore 
+
+[]
+Round 115 global test acc  68.6495
+Round 115 Fscore 
+
+[]
+Round 116 global test acc  69.5361
+Round 116 Fscore 
+
+[]
+Round 117 global test acc  69.7320
+Round 117 Fscore 
+
+[]
+Round 118 global test acc  69.4742
+Round 118 Fscore 
+
+[]
+Round 119 global test acc  70.1753
+Round 119 Fscore 
+
+[]
+Round 120 global test acc  69.6289
+Round 120 Fscore 
+
+[]
+Round 121 global test acc  68.6495
+Round 121 Fscore 
+
+[]
+Round 122 global test acc  69.1134
+Round 122 Fscore 
+
+[]
+Round 123 global test acc  69.2474
+Round 123 Fscore 
+
+[]
+Round 124 global test acc  69.2062
+Round 124 Fscore 
+
+[]
+Round 125 global test acc  70.1649
+Round 125 Fscore 
+
+[]
+Round 126 global test acc  68.4948
+Round 126 Fscore 
+
+[]
+Round 127 global test acc  69.4330
+Round 127 Fscore 
+
+[]
+Round 128 global test acc  68.1753
+Round 128 Fscore 
+
+[]
+Round 129 global test acc  67.5979
+Round 129 Fscore 
+
+[]
+Round 130 global test acc  70.1443
+Round 130 Fscore 
+
+[]
+Round 131 global test acc  69.8660
+Round 131 Fscore 
+
+[]
+Round 132 global test acc  69.9794
+Round 132 Fscore 
+
+[]
+Round 133 global test acc  69.4742
+Round 133 Fscore 
+
+[]
+Round 134 global test acc  69.4433
+Round 134 Fscore 
+
+[]
+Round 135 global test acc  68.2784
+Round 135 Fscore 
+
+[]
+Round 136 global test acc  70.2887
+Round 136 Fscore 
+
+[]
+Round 137 global test acc  68.7835
+Round 137 Fscore 
+
+[]
+Round 138 global test acc  69.2887
+Round 138 Fscore 
+
+[]
+Round 139 global test acc  69.5670
+Round 139 Fscore 
+
+[]
+Round 140 global test acc  66.7010
+Round 140 Fscore 
+
+[]
+Round 141 global test acc  68.4948
+Round 141 Fscore 
+
+[]
+Round 142 global test acc  69.4433
+Round 142 Fscore 
+
+[]
+Round 143 global test acc  69.5876
+Round 143 Fscore 
+
+[]
+Round 144 global test acc  69.8557
+Round 144 Fscore 
+
+[]
+Round 145 global test acc  68.7732
+Round 145 Fscore 
+
+[]
+Round 146 global test acc  69.7732
+Round 146 Fscore 
+
+[]
+Round 147 global test acc  69.5567
+Round 147 Fscore 
+
+[]
+Round 148 global test acc  68.8041
+Round 148 Fscore 
+
+[]
+Round 149 global test acc  69.4536
+Round 149 Fscore 
+
+[]
+Round 150 global test acc  70.1031
+Round 150 Fscore 
+
+[]
+Round 151 global test acc  68.6289
+Round 151 Fscore 
+
+[]
+Round 152 global test acc  70.0000
+Round 152 Fscore 
+
+[]
+Round 153 global test acc  69.8557
+Round 153 Fscore 
+
+[]
+Round 154 global test acc  70.4845
+Round 154 Fscore 
+
+[]
+Round 155 global test acc  69.4742
+Round 155 Fscore 
+
+[]
+Round 156 global test acc  69.3402
+Round 156 Fscore 
+
+[]
+Round 157 global test acc  69.6701
+Round 157 Fscore 
+
+[]
+Round 158 global test acc  69.0825
+Round 158 Fscore 
+
+[]
+Round 159 global test acc  69.6289
+Round 159 Fscore 
+
+[]
+Round 160 global test acc  69.6495
+Round 160 Fscore 
+
+[]
+Round 161 global test acc  70.1443
+Round 161 Fscore 
+
+[]
+Round 162 global test acc  69.6392
+Round 162 Fscore 
+
+[]
+Round 163 global test acc  68.9897
+Round 163 Fscore 
+
+[]
+Round 164 global test acc  69.9691
+Round 164 Fscore 
+
+[]
+Round 165 global test acc  69.9691
+Round 165 Fscore 
+
+[]
+Round 166 global test acc  70.8351
+Round 166 Fscore 
+
+[]
+Round 167 global test acc  68.1237
+Round 167 Fscore 
+
+[]
+Round 168 global test acc  66.7423
+Round 168 Fscore 
+
+[]
+Round 169 global test acc  69.7938
+Round 169 Fscore 
+
+[]
+Round 170 global test acc  69.8144
+Round 170 Fscore 
+
+[]
+Round 171 global test acc  70.2371
+Round 171 Fscore 
+
+[]
+Round 172 global test acc  69.9175
+Round 172 Fscore 
+
+[]
+Round 173 global test acc  70.0722
+Round 173 Fscore 
+
+[]
+Round 174 global test acc  69.0722
+Round 174 Fscore 
+
+[]
+Round 175 global test acc  67.7423
+Round 175 Fscore 
+
+[]
+Round 176 global test acc  69.9072
+Round 176 Fscore 
+
+[]
+Round 177 global test acc  68.2887
+Round 177 Fscore 
+
+[]
+Round 178 global test acc  69.6598
+Round 178 Fscore 
+
+[]
+Round 179 global test acc  70.3918
+Round 179 Fscore 
+
+[]
+Round 180 global test acc  68.6804
+Round 180 Fscore 
+
+[]
+Round 181 global test acc  70.3402
+Round 181 Fscore 
+
+[]
+Round 182 global test acc  69.8969
+Round 182 Fscore 
+
+[]
+Round 183 global test acc  67.8041
+Round 183 Fscore 
+
+[]
+Round 184 global test acc  70.4124
+Round 184 Fscore 
+
+[]
+Round 185 global test acc  70.8660
+Round 185 Fscore 
+
+[]
+Round 186 global test acc  71.1959
+Round 186 Fscore 
+
+[]
+Round 187 global test acc  70.0928
+Round 187 Fscore 
+
+[]
+Round 188 global test acc  70.4330
+Round 188 Fscore 
+
+[]
+Round 189 global test acc  70.0619
+Round 189 Fscore 
+
+[]
+Round 190 global test acc  69.6907
+Round 190 Fscore 
+
+[]
+Round 191 global test acc  70.7113
+Round 191 Fscore 
+
+[]
+Round 192 global test acc  69.8866
+Round 192 Fscore 
+
+[]
+Round 193 global test acc  69.9175
+Round 193 Fscore 
+
+[]
+Round 194 global test acc  69.7113
+Round 194 Fscore 
+
+[]
+Round 195 global test acc  69.5258
+Round 195 Fscore 
+
+[]
+Round 196 global test acc  70.6495
+Round 196 Fscore 
+
+[]
+Round 197 global test acc  70.0928
+Round 197 Fscore 
+
+[]
+Round 198 global test acc  70.5464
+Round 198 Fscore 
+
+[]
+Round 199 global test acc  70.5670
+Round 199 Fscore 
+
+[]
+Round 200 global test acc  70.4639
+Round 200 Fscore 
+
+[]
+Round 201 global test acc  69.8247
+Round 201 Fscore 
+
+[]
+Round 202 global test acc  70.3814
+Round 202 Fscore 
+
+[]
+Round 203 global test acc  69.4742
+Round 203 Fscore 
+
+[]
+Round 204 global test acc  70.4330
+Round 204 Fscore 
+
+[]
+Round 205 global test acc  69.9588
+Round 205 Fscore 
+
+[]
+Round 206 global test acc  70.7216
+Round 206 Fscore 
+
+[]
+Round 207 global test acc  69.9381
+Round 207 Fscore 
+
+[]
+Round 208 global test acc  70.4845
+Round 208 Fscore 
+
+[]
+Round 209 global test acc  70.7320
+Round 209 Fscore 
+
+[]
+Round 210 global test acc  70.3299
+Round 210 Fscore 
+
+[]
+Round 211 global test acc  71.1443
+Round 211 Fscore 
+
+[]
+Round 212 global test acc  70.4948
+Round 212 Fscore 
+
+[]
+Round 213 global test acc  70.3299
+Round 213 Fscore 
+
+[]
+Round 214 global test acc  71.0722
+Round 214 Fscore 
+
+[]
+Round 215 global test acc  69.9278
+Round 215 Fscore 
+
+[]
+Round 216 global test acc  69.7423
+Round 216 Fscore 
+
+[]
+Round 217 global test acc  71.1237
+Round 217 Fscore 
+
+[]
+Round 218 global test acc  70.6907
+Round 218 Fscore 
+
+[]
+Round 219 global test acc  69.9381
+Round 219 Fscore 
+
+[]
+Round 220 global test acc  70.2680
+Round 220 Fscore 
+
+[]
+Round 221 global test acc  69.8454
+Round 221 Fscore 
+
+[]
+Round 222 global test acc  70.6701
+Round 222 Fscore 
+
+[]
+Round 223 global test acc  70.9691
+Round 223 Fscore 
+
+[]
+Round 224 global test acc  70.4639
+Round 224 Fscore 
+
+[]
+Round 225 global test acc  71.3299
+Round 225 Fscore 
+
+[]
+Round 226 global test acc  70.4433
+Round 226 Fscore 
+
+[]
+Round 227 global test acc  70.9175
+Round 227 Fscore 
+
+[]
+Round 228 global test acc  68.8351
+Round 228 Fscore 
+
+[]
+Round 229 global test acc  69.1649
+Round 229 Fscore 
+
+[]
+Round 230 global test acc  70.4227
+Round 230 Fscore 
+
+[]
+Round 231 global test acc  70.4845
+Round 231 Fscore 
+
+[]
+Round 232 global test acc  70.8969
+Round 232 Fscore 
+
+[]
+Round 233 global test acc  70.0000
+Round 233 Fscore 
+
+[]
+Round 234 global test acc  69.5979
+Round 234 Fscore 
+
+[]
+Round 235 global test acc  71.0928
+Round 235 Fscore 
+
+[]
+Round 236 global test acc  71.0619
+Round 236 Fscore 
+
+[]
+Round 237 global test acc  71.3402
+Round 237 Fscore 
+
+[]
+Round 238 global test acc  68.1443
+Round 238 Fscore 
+
+[]
+Round 239 global test acc  70.3402
+Round 239 Fscore 
+
+[]
+Round 240 global test acc  69.6495
+Round 240 Fscore 
+
+[]
+Round 241 global test acc  70.8247
+Round 241 Fscore 
+
+[]
+Round 242 global test acc  70.6804
+Round 242 Fscore 
+
+[]
+Round 243 global test acc  70.2062
+Round 243 Fscore 
+
+[]
+Round 244 global test acc  70.5567
+Round 244 Fscore 
+
+[]
+Round 245 global test acc  70.9175
+Round 245 Fscore 
+
+[]
+Round 246 global test acc  71.6289
+Round 246 Fscore 
+
+[]
+Round 247 global test acc  71.7732
+Round 247 Fscore 
+
+[]
+Round 248 global test acc  71.4227
+Round 248 Fscore 
+
+[]
+Round 249 global test acc  71.4433
+Round 249 Fscore 
+
+[]
+Round 250 global test acc  71.7732
+Round 250 Fscore 
+
+[]
+Round 251 global test acc  70.2784
+Round 251 Fscore 
+
+[]
+Round 252 global test acc  71.0722
+Round 252 Fscore 
+
+[]
+Round 253 global test acc  70.9794
+Round 253 Fscore 
+
+[]
+Round 254 global test acc  71.5876
+Round 254 Fscore 
+
+[]
+Round 255 global test acc  70.6907
+Round 255 Fscore 
+
+[]
+Round 256 global test acc  71.6186
+Round 256 Fscore 
+
+[]
+Round 257 global test acc  69.8144
+Round 257 Fscore 
+
+[]
+Round 258 global test acc  71.1031
+Round 258 Fscore 
+
+[]
+Round 259 global test acc  71.3093
+Round 259 Fscore 
+
+[]
+Round 260 global test acc  71.0722
+Round 260 Fscore 
+
+[]
+Round 261 global test acc  70.3093
+Round 261 Fscore 
+
+[]
+Round 262 global test acc  71.6082
+Round 262 Fscore 
+
+[]
+Round 263 global test acc  70.8969
+Round 263 Fscore 
+
+[]
+Round 264 global test acc  69.9897
+Round 264 Fscore 
+
+[]
+Round 265 global test acc  69.3093
+Round 265 Fscore 
+
+[]
+Round 266 global test acc  70.7732
+Round 266 Fscore 
+
+[]
+Round 267 global test acc  70.7732
+Round 267 Fscore 
+
+[]
+Round 268 global test acc  69.6907
+Round 268 Fscore 
+
+[]
+Round 269 global test acc  71.0928
+Round 269 Fscore 
+
+[]
+Round 270 global test acc  69.4639
+Round 270 Fscore 
+
+[]
+Round 271 global test acc  71.0722
+Round 271 Fscore 
+
+[]
+Round 272 global test acc  67.7010
+Round 272 Fscore 
+
+[]
+Round 273 global test acc  69.9588
+Round 273 Fscore 
+
+[]
+Round 274 global test acc  69.7526
+Round 274 Fscore 
+
+[]
+Round 275 global test acc  71.5670
+Round 275 Fscore 
+
+[]
+Round 276 global test acc  71.2887
+Round 276 Fscore 
+
+[]
+Round 277 global test acc  71.4124
+Round 277 Fscore 
+
+[]
+Round 278 global test acc  71.3918
+Round 278 Fscore 
+
+[]
+Round 279 global test acc  70.8454
+Round 279 Fscore 
+
+[]
+Round 280 global test acc  71.0103
+Round 280 Fscore 
+
+[]
+Round 281 global test acc  71.3814
+Round 281 Fscore 
+
+[]
+Round 282 global test acc  71.3505
+Round 282 Fscore 
+
+[]
+Round 283 global test acc  70.7423
+Round 283 Fscore 
+
+[]
+Round 284 global test acc  69.7113
+Round 284 Fscore 
+
+[]
+Round 285 global test acc  69.3918
+Round 285 Fscore 
+
+[]
+Round 286 global test acc  70.5773
+Round 286 Fscore 
+
+[]
+Round 287 global test acc  71.9381
+Round 287 Fscore 
+
+[]
+Round 288 global test acc  71.8969
+Round 288 Fscore 
+
+[]
+Round 289 global test acc  70.7423
+Round 289 Fscore 
+
+[]
+Round 290 global test acc  70.9278
+Round 290 Fscore 
+
+[]
+Round 291 global test acc  70.9691
+Round 291 Fscore 
+
+[]
+Round 292 global test acc  71.4845
+Round 292 Fscore 
+
+[]
+Round 293 global test acc  71.4536
+Round 293 Fscore 
+
+[]
+Round 294 global test acc  71.7835
+Round 294 Fscore 
+
+[]
+Round 295 global test acc  71.7423
+Round 295 Fscore 
+
+[]
+Round 296 global test acc  69.8969
+Round 296 Fscore 
+
+[]
+Round 297 global test acc  71.7010
+Round 297 Fscore 
+
+[]
+Round 298 global test acc  71.5979
+Round 298 Fscore 
+
+[]
+Round 299 global test acc  72.0206
+Round 299 Fscore 
+
+[]
+Round 300 global test acc  71.6082
+Round 300 Fscore 
+
+[]
+Round 301 global test acc  71.3196
+Round 301 Fscore 
+
+[]
+Round 302 global test acc  70.2990
+Round 302 Fscore 
+
+[]
+Round 303 global test acc  70.7835
+Round 303 Fscore 
+
+[]
+Round 304 global test acc  71.3814
+Round 304 Fscore 
+
+[]
+Round 305 global test acc  71.0000
+Round 305 Fscore 
+
+[]
+Round 306 global test acc  71.6392
+Round 306 Fscore 
+
+[]
+Round 307 global test acc  71.2062
+Round 307 Fscore 
+
+[]
+Round 308 global test acc  69.7216
+Round 308 Fscore 
+
+[]
+Round 309 global test acc  71.5052
+Round 309 Fscore 
+
+[]
+Round 310 global test acc  71.3093
+Round 310 Fscore 
+
+[]
+Round 311 global test acc  72.1959
+Round 311 Fscore 
+
+[]
+Round 312 global test acc  70.4845
+Round 312 Fscore 
+
+[]
+Round 313 global test acc  69.8866
+Round 313 Fscore 
+
+[]
+Round 314 global test acc  70.7423
+Round 314 Fscore 
+
+[]
+Round 315 global test acc  70.5876
+Round 315 Fscore 
+
+[]
+Round 316 global test acc  71.0206
+Round 316 Fscore 
+
+[]
+Round 317 global test acc  69.8247
+Round 317 Fscore 
+
+[]
+Round 318 global test acc  71.3402
+Round 318 Fscore 
+
+[]
+Round 319 global test acc  70.4536
+Round 319 Fscore 
+
+[]
+Round 320 global test acc  71.0206
+Round 320 Fscore 
+
+[]
+Round 321 global test acc  71.8144
+Round 321 Fscore 
+
+[]
+Round 322 global test acc  71.3608
+Round 322 Fscore 
+
+[]
+Round 323 global test acc  71.4330
+Round 323 Fscore 
+
+[]
+Round 324 global test acc  72.3608
+Round 324 Fscore 
+
+[]
+Round 325 global test acc  71.4845
+Round 325 Fscore 
+
+[]
+Round 326 global test acc  72.1753
+Round 326 Fscore 
+
+[]
+Round 327 global test acc  71.9485
+Round 327 Fscore 
+
+[]
+Round 328 global test acc  72.2062
+Round 328 Fscore 
+
+[]
+Round 329 global test acc  71.2062
+Round 329 Fscore 
+
+[]
+Round 330 global test acc  72.0206
+Round 330 Fscore 
+
+[]
+Round 331 global test acc  71.4433
+Round 331 Fscore 
+
+[]
+Round 332 global test acc  71.3093
+Round 332 Fscore 
+
+[]
+Round 333 global test acc  71.7423
+Round 333 Fscore 
+
+[]
+Round 334 global test acc  71.3505
+Round 334 Fscore 
+
+[]
+Round 335 global test acc  72.1856
+Round 335 Fscore 
+
+[]
+Round 336 global test acc  68.6701
+Round 336 Fscore 
+
+[]
+Round 337 global test acc  71.5052
+Round 337 Fscore 
+
+[]
+Round 338 global test acc  71.1649
+Round 338 Fscore 
+
+[]
+Round 339 global test acc  70.3505
+Round 339 Fscore 
+
+[]
+Round 340 global test acc  71.8557
+Round 340 Fscore 
+
+[]
+Round 341 global test acc  71.7938
+Round 341 Fscore 
+
+[]
+Round 342 global test acc  72.0103
+Round 342 Fscore 
+
+[]
+Round 343 global test acc  70.6804
+Round 343 Fscore 
+
+[]
+Round 344 global test acc  72.1959
+Round 344 Fscore 
+
+[]
+Round 345 global test acc  72.5361
+Round 345 Fscore 
+
+[]
+Round 346 global test acc  70.4845
+Round 346 Fscore 
+
+[]
+Round 347 global test acc  71.3402
+Round 347 Fscore 
+
+[]
+Round 348 global test acc  71.8351
+Round 348 Fscore 
+
+[]
+Round 349 global test acc  71.8969
+Round 349 Fscore 
+
+[]
+Round 350 global test acc  71.6392
+Round 350 Fscore 
+
+[]
+Round 351 global test acc  71.4639
+Round 351 Fscore 
+
+[]
+Round 352 global test acc  71.3402
+Round 352 Fscore 
+
+[]
+Round 353 global test acc  71.7423
+Round 353 Fscore 
+
+[]
+Round 354 global test acc  71.1340
+Round 354 Fscore 
+
+[]
+Round 355 global test acc  72.2371
+Round 355 Fscore 
+
+[]
+Round 356 global test acc  72.1546
+Round 356 Fscore 
+
+[]
+Round 357 global test acc  71.6701
+Round 357 Fscore 
+
+[]
+Round 358 global test acc  72.0309
+Round 358 Fscore 
+
+[]
+Round 359 global test acc  70.6701
+Round 359 Fscore 
+
+[]
+Round 360 global test acc  71.8351
+Round 360 Fscore 
+
+[]
+Round 361 global test acc  71.6082
+Round 361 Fscore 
+
+[]
+Round 362 global test acc  71.7423
+Round 362 Fscore 
+
+[]
+Round 363 global test acc  72.0412
+Round 363 Fscore 
+
+[]
+Round 364 global test acc  71.4227
+Round 364 Fscore 
+
+[]
+Round 365 global test acc  71.4021
+Round 365 Fscore 
+
+[]
+Round 366 global test acc  71.6392
+Round 366 Fscore 
+
+[]
+Round 367 global test acc  69.9485
+Round 367 Fscore 
+
+[]
+Round 368 global test acc  71.1856
+Round 368 Fscore 
+
+[]
+Round 369 global test acc  71.3608
+Round 369 Fscore 
+
+[]
+Round 370 global test acc  71.6392
+Round 370 Fscore 
+
+[]
+Round 371 global test acc  71.1753
+Round 371 Fscore 
+
+[]
+Round 372 global test acc  71.0206
+Round 372 Fscore 
+
+[]
+Round 373 global test acc  71.7320
+Round 373 Fscore 
+
+[]
+Round 374 global test acc  71.5361
+Round 374 Fscore 
+
+[]
+Round 375 global test acc  71.5464
+Round 375 Fscore 
+
+[]
+Round 376 global test acc  71.8454
+Round 376 Fscore 
+
+[]
+Round 377 global test acc  71.8247
+Round 377 Fscore 
+
+[]
+Round 378 global test acc  70.5567
+Round 378 Fscore 
+
+[]
+Round 379 global test acc  71.8454
+Round 379 Fscore 
+
+[]
+Round 380 global test acc  71.6495
+Round 380 Fscore 
+
+[]
+Round 381 global test acc  71.9794
+Round 381 Fscore 
+
+[]
+Round 382 global test acc  70.8969
+Round 382 Fscore 
+
+[]
+Round 383 global test acc  72.4639
+Round 383 Fscore 
+
+[]
+Round 384 global test acc  71.4021
+Round 384 Fscore 
+
+[]
+Round 385 global test acc  71.9691
+Round 385 Fscore 
+
+[]
+Round 386 global test acc  71.6289
+Round 386 Fscore 
+
+[]
+Round 387 global test acc  71.5361
+Round 387 Fscore 
+
+[]
+Round 388 global test acc  70.7216
+Round 388 Fscore 
+
+[]
+Round 389 global test acc  72.0309
+Round 389 Fscore 
+
+[]
+Round 390 global test acc  71.8144
+Round 390 Fscore 
+
+[]
+Round 391 global test acc  71.7216
+Round 391 Fscore 
+
+[]
+Round 392 global test acc  71.8247
+Round 392 Fscore 
+
+[]
+Round 393 global test acc  71.9278
+Round 393 Fscore 
+
+[]
+Round 394 global test acc  72.0206
+Round 394 Fscore 
+
+[]
+Round 395 global test acc  71.0412
+Round 395 Fscore 
+
+[]
+Round 396 global test acc  71.5052
+Round 396 Fscore 
+
+[]
+Round 397 global test acc  71.9691
+Round 397 Fscore 
+
+[]
+Round 398 global test acc  71.5052
+Round 398 Fscore 
+
+[]
+Round 399 global test acc  71.6082
+Round 399 Fscore 
+
+[]
+Round 400 global test acc  71.6082
+Round 400 Fscore 
+
+[]
+Round 401 global test acc  71.0722
+Round 401 Fscore 
+
+[]
+Round 402 global test acc  71.6289
+Round 402 Fscore 
+
+[]
+Round 403 global test acc  71.0928
+Round 403 Fscore 
+
+[]
+Round 404 global test acc  71.1546
+Round 404 Fscore 
+
+[]
+Round 405 global test acc  70.5979
+Round 405 Fscore 
+
+[]
+Round 406 global test acc  71.5361
+Round 406 Fscore 
+
+[]
+Round 407 global test acc  71.9381
+Round 407 Fscore 
+
+[]
+Round 408 global test acc  71.7010
+Round 408 Fscore 
+
+[]
+Round 409 global test acc  72.0928
+Round 409 Fscore 
+
+[]
+Round 410 global test acc  71.6907
+Round 410 Fscore 
+
+[]
+Round 411 global test acc  71.9175
+Round 411 Fscore 
+
+[]
+Round 412 global test acc  71.8969
+Round 412 Fscore 
+
+[]
+Round 413 global test acc  71.6907
+Round 413 Fscore 
+
+[]
+Round 414 global test acc  71.8247
+Round 414 Fscore 
+
+[]
+Round 415 global test acc  71.9072
+Round 415 Fscore 
+
+[]
+Round 416 global test acc  71.9485
+Round 416 Fscore 
+
+[]
+Round 417 global test acc  70.8247
+Round 417 Fscore 
+
+[]
+Round 418 global test acc  71.8763
+Round 418 Fscore 
+
+[]
+Round 419 global test acc  71.7216
+Round 419 Fscore 
+
+[]
+Round 420 global test acc  71.5052
+Round 420 Fscore 
+
+[]
+Round 421 global test acc  71.2371
+Round 421 Fscore 
+
+[]
+Round 422 global test acc  72.0000
+Round 422 Fscore 
+
+[]
+Round 423 global test acc  71.9278
+Round 423 Fscore 
+
+[]
+Round 424 global test acc  69.6392
+Round 424 Fscore 
+
+[]
+Round 425 global test acc  71.8247
+Round 425 Fscore 
+
+[]
+Round 426 global test acc  71.7526
+Round 426 Fscore 
+
+[]
+Round 427 global test acc  71.6598
+Round 427 Fscore 
+
+[]
+Round 428 global test acc  71.0619
+Round 428 Fscore 
+
+[]
+Round 429 global test acc  72.0000
+Round 429 Fscore 
+
+[]
+Round 430 global test acc  70.9381
+Round 430 Fscore 
+
+[]
+Round 431 global test acc  72.0000
+Round 431 Fscore 
+
+[]
+Round 432 global test acc  71.2062
+Round 432 Fscore 
+
+[]
+Round 433 global test acc  71.7423
+Round 433 Fscore 
+
+[]
+Round 434 global test acc  71.8969
+Round 434 Fscore 
+
+[]
+Round 435 global test acc  71.8557
+Round 435 Fscore 
+
+[]
+Round 436 global test acc  70.9381
+Round 436 Fscore 
+
+[]
+Round 437 global test acc  71.0825
+Round 437 Fscore 
+
+[]
+Round 438 global test acc  71.5155
+Round 438 Fscore 
+
+[]
+Round 439 global test acc  71.7629
+Round 439 Fscore 
+
+[]
+Round 440 global test acc  70.2371
+Round 440 Fscore 
+
+[]
+Round 441 global test acc  71.7526
+Round 441 Fscore 
+
+[]
+Round 442 global test acc  71.3814
+Round 442 Fscore 
+
+[]
+Round 443 global test acc  71.6701
+Round 443 Fscore 
+
+[]
+Round 444 global test acc  68.6495
+Round 444 Fscore 
+
+[]
+Round 445 global test acc  70.9175
+Round 445 Fscore 
+
+[]
+Round 446 global test acc  71.2371
+Round 446 Fscore 
+
+[]
+Round 447 global test acc  70.0619
+Round 447 Fscore 
+
+[]
+Round 448 global test acc  71.0619
+Round 448 Fscore 
+
+[]
+Round 449 global test acc  71.7113
+Round 449 Fscore 
+
+[0.9999999403953552, 1.0, 1.0, 1.0, 1.0, 1.0, 0.9999999403953552, 0.9999999403953552, 1.0, 1.0, 1.0, 0.9999999403953552, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.9999999403953552, 1.0, 0.9999999403953552, 1.0, 1.0, 0.9999999403953552, 1.0, 0.9999999403953552, 0.9999999403953552, 1.0, 0.9999999403953552, 0.9999999403953552, 1.0, 1.0, 1.0, 1.0, 1.0, 0.9999999403953552, 1.0, 1.0, 1.0, 0.9999999403953552, 1.0, 1.0, 0.9999999403953552, 1.0, 0.9999999403953552, 1.0, 0.9999999403953552, 1.0, 1.0, 1.0, 0.9999999403953552, 1.0, 1.0, 1.0, 0.9999999403953552, 0.9999999403953552, 0.9999999403953552, 1.0, 0.9999999403953552, 1.0, 1.0, 0.9999999403953552, 0.9999999403953552, 1.0, 1.0, 1.0, 1.0, 1.0, 0.9999999403953552, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.9999999403953552, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.9999999403953552, 1.0, 1.0, 1.0, 0.9999999403953552, 1.0, 0.9999999403953552, 1.0, 1.0, 1.0, 1.0, 0.9999999403953552, 1.0, 0.9999999403953552, 1.0, 1.0]
+time : 8445.157630205154
+('algorithm', 'MR')
+('gpu', 0)
+('seed', 13)
+('save_dir', './record/')
+('rounds2', 450)
+('local_ep', 5)
+('frac2', 0.1)
+('num_users', 100)
+('local_bs', 32)
+('lr', 0.01)
+('model', 'resnet18')
+('num_classes', 10)
+('level_n_system', 0.0)
+('level_n_lowerb', 0.0)
+('alpha_dirichlet', 10)
+('non_iid_prob_class', 0.7)
+('dataset', 'cifar10')
+('iid', True)
+('LID_k', 20)
+('iteration1', 5)
+('rounds1', 200)
+('frac1', 0.01)
+('pretrained', False)
+('mixup', False)
+('alpha', 1)
+('beta', 5)
+('relabel_ratio', 0.5)
+('confidence_thres', 0.5)
+('clean_set_thres', 0.1)
+('fine_tuning', True)
+('correction', True)
+('T_pl', 100)
+('lambda_cen', 1.0)
+('lambda_e', 0.8)
+('num_gradual', 10)
+('forget_rate', 0.2)
+('lr_decay', 0.1)
+('schedule', [])
+('momentum', 0.5)
+('weight_decay', 0.0001)
+('feature_dim', 128)
+('plr', 0.01)
+('lamda', 15)
+('K', 5)
+('gamma', 1)
+('begin_sel', 10)
+('max_beta', 2)
+('mu', 0.01)
+('device', device(type='cuda', index=0))
+Files already downloaded and verified
+Files already downloaded and verified
+Round 0 global test acc  20.0515
+Round 0 Fscore 
+
+[]
+Round 1 global test acc  27.1959
+Round 1 Fscore 
+
+[]
+Round 2 global test acc  32.2268
+Round 2 Fscore 
+
+[]
+Round 3 global test acc  37.2268
+Round 3 Fscore 
+
+[]
+Round 4 global test acc  39.3402
+Round 4 Fscore 
+
+[]
+Round 5 global test acc  44.7835
+Round 5 Fscore 
+
+[]
+Round 6 global test acc  45.8041
+Round 6 Fscore 
+
+[]
+Round 7 global test acc  49.1959
+Round 7 Fscore 
+
+[]
+Round 8 global test acc  49.4742
+Round 8 Fscore 
+
+[]
+Round 9 global test acc  48.7216
+Round 9 Fscore 
+
+[]
+Round 10 global test acc  50.6701
+Round 10 Fscore 
+
+[]
+Round 11 global test acc  53.4639
+Round 11 Fscore 
+
+[]
+Round 12 global test acc  53.6392
+Round 12 Fscore 
+
+[]
+Round 13 global test acc  56.0000
+Round 13 Fscore 
+
+[]
+Round 14 global test acc  56.4021
+Round 14 Fscore 
+
+[]
+Round 15 global test acc  57.6598
+Round 15 Fscore 
+
+[]
+Round 16 global test acc  57.9175
+Round 16 Fscore 
+
+[]
+Round 17 global test acc  56.0825
+Round 17 Fscore 
+
+[]
+Round 18 global test acc  58.7526
+Round 18 Fscore 
+
+[]
+Round 19 global test acc  59.4536
+Round 19 Fscore 
+
+[]
+Round 20 global test acc  59.2474
+Round 20 Fscore 
+
+[]
+Round 21 global test acc  60.7320
+Round 21 Fscore 
+
+[]
+Round 22 global test acc  59.9485
+Round 22 Fscore 
+
+[]
+Round 23 global test acc  60.4536
+Round 23 Fscore 
+
+[]
+Round 24 global test acc  60.6082
+Round 24 Fscore 
+
+[]
+Round 25 global test acc  60.8041
+Round 25 Fscore 
+
+[]
+Round 26 global test acc  61.7629
+Round 26 Fscore 
+
+[]
+Round 27 global test acc  61.1856
+Round 27 Fscore 
+
+[]
+Round 28 global test acc  61.1753
+Round 28 Fscore 
+
+[]
+Round 29 global test acc  62.2062
+Round 29 Fscore 
+
+[]
+Round 30 global test acc  59.6186
+Round 30 Fscore 
+
+[]
+Round 31 global test acc  62.6701
+Round 31 Fscore 
+
+[]
+Round 32 global test acc  62.9175
+Round 32 Fscore 
+
+[]
+Round 33 global test acc  63.8969
+Round 33 Fscore 
+
+[]
+Round 34 global test acc  64.3093
+Round 34 Fscore 
+
+[]
+Round 35 global test acc  62.5567
+Round 35 Fscore 
+
+[]
+Round 36 global test acc  63.5464
+Round 36 Fscore 
+
+[]
+Round 37 global test acc  63.8557
+Round 37 Fscore 
+
+[]
+Round 38 global test acc  62.7423
+Round 38 Fscore 
+
+[]
+Round 39 global test acc  64.5876
+Round 39 Fscore 
+
+[]
+Round 40 global test acc  64.3196
+Round 40 Fscore 
+
+[]
+Round 41 global test acc  64.3608
+Round 41 Fscore 
+
+[]
+Round 42 global test acc  64.5567
+Round 42 Fscore 
+
+[]
+Round 43 global test acc  64.6598
+Round 43 Fscore 
+
+[]
+Round 44 global test acc  64.8763
+Round 44 Fscore 
+
+[]
+Round 45 global test acc  65.2887
+Round 45 Fscore 
+
+[]
+Round 46 global test acc  63.2062
+Round 46 Fscore 
+
+[]
+Round 47 global test acc  65.9485
+Round 47 Fscore 
+
+[]
+Round 48 global test acc  65.3505
+Round 48 Fscore 
+
+[]
+Round 49 global test acc  65.7320
+Round 49 Fscore 
+
+[]
+Round 50 global test acc  65.9278
+Round 50 Fscore 
+
+[]
+Round 51 global test acc  65.1134
+Round 51 Fscore 
+
+[]
+Round 52 global test acc  64.7629
+Round 52 Fscore 
+
+[]
+Round 53 global test acc  66.6907
+Round 53 Fscore 
+
+[]
+Round 54 global test acc  66.3093
+Round 54 Fscore 
+
+[]
+Round 55 global test acc  66.7732
+Round 55 Fscore 
+
+[]
+Round 56 global test acc  66.3711
+Round 56 Fscore 
+
+[]
+Round 57 global test acc  66.7732
+Round 57 Fscore 
+
+[]
+Round 58 global test acc  66.3402
+Round 58 Fscore 
+
+[]
+Round 59 global test acc  65.7320
+Round 59 Fscore 
+
+[]
+Round 60 global test acc  66.5979
+Round 60 Fscore 
+
+[]
+Round 61 global test acc  66.1856
+Round 61 Fscore 
+
+[]
+Round 62 global test acc  67.0825
+Round 62 Fscore 
+
+[]
+Round 63 global test acc  66.5361
+Round 63 Fscore 
+
+[]
+Round 64 global test acc  67.5773
+Round 64 Fscore 
+
+[]
+Round 65 global test acc  67.0412
+Round 65 Fscore 
+
+[]
+Round 66 global test acc  66.5773
+Round 66 Fscore 
+
+[]
+Round 67 global test acc  66.9794
+Round 67 Fscore 
+
+[]
+Round 68 global test acc  68.6598
+Round 68 Fscore 
+
+[]
+Round 69 global test acc  67.4330
+Round 69 Fscore 
+
+[]
+Round 70 global test acc  67.5567
+Round 70 Fscore 
+
+[]
+Round 71 global test acc  67.9381
+Round 71 Fscore 
+
+[]
+Round 72 global test acc  67.9278
+Round 72 Fscore 
+
+[]
+Round 73 global test acc  65.6289
+Round 73 Fscore 
+
+[]
+Round 74 global test acc  68.1340
+Round 74 Fscore 
+
+[]
+Round 75 global test acc  67.2474
+Round 75 Fscore 
+
+[]
+Round 76 global test acc  65.6289
+Round 76 Fscore 
+
+[]
+Round 77 global test acc  67.6186
+Round 77 Fscore 
+
+[]
+Round 78 global test acc  67.4639
+Round 78 Fscore 
+
+[]
+Round 79 global test acc  67.9691
+Round 79 Fscore 
+
+[]
+Round 80 global test acc  67.9794
+Round 80 Fscore 
+
+[]
+Round 81 global test acc  67.4021
+Round 81 Fscore 
+
+[]
+Round 82 global test acc  68.4639
+Round 82 Fscore 
+
+[]
+Round 83 global test acc  68.0309
+Round 83 Fscore 
+
+[]
+Round 84 global test acc  68.7113
+Round 84 Fscore 
+
+[]
+Round 85 global test acc  65.4742
+Round 85 Fscore 
+
+[]
+Round 86 global test acc  67.5567
+Round 86 Fscore 
+
+[]
+Round 87 global test acc  68.5155
+Round 87 Fscore 
+
+[]
+Round 88 global test acc  69.3402
+Round 88 Fscore 
+
+[]
+Round 89 global test acc  68.3402
+Round 89 Fscore 
+
+[]
+Round 90 global test acc  69.2371
+Round 90 Fscore 
+
+[]
+Round 91 global test acc  65.7732
+Round 91 Fscore 
+
+[]
+Round 92 global test acc  67.5464
+Round 92 Fscore 
+
+[]
+Round 93 global test acc  68.5773
+Round 93 Fscore 
+
+[]
+Round 94 global test acc  67.6392
+Round 94 Fscore 
+
+[]
+Round 95 global test acc  68.8557
+Round 95 Fscore 
+
+[]
+Round 96 global test acc  66.5670
+Round 96 Fscore 
+
+[]
+Round 97 global test acc  68.5464
+Round 97 Fscore 
+
+[]
+Round 98 global test acc  67.1237
+Round 98 Fscore 
+
+[]
+Round 99 global test acc  68.9794
+Round 99 Fscore 
+
+[]
+Round 100 global test acc  67.8041
+Round 100 Fscore 
+
+[]
+Round 101 global test acc  68.4433
+Round 101 Fscore 
+
+[]
+Round 102 global test acc  66.8557
+Round 102 Fscore 
+
+[]
+Round 103 global test acc  67.1649
+Round 103 Fscore 
+
+[]
+Round 104 global test acc  68.3814
+Round 104 Fscore 
+
+[]
+Round 105 global test acc  69.4742
+Round 105 Fscore 
+
+[]
+Round 106 global test acc  69.5155
+Round 106 Fscore 
+
+[]
+Round 107 global test acc  69.4639
+Round 107 Fscore 
+
+[]
+Round 108 global test acc  69.7113
+Round 108 Fscore 
+
+[]
+Round 109 global test acc  66.8454
+Round 109 Fscore 
+
+[]
+Round 110 global test acc  68.7938
+Round 110 Fscore 
+
+[]
+Round 111 global test acc  68.5876
+Round 111 Fscore 
+
+[]
+Round 112 global test acc  69.4227
+Round 112 Fscore 
+
+[]
+Round 113 global test acc  68.7320
+Round 113 Fscore 
+
+[]
+Round 114 global test acc  69.1546
+Round 114 Fscore 
+
+[]
+Round 115 global test acc  69.2062
+Round 115 Fscore 
+
+[]
+Round 116 global test acc  66.9072
+Round 116 Fscore 
+
+[]
+Round 117 global test acc  69.1237
+Round 117 Fscore 
+
+[]
+Round 118 global test acc  67.1546
+Round 118 Fscore 
+
+[]
+Round 119 global test acc  70.0619
+Round 119 Fscore 
+
+[]
+Round 120 global test acc  69.3814
+Round 120 Fscore 
+
+[]
+Round 121 global test acc  67.9278
+Round 121 Fscore 
+
+[]
+Round 122 global test acc  68.6392
+Round 122 Fscore 
+
+[]
+Round 123 global test acc  68.9588
+Round 123 Fscore 
+
+[]
+Round 124 global test acc  69.6082
+Round 124 Fscore 
+
+[]
+Round 125 global test acc  68.4227
+Round 125 Fscore 
+
+[]
+Round 126 global test acc  68.8351
+Round 126 Fscore 
+
+[]
+Round 127 global test acc  70.4124
+Round 127 Fscore 
+
+[]
+Round 128 global test acc  70.1443
+Round 128 Fscore 
+
+[]
+Round 129 global test acc  68.2784
+Round 129 Fscore 
+
+[]
+Round 130 global test acc  69.8660
+Round 130 Fscore 
+
+[]
+Round 131 global test acc  70.2371
+Round 131 Fscore 
+
+[]
+Round 132 global test acc  70.0619
+Round 132 Fscore 
+
+[]
+Round 133 global test acc  70.3196
+Round 133 Fscore 
+
+[]
+Round 134 global test acc  67.2371
+Round 134 Fscore 
+
+[]
+Round 135 global test acc  67.9485
+Round 135 Fscore 
+
+[]
+Round 136 global test acc  69.1237
+Round 136 Fscore 
+
+[]
+Round 137 global test acc  69.6392
+Round 137 Fscore 
+
+[]
+Round 138 global test acc  69.0103
+Round 138 Fscore 
+
+[]
+Round 139 global test acc  67.7526
+Round 139 Fscore 
+
+[]
+Round 140 global test acc  67.3402
+Round 140 Fscore 
+
+[]
+Round 141 global test acc  69.1649
+Round 141 Fscore 
+
+[]
+Round 142 global test acc  69.9588
+Round 142 Fscore 
+
+[]
+Round 143 global test acc  69.6082
+Round 143 Fscore 
+
+[]
+Round 144 global test acc  69.5773
+Round 144 Fscore 
+
+[]
+Round 145 global test acc  69.3402
+Round 145 Fscore 
+
+[]
+Round 146 global test acc  68.2165
+Round 146 Fscore 
+
+[]
+Round 147 global test acc  67.6082
+Round 147 Fscore 
+
+[]
+Round 148 global test acc  69.1237
+Round 148 Fscore 
+
+[]
+Round 149 global test acc  69.6598
+Round 149 Fscore 
+
+[]
+Round 150 global test acc  69.1340
+Round 150 Fscore 
+
+[]
+Round 151 global test acc  67.8144
+Round 151 Fscore 
+
+[]
+Round 152 global test acc  69.4021
+Round 152 Fscore 
+
+[]
+Round 153 global test acc  69.2371
+Round 153 Fscore 
+
+[]
+Round 154 global test acc  68.1340
+Round 154 Fscore 
+
+[]
+Round 155 global test acc  69.1134
+Round 155 Fscore 
+
+[]
+Round 156 global test acc  69.4845
+Round 156 Fscore 
+
+[]
+Round 157 global test acc  69.9691
+Round 157 Fscore 
+
+[]
+Round 158 global test acc  68.1031
+Round 158 Fscore 
+
+[]
+Round 159 global test acc  69.0722
+Round 159 Fscore 
+
+[]
+Round 160 global test acc  69.6082
+Round 160 Fscore 
+
+[]
+Round 161 global test acc  69.1546
+Round 161 Fscore 
+
+[]
+Round 162 global test acc  67.5361
+Round 162 Fscore 
+
+[]
+Round 163 global test acc  68.7423
+Round 163 Fscore 
+
+[]
+Round 164 global test acc  69.0825
+Round 164 Fscore 
+
+[]
+Round 165 global test acc  70.0928
+Round 165 Fscore 
+
+[]
+Round 166 global test acc  69.3814
+Round 166 Fscore 
+
+[]
+Round 167 global test acc  68.8660
+Round 167 Fscore 
+
+[]
+Round 168 global test acc  69.4021
+Round 168 Fscore 
+
+[]
+Round 169 global test acc  70.3196
+Round 169 Fscore 
+
+[]
+Round 170 global test acc  70.0619
+Round 170 Fscore 
+
+[]
+Round 171 global test acc  69.4742
+Round 171 Fscore 
+
+[]
+Round 172 global test acc  68.8041
+Round 172 Fscore 
+
+[]
+Round 173 global test acc  69.1031
+Round 173 Fscore 
+
+[]
+Round 174 global test acc  69.8763
+Round 174 Fscore 
+
+[]
+Round 175 global test acc  69.4227
+Round 175 Fscore 
+
+[]
+Round 176 global test acc  70.3918
+Round 176 Fscore 
+
+[]
+Round 177 global test acc  70.7423
+Round 177 Fscore 
+
+[]
+Round 178 global test acc  68.6804
+Round 178 Fscore 
+
+[]
+Round 179 global test acc  70.4742
+Round 179 Fscore 
+
+[]
+Round 180 global test acc  70.0206
+Round 180 Fscore 
+
+[]
+Round 181 global test acc  67.7938
+Round 181 Fscore 
+
+[]
+Round 182 global test acc  70.0619
+Round 182 Fscore 
+
+[]
+Round 183 global test acc  71.0103
+Round 183 Fscore 
+
+[]
+Round 184 global test acc  69.0206
+Round 184 Fscore 
+
+[]
+Round 185 global test acc  70.8247
+Round 185 Fscore 
+
+[]
+Round 186 global test acc  70.6392
+Round 186 Fscore 
+
+[]
+Round 187 global test acc  70.2990
+Round 187 Fscore 
+
+[]
+Round 188 global test acc  70.4845
+Round 188 Fscore 
+
+[]
+Round 189 global test acc  69.9175
+Round 189 Fscore 
+
+[]
+Round 190 global test acc  68.8969
+Round 190 Fscore 
+
+[]
+Round 191 global test acc  70.1340
+Round 191 Fscore 
+
+[]
+Round 192 global test acc  70.2268
+Round 192 Fscore 
+
+[]
+Round 193 global test acc  69.2268
+Round 193 Fscore 
+
+[]
+Round 194 global test acc  70.4742
+Round 194 Fscore 
+
+[]
+Round 195 global test acc  70.1546
+Round 195 Fscore 
+
+[]
+Round 196 global test acc  70.1340
+Round 196 Fscore 
+
+[]
+Round 197 global test acc  69.9175
+Round 197 Fscore 
+
+[]
+Round 198 global test acc  70.0928
+Round 198 Fscore 
+
+[]
+Round 199 global test acc  69.5464
+Round 199 Fscore 
+
+[]
+Round 200 global test acc  70.7526
+Round 200 Fscore 
+
+[]
+Round 201 global test acc  69.3402
+Round 201 Fscore 
+
+[]
+Round 202 global test acc  71.0103
+Round 202 Fscore 
+
+[]
+Round 203 global test acc  68.7010
+Round 203 Fscore 
+
+[]
+Round 204 global test acc  70.1134
+Round 204 Fscore 
+
+[]
+Round 205 global test acc  70.4433
+Round 205 Fscore 
+
+[]
+Round 206 global test acc  70.9278
+Round 206 Fscore 
+
+[]
+Round 207 global test acc  70.9485
+Round 207 Fscore 
+
+[]
+Round 208 global test acc  70.8144
+Round 208 Fscore 
+
+[]
+Round 209 global test acc  69.3505
+Round 209 Fscore 
+
+[]
+Round 210 global test acc  70.3402
+Round 210 Fscore 
+
+[]
+Round 211 global test acc  71.0309
+Round 211 Fscore 
+
+[]
+Round 212 global test acc  69.9897
+Round 212 Fscore 
+
+[]
+Round 213 global test acc  70.9897
+Round 213 Fscore 
+
+[]
+Round 214 global test acc  70.8866
+Round 214 Fscore 
+
+[]
+Round 215 global test acc  70.0825
+Round 215 Fscore 
+
+[]
+Round 216 global test acc  70.2474
+Round 216 Fscore 
+
+[]
+Round 217 global test acc  70.7629
+Round 217 Fscore 
+
+[]
+Round 218 global test acc  70.9175
+Round 218 Fscore 
+
+[]
+Round 219 global test acc  65.9072
+Round 219 Fscore 
+
+[]
+Round 220 global test acc  70.8247
+Round 220 Fscore 
+
+[]
+Round 221 global test acc  68.0515
+Round 221 Fscore 
+
+[]
+Round 222 global test acc  68.7010
+Round 222 Fscore 
+
+[]
+Round 223 global test acc  70.5464
+Round 223 Fscore 
+
+[]
+Round 224 global test acc  70.0103
+Round 224 Fscore 
+
+[]
+Round 225 global test acc  69.5567
+Round 225 Fscore 
+
+[]
+Round 226 global test acc  69.1031
+Round 226 Fscore 
+
+[]
+Round 227 global test acc  70.2474
+Round 227 Fscore 
+
+[]
+Round 228 global test acc  69.9897
+Round 228 Fscore 
+
+[]
+Round 229 global test acc  70.0619
+Round 229 Fscore 
+
+[]
+Round 230 global test acc  69.6598
+Round 230 Fscore 
+
+[]
+Round 231 global test acc  70.9278
+Round 231 Fscore 
+
+[]
+Round 232 global test acc  70.3505
+Round 232 Fscore 
+
+[]
+Round 233 global test acc  70.3814
+Round 233 Fscore 
+
+[]
+Round 234 global test acc  70.7732
+Round 234 Fscore 
+
+[]
+Round 235 global test acc  70.1340
+Round 235 Fscore 
+
+[]
+Round 236 global test acc  69.8144
+Round 236 Fscore 
+
+[]
+Round 237 global test acc  70.8144
+Round 237 Fscore 
+
+[]
+Round 238 global test acc  70.0103
+Round 238 Fscore 
+
+[]
+Round 239 global test acc  70.9485
+Round 239 Fscore 
+
+[]
+Round 240 global test acc  69.9794
+Round 240 Fscore 
+
+[]
+Round 241 global test acc  69.9381
+Round 241 Fscore 
+
+[]
+Round 242 global test acc  70.0000
+Round 242 Fscore 
+
+[]
+Round 243 global test acc  68.9175
+Round 243 Fscore 
+
+[]
+Round 244 global test acc  69.8454
+Round 244 Fscore 
+
+[]
+Round 245 global test acc  70.8144
+Round 245 Fscore 
+
+[]
+Round 246 global test acc  70.4536
+Round 246 Fscore 
+
+[]
+Round 247 global test acc  71.0412
+Round 247 Fscore 
+
+[]
+Round 248 global test acc  70.5464
+Round 248 Fscore 
+
+[]
+Round 249 global test acc  71.0825
+Round 249 Fscore 
+
+[]
+Round 250 global test acc  70.6392
+Round 250 Fscore 
+
+[]
+Round 251 global test acc  70.3608
+Round 251 Fscore 
+
+[]
+Round 252 global test acc  70.7938
+Round 252 Fscore 
+
+[]
+Round 253 global test acc  69.2680
+Round 253 Fscore 
+
+[]
+Round 254 global test acc  71.3299
+Round 254 Fscore 
+
+[]
+Round 255 global test acc  69.5155
+Round 255 Fscore 
+
+[]
+Round 256 global test acc  71.1134
+Round 256 Fscore 
+
+[]
+Round 257 global test acc  70.0515
+Round 257 Fscore 
+
+[]
+Round 258 global test acc  70.5155
+Round 258 Fscore 
+
+[]
+Round 259 global test acc  70.5876
+Round 259 Fscore 
+
+[]
+Round 260 global test acc  70.0515
+Round 260 Fscore 
+
+[]
+Round 261 global test acc  70.5876
+Round 261 Fscore 
+
+[]
+Round 262 global test acc  68.7113
+Round 262 Fscore 
+
+[]
+Round 263 global test acc  71.3299
+Round 263 Fscore 
+
+[]
+Round 264 global test acc  71.9278
+Round 264 Fscore 
+
+[]
+Round 265 global test acc  71.5155
+Round 265 Fscore 
+
+[]
+Round 266 global test acc  70.0309
+Round 266 Fscore 
+
+[]
+Round 267 global test acc  70.3196
+Round 267 Fscore 
+
+[]
+Round 268 global test acc  71.1959
+Round 268 Fscore 
+
+[]
+Round 269 global test acc  69.4639
+Round 269 Fscore 
+
+[]
+Round 270 global test acc  71.0412
+Round 270 Fscore 
+
+[]
+Round 271 global test acc  71.5464
+Round 271 Fscore 
+
+[]
+Round 272 global test acc  71.0515
+Round 272 Fscore 
+
+[]
+Round 273 global test acc  70.9794
+Round 273 Fscore 
+
+[]
+Round 274 global test acc  71.8144
+Round 274 Fscore 
+
+[]
+Round 275 global test acc  67.2474
+Round 275 Fscore 
+
+[]
+Round 276 global test acc  71.6082
+Round 276 Fscore 
+
+[]
+Round 277 global test acc  71.5052
+Round 277 Fscore 
+
+[]
+Round 278 global test acc  70.1959
+Round 278 Fscore 
+
+[]
+Round 279 global test acc  69.7010
+Round 279 Fscore 
+
+[]
+Round 280 global test acc  70.9175
+Round 280 Fscore 
+
+[]
+Round 281 global test acc  70.9588
+Round 281 Fscore 
+
+[]
+Round 282 global test acc  70.0515
+Round 282 Fscore 
+
+[]
+Round 283 global test acc  69.0619
+Round 283 Fscore 
+
+[]
+Round 284 global test acc  70.9588
+Round 284 Fscore 
+
+[]
+Round 285 global test acc  67.9897
+Round 285 Fscore 
+
+[]
+Round 286 global test acc  69.8557
+Round 286 Fscore 
+
+[]
+Round 287 global test acc  70.2062
+Round 287 Fscore 
+
+[]
+Round 288 global test acc  70.7113
+Round 288 Fscore 
+
+[]
+Round 289 global test acc  71.0619
+Round 289 Fscore 
+
+[]
+Round 290 global test acc  68.9485
+Round 290 Fscore 
+
+[]
+Round 291 global test acc  71.0206
+Round 291 Fscore 
+
+[]
+Round 292 global test acc  70.2577
+Round 292 Fscore 
+
+[]
+Round 293 global test acc  71.0103
+Round 293 Fscore 
+
+[]
+Round 294 global test acc  71.4536
+Round 294 Fscore 
+
+[]
+Round 295 global test acc  70.8041
+Round 295 Fscore 
+
+[]
+Round 296 global test acc  70.6598
+Round 296 Fscore 
+
+[]
+Round 297 global test acc  70.0309
+Round 297 Fscore 
+
+[]
+Round 298 global test acc  69.6907
+Round 298 Fscore 
+
+[]
+Round 299 global test acc  70.7629
+Round 299 Fscore 
+
+[]
+Round 300 global test acc  70.7732
+Round 300 Fscore 
+
+[]
+Round 301 global test acc  69.7216
+Round 301 Fscore 
+
+[]
+Round 302 global test acc  70.6804
+Round 302 Fscore 
+
+[]
+Round 303 global test acc  70.5155
+Round 303 Fscore 
+
+[]
+Round 304 global test acc  70.9278
+Round 304 Fscore 
+
+[]
+Round 305 global test acc  70.8969
+Round 305 Fscore 
+
+[]
+Round 306 global test acc  71.0000
+Round 306 Fscore 
+
+[]
+Round 307 global test acc  70.6289
+Round 307 Fscore 
+
+[]
+Round 308 global test acc  69.4433
+Round 308 Fscore 
+
+[]
+Round 309 global test acc  69.5052
+Round 309 Fscore 
+
+[]
+Round 310 global test acc  70.3093
+Round 310 Fscore 
+
+[]
+Round 311 global test acc  70.7010
+Round 311 Fscore 
+
+[]
+Round 312 global test acc  70.5670
+Round 312 Fscore 
+
+[]
+Round 313 global test acc  69.6907
+Round 313 Fscore 
+
+[]
+Round 314 global test acc  70.5567
+Round 314 Fscore 
+
+[]
+Round 315 global test acc  69.6907
+Round 315 Fscore 
+
+[]
+Round 316 global test acc  70.0000
+Round 316 Fscore 
+
+[]
+Round 317 global test acc  68.9691
+Round 317 Fscore 
+
+[]
+Round 318 global test acc  71.0412
+Round 318 Fscore 
+
+[]
+Round 319 global test acc  70.3918
+Round 319 Fscore 
+
+[]
+Round 320 global test acc  68.9897
+Round 320 Fscore 
+
+[]
+Round 321 global test acc  71.3814
+Round 321 Fscore 
+
+[]
+Round 322 global test acc  70.6701
+Round 322 Fscore 
+
+[]
+Round 323 global test acc  71.1237
+Round 323 Fscore 
+
+[]
+Round 324 global test acc  71.0206
+Round 324 Fscore 
+
+[]
+Round 325 global test acc  69.6701
+Round 325 Fscore 
+
+[]
+Round 326 global test acc  71.0309
+Round 326 Fscore 
+
+[]
+Round 327 global test acc  70.2990
+Round 327 Fscore 
+
+[]
+Round 328 global test acc  70.8763
+Round 328 Fscore 
+
+[]
+Round 329 global test acc  71.3918
+Round 329 Fscore 
+
+[]
+Round 330 global test acc  71.3505
+Round 330 Fscore 
+
+[]
+Round 331 global test acc  71.2577
+Round 331 Fscore 
+
+[]
+Round 332 global test acc  70.8763
+Round 332 Fscore 
+
+[]
+Round 333 global test acc  70.7938
+Round 333 Fscore 
+
+[]
+Round 334 global test acc  71.0928
+Round 334 Fscore 
+
+[]
+Round 335 global test acc  68.8763
+Round 335 Fscore 
+
+[]
+Round 336 global test acc  70.4227
+Round 336 Fscore 
+
+[]
+Round 337 global test acc  70.8660
+Round 337 Fscore 
+
+[]
+Round 338 global test acc  70.1340
+Round 338 Fscore 
+
+[]
+Round 339 global test acc  71.2062
+Round 339 Fscore 
+
+[]
+Round 340 global test acc  71.0722
+Round 340 Fscore 
+
+[]
+Round 341 global test acc  71.3402
+Round 341 Fscore 
+
+[]
+Round 342 global test acc  70.8660
+Round 342 Fscore 
+
+[]
+Round 343 global test acc  71.7113
+Round 343 Fscore 
+
+[]
+Round 344 global test acc  71.1959
+Round 344 Fscore 
+
+[]
+Round 345 global test acc  70.9897
+Round 345 Fscore 
+
+[]
+Round 346 global test acc  71.4845
+Round 346 Fscore 
+
+[]
+Round 347 global test acc  70.6804
+Round 347 Fscore 
+
+[]
+Round 348 global test acc  71.0412
+Round 348 Fscore 
+
+[]
+Round 349 global test acc  70.8144
+Round 349 Fscore 
+
+[]
+Round 350 global test acc  70.7113
+Round 350 Fscore 
+
+[]
+Round 351 global test acc  69.5258
+Round 351 Fscore 
+
+[]
+Round 352 global test acc  71.3402
+Round 352 Fscore 
+
+[]
+Round 353 global test acc  70.5773
+Round 353 Fscore 
+
+[]
+Round 354 global test acc  71.7938
+Round 354 Fscore 
+
+[]
+Round 355 global test acc  71.6804
+Round 355 Fscore 
+
+[]
+Round 356 global test acc  70.7629
+Round 356 Fscore 
+
+[]
+Round 357 global test acc  70.8454
+Round 357 Fscore 
+
+[]
+Round 358 global test acc  68.3505
+Round 358 Fscore 
+
+[]
+Round 359 global test acc  70.0515
+Round 359 Fscore 
+
+[]
+Round 360 global test acc  71.1856
+Round 360 Fscore 
+
+[]
+Round 361 global test acc  67.2165
+Round 361 Fscore 
+
+[]
+Round 362 global test acc  70.8351
+Round 362 Fscore 
+
+[]
+Round 363 global test acc  70.7320
+Round 363 Fscore 
+
+[]
+Round 364 global test acc  70.2887
+Round 364 Fscore 
+
+[]
+Round 365 global test acc  71.5361
+Round 365 Fscore 
+
+[]
+Round 366 global test acc  71.6289
+Round 366 Fscore 
+
+[]
+Round 367 global test acc  70.0722
+Round 367 Fscore 
+
+[]
+Round 368 global test acc  71.1856
+Round 368 Fscore 
+
+[]
+Round 369 global test acc  70.2474
+Round 369 Fscore 
+
+[]
+Round 370 global test acc  71.4227
+Round 370 Fscore 
+
+[]
+Round 371 global test acc  70.3608
+Round 371 Fscore 
+
+[]
+Round 372 global test acc  68.6701
+Round 372 Fscore 
+
+[]
+Round 373 global test acc  70.8454
+Round 373 Fscore 
+
+[]
+Round 374 global test acc  71.0309
+Round 374 Fscore 
+
+[]
+Round 375 global test acc  71.2577
+Round 375 Fscore 
+
+[]
+Round 376 global test acc  70.3402
+Round 376 Fscore 
+
+[]
+Round 377 global test acc  70.6804
+Round 377 Fscore 
+
+[]
+Round 378 global test acc  71.2474
+Round 378 Fscore 
+
+[]
+Round 379 global test acc  71.4639
+Round 379 Fscore 
+
+[]
+Round 380 global test acc  70.8454
+Round 380 Fscore 
+
+[]
+Round 381 global test acc  71.2268
+Round 381 Fscore 
+
+[]
+Round 382 global test acc  71.6598
+Round 382 Fscore 
+
+[]
+Round 383 global test acc  71.5773
+Round 383 Fscore 
+
+[]
+Round 384 global test acc  69.9897
+Round 384 Fscore 
+
+[]
+Round 385 global test acc  71.2784
+Round 385 Fscore 
+
+[]
+Round 386 global test acc  71.5670
+Round 386 Fscore 
+
+[]
+Round 387 global test acc  72.3093
+Round 387 Fscore 
+
+[]
+Round 388 global test acc  70.9794
+Round 388 Fscore 
+
+[]
+Round 389 global test acc  70.8041
+Round 389 Fscore 
+
+[]
+Round 390 global test acc  72.1856
+Round 390 Fscore 
+
+[]
+Round 391 global test acc  71.6701
+Round 391 Fscore 
+
+[]
+Round 392 global test acc  71.0000
+Round 392 Fscore 
+
+[]
+Round 393 global test acc  71.5876
+Round 393 Fscore 
+
+[]
+Round 394 global test acc  71.4433
+Round 394 Fscore 
+
+[]
+Round 395 global test acc  70.3918
+Round 395 Fscore 
+
+[]
+Round 396 global test acc  71.7526
+Round 396 Fscore 
+
+[]
+Round 397 global test acc  71.5052
+Round 397 Fscore 
+
+[]
+Round 398 global test acc  71.5773
+Round 398 Fscore 
+
+[]
+Round 399 global test acc  70.3505
+Round 399 Fscore 
+
+[]
+Round 400 global test acc  71.4227
+Round 400 Fscore 
+
+[]
+Round 401 global test acc  71.7010
+Round 401 Fscore 
+
+[]
+Round 402 global test acc  70.7320
+Round 402 Fscore 
+
+[]
+Round 403 global test acc  69.5155
+Round 403 Fscore 
+
+[]
+Round 404 global test acc  70.7835
+Round 404 Fscore 
+
+[]
+Round 405 global test acc  70.3711
+Round 405 Fscore 
+
+[]
+Round 406 global test acc  71.3918
+Round 406 Fscore 
+
+[]
+Round 407 global test acc  71.0928
+Round 407 Fscore 
+
+[]
+Round 408 global test acc  71.0722
+Round 408 Fscore 
+
+[]
+Round 409 global test acc  71.5979
+Round 409 Fscore 
+
+[]
+Round 410 global test acc  70.8144
+Round 410 Fscore 
+
+[]
+Round 411 global test acc  71.6598
+Round 411 Fscore 
+
+[]
+Round 412 global test acc  71.2784
+Round 412 Fscore 
+
+[]
+Round 413 global test acc  68.5464
+Round 413 Fscore 
+
+[]
+Round 414 global test acc  70.8660
+Round 414 Fscore 
+
+[]
+Round 415 global test acc  71.0722
+Round 415 Fscore 
+
+[]
+Round 416 global test acc  71.2887
+Round 416 Fscore 
+
+[]
+Round 417 global test acc  70.8866
+Round 417 Fscore 
+
+[]
+Round 418 global test acc  70.2577
+Round 418 Fscore 
+
+[]
+Round 419 global test acc  70.8454
+Round 419 Fscore 
+
+[]
+Round 420 global test acc  70.3196
+Round 420 Fscore 
+
+[]
+Round 421 global test acc  71.7629
+Round 421 Fscore 
+
+[]
+Round 422 global test acc  71.2062
+Round 422 Fscore 
+
+[]
+Round 423 global test acc  70.9691
+Round 423 Fscore 
+
+[]
+Round 424 global test acc  70.1856
+Round 424 Fscore 
+
+[]
+Round 425 global test acc  70.0412
+Round 425 Fscore 
+
+[]
+Round 426 global test acc  70.6701
+Round 426 Fscore 
+
+[]
+Round 427 global test acc  71.0722
+Round 427 Fscore 
+
+[]
+Round 428 global test acc  70.9588
+Round 428 Fscore 
+
+[]
+Round 429 global test acc  70.0722
+Round 429 Fscore 
+
+[]
+Round 430 global test acc  71.2990
+Round 430 Fscore 
+
+[]
+Round 431 global test acc  71.4330
+Round 431 Fscore 
+
+[]
+Round 432 global test acc  71.1134
+Round 432 Fscore 
+
+[]
+Round 433 global test acc  70.5567
+Round 433 Fscore 
+
+[]
+Round 434 global test acc  71.0825
+Round 434 Fscore 
+
+[]
+Round 435 global test acc  70.1753
+Round 435 Fscore 
+
+[]
+Round 436 global test acc  71.4948
+Round 436 Fscore 
+
+[]
+Round 437 global test acc  71.1959
+Round 437 Fscore 
+
+[]
+Round 438 global test acc  71.0515
+Round 438 Fscore 
+
+[]
+Round 439 global test acc  70.8660
+Round 439 Fscore 
+
+[]
+Round 440 global test acc  69.8247
+Round 440 Fscore 
+
+[]
+Round 441 global test acc  70.7423
+Round 441 Fscore 
+
+[]
+Round 442 global test acc  71.3093
+Round 442 Fscore 
+
+[]
+Round 443 global test acc  70.8557
+Round 443 Fscore 
+
+[]
+Round 444 global test acc  71.2062
+Round 444 Fscore 
+
+[]
+Round 445 global test acc  71.5155
+Round 445 Fscore 
+
+[]
+Round 446 global test acc  69.8351
+Round 446 Fscore 
+
+[]
+Round 447 global test acc  70.5670
+Round 447 Fscore 
+
+[]
+Round 448 global test acc  69.0722
+Round 448 Fscore 
+
+[]
+Round 449 global test acc  71.0103
+Round 449 Fscore 
+
+[0.9999999403953552, 1.0, 1.0, 0.9999999403953552, 0.9999999403953552, 1.0, 1.0, 1.0, 0.9999999403953552, 0.9999999403953552, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.9999999403953552, 0.9999999403953552, 1.0, 0.9999999403953552, 0.9999999403953552, 0.9999999403953552, 1.0, 1.0, 0.9999999403953552, 1.0, 0.9999999403953552, 0.9999999403953552, 1.0, 1.0, 0.9999999403953552, 1.0, 1.0, 1.0, 0.9999999403953552, 0.9999999403953552, 1.0, 1.0, 0.9999999403953552, 0.9999999403953552, 0.9999999403953552, 1.0, 1.0, 0.9999999403953552, 1.0, 0.9999999403953552, 0.9999999403953552, 1.0, 1.0, 0.9999999403953552, 1.0, 0.9999999403953552, 1.0, 0.9999999403953552, 0.9999999403953552, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.9999999403953552, 1.0, 1.0, 1.0, 1.0, 0.9999999403953552, 1.0, 1.0, 1.0, 0.9999999403953552, 1.0, 1.0, 1.0, 0.9999999403953552, 1.0, 0.9999999403953552, 0.9999999403953552, 1.0, 1.0, 1.0, 1.0, 1.0, 0.9999999403953552, 1.0, 1.0]
+time : 6483.503514051437
+('algorithm', 'MR')
+('gpu', 0)
+('seed', 13)
+('save_dir', './record/')
+('rounds2', 450)
+('local_ep', 5)
+('frac2', 0.1)
+('num_users', 100)
+('local_bs', 32)
+('lr', 0.01)
+('model', 'resnet18')
+('num_classes', 10)
+('level_n_system', 0.0)
+('level_n_lowerb', 0.0)
+('alpha_dirichlet', 10)
+('non_iid_prob_class', 0.7)
+('dataset', 'cifar10')
+('iid', True)
+('LID_k', 20)
+('iteration1', 5)
+('rounds1', 200)
+('frac1', 0.01)
+('pretrained', False)
+('mixup', False)
+('alpha', 1)
+('beta', 5)
+('relabel_ratio', 0.5)
+('confidence_thres', 0.5)
+('clean_set_thres', 0.1)
+('fine_tuning', True)
+('correction', True)
+('T_pl', 100)
+('lambda_cen', 1.0)
+('lambda_e', 0.8)
+('num_gradual', 10)
+('forget_rate', 0.2)
+('lr_decay', 0.1)
+('schedule', [])
+('momentum', 0.5)
+('weight_decay', 0.0001)
+('feature_dim', 128)
+('plr', 0.01)
+('lamda', 15)
+('K', 5)
+('gamma', 1)
+('begin_sel', 10)
+('max_beta', 2)
+('mu', 0.01)
+('device', device(type='cuda', index=0))
+Files already downloaded and verified
+Files already downloaded and verified
+Round 0 global test acc  24.3918
+Round 0 Fscore 
+
+[]
+Round 1 global test acc  32.2371
+Round 1 Fscore 
+
+[]
+Round 2 global test acc  37.4639
+Round 2 Fscore 
+
+[]
+Round 3 global test acc  39.7526
+Round 3 Fscore 
+
+[]
+Round 4 global test acc  40.4639
+Round 4 Fscore 
+
+[]
+Round 5 global test acc  41.0928
+Round 5 Fscore 
+
+[]
+Round 6 global test acc  43.8454
+Round 6 Fscore 
+
+[]
+Round 7 global test acc  46.6598
+Round 7 Fscore 
+
+[]
+Round 8 global test acc  47.5361
+Round 8 Fscore 
+
+[]
+Round 9 global test acc  49.5258
+Round 9 Fscore 
+
+[]
+Round 10 global test acc  48.9794
+Round 10 Fscore 
+
+[]
+Round 11 global test acc  52.5979
+Round 11 Fscore 
+
+[]
+Round 12 global test acc  52.5979
+Round 12 Fscore 
+
+[]
+Round 13 global test acc  51.9485
+Round 13 Fscore 
+
+[]
+Round 14 global test acc  54.5773
+Round 14 Fscore 
+
+[]
+Round 15 global test acc  55.6598
+Round 15 Fscore 
+
+[]
+Round 16 global test acc  56.1031
+Round 16 Fscore 
+
+[]
+Round 17 global test acc  55.6701
+Round 17 Fscore 
+
+[]
+Round 18 global test acc  57.3299
+Round 18 Fscore 
+
+[]
+Round 19 global test acc  55.6907
+Round 19 Fscore 
+
+[]
+Round 20 global test acc  56.8763
+Round 20 Fscore 
+
+[]
+Round 21 global test acc  53.9072
+Round 21 Fscore 
+
+[]
+Round 22 global test acc  58.2268
+Round 22 Fscore 
+
+[]
+Round 23 global test acc  58.9175
+Round 23 Fscore 
+
+[]
+Round 24 global test acc  58.5258
+Round 24 Fscore 
+
+[]
+Round 25 global test acc  59.9588
+Round 25 Fscore 
+
+[]
+Round 26 global test acc  60.2577
+Round 26 Fscore 
+
+[]
+Round 27 global test acc  59.2680
+Round 27 Fscore 
+
+[]
+Round 28 global test acc  61.2784
+Round 28 Fscore 
+
+[]
+Round 29 global test acc  60.9072
+Round 29 Fscore 
+
+[]
+Round 30 global test acc  61.3505
+Round 30 Fscore 
+
+[]
+Round 31 global test acc  59.8247
+Round 31 Fscore 
+
+[]
+Round 32 global test acc  61.0515
+Round 32 Fscore 
+
+[]
+Round 33 global test acc  60.1134
+Round 33 Fscore 
+
+[]
+Round 34 global test acc  62.3299
+Round 34 Fscore 
+
+[]
+Round 35 global test acc  62.3402
+Round 35 Fscore 
+
+[]
+Round 36 global test acc  62.0619
+Round 36 Fscore 
+
+[]
+Round 37 global test acc  59.8041
+Round 37 Fscore 
+
+[]
+Round 38 global test acc  62.8969
+Round 38 Fscore 
+
+[]
+Round 39 global test acc  63.0206
+Round 39 Fscore 
+
+[]
+Round 40 global test acc  63.4639
+Round 40 Fscore 
+
+[]
+Round 41 global test acc  61.8557
+Round 41 Fscore 
+
+[]
+Round 42 global test acc  61.7423
+Round 42 Fscore 
+
+[]
+Round 43 global test acc  63.5464
+Round 43 Fscore 
+
+[]
+Round 44 global test acc  63.7216
+Round 44 Fscore 
+
+[]
+Round 45 global test acc  64.3093
+Round 45 Fscore 
+
+[]
+Round 46 global test acc  64.8351
+Round 46 Fscore 
+
+[]
+Round 47 global test acc  62.7629
+Round 47 Fscore 
+
+[]
+Round 48 global test acc  64.0619
+Round 48 Fscore 
+
+[]
+Round 49 global test acc  64.7938
+Round 49 Fscore 
+
+[]
+Round 50 global test acc  64.1443
+Round 50 Fscore 
+
+[]
+Round 51 global test acc  64.9072
+Round 51 Fscore 
+
+[]
+Round 52 global test acc  66.2371
+Round 52 Fscore 
+
+[]
+Round 53 global test acc  63.5876
+Round 53 Fscore 
+
+[]
+Round 54 global test acc  64.8557
+Round 54 Fscore 
+
+[]
+Round 55 global test acc  66.2371
+Round 55 Fscore 
+
+[]
+Round 56 global test acc  64.2062
+Round 56 Fscore 
+
+[]
+Round 57 global test acc  66.0000
+Round 57 Fscore 
+
+[]
+Round 58 global test acc  66.0928
+Round 58 Fscore 
+
+[]
+Round 59 global test acc  65.5464
+Round 59 Fscore 
+
+[]
+Round 60 global test acc  64.8969
+Round 60 Fscore 
+
+[]
+Round 61 global test acc  66.7216
+Round 61 Fscore 
+
+[]
+Round 62 global test acc  64.9691
+Round 62 Fscore 
+
+[]
+Round 63 global test acc  66.8144
+Round 63 Fscore 
+
+[]
+Round 64 global test acc  67.2371
+Round 64 Fscore 
+
+[]
+Round 65 global test acc  66.1340
+Round 65 Fscore 
+
+[]
+Round 66 global test acc  65.9588
+Round 66 Fscore 
+
+[]
+Round 67 global test acc  65.8763
+Round 67 Fscore 
+
+[]
+Round 68 global test acc  66.4433
+Round 68 Fscore 
+
+[]
+Round 69 global test acc  67.2268
+Round 69 Fscore 
+
+[]
+Round 70 global test acc  67.3196
+Round 70 Fscore 
+
+[]
+Round 71 global test acc  67.9897
+Round 71 Fscore 
+
+[]
+Round 72 global test acc  66.7732
+Round 72 Fscore 
+
+[]
+Round 73 global test acc  67.2474
+Round 73 Fscore 
+
+[]
+Round 74 global test acc  64.9278
+Round 74 Fscore 
+
+[]
+Round 75 global test acc  68.1443
+Round 75 Fscore 
+
+[]
+Round 76 global test acc  67.6082
+Round 76 Fscore 
+
+[]
+Round 77 global test acc  67.5361
+Round 77 Fscore 
+
+[]
+Round 78 global test acc  66.3814
+Round 78 Fscore 
+
+[]
+Round 79 global test acc  64.9691
+Round 79 Fscore 
+
+[]
+Round 80 global test acc  66.1237
+Round 80 Fscore 
+
+[]
+Round 81 global test acc  67.6907
+Round 81 Fscore 
+
+[]
+Round 82 global test acc  67.9381
+Round 82 Fscore 
+
+[]
+Round 83 global test acc  66.2577
+Round 83 Fscore 
+
+[]
+Round 84 global test acc  68.4227
+Round 84 Fscore 
+
+[]
+Round 85 global test acc  66.1443
+Round 85 Fscore 
+
+[]
+Round 86 global test acc  67.8660
+Round 86 Fscore 
+
+[]
+Round 87 global test acc  67.2062
+Round 87 Fscore 
+
+[]
+Round 88 global test acc  66.5773
+Round 88 Fscore 
+
+[]
+Round 89 global test acc  65.6289
+Round 89 Fscore 
+
+[]
+Round 90 global test acc  67.1443
+Round 90 Fscore 
+
+[]
+Round 91 global test acc  66.8660
+Round 91 Fscore 
+
+[]
+Round 92 global test acc  67.6907
+Round 92 Fscore 
+
+[]
+Round 93 global test acc  68.7320
+Round 93 Fscore 
+
+[]
+Round 94 global test acc  66.4227
+Round 94 Fscore 
+
+[]
+Round 95 global test acc  68.8660
+Round 95 Fscore 
+
+[]
+Round 96 global test acc  67.3918
+Round 96 Fscore 
+
+[]
+Round 97 global test acc  68.4124
+Round 97 Fscore 
+
+[]
+Round 98 global test acc  68.0619
+Round 98 Fscore 
+
+[]
+Round 99 global test acc  66.9691
+Round 99 Fscore 
+
+[]
+Round 100 global test acc  66.8763
+Round 100 Fscore 
+
+[]
+Round 101 global test acc  68.1031
+Round 101 Fscore 
+
+[]
+Round 102 global test acc  68.0103
+Round 102 Fscore 
+
+[]
+Round 103 global test acc  65.8247
+Round 103 Fscore 
+
+[]
+Round 104 global test acc  67.2474
+Round 104 Fscore 
+
+[]
+Round 105 global test acc  68.2784
+Round 105 Fscore 
+
+[]
+Round 106 global test acc  67.0928
+Round 106 Fscore 
+
+[]
+Round 107 global test acc  67.7113
+Round 107 Fscore 
+
+[]
+Round 108 global test acc  66.8041
+Round 108 Fscore 
+
+[]
+Round 109 global test acc  68.1546
+Round 109 Fscore 
+
+[]
+Round 110 global test acc  67.8866
+Round 110 Fscore 
+
+[]
+Round 111 global test acc  69.1340
+Round 111 Fscore 
+
+[]
+Round 112 global test acc  68.6186
+Round 112 Fscore 
+
+[]
+Round 113 global test acc  68.9691
+Round 113 Fscore 
+
+[]
+Round 114 global test acc  69.0412
+Round 114 Fscore 
+
+[]
+Round 115 global test acc  67.3505
+Round 115 Fscore 
+
+[]
+Round 116 global test acc  69.1546
+Round 116 Fscore 
+
+[]
+Round 117 global test acc  66.2680
+Round 117 Fscore 
+
+[]
+Round 118 global test acc  67.9485
+Round 118 Fscore 
+
+[]
+Round 119 global test acc  68.8557
+Round 119 Fscore 
+
+[]
+Round 120 global test acc  67.8247
+Round 120 Fscore 
+
+[]
+Round 121 global test acc  68.4948
+Round 121 Fscore 
+
+[]
+Round 122 global test acc  69.2990
+Round 122 Fscore 
+
+[]
+Round 123 global test acc  67.8763
+Round 123 Fscore 
+
+[]
+Round 124 global test acc  67.1237
+Round 124 Fscore 
+
+[]
+Round 125 global test acc  68.6907
+Round 125 Fscore 
+
+[]
+Round 126 global test acc  69.5979
+Round 126 Fscore 
+
+[]
+Round 127 global test acc  67.0000
+Round 127 Fscore 
+
+[]
+Round 128 global test acc  67.4536
+Round 128 Fscore 
+
+[]
+Round 129 global test acc  67.8351
+Round 129 Fscore 
+
+[]
+Round 130 global test acc  67.8660
+Round 130 Fscore 
+
+[]
+Round 131 global test acc  68.3505
+Round 131 Fscore 
+
+[]
+Round 132 global test acc  68.0206
+Round 132 Fscore 
+
+[]
+Round 133 global test acc  65.8351
+Round 133 Fscore 
+
+[]
+Round 134 global test acc  68.7113
+Round 134 Fscore 
+
+[]
+Round 135 global test acc  66.7010
+Round 135 Fscore 
+
+[]
+Round 136 global test acc  66.9897
+Round 136 Fscore 
+
+[]
+Round 137 global test acc  68.5773
+Round 137 Fscore 
+
+[]
+Round 138 global test acc  68.4330
+Round 138 Fscore 
+
+[]
+Round 139 global test acc  67.6495
+Round 139 Fscore 
+
+[]
+Round 140 global test acc  68.8351
+Round 140 Fscore 
+
+[]
+Round 141 global test acc  69.5361
+Round 141 Fscore 
+
+[]
+Round 142 global test acc  68.8144
+Round 142 Fscore 
+
+[]
+Round 143 global test acc  68.7938
+Round 143 Fscore 
+
+[]
+Round 144 global test acc  69.6804
+Round 144 Fscore 
+
+[]
+Round 145 global test acc  68.2577
+Round 145 Fscore 
+
+[]
+Round 146 global test acc  70.1134
+Round 146 Fscore 
+
+[]
+Round 147 global test acc  63.1237
+Round 147 Fscore 
+
+[]
+Round 148 global test acc  68.6392
+Round 148 Fscore 
+
+[]
+Round 149 global test acc  69.2784
+Round 149 Fscore 
+
+[]
+Round 150 global test acc  69.8660
+Round 150 Fscore 
+
+[]
+Round 151 global test acc  69.4948
+Round 151 Fscore 
+
+[]
+Round 152 global test acc  69.5773
+Round 152 Fscore 
+
+[]
+Round 153 global test acc  69.0928
+Round 153 Fscore 
+
+[]
+Round 154 global test acc  68.5567
+Round 154 Fscore 
+
+[]
+Round 155 global test acc  69.5464
+Round 155 Fscore 
+
+[]
+Round 156 global test acc  67.0825
+Round 156 Fscore 
+
+[]
+Round 157 global test acc  69.1649
+Round 157 Fscore 
+
+[]
+Round 158 global test acc  68.7423
+Round 158 Fscore 
+
+[]
+Round 159 global test acc  69.9485
+Round 159 Fscore 
+
+[]
+Round 160 global test acc  70.4330
+Round 160 Fscore 
+
+[]
+Round 161 global test acc  65.2474
+Round 161 Fscore 
+
+[]
+Round 162 global test acc  69.8557
+Round 162 Fscore 
+
+[]
+Round 163 global test acc  69.7835
+Round 163 Fscore 
+
+[]
+Round 164 global test acc  69.7835
+Round 164 Fscore 
+
+[]
+Round 165 global test acc  68.9072
+Round 165 Fscore 
+
+[]
+Round 166 global test acc  69.6907
+Round 166 Fscore 
+
+[]
+Round 167 global test acc  69.1031
+Round 167 Fscore 
+
+[]
+Round 168 global test acc  68.7938
+Round 168 Fscore 
+
+[]
+Round 169 global test acc  70.1134
+Round 169 Fscore 
+
+[]
+Round 170 global test acc  69.2680
+Round 170 Fscore 
+
+[]
+Round 171 global test acc  69.3196
+Round 171 Fscore 
+
+[]
+Round 172 global test acc  69.2268
+Round 172 Fscore 
+
+[]
+Round 173 global test acc  64.8969
+Round 173 Fscore 
+
+[]
+Round 174 global test acc  69.9175
+Round 174 Fscore 
+
+[]
+Round 175 global test acc  66.3196
+Round 175 Fscore 
+
+[]
+Round 176 global test acc  70.2680
+Round 176 Fscore 
+
+[]
+Round 177 global test acc  68.6392
+Round 177 Fscore 
+
+[]
+Round 178 global test acc  68.0928
+Round 178 Fscore 
+
+[]
+Round 179 global test acc  68.6186
+Round 179 Fscore 
+
+[]
+Round 180 global test acc  68.4845
+Round 180 Fscore 
+
+[]
+Round 181 global test acc  69.5773
+Round 181 Fscore 
+
+[]
+Round 182 global test acc  69.5979
+Round 182 Fscore 
+
+[]
+Round 183 global test acc  70.0206
+Round 183 Fscore 
+
+[]
+Round 184 global test acc  68.0722
+Round 184 Fscore 
+
+[]
+Round 185 global test acc  70.8041
+Round 185 Fscore 
+
+[]
+Round 186 global test acc  69.3196
+Round 186 Fscore 
+
+[]
+Round 187 global test acc  69.7629
+Round 187 Fscore 
+
+[]
+Round 188 global test acc  67.7320
+Round 188 Fscore 
+
+[]
+Round 189 global test acc  69.2474
+Round 189 Fscore 
+
+[]
+Round 190 global test acc  70.1340
+Round 190 Fscore 
+
+[]
+Round 191 global test acc  67.6186
+Round 191 Fscore 
+
+[]
+Round 192 global test acc  70.5670
+Round 192 Fscore 
+
+[]
+Round 193 global test acc  68.7732
+Round 193 Fscore 
+
+[]
+Round 194 global test acc  70.1753
+Round 194 Fscore 
+
+[]
+Round 195 global test acc  70.4536
+Round 195 Fscore 
+
+[]
+Round 196 global test acc  69.3505
+Round 196 Fscore 
+
+[]
+Round 197 global test acc  69.7423
+Round 197 Fscore 
+
+[]
+Round 198 global test acc  70.2268
+Round 198 Fscore 
+
+[]
+Round 199 global test acc  70.5258
+Round 199 Fscore 
+
+[]
+Round 200 global test acc  70.1546
+Round 200 Fscore 
+
+[]
+Round 201 global test acc  69.8660
+Round 201 Fscore 
+
+[]
+Round 202 global test acc  70.4433
+Round 202 Fscore 
+
+[]
+Round 203 global test acc  70.6186
+Round 203 Fscore 
+
+[]
+Round 204 global test acc  69.1340
+Round 204 Fscore 
+
+[]
+Round 205 global test acc  69.6598
+Round 205 Fscore 
+
+[]
+Round 206 global test acc  69.5773
+Round 206 Fscore 
+
+[]
+Round 207 global test acc  69.0928
+Round 207 Fscore 
+
+[]
+Round 208 global test acc  69.3505
+Round 208 Fscore 
+
+[]
+Round 209 global test acc  69.8866
+Round 209 Fscore 
+
+[]
+Round 210 global test acc  68.1443
+Round 210 Fscore 
+
+[]
+Round 211 global test acc  71.3299
+Round 211 Fscore 
+
+[]
+Round 212 global test acc  70.8144
+Round 212 Fscore 
+
+[]
+Round 213 global test acc  69.5052
+Round 213 Fscore 
+
+[]
+Round 214 global test acc  69.8144
+Round 214 Fscore 
+
+[]
+Round 215 global test acc  67.8969
+Round 215 Fscore 
+
+[]
+Round 216 global test acc  70.2474
+Round 216 Fscore 
+
+[]
+Round 217 global test acc  70.3814
+Round 217 Fscore 
+
+[]
+Round 218 global test acc  69.4845
+Round 218 Fscore 
+
+[]
+Round 219 global test acc  68.5361
+Round 219 Fscore 
+
+[]
+Round 220 global test acc  70.1031
+Round 220 Fscore 
+
+[]
+Round 221 global test acc  70.6701
+Round 221 Fscore 
+
+[]
+Round 222 global test acc  69.4742
+Round 222 Fscore 
+
+[]
+Round 223 global test acc  69.9794
+Round 223 Fscore 
+
+[]
+Round 224 global test acc  69.7526
+Round 224 Fscore 
+
+[]
+Round 225 global test acc  70.8557
+Round 225 Fscore 
+
+[]
+Round 226 global test acc  68.4330
+Round 226 Fscore 
+
+[]
+Round 227 global test acc  68.9691
+Round 227 Fscore 
+
+[]
+Round 228 global test acc  71.0515
+Round 228 Fscore 
+
+[]
+Round 229 global test acc  68.9381
+Round 229 Fscore 
+
+[]
+Round 230 global test acc  70.2371
+Round 230 Fscore 
+
+[]
+Round 231 global test acc  70.6907
+Round 231 Fscore 
+
+[]
+Round 232 global test acc  68.9072
+Round 232 Fscore 
+
+[]
+Round 233 global test acc  70.2990
+Round 233 Fscore 
+
+[]
+Round 234 global test acc  70.1443
+Round 234 Fscore 
+
+[]
+Round 235 global test acc  70.6186
+Round 235 Fscore 
+
+[]
+Round 236 global test acc  70.4433
+Round 236 Fscore 
+
+[]
+Round 237 global test acc  70.9175
+Round 237 Fscore 
+
+[]
+Round 238 global test acc  70.4639
+Round 238 Fscore 
+
+[]
+Round 239 global test acc  70.1237
+Round 239 Fscore 
+
+[]
+Round 240 global test acc  70.1856
+Round 240 Fscore 
+
+[]
+Round 241 global test acc  69.5876
+Round 241 Fscore 
+
+[]
+Round 242 global test acc  68.8557
+Round 242 Fscore 
+
+[]
+Round 243 global test acc  69.9691
+Round 243 Fscore 
+
+[]
+Round 244 global test acc  70.6495
+Round 244 Fscore 
+
+[]
+Round 245 global test acc  70.8041
+Round 245 Fscore 
+
+[]
+Round 246 global test acc  69.9485
+Round 246 Fscore 
+
+[]
+Round 247 global test acc  71.1340
+Round 247 Fscore 
+
+[]
+Round 248 global test acc  71.2062
+Round 248 Fscore 
+
+[]
+Round 249 global test acc  71.5567
+Round 249 Fscore 
+
+[]
+Round 250 global test acc  71.4536
+Round 250 Fscore 
+
+[]
+Round 251 global test acc  71.3299
+Round 251 Fscore 
+
+[]
+Round 252 global test acc  71.1649
+Round 252 Fscore 
+
+[]
+Round 253 global test acc  70.7113
+Round 253 Fscore 
+
+[]
+Round 254 global test acc  70.9691
+Round 254 Fscore 
+
+[]
+Round 255 global test acc  71.6495
+Round 255 Fscore 
+
+[]
+Round 256 global test acc  71.5258
+Round 256 Fscore 
+
+[]
+Round 257 global test acc  71.2474
+Round 257 Fscore 
+
+[]
+Round 258 global test acc  69.2165
+Round 258 Fscore 
+
+[]
+Round 259 global test acc  69.2784
+Round 259 Fscore 
+
+[]
+Round 260 global test acc  69.5258
+Round 260 Fscore 
+
+[]
+Round 261 global test acc  71.5361
+Round 261 Fscore 
+
+[]
+Round 262 global test acc  71.4330
+Round 262 Fscore 
+
+[]
+Round 263 global test acc  71.6495
+Round 263 Fscore 
+
+[]
+Round 264 global test acc  71.2268
+Round 264 Fscore 
+
+[]
+Round 265 global test acc  71.1753
+Round 265 Fscore 
+
+[]
+Round 266 global test acc  71.1031
+Round 266 Fscore 
+
+[]
+Round 267 global test acc  70.7835
+Round 267 Fscore 
+
+[]
+Round 268 global test acc  71.4227
+Round 268 Fscore 
+
+[]
+Round 269 global test acc  70.0515
+Round 269 Fscore 
+
+[]
+Round 270 global test acc  69.7938
+Round 270 Fscore 
+
+[]
+Round 271 global test acc  71.1959
+Round 271 Fscore 
+
+[]
+Round 272 global test acc  70.8454
+Round 272 Fscore 
+
+[]
+Round 273 global test acc  66.5155
+Round 273 Fscore 
+
+[]
+Round 274 global test acc  68.8351
+Round 274 Fscore 
+
+[]
+Round 275 global test acc  70.8763
+Round 275 Fscore 
+
+[]
+Round 276 global test acc  71.4639
+Round 276 Fscore 
+
+[]
+Round 277 global test acc  70.0722
+Round 277 Fscore 
+
+[]
+Round 278 global test acc  69.8557
+Round 278 Fscore 
+
+[]
+Round 279 global test acc  70.8454
+Round 279 Fscore 
+
+[]
+Round 280 global test acc  69.9381
+Round 280 Fscore 
+
+[]
+Round 281 global test acc  68.6598
+Round 281 Fscore 
+
+[]
+Round 282 global test acc  69.1649
+Round 282 Fscore 
+
+[]
+Round 283 global test acc  69.4948
+Round 283 Fscore 
+
+[]
+Round 284 global test acc  69.7423
+Round 284 Fscore 
+
+[]
+Round 285 global test acc  69.5155
+Round 285 Fscore 
+
+[]
+Round 286 global test acc  68.8247
+Round 286 Fscore 
+
+[]
+Round 287 global test acc  69.8041
+Round 287 Fscore 
+
+[]
+Round 288 global test acc  70.4742
+Round 288 Fscore 
+
+[]
+Round 289 global test acc  69.5052
+Round 289 Fscore 
+
+[]
+Round 290 global test acc  69.4742
+Round 290 Fscore 
+
+[]
+Round 291 global test acc  69.6495
+Round 291 Fscore 
+
+[]
+Round 292 global test acc  70.5876
+Round 292 Fscore 
+
+[]
+Round 293 global test acc  70.8763
+Round 293 Fscore 
+
+[]
+Round 294 global test acc  70.0928
+Round 294 Fscore 
+
+[]
+Round 295 global test acc  69.8763
+Round 295 Fscore 
+
+[]
+Round 296 global test acc  70.8969
+Round 296 Fscore 
+
+[]
+Round 297 global test acc  71.0206
+Round 297 Fscore 
+
+[]
+Round 298 global test acc  68.7526
+Round 298 Fscore 
+
+[]
+Round 299 global test acc  71.1237
+Round 299 Fscore 
+
+[]
+Round 300 global test acc  67.5361
+Round 300 Fscore 
+
+[]
+Round 301 global test acc  71.1753
+Round 301 Fscore 
+
+[]
+Round 302 global test acc  64.3196
+Round 302 Fscore 
+
+[]
+Round 303 global test acc  70.5052
+Round 303 Fscore 
+
+[]
+Round 304 global test acc  71.2165
+Round 304 Fscore 
+
+[]
+Round 305 global test acc  70.7320
+Round 305 Fscore 
+
+[]
+Round 306 global test acc  70.8041
+Round 306 Fscore 
+
+[]
+Round 307 global test acc  71.5464
+Round 307 Fscore 
+
+[]
+Round 308 global test acc  69.1340
+Round 308 Fscore 
+
+[]
+Round 309 global test acc  70.3402
+Round 309 Fscore 
+
+[]
+Round 310 global test acc  70.1340
+Round 310 Fscore 
+
+[]
+Round 311 global test acc  70.0000
+Round 311 Fscore 
+
+[]
+Round 312 global test acc  70.8454
+Round 312 Fscore 
+
+[]
+Round 313 global test acc  71.1340
+Round 313 Fscore 
+
+[]
+Round 314 global test acc  70.8557
+Round 314 Fscore 
+
+[]
+Round 315 global test acc  71.1649
+Round 315 Fscore 
+
+[]
+Round 316 global test acc  70.7938
+Round 316 Fscore 
+
+[]
+Round 317 global test acc  71.0309
+Round 317 Fscore 
+
+[]
+Round 318 global test acc  70.9691
+Round 318 Fscore 
+
+[]
+Round 319 global test acc  70.9897
+Round 319 Fscore 
+
+[]
+Round 320 global test acc  70.6701
+Round 320 Fscore 
+
+[]
+Round 321 global test acc  70.3711
+Round 321 Fscore 
+
+[]
+Round 322 global test acc  70.8454
+Round 322 Fscore 
+
+[]
+Round 323 global test acc  71.4639
+Round 323 Fscore 
+
+[]
+Round 324 global test acc  70.9175
+Round 324 Fscore 
+
+[]
+Round 325 global test acc  70.9897
+Round 325 Fscore 
+
+[]
+Round 326 global test acc  71.6495
+Round 326 Fscore 
+
+[]
+Round 327 global test acc  71.3093
+Round 327 Fscore 
+
+[]
+Round 328 global test acc  71.3093
+Round 328 Fscore 
+
+[]
+Round 329 global test acc  71.3196
+Round 329 Fscore 
+
+[]
+Round 330 global test acc  70.9897
+Round 330 Fscore 
+
+[]
+Round 331 global test acc  69.1959
+Round 331 Fscore 
+
+[]
+Round 332 global test acc  70.8763
+Round 332 Fscore 
+
+[]
+Round 333 global test acc  71.0000
+Round 333 Fscore 
+
+[]
+Round 334 global test acc  70.8763
+Round 334 Fscore 
+
+[]
+Round 335 global test acc  71.2990
+Round 335 Fscore 
+
+[]
+Round 336 global test acc  70.9485
+Round 336 Fscore 
+
+[]
+Round 337 global test acc  70.3299
+Round 337 Fscore 
+
+[]
+Round 338 global test acc  70.1340
+Round 338 Fscore 
+
+[]
+Round 339 global test acc  71.1340
+Round 339 Fscore 
+
+[]
+Round 340 global test acc  70.6186
+Round 340 Fscore 
+
+[]
+Round 341 global test acc  70.5258
+Round 341 Fscore 
+
+[]
+Round 342 global test acc  70.7113
+Round 342 Fscore 
+
+[]
+Round 343 global test acc  69.4845
+Round 343 Fscore 
+
+[]
+Round 344 global test acc  70.6186
+Round 344 Fscore 
+
+[]
+Round 345 global test acc  71.2371
+Round 345 Fscore 
+
+[]
+Round 346 global test acc  71.1443
+Round 346 Fscore 
+
+[]
+Round 347 global test acc  70.7938
+Round 347 Fscore 
+
+[]
+Round 348 global test acc  71.0103
+Round 348 Fscore 
+
+[]
+Round 349 global test acc  71.1237
+Round 349 Fscore 
+
+[]
+Round 350 global test acc  71.0206
+Round 350 Fscore 
+
+[]
+Round 351 global test acc  71.1753
+Round 351 Fscore 
+
+[]
+Round 352 global test acc  70.4948
+Round 352 Fscore 
+
+[]
+Round 353 global test acc  69.6598
+Round 353 Fscore 
+
+[]
+Round 354 global test acc  70.9691
+Round 354 Fscore 
+
+[]
+Round 355 global test acc  70.4124
+Round 355 Fscore 
+
+[]
+Round 356 global test acc  70.2165
+Round 356 Fscore 
+
+[]
+Round 357 global test acc  71.2268
+Round 357 Fscore 
+
+[]
+Round 358 global test acc  69.6495
+Round 358 Fscore 
+
+[]
+Round 359 global test acc  70.5567
+Round 359 Fscore 
+
+[]
+Round 360 global test acc  71.3196
+Round 360 Fscore 
+
+[]
+Round 361 global test acc  70.3299
+Round 361 Fscore 
+
+[]
+Round 362 global test acc  70.8660
+Round 362 Fscore 
+
+[]
+Round 363 global test acc  70.5773
+Round 363 Fscore 
+
+[]
+Round 364 global test acc  70.9485
+Round 364 Fscore 
+
+[]
+Round 365 global test acc  71.6598
+Round 365 Fscore 
+
+[]
+Round 366 global test acc  71.2062
+Round 366 Fscore 
+
+[]
+Round 367 global test acc  70.8041
+Round 367 Fscore 
+
+[]
+Round 368 global test acc  72.1134
+Round 368 Fscore 
+
+[]
+Round 369 global test acc  71.8763
+Round 369 Fscore 
+
+[]
+Round 370 global test acc  71.3093
+Round 370 Fscore 
+
+[]
+Round 371 global test acc  71.6907
+Round 371 Fscore 
+
+[]
+Round 372 global test acc  72.2268
+Round 372 Fscore 
+
+[]
+Round 373 global test acc  70.9588
+Round 373 Fscore 
+
+[]
+Round 374 global test acc  71.3608
+Round 374 Fscore 
+
+[]
+Round 375 global test acc  69.4124
+Round 375 Fscore 
+
+[]
+Round 376 global test acc  70.9072
+Round 376 Fscore 
+
+[]
+Round 377 global test acc  71.3093
+Round 377 Fscore 
+
+[]
+Round 378 global test acc  71.7320
+Round 378 Fscore 
+
+[]
+Round 379 global test acc  71.4021
+Round 379 Fscore 
+
+[]
+Round 380 global test acc  71.6701
+Round 380 Fscore 
+
+[]
+Round 381 global test acc  71.4021
+Round 381 Fscore 
+
+[]
+Round 382 global test acc  70.5052
+Round 382 Fscore 
+
+[]
+Round 383 global test acc  71.1443
+Round 383 Fscore 
+
+[]
+Round 384 global test acc  71.6804
+Round 384 Fscore 
+
+[]
+Round 385 global test acc  70.9794
+Round 385 Fscore 
+
+[]
+Round 386 global test acc  71.5052
+Round 386 Fscore 
+
+[]
+Round 387 global test acc  71.5567
+Round 387 Fscore 
+
+[]
+Round 388 global test acc  71.1443
+Round 388 Fscore 
+
+[]
+Round 389 global test acc  71.0000
+Round 389 Fscore 
+
+[]
+Round 390 global test acc  71.3402
+Round 390 Fscore 
+
+[]
+Round 391 global test acc  71.4021
+Round 391 Fscore 
+
+[]
+Round 392 global test acc  70.8866
+Round 392 Fscore 
+
+[]
+Round 393 global test acc  71.3711
+Round 393 Fscore 
+
+[]
+Round 394 global test acc  68.7526
+Round 394 Fscore 
+
+[]
+Round 395 global test acc  71.4021
+Round 395 Fscore 
+
+[]
+Round 396 global test acc  71.5155
+Round 396 Fscore 
+
+[]
+Round 397 global test acc  71.3711
+Round 397 Fscore 
+
+[]
+Round 398 global test acc  71.3608
+Round 398 Fscore 
+
+[]
+Round 399 global test acc  71.2784
+Round 399 Fscore 
+
+[]
+Round 400 global test acc  71.1340
+Round 400 Fscore 
+
+[]
+Round 401 global test acc  71.2887
+Round 401 Fscore 
+
+[]
+Round 402 global test acc  71.0619
+Round 402 Fscore 
+
+[]
+Round 403 global test acc  71.2887
+Round 403 Fscore 
+
+[]
+Round 404 global test acc  70.6082
+Round 404 Fscore 
+
+[]
+Round 405 global test acc  71.5773
+Round 405 Fscore 
+
+[]
+Round 406 global test acc  71.4845
+Round 406 Fscore 
+
+[]
+Round 407 global test acc  70.6082
+Round 407 Fscore 
+
+[]
+Round 408 global test acc  70.3608
+Round 408 Fscore 
+
+[]
+Round 409 global test acc  71.2577
+Round 409 Fscore 
+
+[]
+Round 410 global test acc  71.2268
+Round 410 Fscore 
+
+[]
+Round 411 global test acc  71.7938
+Round 411 Fscore 
+
+[]
+Round 412 global test acc  71.4948
+Round 412 Fscore 
+
+[]
+Round 413 global test acc  70.1443
+Round 413 Fscore 
+
+[]
+Round 414 global test acc  71.4948
+Round 414 Fscore 
+
+[]
+Round 415 global test acc  70.8660
+Round 415 Fscore 
+
+[]
+Round 416 global test acc  71.5464
+Round 416 Fscore 
+
+[]
+Round 417 global test acc  68.0619
+Round 417 Fscore 
+
+[]
+Round 418 global test acc  71.4330
+Round 418 Fscore 
+
+[]
+Round 419 global test acc  70.8763
+Round 419 Fscore 
+
+[]
+Round 420 global test acc  71.0412
+Round 420 Fscore 
+
+[]
+Round 421 global test acc  71.4845
+Round 421 Fscore 
+
+[]
+Round 422 global test acc  71.8041
+Round 422 Fscore 
+
+[]
+Round 423 global test acc  71.6907
+Round 423 Fscore 
+
+[]
+Round 424 global test acc  70.6289
+Round 424 Fscore 
+
+[]
+Round 425 global test acc  67.7835
+Round 425 Fscore 
+
+[]
+Round 426 global test acc  69.4124
+Round 426 Fscore 
+
+[]
+Round 427 global test acc  71.9588
+Round 427 Fscore 
+
+[]
+Round 428 global test acc  71.9897
+Round 428 Fscore 
+
+[]
+Round 429 global test acc  70.5155
+Round 429 Fscore 
+
+[]
+Round 430 global test acc  71.2474
+Round 430 Fscore 
+
+[]
+Round 431 global test acc  70.4742
+Round 431 Fscore 
+
+[]
+Round 432 global test acc  71.8351
+Round 432 Fscore 
+
+[]
+Round 433 global test acc  71.8866
+Round 433 Fscore 
+
+[]
+Round 434 global test acc  71.6701
+Round 434 Fscore 
+
+[]
+Round 435 global test acc  71.6804
+Round 435 Fscore 
+
+[]
+Round 436 global test acc  71.9691
+Round 436 Fscore 
+
+[]
+Round 437 global test acc  72.5773
+Round 437 Fscore 
+
+[]
+Round 438 global test acc  72.2165
+Round 438 Fscore 
+
+[]
+Round 439 global test acc  72.1856
+Round 439 Fscore 
+
+[]
+Round 440 global test acc  68.4227
+Round 440 Fscore 
+
+[]
+Round 441 global test acc  71.7835
+Round 441 Fscore 
+
+[]
+Round 442 global test acc  72.2474
+Round 442 Fscore 
+
+[]
+Round 443 global test acc  72.5876
+Round 443 Fscore 
+
+[]
+Round 444 global test acc  72.3505
+Round 444 Fscore 
+
+[]
+Round 445 global test acc  71.5155
+Round 445 Fscore 
+
+[]
+Round 446 global test acc  72.6907
+Round 446 Fscore 
+
+[]
+Round 447 global test acc  72.6392
+Round 447 Fscore 
+
+[]
+Round 448 global test acc  71.6804
+Round 448 Fscore 
+
+[]
+Round 449 global test acc  71.1443
+Round 449 Fscore 
+
+[1.0, 0.9999999403953552, 1.0, 1.0, 0.9999999403953552, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.9999999403953552, 1.0, 1.0, 0.9999999403953552, 1.0, 0.9999999403953552, 1.0, 1.0, 1.0, 0.9999999403953552, 1.0, 1.0, 1.0, 1.0, 1.0, 0.9999999403953552, 1.0, 0.9999999403953552, 0.9999999403953552, 0.9999999403953552, 1.0, 1.0, 0.9999999403953552, 1.0, 0.9999999403953552, 1.0, 1.0, 0.998965859413147, 0.9999999403953552, 1.0, 1.0, 0.9999999403953552, 1.0, 0.9999999403953552, 1.0, 1.0, 0.9999999403953552, 1.0, 1.0, 1.0, 1.0, 0.9999999403953552, 0.9999999403953552, 1.0, 1.0, 1.0, 1.0, 0.9999999403953552, 1.0, 1.0, 1.0, 1.0, 1.0, 0.9999999403953552, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.9999999403953552, 0.9999999403953552, 1.0, 1.0, 1.0, 1.0, 1.0, 0.9999999403953552, 1.0, 0.9999999403953552, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.9999999403953552, 1.0, 0.9999999403953552, 1.0, 1.0, 1.0, 1.0, 1.0, 0.9999999403953552, 1.0, 1.0]
+time : 6546.211090326309
+('algorithm', 'MR')
+('gpu', 0)
+('seed', 13)
+('save_dir', './record/')
+('rounds2', 450)
+('local_ep', 5)
+('frac2', 0.1)
+('num_users', 100)
+('local_bs', 32)
+('lr', 0.01)
+('model', 'resnet18')
+('num_classes', 10)
+('level_n_system', 0.0)
+('level_n_lowerb', 0.0)
+('alpha_dirichlet', 10)
+('non_iid_prob_class', 0.7)
+('dataset', 'cifar10')
+('iid', True)
+('LID_k', 20)
+('iteration1', 5)
+('rounds1', 200)
+('frac1', 0.01)
+('pretrained', False)
+('mixup', False)
+('alpha', 1)
+('beta', 5)
+('relabel_ratio', 0.5)
+('confidence_thres', 0.5)
+('clean_set_thres', 0.1)
+('fine_tuning', True)
+('correction', True)
+('T_pl', 100)
+('lambda_cen', 1.0)
+('lambda_e', 0.8)
+('num_gradual', 10)
+('forget_rate', 0.2)
+('lr_decay', 0.1)
+('schedule', [])
+('momentum', 0.5)
+('weight_decay', 0.0001)
+('feature_dim', 128)
+('plr', 0.01)
+('lamda', 15)
+('K', 5)
+('gamma', 1)
+('begin_sel', 10)
+('mu', 0.01)
+('device', device(type='cuda', index=0))
+Files already downloaded and verified
+Files already downloaded and verified
+Round 0 global test acc  22.2784
+Round 1 global test acc  32.2165
+Round 2 global test acc  31.8660
+Round 3 global test acc  40.9794
+Round 4 global test acc  39.7113
+Round 5 global test acc  45.7423
+Round 6 global test acc  46.7113
+Round 7 global test acc  46.8454
+Round 8 global test acc  46.6082
+Round 9 global test acc  47.7732
+Round 10 global test acc  51.8557
+Round 11 global test acc  52.9691
+Round 12 global test acc  52.9278
+Round 13 global test acc  53.8660
+Round 14 global test acc  56.4536
+Round 15 global test acc  56.0103
+Round 16 global test acc  56.2784
+Round 17 global test acc  56.0103
+Round 18 global test acc  57.6082
+Round 19 global test acc  58.3505
+Round 20 global test acc  58.5979
+Round 21 global test acc  59.4639
+Round 22 global test acc  60.3299
+Round 23 global test acc  60.9485
+Round 24 global test acc  60.4536
+Round 25 global test acc  60.2887
+Round 26 global test acc  60.5773
+Round 27 global test acc  61.0928
+Round 28 global test acc  60.0103
+Round 29 global test acc  61.1031
+Round 30 global test acc  61.4948
+Round 31 global test acc  61.9588
+Round 32 global test acc  62.7526
+Round 33 global test acc  63.3608
+Round 34 global test acc  59.7320
+Round 35 global test acc  63.4639
+Round 36 global test acc  63.4742
+Round 37 global test acc  62.1959
+Round 38 global test acc  64.8969
+Round 39 global test acc  64.1443
+Round 40 global test acc  64.6598
+Round 41 global test acc  65.2990
+Round 42 global test acc  64.9897
+Round 43 global test acc  65.3196
+Round 44 global test acc  64.8247
+Round 45 global test acc  65.7526
+Round 46 global test acc  65.9897
+Round 47 global test acc  65.1546
+Round 48 global test acc  65.5361
+Round 49 global test acc  66.3196
+Round 50 global test acc  61.0412
+Round 51 global test acc  66.0000
+Round 52 global test acc  65.9588
+Round 53 global test acc  66.8144
+Round 54 global test acc  66.8454
+Round 55 global test acc  65.9691
+Round 56 global test acc  65.8454
+Round 57 global test acc  67.2887
+Round 58 global test acc  67.1340
+Round 59 global test acc  66.6907
+Round 60 global test acc  67.9278
+Round 61 global test acc  67.7320
+Round 62 global test acc  67.0103
+Round 63 global test acc  66.9381
+Round 64 global test acc  67.9897
+Round 65 global test acc  66.9072
+Round 66 global test acc  68.1134
+Round 67 global test acc  67.7835
+Round 68 global test acc  68.0412
+Round 69 global test acc  68.2784
+Round 70 global test acc  68.3402
+Round 71 global test acc  67.5876
+Round 72 global test acc  68.1856
+Round 73 global test acc  67.4021
+Round 74 global test acc  67.5464
+Round 75 global test acc  68.6598
+Round 76 global test acc  68.3402
+Round 77 global test acc  68.7320
+Round 78 global test acc  68.1237
+Round 79 global test acc  65.4433
+Round 80 global test acc  68.4330
+Round 81 global test acc  67.2062
+Round 82 global test acc  68.8144
+Round 83 global test acc  68.8660
+Round 84 global test acc  68.8660
+Round 85 global test acc  68.3196
+Round 86 global test acc  68.0000
+Round 87 global test acc  68.2680
+Round 88 global test acc  68.6701
+Round 89 global test acc  69.0928
+Round 90 global test acc  69.0103
+Round 91 global test acc  67.2165
+Round 92 global test acc  66.5876
+Round 93 global test acc  68.7423
+Round 94 global test acc  69.2062
+Round 95 global test acc  67.9072
+Round 96 global test acc  69.0412
+Round 97 global test acc  65.5464
+Round 98 global test acc  68.1753
+Round 99 global test acc  68.3711
+Round 100 global test acc  68.8557
+Round 101 global test acc  69.2474
+Round 102 global test acc  69.0103
+Round 103 global test acc  69.3299
+Round 104 global test acc  69.3402
+Round 105 global test acc  67.0928
+Round 106 global test acc  65.9794
+Round 107 global test acc  69.9072
+Round 108 global test acc  69.8247
+Round 109 global test acc  68.0722
+Round 110 global test acc  69.3814
+Round 111 global test acc  69.2474
+Round 112 global test acc  69.2887
+Round 113 global test acc  69.6701
+Round 114 global test acc  68.9485
+Round 115 global test acc  69.7113
+Round 116 global test acc  69.3814
+Round 117 global test acc  69.5979
+Round 118 global test acc  69.9588
+Round 119 global test acc  69.5670
+Round 120 global test acc  67.3814
+Round 121 global test acc  69.1753
+Round 122 global test acc  66.8247
+Round 123 global test acc  69.1753
+Round 124 global test acc  69.8041
+Round 125 global test acc  70.0928
+Round 126 global test acc  69.1546
+Round 127 global test acc  68.7113
+Round 128 global test acc  69.9897
+Round 129 global test acc  69.0000
+Round 130 global test acc  70.1856
+Round 131 global test acc  68.7732
+Round 132 global test acc  70.3711
+Round 133 global test acc  69.3299
+Round 134 global test acc  70.0000
+Round 135 global test acc  69.4639
+Round 136 global test acc  70.0515
+Round 137 global test acc  69.5567
+Round 138 global test acc  68.2165
+Round 139 global test acc  69.7113
+Round 140 global test acc  68.4124
+Round 141 global test acc  69.8041
+Round 142 global test acc  70.4536
+Round 143 global test acc  69.3299
+Round 144 global test acc  69.6598
+Round 145 global test acc  70.0722
+Round 146 global test acc  68.2887
+Round 147 global test acc  68.5155
+Round 148 global test acc  70.5361
+Round 149 global test acc  70.3711
+Round 150 global test acc  70.9588
+Round 151 global test acc  71.3093
+Round 152 global test acc  69.6907
+Round 153 global test acc  70.8351
+Round 154 global test acc  69.3402
+Round 155 global test acc  70.2268
+Round 156 global test acc  70.3196
+Round 157 global test acc  70.1649
+Round 158 global test acc  69.9691
+Round 159 global test acc  70.3402
+Round 160 global test acc  70.5670
+Round 161 global test acc  70.6186
+Round 162 global test acc  71.1546
+Round 163 global test acc  69.7113
+Round 164 global test acc  70.7010
+Round 165 global test acc  69.4433
+Round 166 global test acc  70.0619
+Round 167 global test acc  70.6392
+Round 168 global test acc  70.1649
+Round 169 global test acc  70.1237
+Round 170 global test acc  70.3196
+Round 171 global test acc  70.5979
+Round 172 global test acc  70.1031
+Round 173 global test acc  70.4021
+Round 174 global test acc  71.2474
+Round 175 global test acc  69.0619
+Round 176 global test acc  71.1546
+Round 177 global test acc  70.2268
+Round 178 global test acc  70.5773
+Round 179 global test acc  70.2268
+Round 180 global test acc  69.5773
+Round 181 global test acc  70.7938
+Round 182 global test acc  70.1959
+Round 183 global test acc  69.8247
+Round 184 global test acc  68.8660
+Round 185 global test acc  71.4227
+Round 186 global test acc  70.1443
+Round 187 global test acc  70.4433
+Round 188 global test acc  69.6598
+Round 189 global test acc  69.5052
+Round 190 global test acc  70.4948
+Round 191 global test acc  70.3608
+Round 192 global test acc  68.1340
+Round 193 global test acc  70.3196
+Round 194 global test acc  69.7423
+Round 195 global test acc  70.5979
+Round 196 global test acc  70.5979
+Round 197 global test acc  70.3505
+Round 198 global test acc  68.7216
+Round 199 global test acc  70.7010
+Round 200 global test acc  70.8557
+Round 201 global test acc  69.8866
+Round 202 global test acc  70.9691
+Round 203 global test acc  71.1134
+Round 204 global test acc  71.3299
+Round 205 global test acc  69.9485
+Round 206 global test acc  70.1649
+Round 207 global test acc  69.6495
+Round 208 global test acc  70.7629
+Round 209 global test acc  70.4433
+Round 210 global test acc  71.0825
+Round 211 global test acc  71.0000
+Round 212 global test acc  70.7732
+Round 213 global test acc  70.9381
+Round 214 global test acc  70.5876
+Round 215 global test acc  70.0928
+Round 216 global test acc  70.7835
+Round 217 global test acc  70.2887
+Round 218 global test acc  70.5773
+Round 219 global test acc  71.1237
+Round 220 global test acc  70.9794
+Round 221 global test acc  70.9588
+Round 222 global test acc  71.3402
+Round 223 global test acc  70.8351
+Round 224 global test acc  70.5464
+Round 225 global test acc  71.0000
+Round 226 global test acc  70.7423
+Round 227 global test acc  70.3711
+Round 228 global test acc  70.6907
+Round 229 global test acc  70.5155
+Round 230 global test acc  70.7629
+Round 231 global test acc  70.4845
+Round 232 global test acc  70.1649
+Round 233 global test acc  70.6598
+Round 234 global test acc  71.3196
+Round 235 global test acc  70.5052
+Round 236 global test acc  70.7835
+Round 237 global test acc  69.5361
+Round 238 global test acc  70.2784
+Round 239 global test acc  70.3608
+Round 240 global test acc  71.5258
+Round 241 global test acc  70.5876
+Round 242 global test acc  70.6495
+Round 243 global test acc  70.4227
+Round 244 global test acc  70.4433
+Round 245 global test acc  70.8454
+Round 246 global test acc  71.5361
+Round 247 global test acc  71.6907
+Round 248 global test acc  71.1753
+Round 249 global test acc  69.3918
+Round 250 global test acc  71.6495
+Round 251 global test acc  71.3299
+Round 252 global test acc  70.4639
+Round 253 global test acc  70.9072
+Round 254 global test acc  71.0103
+Round 255 global test acc  71.4021
+Round 256 global test acc  71.8763
+Round 257 global test acc  69.4845
+Round 258 global test acc  71.0619
+Round 259 global test acc  71.5052
+Round 260 global test acc  70.8144
+Round 261 global test acc  70.9278
+Round 262 global test acc  70.6804
+Round 263 global test acc  70.9897
+Round 264 global test acc  70.7320
+Round 265 global test acc  69.0825
+Round 266 global test acc  69.9588
+Round 267 global test acc  69.2577
+Round 268 global test acc  70.2577
+Round 269 global test acc  71.0928
+Round 270 global test acc  71.5258
+Round 271 global test acc  71.6186
+Round 272 global test acc  70.4948
+Round 273 global test acc  71.3608
+Round 274 global test acc  70.5567
+Round 275 global test acc  68.9691
+Round 276 global test acc  70.5979
+Round 277 global test acc  70.5258
+Round 278 global test acc  70.2784
+Round 279 global test acc  71.5567
+Round 280 global test acc  70.7526
+Round 281 global test acc  71.2577
+Round 282 global test acc  70.4536
+Round 283 global test acc  71.1443
+Round 284 global test acc  71.1443
+Round 285 global test acc  71.4330
+Round 286 global test acc  71.6186
+Round 287 global test acc  71.9072
+Round 288 global test acc  71.9794
+Round 289 global test acc  71.7423
+Round 290 global test acc  71.8351
+Round 291 global test acc  70.3711
+Round 292 global test acc  72.0619
+Round 293 global test acc  71.7835
+Round 294 global test acc  71.4845
+Round 295 global test acc  71.2577
+Round 296 global test acc  71.3711
+Round 297 global test acc  71.8454
+Round 298 global test acc  71.6082
+Round 299 global test acc  71.3196
+Round 300 global test acc  70.7010
+Round 301 global test acc  70.2680
+Round 302 global test acc  71.5876
+Round 303 global test acc  70.5567
+Round 304 global test acc  71.6907
+Round 305 global test acc  71.9278
+Round 306 global test acc  71.7629
+Round 307 global test acc  71.1546
+Round 308 global test acc  72.0103
+Round 309 global test acc  70.9794
+Round 310 global test acc  71.3093
+Round 311 global test acc  72.1134
+Round 312 global test acc  71.8041
+Round 313 global test acc  69.4742
+Round 314 global test acc  71.3918
+Round 315 global test acc  71.0412
+Round 316 global test acc  70.7320
+Round 317 global test acc  71.9485
+Round 318 global test acc  71.3505
+Round 319 global test acc  71.8454
+Round 320 global test acc  72.0722
+Round 321 global test acc  71.7113
+Round 322 global test acc  71.7629
+Round 323 global test acc  70.0515
+Round 324 global test acc  71.7423
+Round 325 global test acc  68.5052
+Round 326 global test acc  71.6701
+Round 327 global test acc  71.2577
+Round 328 global test acc  71.7216
+Round 329 global test acc  71.4536
+Round 330 global test acc  71.7938
+Round 331 global test acc  72.1443
+Round 332 global test acc  70.9794
+Round 333 global test acc  72.3505
+Round 334 global test acc  71.7423
+Round 335 global test acc  71.4021
+Round 336 global test acc  71.8969
+Round 337 global test acc  71.5567
+Round 338 global test acc  71.8144
+Round 339 global test acc  71.8660
+Round 340 global test acc  70.5979
+Round 341 global test acc  72.1753
+Round 342 global test acc  72.0825
+Round 343 global test acc  72.0515
+Round 344 global test acc  70.4948
+Round 345 global test acc  71.5979
+Round 346 global test acc  71.3918
+Round 347 global test acc  71.9072
+Round 348 global test acc  70.5670
+Round 349 global test acc  70.8557
+Round 350 global test acc  69.7010
+Round 351 global test acc  70.3196
+Round 352 global test acc  71.4124
+Round 353 global test acc  71.1856
+Round 354 global test acc  71.6289
+Round 355 global test acc  71.7216
+Round 356 global test acc  71.0619
+Round 357 global test acc  70.6598
+Round 358 global test acc  71.0309
+Round 359 global test acc  70.8763
+Round 360 global test acc  69.5567
+Round 361 global test acc  71.0722
+Round 362 global test acc  71.2268
+Round 363 global test acc  70.8041
+Round 364 global test acc  70.1546
+Round 365 global test acc  71.1134
+Round 366 global test acc  69.9485
+Round 367 global test acc  66.1649
+Round 368 global test acc  70.6186
+Round 369 global test acc  71.6495
+Round 370 global test acc  71.9588
+Round 371 global test acc  71.5052
+Round 372 global test acc  71.7320
+Round 373 global test acc  72.0825
+Round 374 global test acc  71.9588
+Round 375 global test acc  71.5052
+Round 376 global test acc  71.8969
+Round 377 global test acc  70.4845
+Round 378 global test acc  71.2371
+Round 379 global test acc  72.1546
+Round 380 global test acc  71.0619
+Round 381 global test acc  71.1753
+Round 382 global test acc  71.8866
+Round 383 global test acc  71.8454
+Round 384 global test acc  72.4330
+Round 385 global test acc  72.2680
+Round 386 global test acc  69.6804
+Round 387 global test acc  70.0825
+Round 388 global test acc  71.9175
+Round 389 global test acc  71.6289
+Round 390 global test acc  71.7423
+Round 391 global test acc  70.2165
+Round 392 global test acc  71.4639
+Round 393 global test acc  71.1340
+Round 394 global test acc  70.6701
+Round 395 global test acc  69.7938
+Round 396 global test acc  71.2784
+Round 397 global test acc  71.8351
+Round 398 global test acc  70.2268
+Round 399 global test acc  70.8041
+Round 400 global test acc  71.6701
+Round 401 global test acc  69.6804
+Round 402 global test acc  71.6907
+Round 403 global test acc  72.2062
+Round 404 global test acc  70.3711
+Round 405 global test acc  71.0412
+Round 406 global test acc  72.2784
+Round 407 global test acc  68.8660
+Round 408 global test acc  71.8351
+Round 409 global test acc  69.2062
+Round 410 global test acc  70.9691
+Round 411 global test acc  71.0619
+Round 412 global test acc  71.8763
+Round 413 global test acc  71.6804
+Round 414 global test acc  71.8144
+Round 415 global test acc  71.5567
+Round 416 global test acc  71.6392
+Round 417 global test acc  71.8557
+Round 418 global test acc  72.0000
+Round 419 global test acc  71.0619
+Round 420 global test acc  71.6289
+Round 421 global test acc  71.6289
+Round 422 global test acc  72.0412
+Round 423 global test acc  71.6804
+Round 424 global test acc  71.6186
+Round 425 global test acc  71.5052
+Round 426 global test acc  70.5670
+Round 427 global test acc  72.2990
+Round 428 global test acc  70.9897
+Round 429 global test acc  71.7423
+Round 430 global test acc  71.1237
+Round 431 global test acc  71.4845
+Round 432 global test acc  71.7423
+Round 433 global test acc  71.7010
+Round 434 global test acc  72.2268
+Round 435 global test acc  71.9381
+Round 436 global test acc  72.2371
+Round 437 global test acc  71.7320
+Round 438 global test acc  72.5155
+Round 439 global test acc  72.5567
+Round 440 global test acc  72.0000
+Round 441 global test acc  72.0309
+Round 442 global test acc  71.2680
+Round 443 global test acc  71.9278
+Round 444 global test acc  71.9381
+Round 445 global test acc  71.9381
+Round 446 global test acc  72.0515
+Round 447 global test acc  71.9175
+Round 448 global test acc  71.7938
+Round 449 global test acc  71.5052
+time : 8361.78011417389

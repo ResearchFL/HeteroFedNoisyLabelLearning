@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData">
+  <component name="PublishConfigData" serverName="xinyuan@ucsc-real.soe.ucsc.edu:8950 password">
     <serverData>
+      <paths name="xinyuan@ucsc-real.soe.ucsc.edu:8950 password">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/cifar/FedNoisyLabelLearning" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="莱顿服务器">
         <serverdata>
           <mappings>

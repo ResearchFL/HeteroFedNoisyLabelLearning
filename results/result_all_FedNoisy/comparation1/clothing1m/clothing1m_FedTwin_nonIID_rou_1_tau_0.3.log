@@ -1,0 +1,512 @@
+('algorithm', 'FedTwin')
+('gpu', 4)
+('seed', 13)
+('save_dir', './record/')
+('rounds2', 50)
+('local_ep', 5)
+('frac2', 0.03)
+('num_users', 300)
+('local_bs', 32)
+('lr', 0.001)
+('model', 'resnet50')
+('num_classes', 10)
+('level_n_system', 1.0)
+('level_n_lowerb', 0.3)
+('alpha_dirichlet', 10)
+('non_iid_prob_class', 0.7)
+('dataset', 'clothing1m')
+('iid', False)
+('LID_k', 20)
+('iteration1', 5)
+('rounds1', 200)
+('frac1', 0.01)
+('pretrained', True)
+('mixup', False)
+('alpha', 1)
+('beta', 5)
+('relabel_ratio', 0.5)
+('confidence_thres', 0.5)
+('clean_set_thres', 0.1)
+('fine_tuning', True)
+('correction', True)
+('T_pl', 100)
+('lambda_cen', 1.0)
+('lambda_e', 0.8)
+('num_gradual', 10)
+('forget_rate', 0.2)
+('lr_decay', 0.1)
+('schedule', [])
+('momentum', 0.5)
+('weight_decay', 0.0001)
+('feature_dim', 128)
+('plr', 0.001)
+('lamda', 15)
+('K', 5)
+('gamma', 1)
+('begin_sel', 10)
+('max_beta', 2)
+('mu', 0.01)
+('device', device(type='cuda', index=4))
+len(dataset_train)= 1000000, len(dataset_test) = 10526
+/home/xinyuan/.conda/envs/fedTwin/lib/python3.8/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/home/xinyuan/.conda/envs/fedTwin/lib/python3.8/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=ResNet50_Weights.IMAGENET1K_V1`. You can also use `weights=ResNet50_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Rounds 0 early training:
+Round 0 train loss  1.6316
+Round 0 global test acc  27.3418 
+
+Rounds 1 early training:
+Round 1 train loss  1.2342
+Round 1 global test acc  46.9219 
+
+Rounds 2 early training:
+Round 2 train loss  0.7060
+Round 2 global test acc  40.4142 
+
+Rounds 3 early training:
+Round 3 train loss  -1.1025
+Round 3 global test acc  42.4188 
+
+Rounds 4 early training:
+Round 4 train loss  -3.9329
+Round 4 global test acc  39.7777 
+
+Rounds 5 early training:
+Round 5 train loss  -6.7634
+Round 5 global test acc  52.5461 
+
+Rounds 6 early training:
+Round 6 train loss  -10.6819
+Round 6 global test acc  54.3986 
+
+Rounds 7 early training:
+Round 7 train loss  -14.1602
+Round 7 global test acc  60.0893 
+
+Rounds 8 early training:
+Round 8 train loss  -17.8764
+Round 8 global test acc  60.6688 
+
+Rounds 9 early training:
+Round 9 train loss  -21.0312
+Round 9 global test acc  61.7424 
+
+Rounds 10 early training:
+Round 10 train loss  -24.7304
+Round 10 global test acc  62.8254 
+
+Rounds 11 filter noisy data:
+Round 11 train loss  -29.6920
+Round 11 global test acc  63.1199 
+
+Rounds 12 filter noisy data:
+Round 12 train loss  -31.2290
+Round 12 global test acc  62.8064 
+
+Rounds 13 filter noisy data:
+Round 13 train loss  -31.3061
+Round 13 global test acc  58.7973 
+
+Rounds 14 filter noisy data:
+Round 14 train loss  -31.8975
+Round 14 global test acc  60.8493 
+
+Rounds 15 filter noisy data:
+Round 15 train loss  -32.0237
+Round 15 global test acc  61.7994 
+
+Rounds 16 filter noisy data:
+Round 16 train loss  -32.1137
+Round 16 global test acc  62.3599 
+
+Rounds 17 filter noisy data:
+Round 17 train loss  -32.1742
+Round 17 global test acc  62.5309 
+
+Rounds 18 filter noisy data:
+Round 18 train loss  -32.3242
+Round 18 global test acc  62.3029 
+
+Rounds 19 filter noisy data:
+Round 19 train loss  -32.1299
+Round 19 global test acc  61.6759 
+
+Rounds 20 filter noisy data:
+Round 20 train loss  -32.3602
+Round 20 global test acc  64.7444 
+
+Rounds 21 filter noisy data:
+Round 21 train loss  -32.3582
+Round 21 global test acc  65.4095 
+
+Rounds 22 filter noisy data:
+Round 22 train loss  -32.4471
+Round 22 global test acc  63.7564 
+
+Rounds 23 filter noisy data:
+Round 23 train loss  -32.7517
+Round 23 global test acc  65.1530 
+
+Rounds 24 filter noisy data:
+Round 24 train loss  -32.6490
+Round 24 global test acc  64.7159 
+
+Rounds 25 filter noisy data:
+Round 25 train loss  -32.6727
+Round 25 global test acc  61.8564 
+
+Rounds 26 filter noisy data:
+Round 26 train loss  -32.6698
+Round 26 global test acc  65.6280 
+
+Rounds 27 filter noisy data:
+Round 27 train loss  -32.7293
+Round 27 global test acc  65.2575 
+
+Rounds 28 filter noisy data:
+Round 28 train loss  -32.7138
+Round 28 global test acc  63.3004 
+
+Rounds 29 filter noisy data:
+Round 29 train loss  -32.7819
+Round 29 global test acc  65.5900 
+
+Rounds 30 filter noisy data:
+Round 30 train loss  -32.8473
+Round 30 global test acc  64.7444 
+
+Rounds 31 filter noisy data:
+Round 31 train loss  -32.8733
+Round 31 global test acc  63.1674 
+
+Rounds 32 filter noisy data:
+Round 32 train loss  -32.8893
+Round 32 global test acc  64.6589 
+
+Rounds 33 filter noisy data:
+Round 33 train loss  -32.8077
+Round 33 global test acc  65.0485 
+
+Rounds 34 filter noisy data:
+Round 34 train loss  -32.8317
+Round 34 global test acc  62.4739 
+
+Rounds 35 filter noisy data:
+Round 35 train loss  -32.8685
+Round 35 global test acc  65.0580 
+
+Rounds 36 filter noisy data:
+Round 36 train loss  -32.8525
+Round 36 global test acc  67.1955 
+
+Rounds 37 filter noisy data:
+Round 37 train loss  -32.9679
+Round 37 global test acc  65.1055 
+
+Rounds 38 filter noisy data:
+Round 38 train loss  -32.9200
+Round 38 global test acc  65.9510 
+
+Rounds 39 filter noisy data:
+Round 39 train loss  -33.0664
+Round 39 global test acc  65.6945 
+
+Rounds 40 filter noisy data:
+Round 40 train loss  -32.9749
+Round 40 global test acc  63.1484 
+
+Rounds 41 filter noisy data:
+Round 41 train loss  -32.9707
+Round 41 global test acc  61.9609 
+
+Rounds 42 filter noisy data:
+Round 42 train loss  -33.0392
+Round 42 global test acc  66.7870 
+
+Rounds 43 filter noisy data:
+Round 43 train loss  -33.0596
+Round 43 global test acc  66.3880 
+
+Rounds 44 filter noisy data:
+Round 44 train loss  -33.0570
+Round 44 global test acc  65.8180 
+
+Rounds 45 filter noisy data:
+Round 45 train loss  -33.0588
+Round 45 global test acc  66.8535 
+
+Rounds 46 filter noisy data:
+Round 46 train loss  -33.0721
+Round 46 global test acc  65.7800 
+
+Rounds 47 filter noisy data:
+Round 47 train loss  -33.0497
+Round 47 global test acc  65.4000 
+
+Rounds 48 filter noisy data:
+Round 48 train loss  -33.0380
+Round 48 global test acc  65.0010 
+
+Rounds 49 filter noisy data:
+
+
+max_beta = 1.0
+('algorithm', 'FedTwin')
+('gpu', 4)
+('seed', 13)
+('save_dir', './record/')
+('rounds2', 50)
+('local_ep', 5)
+('frac2', 0.03)
+('num_users', 300)
+('local_bs', 32)
+('lr', 0.001)
+('model', 'resnet50')
+('num_classes', 10)
+('level_n_system', 1.0)
+('level_n_lowerb', 0.3)
+('alpha_dirichlet', 10)
+('non_iid_prob_class', 0.7)
+('dataset', 'clothing1m')
+('iid', False)
+('LID_k', 20)
+('iteration1', 5)
+('rounds1', 200)
+('frac1', 0.001)
+('pretrained', True)
+('mixup', False)
+('alpha', 1)
+('beta', 5)
+('relabel_ratio', 0.5)
+('confidence_thres', 0.5)
+('clean_set_thres', 0.1)
+('fine_tuning', True)
+('correction', True)
+('T_pl', 100)
+('lambda_cen', 1.0)
+('lambda_e', 0.8)
+('num_gradual', 10)
+('forget_rate', 0.2)
+('lr_decay', 0.1)
+('schedule', [])
+('momentum', 0.5)
+('weight_decay', 0.0001)
+('feature_dim', 128)
+('plr', 0.001)
+('lamda', 15)
+('K', 5)
+('gamma', 1)
+('begin_sel', 10)
+('max_beta', 1.0)
+('with_correction', False)
+('without_CR', False)
+('without_alternative_update', False)
+('without_regularization_term', False)
+('mu', 0.01)
+('device', device(type='cuda', index=4))
+len(dataset_train)= 1000000, len(dataset_test) = 10526
+/home/xinyuan/.conda/envs/fedTwin/lib/python3.8/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/home/xinyuan/.conda/envs/fedTwin/lib/python3.8/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=ResNet50_Weights.IMAGENET1K_V1`. You can also use `weights=ResNet50_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Rounds 0 early training:
+Round 0 train loss  1.6315
+Round 0 global test acc  27.3038 
+
+Rounds 1 early training:
+Round 1 train loss  1.2342
+Round 1 global test acc  46.8839 
+
+Rounds 2 early training:
+Round 2 train loss  0.9177
+Round 2 global test acc  44.1288 
+
+Rounds 3 early training:
+Round 3 train loss  0.0550
+Round 3 global test acc  46.1904 
+
+Rounds 4 early training:
+Round 4 train loss  -1.0899
+Round 4 global test acc  43.7868 
+
+Rounds 5 early training:
+Round 5 train loss  -2.1935
+Round 5 global test acc  53.5151 
+
+Rounds 6 early training:
+Round 6 train loss  -4.1228
+Round 6 global test acc  54.6076 
+
+Rounds 7 early training:
+Round 7 train loss  -5.8746
+Round 7 global test acc  59.8423 
+
+Rounds 8 early training:
+Round 8 train loss  -7.8099
+Round 8 global test acc  61.0583 
+
+Rounds 9 early training:
+Round 9 train loss  -9.3552
+Round 9 global test acc  62.0844 
+
+Rounds 10 early training:
+Round 10 train loss  -11.2277
+Round 10 global test acc  63.3574 
+
+Rounds 11 filter noisy data:
+Round 11 train loss  -13.8137
+Round 11 global test acc  63.7659 
+
+Rounds 12 filter noisy data:
+Round 12 train loss  -14.5647
+Round 12 global test acc  62.6069 
+
+Rounds 13 filter noisy data:
+Round 13 train loss  -14.5952
+Round 13 global test acc  59.5193 
+
+Rounds 14 filter noisy data:
+Round 14 train loss  -15.0493
+Round 14 global test acc  61.7614 
+
+Rounds 15 filter noisy data:
+Round 15 train loss  -15.0914
+Round 15 global test acc  64.6874 
+
+Rounds 16 filter noisy data:
+Round 16 train loss  -15.2124
+Round 16 global test acc  64.3169 
+
+Rounds 17 filter noisy data:
+Round 17 train loss  -15.1882
+Round 17 global test acc  63.6424 
+
+Rounds 18 filter noisy data:
+Round 18 train loss  -15.3515
+Round 18 global test acc  63.4524 
+
+Rounds 19 filter noisy data:
+Round 19 train loss  -15.1196
+Round 19 global test acc  63.0724 
+
+Rounds 20 filter noisy data:
+Round 20 train loss  -15.3025
+Round 20 global test acc  66.0650 
+
+Rounds 21 filter noisy data:
+Round 21 train loss  -15.3733
+Round 21 global test acc  67.0055 
+
+Rounds 22 filter noisy data:
+Round 22 train loss  -15.4784
+Round 22 global test acc  64.1174 
+
+Rounds 23 filter noisy data:
+Round 23 train loss  -15.7002
+Round 23 global test acc  68.0695 
+
+Rounds 24 filter noisy data:
+Round 24 train loss  -15.6548
+Round 24 global test acc  64.9724 
+
+Rounds 25 filter noisy data:
+Round 25 train loss  -15.6128
+Round 25 global test acc  65.6090 
+
+Rounds 26 filter noisy data:
+Round 26 train loss  -15.6068
+Round 26 global test acc  67.2525 
+
+Rounds 27 filter noisy data:
+Round 27 train loss  -15.6750
+Round 27 global test acc  66.7395 
+
+Rounds 28 filter noisy data:
+Round 28 train loss  -15.6398
+Round 28 global test acc  64.9724 
+
+Rounds 29 filter noisy data:
+Round 29 train loss  -15.7403
+Round 29 global test acc  67.4710 
+
+Rounds 30 filter noisy data:
+Round 30 train loss  -15.8071
+Round 30 global test acc  67.9745 
+
+Rounds 31 filter noisy data:
+Round 31 train loss  -15.8142
+Round 31 global test acc  64.0889 
+
+Rounds 32 filter noisy data:
+Round 32 train loss  -15.8257
+Round 32 global test acc  64.8204 
+
+Rounds 33 filter noisy data:
+Round 33 train loss  -15.7745
+Round 33 global test acc  66.2265 
+
+Rounds 34 filter noisy data:
+Round 34 train loss  -15.7570
+Round 34 global test acc  62.8634 
+
+Rounds 35 filter noisy data:
+Round 35 train loss  -15.8225
+Round 35 global test acc  65.6375 
+
+Rounds 36 filter noisy data:
+Round 36 train loss  -15.8164
+Round 36 global test acc  68.9341 
+
+Rounds 37 filter noisy data:
+Round 37 train loss  -15.9139
+Round 37 global test acc  67.4425 
+
+Rounds 38 filter noisy data:
+Round 38 train loss  -15.9093
+Round 38 global test acc  67.9175 
+
+Rounds 39 filter noisy data:
+Round 39 train loss  -15.9925
+Round 39 global test acc  68.2880 
+
+Rounds 40 filter noisy data:
+Round 40 train loss  -15.8842
+Round 40 global test acc  65.3240 
+
+Rounds 41 filter noisy data:
+Round 41 train loss  -15.8839
+Round 41 global test acc  62.1889 
+
+Rounds 42 filter noisy data:
+Round 42 train loss  -15.9647
+Round 42 global test acc  69.4186 
+
+Rounds 43 filter noisy data:
+Round 43 train loss  -16.0170
+Round 43 global test acc  67.7940 
+
+Rounds 44 filter noisy data:
+Round 44 train loss  -15.9855
+Round 44 global test acc  68.0885 
+
+Rounds 45 filter noisy data:
+Round 45 train loss  -15.9920
+Round 45 global test acc  70.5206 
+
+Rounds 46 filter noisy data:
+Round 46 train loss  -15.9905
+Round 46 global test acc  69.5231 
+
+Rounds 47 filter noisy data:
+Round 47 train loss  -15.9662
+Round 47 global test acc  65.7610 
+
+Rounds 48 filter noisy data:
+Round 48 train loss  -16.0137
+Round 48 global test acc  65.6945 
+
+Rounds 49 filter noisy data:
+Round 49 train loss  -15.9373
+Round 49 global test acc  67.5470 
+

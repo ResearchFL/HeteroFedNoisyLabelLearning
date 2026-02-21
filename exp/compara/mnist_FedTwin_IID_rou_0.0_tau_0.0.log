@@ -1,0 +1,2759 @@
+('algorithm', 'FedTwin')
+('gpu', 1)
+('seed', 13)
+('save_dir', './record/')
+('rounds2', 200)
+('local_ep', 5)
+('frac2', 0.1)
+('num_users', 100)
+('local_bs', 32)
+('lr', 0.1)
+('model', 'lenet')
+('num_classes', 10)
+('level_n_system', 0.0)
+('level_n_lowerb', 0.0)
+('alpha_dirichlet', 10)
+('non_iid_prob_class', 0.7)
+('dataset', 'mnist')
+('iid', True)
+('LID_k', 20)
+('iteration1', 5)
+('rounds1', 200)
+('frac1', 0.01)
+('pretrained', False)
+('mixup', False)
+('alpha', 1)
+('beta', 5)
+('relabel_ratio', 0.5)
+('confidence_thres', 0.5)
+('clean_set_thres', 0.1)
+('fine_tuning', True)
+('correction', True)
+('T_pl', 100)
+('lambda_cen', 1.0)
+('lambda_e', 0.8)
+('num_gradual', 10)
+('forget_rate', 0.2)
+('lr_decay', 0.1)
+('schedule', [])
+('momentum', 0.5)
+('weight_decay', 0.0001)
+('feature_dim', 128)
+('plr', 0.05)
+('lamda', 15)
+('K', 5)
+('gamma', 1)
+('begin_sel', 10)
+('max_beta', 2)
+('mu', 0.01)
+('device', device(type='cuda', index=1))
+Rounds 0 early training:
+Round 0 train loss  1.5767
+Round 0 global test acc  79.3200 
+
+Rounds 1 early training:
+Round 1 train loss  0.8946
+Round 1 global test acc  76.5700 
+
+Rounds 2 early training:
+Round 2 train loss  0.1077
+Round 2 global test acc  76.5100 
+
+Rounds 3 early training:
+Round 3 train loss  -2.7858
+Round 3 global test acc  89.8300 
+
+Rounds 4 early training:
+Round 4 train loss  -6.3613
+Round 4 global test acc  91.7700 
+
+Rounds 5 early training:
+Round 5 train loss  -9.7492
+Round 5 global test acc  93.3800 
+
+Rounds 6 early training:
+Round 6 train loss  -13.3895
+Round 6 global test acc  94.5300 
+
+Rounds 7 early training:
+Round 7 train loss  -16.7644
+Round 7 global test acc  95.4700 
+
+Rounds 8 early training:
+Round 8 train loss  -20.1180
+Round 8 global test acc  90.8100 
+
+Rounds 9 early training:
+Round 9 train loss  -23.5534
+Round 9 global test acc  95.5300 
+
+Rounds 10 early training:
+Round 10 train loss  -26.9800
+Round 10 global test acc  96.0200 
+
+Rounds 11 filter noisy data:
+Round 11 train loss  -31.0726
+Round 11 global test acc  96.2300 
+
+Rounds 12 filter noisy data:
+Round 12 train loss  -32.4631
+Round 12 global test acc  96.2000 
+
+Rounds 13 filter noisy data:
+Round 13 train loss  -32.4695
+Round 13 global test acc  96.3900 
+
+Rounds 14 filter noisy data:
+Round 14 train loss  -32.5216
+Round 14 global test acc  96.4000 
+
+Rounds 15 filter noisy data:
+Round 15 train loss  -32.5404
+Round 15 global test acc  96.4000 
+
+Rounds 16 filter noisy data:
+Round 16 train loss  -32.5903
+Round 16 global test acc  96.5400 
+
+Rounds 17 filter noisy data:
+Round 17 train loss  -32.5948
+Round 17 global test acc  96.6400 
+
+Rounds 18 filter noisy data:
+Round 18 train loss  -32.6083
+Round 18 global test acc  96.6900 
+
+Rounds 19 filter noisy data:
+Round 19 train loss  -32.6292
+Round 19 global test acc  96.9900 
+
+Rounds 20 filter noisy data:
+Round 20 train loss  -32.6381
+Round 20 global test acc  96.5900 
+
+Rounds 21 filter noisy data:
+Round 21 train loss  -32.6203
+Round 21 global test acc  96.6500 
+
+Rounds 22 filter noisy data:
+Round 22 train loss  -32.6268
+Round 22 global test acc  96.8500 
+
+Rounds 23 filter noisy data:
+Round 23 train loss  -32.6799
+Round 23 global test acc  96.8500 
+
+Rounds 24 filter noisy data:
+Round 24 train loss  -32.6759
+Round 24 global test acc  96.7700 
+
+Rounds 25 filter noisy data:
+Round 25 train loss  -32.6913
+Round 25 global test acc  96.6300 
+
+Rounds 26 filter noisy data:
+Round 26 train loss  -32.7039
+Round 26 global test acc  96.9600 
+
+Rounds 27 filter noisy data:
+Round 27 train loss  -32.6689
+Round 27 global test acc  96.8400 
+
+Rounds 28 filter noisy data:
+Round 28 train loss  -32.7071
+Round 28 global test acc  96.9100 
+
+Rounds 29 filter noisy data:
+Round 29 train loss  -32.7240
+Round 29 global test acc  96.8000 
+
+Rounds 30 filter noisy data:
+Round 30 train loss  -32.7044
+Round 30 global test acc  96.7100 
+
+Rounds 31 filter noisy data:
+Round 31 train loss  -32.7326
+Round 31 global test acc  96.8000 
+
+Rounds 32 filter noisy data:
+Round 32 train loss  -32.7365
+Round 32 global test acc  96.5900 
+
+Rounds 33 filter noisy data:
+Round 33 train loss  -32.7201
+Round 33 global test acc  96.9000 
+
+Rounds 34 filter noisy data:
+Round 34 train loss  -32.7570
+Round 34 global test acc  97.1500 
+
+Rounds 35 filter noisy data:
+Round 35 train loss  -32.7502
+Round 35 global test acc  97.2000 
+
+Rounds 36 filter noisy data:
+Round 36 train loss  -32.7683
+Round 36 global test acc  97.1200 
+
+Rounds 37 filter noisy data:
+Round 37 train loss  -32.7695
+Round 37 global test acc  97.2100 
+
+Rounds 38 filter noisy data:
+Round 38 train loss  -32.7338
+Round 38 global test acc  97.1300 
+
+Rounds 39 filter noisy data:
+Round 39 train loss  -32.7859
+Round 39 global test acc  96.9700 
+
+Rounds 40 filter noisy data:
+Round 40 train loss  -32.7721
+Round 40 global test acc  97.1600 
+
+Rounds 41 filter noisy data:
+Round 41 train loss  -32.7774
+Round 41 global test acc  96.9300 
+
+Rounds 42 filter noisy data:
+Round 42 train loss  -32.7647
+Round 42 global test acc  97.2100 
+
+Rounds 43 filter noisy data:
+Round 43 train loss  -32.7827
+Round 43 global test acc  97.2800 
+
+Rounds 44 filter noisy data:
+Round 44 train loss  -32.7634
+Round 44 global test acc  97.1700 
+
+Rounds 45 filter noisy data:
+Round 45 train loss  -32.7683
+Round 45 global test acc  97.1600 
+
+Rounds 46 filter noisy data:
+Round 46 train loss  -32.7998
+Round 46 global test acc  97.3500 
+
+Rounds 47 filter noisy data:
+Round 47 train loss  -32.7705
+Round 47 global test acc  97.3500 
+
+Rounds 48 filter noisy data:
+Round 48 train loss  -32.8154
+Round 48 global test acc  97.4000 
+
+Rounds 49 filter noisy data:
+Round 49 train loss  -32.8145
+Round 49 global test acc  97.2500 
+
+Rounds 50 filter noisy data:
+Round 50 train loss  -32.8167
+Round 50 global test acc  97.3300 
+
+Rounds 51 filter noisy data:
+Round 51 train loss  -32.8099
+Round 51 global test acc  97.3600 
+
+Rounds 52 filter noisy data:
+Round 52 train loss  -32.8201
+Round 52 global test acc  97.4600 
+
+Rounds 53 filter noisy data:
+Round 53 train loss  -32.8412
+Round 53 global test acc  97.2200 
+
+Rounds 54 filter noisy data:
+Round 54 train loss  -32.8208
+Round 54 global test acc  97.3600 
+
+Rounds 55 filter noisy data:
+Round 55 train loss  -32.8164
+Round 55 global test acc  97.5900 
+
+Rounds 56 filter noisy data:
+Round 56 train loss  -32.7915
+Round 56 global test acc  97.4800 
+
+Rounds 57 filter noisy data:
+Round 57 train loss  -32.8388
+Round 57 global test acc  97.2300 
+
+Rounds 58 filter noisy data:
+Round 58 train loss  -32.8338
+Round 58 global test acc  97.2600 
+
+Rounds 59 filter noisy data:
+Round 59 train loss  -32.8095
+Round 59 global test acc  97.2300 
+
+Rounds 60 filter noisy data:
+Round 60 train loss  -32.8057
+Round 60 global test acc  97.2900 
+
+Rounds 61 filter noisy data:
+Round 61 train loss  -32.8161
+Round 61 global test acc  97.3800 
+
+Rounds 62 filter noisy data:
+Round 62 train loss  -32.8387
+Round 62 global test acc  97.6100 
+
+Rounds 63 filter noisy data:
+Round 63 train loss  -32.7955
+Round 63 global test acc  97.5400 
+
+Rounds 64 filter noisy data:
+Round 64 train loss  -32.8288
+Round 64 global test acc  97.3800 
+
+Rounds 65 filter noisy data:
+Round 65 train loss  -32.8146
+Round 65 global test acc  97.4800 
+
+Rounds 66 filter noisy data:
+Round 66 train loss  -32.8357
+Round 66 global test acc  97.5800 
+
+Rounds 67 filter noisy data:
+Round 67 train loss  -32.8498
+Round 67 global test acc  97.5200 
+
+Rounds 68 filter noisy data:
+Round 68 train loss  -32.8002
+Round 68 global test acc  97.5500 
+
+Rounds 69 filter noisy data:
+Round 69 train loss  -32.8429
+Round 69 global test acc  97.3900 
+
+Rounds 70 filter noisy data:
+Round 70 train loss  -32.8177
+Round 70 global test acc  97.5200 
+
+Rounds 71 filter noisy data:
+Round 71 train loss  -32.8418
+Round 71 global test acc  97.4200 
+
+Rounds 72 filter noisy data:
+Round 72 train loss  -32.8184
+Round 72 global test acc  97.7100 
+
+Rounds 73 filter noisy data:
+Round 73 train loss  -32.8178
+Round 73 global test acc  97.6200 
+
+Rounds 74 filter noisy data:
+Round 74 train loss  -32.8185
+Round 74 global test acc  97.7100 
+
+Rounds 75 filter noisy data:
+Round 75 train loss  -32.8341
+Round 75 global test acc  97.6700 
+
+Rounds 76 filter noisy data:
+Round 76 train loss  -32.8154
+Round 76 global test acc  97.3100 
+
+Rounds 77 filter noisy data:
+Round 77 train loss  -32.8338
+Round 77 global test acc  97.4700 
+
+Rounds 78 filter noisy data:
+Round 78 train loss  -32.8420
+Round 78 global test acc  97.6800 
+
+Rounds 79 filter noisy data:
+Round 79 train loss  -32.8624
+Round 79 global test acc  97.6900 
+
+Rounds 80 filter noisy data:
+Round 80 train loss  -32.8554
+Round 80 global test acc  97.6500 
+
+Rounds 81 filter noisy data:
+Round 81 train loss  -32.8496
+Round 81 global test acc  97.5900 
+
+Rounds 82 filter noisy data:
+Round 82 train loss  -32.8653
+Round 82 global test acc  97.5600 
+
+Rounds 83 filter noisy data:
+Round 83 train loss  -32.8380
+Round 83 global test acc  97.4400 
+
+Rounds 84 filter noisy data:
+Round 84 train loss  -32.8822
+Round 84 global test acc  97.5600 
+
+Rounds 85 filter noisy data:
+Round 85 train loss  -32.8608
+Round 85 global test acc  97.6300 
+
+Rounds 86 filter noisy data:
+Round 86 train loss  -32.8310
+Round 86 global test acc  97.3900 
+
+Rounds 87 filter noisy data:
+Round 87 train loss  -32.8350
+Round 87 global test acc  97.4500 
+
+Rounds 88 filter noisy data:
+Round 88 train loss  -32.8488
+Round 88 global test acc  97.7400 
+
+Rounds 89 filter noisy data:
+Round 89 train loss  -32.8470
+Round 89 global test acc  97.7300 
+
+Rounds 90 filter noisy data:
+Round 90 train loss  -32.8421
+Round 90 global test acc  97.7500 
+
+Rounds 91 filter noisy data:
+Round 91 train loss  -32.8534
+Round 91 global test acc  97.7000 
+
+Rounds 92 filter noisy data:
+Round 92 train loss  -32.8484
+Round 92 global test acc  97.5800 
+
+Rounds 93 filter noisy data:
+Round 93 train loss  -32.8589
+Round 93 global test acc  97.8500 
+
+Rounds 94 filter noisy data:
+Round 94 train loss  -32.8619
+Round 94 global test acc  97.9500 
+
+Rounds 95 filter noisy data:
+Round 95 train loss  -32.8923
+Round 95 global test acc  97.6800 
+
+Rounds 96 filter noisy data:
+Round 96 train loss  -32.8380
+Round 96 global test acc  97.8400 
+
+Rounds 97 filter noisy data:
+Round 97 train loss  -32.8662
+Round 97 global test acc  97.9100 
+
+Rounds 98 filter noisy data:
+Round 98 train loss  -32.8740
+Round 98 global test acc  97.5800 
+
+Rounds 99 filter noisy data:
+Round 99 train loss  -32.8728
+Round 99 global test acc  97.8500 
+
+Rounds 100 filter noisy data:
+Round 100 train loss  -32.9145
+Round 100 global test acc  97.8800 
+
+Rounds 101 filter noisy data:
+Round 101 train loss  -32.9180
+Round 101 global test acc  97.9200 
+
+Rounds 102 filter noisy data:
+Round 102 train loss  -32.9226
+Round 102 global test acc  97.9400 
+
+Rounds 103 filter noisy data:
+Round 103 train loss  -32.9105
+Round 103 global test acc  97.9600 
+
+Rounds 104 filter noisy data:
+Round 104 train loss  -32.9099
+Round 104 global test acc  97.9600 
+
+Rounds 105 filter noisy data:
+Round 105 train loss  -32.8997
+Round 105 global test acc  97.9400 
+
+Rounds 106 filter noisy data:
+Round 106 train loss  -32.9428
+Round 106 global test acc  97.9500 
+
+Rounds 107 filter noisy data:
+Round 107 train loss  -32.9277
+Round 107 global test acc  98.0500 
+
+Rounds 108 filter noisy data:
+Round 108 train loss  -32.9173
+Round 108 global test acc  98.0500 
+
+Rounds 109 filter noisy data:
+Round 109 train loss  -32.9119
+Round 109 global test acc  97.9700 
+
+Rounds 110 filter noisy data:
+Round 110 train loss  -32.9186
+Round 110 global test acc  98.0100 
+
+Rounds 111 filter noisy data:
+Round 111 train loss  -32.9229
+Round 111 global test acc  98.0400 
+
+Rounds 112 filter noisy data:
+Round 112 train loss  -32.9071
+Round 112 global test acc  98.0400 
+
+Rounds 113 filter noisy data:
+Round 113 train loss  -32.9071
+Round 113 global test acc  98.0300 
+
+Rounds 114 filter noisy data:
+Round 114 train loss  -32.9168
+Round 114 global test acc  98.0300 
+
+Rounds 115 filter noisy data:
+Round 115 train loss  -32.9216
+Round 115 global test acc  98.0600 
+
+Rounds 116 filter noisy data:
+Round 116 train loss  -32.9121
+Round 116 global test acc  98.0500 
+
+Rounds 117 filter noisy data:
+Round 117 train loss  -32.9127
+Round 117 global test acc  98.0500 
+
+Rounds 118 filter noisy data:
+Round 118 train loss  -32.9108
+Round 118 global test acc  97.9600 
+
+Rounds 119 filter noisy data:
+Round 119 train loss  -32.9184
+Round 119 global test acc  98.0200 
+
+Rounds 120 filter noisy data:
+Round 120 train loss  -32.9193
+Round 120 global test acc  98.0200 
+
+Rounds 121 filter noisy data:
+Round 121 train loss  -32.9487
+Round 121 global test acc  98.0100 
+
+Rounds 122 filter noisy data:
+Round 122 train loss  -32.9262
+Round 122 global test acc  98.1000 
+
+Rounds 123 filter noisy data:
+Round 123 train loss  -32.9253
+Round 123 global test acc  98.0300 
+
+Rounds 124 filter noisy data:
+Round 124 train loss  -32.9222
+Round 124 global test acc  98.0100 
+
+Rounds 125 filter noisy data:
+Round 125 train loss  -32.9359
+Round 125 global test acc  97.9800 
+
+Rounds 126 filter noisy data:
+Round 126 train loss  -32.9209
+Round 126 global test acc  98.0200 
+
+Rounds 127 filter noisy data:
+Round 127 train loss  -32.9250
+Round 127 global test acc  97.9900 
+
+Rounds 128 filter noisy data:
+Round 128 train loss  -32.9458
+Round 128 global test acc  98.0100 
+
+Rounds 129 filter noisy data:
+Round 129 train loss  -32.9265
+Round 129 global test acc  98.0200 
+
+Rounds 130 filter noisy data:
+Round 130 train loss  -32.9247
+Round 130 global test acc  98.0100 
+
+Rounds 131 filter noisy data:
+Round 131 train loss  -32.9385
+Round 131 global test acc  97.9800 
+
+Rounds 132 filter noisy data:
+Round 132 train loss  -32.9182
+Round 132 global test acc  97.9200 
+
+Rounds 133 filter noisy data:
+Round 133 train loss  -32.9332
+Round 133 global test acc  98.1100 
+
+Rounds 134 filter noisy data:
+Round 134 train loss  -32.9286
+Round 134 global test acc  98.0600 
+
+Rounds 135 filter noisy data:
+Round 135 train loss  -32.9573
+Round 135 global test acc  98.1000 
+
+Rounds 136 filter noisy data:
+Round 136 train loss  -32.9583
+Round 136 global test acc  97.9900 
+
+Rounds 137 filter noisy data:
+Round 137 train loss  -32.9320
+Round 137 global test acc  97.9800 
+
+Rounds 138 filter noisy data:
+Round 138 train loss  -32.9378
+Round 138 global test acc  98.0100 
+
+Rounds 139 filter noisy data:
+Round 139 train loss  -32.9361
+Round 139 global test acc  98.0200 
+
+Rounds 140 filter noisy data:
+Round 140 train loss  -32.9255
+Round 140 global test acc  97.9900 
+
+Rounds 141 filter noisy data:
+Round 141 train loss  -32.9146
+Round 141 global test acc  98.0000 
+
+Rounds 142 filter noisy data:
+Round 142 train loss  -32.9554
+Round 142 global test acc  98.0200 
+
+Rounds 143 filter noisy data:
+Round 143 train loss  -32.9415
+Round 143 global test acc  97.9800 
+
+Rounds 144 filter noisy data:
+Round 144 train loss  -32.9579
+Round 144 global test acc  97.9400 
+
+Rounds 145 filter noisy data:
+Round 145 train loss  -32.9231
+Round 145 global test acc  97.9800 
+
+Rounds 146 filter noisy data:
+Round 146 train loss  -32.9185
+Round 146 global test acc  98.0300 
+
+Rounds 147 filter noisy data:
+Round 147 train loss  -32.9177
+Round 147 global test acc  98.0600 
+
+Rounds 148 filter noisy data:
+Round 148 train loss  -32.9248
+Round 148 global test acc  98.0100 
+
+Rounds 149 filter noisy data:
+Round 149 train loss  -32.9230
+Round 149 global test acc  97.9900 
+
+Rounds 150 filter noisy data:
+Round 150 train loss  -32.9213
+Round 150 global test acc  98.0700 
+
+Rounds 151 filter noisy data:
+Round 151 train loss  -32.9297
+Round 151 global test acc  98.0700 
+
+Rounds 152 filter noisy data:
+Round 152 train loss  -32.9318
+Round 152 global test acc  98.0100 
+
+Rounds 153 filter noisy data:
+Round 153 train loss  -32.9324
+Round 153 global test acc  98.0900 
+
+Rounds 154 filter noisy data:
+Round 154 train loss  -32.9497
+Round 154 global test acc  98.0100 
+
+Rounds 155 filter noisy data:
+Round 155 train loss  -32.9217
+Round 155 global test acc  98.0500 
+
+Rounds 156 filter noisy data:
+Round 156 train loss  -32.9333
+Round 156 global test acc  98.0000 
+
+Rounds 157 filter noisy data:
+Round 157 train loss  -32.9683
+Round 157 global test acc  98.0300 
+
+Rounds 158 filter noisy data:
+Round 158 train loss  -32.9176
+Round 158 global test acc  98.0400 
+
+Rounds 159 filter noisy data:
+Round 159 train loss  -32.9148
+Round 159 global test acc  98.0200 
+
+Rounds 160 filter noisy data:
+Round 160 train loss  -32.9395
+Round 160 global test acc  97.9500 
+
+Rounds 161 filter noisy data:
+Round 161 train loss  -32.9263
+Round 161 global test acc  97.9500 
+
+Rounds 162 filter noisy data:
+Round 162 train loss  -32.9354
+Round 162 global test acc  97.9300 
+
+Rounds 163 filter noisy data:
+Round 163 train loss  -32.9525
+Round 163 global test acc  97.9400 
+
+Rounds 164 filter noisy data:
+Round 164 train loss  -32.9263
+Round 164 global test acc  97.9800 
+
+Rounds 165 filter noisy data:
+Round 165 train loss  -32.9433
+Round 165 global test acc  98.0200 
+
+Rounds 166 filter noisy data:
+Round 166 train loss  -32.9426
+Round 166 global test acc  98.0700 
+
+Rounds 167 filter noisy data:
+Round 167 train loss  -32.9437
+Round 167 global test acc  98.0100 
+
+Rounds 168 filter noisy data:
+Round 168 train loss  -32.9265
+Round 168 global test acc  98.0600 
+
+Rounds 169 filter noisy data:
+Round 169 train loss  -32.9343
+Round 169 global test acc  98.0000 
+
+Rounds 170 filter noisy data:
+Round 170 train loss  -32.9527
+Round 170 global test acc  98.0600 
+
+Rounds 171 filter noisy data:
+Round 171 train loss  -32.9326
+Round 171 global test acc  97.9800 
+
+Rounds 172 filter noisy data:
+Round 172 train loss  -32.9409
+Round 172 global test acc  98.0400 
+
+Rounds 173 filter noisy data:
+Round 173 train loss  -32.9280
+Round 173 global test acc  98.0100 
+
+Rounds 174 filter noisy data:
+Round 174 train loss  -32.9491
+Round 174 global test acc  98.0100 
+
+Rounds 175 filter noisy data:
+Round 175 train loss  -32.9308
+Round 175 global test acc  98.0300 
+
+Rounds 176 filter noisy data:
+Round 176 train loss  -32.9420
+Round 176 global test acc  98.0800 
+
+Rounds 177 filter noisy data:
+Round 177 train loss  -32.9472
+Round 177 global test acc  98.0300 
+
+Rounds 178 filter noisy data:
+Round 178 train loss  -32.9587
+Round 178 global test acc  97.9800 
+
+Rounds 179 filter noisy data:
+Round 179 train loss  -32.9292
+Round 179 global test acc  97.9900 
+
+Rounds 180 filter noisy data:
+Round 180 train loss  -32.9239
+Round 180 global test acc  97.9900 
+
+Rounds 181 filter noisy data:
+Round 181 train loss  -32.9387
+Round 181 global test acc  97.9900 
+
+Rounds 182 filter noisy data:
+Round 182 train loss  -32.9290
+Round 182 global test acc  98.0000 
+
+Rounds 183 filter noisy data:
+Round 183 train loss  -32.9317
+Round 183 global test acc  97.9400 
+
+Rounds 184 filter noisy data:
+Round 184 train loss  -32.9365
+Round 184 global test acc  97.9400 
+
+Rounds 185 filter noisy data:
+Round 185 train loss  -32.9564
+Round 185 global test acc  97.9500 
+
+Rounds 186 filter noisy data:
+Round 186 train loss  -32.9543
+Round 186 global test acc  98.0800 
+
+Rounds 187 filter noisy data:
+Round 187 train loss  -32.9126
+Round 187 global test acc  97.9800 
+
+Rounds 188 filter noisy data:
+Round 188 train loss  -32.9516
+Round 188 global test acc  98.1100 
+
+Rounds 189 filter noisy data:
+Round 189 train loss  -32.9582
+Round 189 global test acc  98.0900 
+
+Rounds 190 filter noisy data:
+Round 190 train loss  -32.9451
+Round 190 global test acc  98.0000 
+
+Rounds 191 filter noisy data:
+Round 191 train loss  -32.9550
+Round 191 global test acc  98.0300 
+
+Rounds 192 filter noisy data:
+Round 192 train loss  -32.9438
+Round 192 global test acc  98.0500 
+
+Rounds 193 filter noisy data:
+Round 193 train loss  -32.9585
+Round 193 global test acc  98.0500 
+
+Rounds 194 filter noisy data:
+Round 194 train loss  -32.9580
+Round 194 global test acc  98.0800 
+
+Rounds 195 filter noisy data:
+Round 195 train loss  -32.9536
+Round 195 global test acc  98.0500 
+
+Rounds 196 filter noisy data:
+Round 196 train loss  -32.9433
+Round 196 global test acc  98.0700 
+
+Rounds 197 filter noisy data:
+Round 197 train loss  -32.9295
+Round 197 global test acc  98.0200 
+
+Rounds 198 filter noisy data:
+Round 198 train loss  -32.9434
+Round 198 global test acc  98.0400 
+
+Rounds 199 filter noisy data:
+Round 199 train loss  -32.9431
+Round 199 global test acc  98.0600 
+
+Round 199 Fscore 
+
+[0.9958159327507019, 0.9932885766029358, 0.9941324591636658, 0.9949748516082764, 0.9966555237770081, 0.9941324591636658, 0.9974937438964844, 0.9915966391563416, 0.9949748516082764, 0.9958159327507019, 0.9958159327507019, 0.9949748516082764, 0.9915966391563416, 0.9949748516082764, 0.9958159327507019, 0.9949748516082764, 0.9898989796638489, 0.9932885766029358, 0.9941324591636658, 0.9958159327507019, 0.9949748516082764, 0.9966555237770081, 0.9941324591636658, 0.9941324591636658, 0.9932885766029358, 0.9983305335044861, 0.9966555237770081, 0.9949748516082764, 0.9974937438964844, 0.992443323135376, 0.9958159327507019, 0.9915966391563416, 0.9941324591636658, 0.9958159327507019, 0.9974937438964844, 0.9966555237770081, 0.9949748516082764, 0.9941324591636658, 0.9949748516082764, 0.9915966391563416, 0.9966555237770081, 0.9949748516082764, 0.9932885766029358, 0.9932885766029358, 0.9974937438964844, 0.9966555237770081, 0.9958159327507019, 0.999165952205658, 0.9966555237770081, 0.9915966391563416, 0.9941324591636658, 0.9949748516082764, 0.992443323135376, 1.0, 0.988195538520813, 0.9966555237770081, 0.9966555237770081, 0.9958159327507019, 0.9958159327507019, 0.9966555237770081, 0.9949748516082764, 0.9932885766029358, 0.9974937438964844, 0.9974937438964844, 0.9974937438964844, 0.9958159327507019, 0.9958159327507019, 0.9966555237770081, 0.992443323135376, 0.9958159327507019, 0.9941324591636658, 0.9898989796638489, 0.992443323135376, 0.9958159327507019, 0.9949748516082764, 0.9890480041503906, 0.9974937438964844, 0.9949748516082764, 0.9941324591636658, 0.9966555237770081, 0.9966555237770081, 0.9907485246658325, 0.9958159327507019, 0.9966555237770081, 0.992443323135376, 0.9974937438964844, 0.992443323135376, 0.9941324591636658, 0.9949748516082764, 0.9941324591636658, 0.9941324591636658, 0.9958159327507019, 0.9974937438964844, 0.988195538520813, 0.9941324591636658, 0.992443323135376, 0.992443323135376, 0.9941324591636658, 0.9958159327507019, 0.9949748516082764]
+time : 9682.657434940338
+('algorithm', 'FedTwin')
+('gpu', 1)
+('seed', 13)
+('save_dir', './record/')
+('rounds2', 200)
+('local_ep', 5)
+('frac2', 0.1)
+('num_users', 100)
+('local_bs', 32)
+('lr', 0.1)
+('model', 'lenet')
+('num_classes', 10)
+('level_n_system', 0.0)
+('level_n_lowerb', 0.0)
+('alpha_dirichlet', 10)
+('non_iid_prob_class', 0.7)
+('dataset', 'mnist')
+('iid', True)
+('LID_k', 20)
+('iteration1', 5)
+('rounds1', 200)
+('frac1', 0.01)
+('pretrained', False)
+('mixup', False)
+('alpha', 1)
+('beta', 5)
+('relabel_ratio', 0.5)
+('confidence_thres', 0.5)
+('clean_set_thres', 0.1)
+('fine_tuning', True)
+('correction', True)
+('T_pl', 100)
+('lambda_cen', 1.0)
+('lambda_e', 0.8)
+('num_gradual', 10)
+('forget_rate', 0.2)
+('lr_decay', 0.1)
+('schedule', [])
+('momentum', 0.5)
+('weight_decay', 0.0001)
+('feature_dim', 128)
+('plr', 0.05)
+('lamda', 15)
+('K', 5)
+('gamma', 1)
+('begin_sel', 10)
+('max_beta', 2)
+('mu', 0.01)
+('device', device(type='cuda', index=1))
+Rounds 0 early training:
+Round 0 train loss  1.5767
+Round 0 global test acc  79.3200 
+
+Rounds 1 early training:
+Round 1 train loss  0.8946
+Round 1 global test acc  76.5700 
+
+Rounds 2 early training:
+Round 2 train loss  0.1077
+Round 2 global test acc  76.5100 
+
+Rounds 3 early training:
+Round 3 train loss  -2.7858
+Round 3 global test acc  89.8500 
+
+Rounds 4 early training:
+Round 4 train loss  -6.3613
+Round 4 global test acc  91.7700 
+
+Rounds 5 early training:
+Round 5 train loss  -9.7492
+Round 5 global test acc  93.3900 
+
+Rounds 6 early training:
+Round 6 train loss  -13.3895
+Round 6 global test acc  94.5300 
+
+Rounds 7 early training:
+Round 7 train loss  -16.7644
+Round 7 global test acc  95.4700 
+
+Rounds 8 early training:
+Round 8 train loss  -20.1180
+Round 8 global test acc  90.8100 
+
+Rounds 9 early training:
+Round 9 train loss  -23.5534
+Round 9 global test acc  95.5300 
+
+Rounds 10 early training:
+Round 10 train loss  -26.9800
+Round 10 global test acc  96.0200 
+
+Rounds 11 filter noisy data:
+Round 11 train loss  -31.0726
+Round 11 global test acc  96.2300 
+
+Rounds 12 filter noisy data:
+Round 12 train loss  -32.4631
+Round 12 global test acc  96.2000 
+
+Rounds 13 filter noisy data:
+Round 13 train loss  -32.4695
+Round 13 global test acc  96.3900 
+
+Rounds 14 filter noisy data:
+Round 14 train loss  -32.5216
+Round 14 global test acc  96.4000 
+
+Rounds 15 filter noisy data:
+Round 15 train loss  -32.5404
+Round 15 global test acc  96.4000 
+
+Rounds 16 filter noisy data:
+Round 16 train loss  -32.5903
+Round 16 global test acc  96.5400 
+
+Rounds 17 filter noisy data:
+Round 17 train loss  -32.5948
+Round 17 global test acc  96.6500 
+
+Rounds 18 filter noisy data:
+Round 18 train loss  -32.6083
+Round 18 global test acc  96.6900 
+
+Rounds 19 filter noisy data:
+Round 19 train loss  -32.6292
+Round 19 global test acc  96.9900 
+
+Rounds 20 filter noisy data:
+Round 20 train loss  -32.6381
+Round 20 global test acc  96.5900 
+
+Rounds 21 filter noisy data:
+Round 21 train loss  -32.6203
+Round 21 global test acc  96.6500 
+
+Rounds 22 filter noisy data:
+Round 22 train loss  -32.6268
+Round 22 global test acc  96.8500 
+
+Rounds 23 filter noisy data:
+Round 23 train loss  -32.6799
+Round 23 global test acc  96.8500 
+
+Rounds 24 filter noisy data:
+Round 24 train loss  -32.6759
+Round 24 global test acc  96.7700 
+
+Rounds 25 filter noisy data:
+Round 25 train loss  -32.6913
+Round 25 global test acc  96.6200 
+
+Rounds 26 filter noisy data:
+Round 26 train loss  -32.7039
+Round 26 global test acc  96.9400 
+
+Rounds 27 filter noisy data:
+Round 27 train loss  -32.6689
+Round 27 global test acc  96.8300 
+
+Rounds 28 filter noisy data:
+Round 28 train loss  -32.7071
+Round 28 global test acc  96.9100 
+
+Rounds 29 filter noisy data:
+Round 29 train loss  -32.7240
+Round 29 global test acc  96.8000 
+
+Rounds 30 filter noisy data:
+Round 30 train loss  -32.7044
+Round 30 global test acc  96.7100 
+
+Rounds 31 filter noisy data:
+Round 31 train loss  -32.7326
+Round 31 global test acc  96.8000 
+
+Rounds 32 filter noisy data:
+Round 32 train loss  -32.7365
+Round 32 global test acc  96.5900 
+
+Rounds 33 filter noisy data:
+Round 33 train loss  -32.7201
+Round 33 global test acc  96.9000 
+
+Rounds 34 filter noisy data:
+Round 34 train loss  -32.7570
+Round 34 global test acc  97.1500 
+
+Rounds 35 filter noisy data:
+Round 35 train loss  -32.7502
+Round 35 global test acc  97.2000 
+
+Rounds 36 filter noisy data:
+Round 36 train loss  -32.7683
+Round 36 global test acc  97.1200 
+
+Rounds 37 filter noisy data:
+Round 37 train loss  -32.7695
+Round 37 global test acc  97.2100 
+
+Rounds 38 filter noisy data:
+Round 38 train loss  -32.7338
+Round 38 global test acc  97.1300 
+
+Rounds 39 filter noisy data:
+Round 39 train loss  -32.7859
+Round 39 global test acc  96.9700 
+
+Rounds 40 filter noisy data:
+Round 40 train loss  -32.7721
+Round 40 global test acc  97.1600 
+
+Rounds 41 filter noisy data:
+Round 41 train loss  -32.7774
+Round 41 global test acc  96.9300 
+
+Rounds 42 filter noisy data:
+Round 42 train loss  -32.7647
+Round 42 global test acc  97.2100 
+
+Rounds 43 filter noisy data:
+Round 43 train loss  -32.7827
+Round 43 global test acc  97.2800 
+
+Rounds 44 filter noisy data:
+Round 44 train loss  -32.7634
+Round 44 global test acc  97.1700 
+
+Rounds 45 filter noisy data:
+Round 45 train loss  -32.7683
+Round 45 global test acc  97.1600 
+
+Rounds 46 filter noisy data:
+Round 46 train loss  -32.7998
+Round 46 global test acc  97.3500 
+
+Rounds 47 filter noisy data:
+Round 47 train loss  -32.7705
+Round 47 global test acc  97.3500 
+
+Rounds 48 filter noisy data:
+Round 48 train loss  -32.8154
+Round 48 global test acc  97.4000 
+
+Rounds 49 filter noisy data:
+Round 49 train loss  -32.8145
+Round 49 global test acc  97.2500 
+
+Rounds 50 filter noisy data:
+Round 50 train loss  -32.8167
+Round 50 global test acc  97.3300 
+
+Rounds 51 filter noisy data:
+Round 51 train loss  -32.8099
+Round 51 global test acc  97.3600 
+
+Rounds 52 filter noisy data:
+Round 52 train loss  -32.8201
+Round 52 global test acc  97.4600 
+
+Rounds 53 filter noisy data:
+Round 53 train loss  -32.8412
+Round 53 global test acc  97.2200 
+
+Rounds 54 filter noisy data:
+Round 54 train loss  -32.8208
+Round 54 global test acc  97.3600 
+
+Rounds 55 filter noisy data:
+Round 55 train loss  -32.8164
+Round 55 global test acc  97.5900 
+
+Rounds 56 filter noisy data:
+Round 56 train loss  -32.7915
+Round 56 global test acc  97.4800 
+
+Rounds 57 filter noisy data:
+Round 57 train loss  -32.8388
+Round 57 global test acc  97.2400 
+
+Rounds 58 filter noisy data:
+Round 58 train loss  -32.8338
+Round 58 global test acc  97.2600 
+
+Rounds 59 filter noisy data:
+Round 59 train loss  -32.8095
+Round 59 global test acc  97.2300 
+
+Rounds 60 filter noisy data:
+Round 60 train loss  -32.8057
+Round 60 global test acc  97.2900 
+
+Rounds 61 filter noisy data:
+Round 61 train loss  -32.8161
+Round 61 global test acc  97.3900 
+
+Rounds 62 filter noisy data:
+Round 62 train loss  -32.8387
+Round 62 global test acc  97.6000 
+
+Rounds 63 filter noisy data:
+Round 63 train loss  -32.7955
+Round 63 global test acc  97.5400 
+
+Rounds 64 filter noisy data:
+Round 64 train loss  -32.8288
+Round 64 global test acc  97.3800 
+
+Rounds 65 filter noisy data:
+Round 65 train loss  -32.8146
+Round 65 global test acc  97.4800 
+
+Rounds 66 filter noisy data:
+Round 66 train loss  -32.8357
+Round 66 global test acc  97.5800 
+
+Rounds 67 filter noisy data:
+Round 67 train loss  -32.8498
+Round 67 global test acc  97.5300 
+
+Rounds 68 filter noisy data:
+Round 68 train loss  -32.8002
+Round 68 global test acc  97.5500 
+
+Rounds 69 filter noisy data:
+Round 69 train loss  -32.8429
+Round 69 global test acc  97.4000 
+
+Rounds 70 filter noisy data:
+Round 70 train loss  -32.8177
+Round 70 global test acc  97.5200 
+
+Rounds 71 filter noisy data:
+Round 71 train loss  -32.8418
+Round 71 global test acc  97.4200 
+
+Rounds 72 filter noisy data:
+Round 72 train loss  -32.8184
+Round 72 global test acc  97.7100 
+
+Rounds 73 filter noisy data:
+Round 73 train loss  -32.8178
+Round 73 global test acc  97.6200 
+
+Rounds 74 filter noisy data:
+Round 74 train loss  -32.8185
+Round 74 global test acc  97.7100 
+
+Rounds 75 filter noisy data:
+Round 75 train loss  -32.8341
+Round 75 global test acc  97.6700 
+
+Rounds 76 filter noisy data:
+Round 76 train loss  -32.8154
+Round 76 global test acc  97.3100 
+
+Rounds 77 filter noisy data:
+Round 77 train loss  -32.8338
+Round 77 global test acc  97.4700 
+
+Rounds 78 filter noisy data:
+Round 78 train loss  -32.8420
+Round 78 global test acc  97.6800 
+
+Rounds 79 filter noisy data:
+Round 79 train loss  -32.8624
+Round 79 global test acc  97.6900 
+
+Rounds 80 filter noisy data:
+Round 80 train loss  -32.8554
+Round 80 global test acc  97.6500 
+
+Rounds 81 filter noisy data:
+Round 81 train loss  -32.8496
+Round 81 global test acc  97.5800 
+
+Rounds 82 filter noisy data:
+Round 82 train loss  -32.8653
+Round 82 global test acc  97.5600 
+
+Rounds 83 filter noisy data:
+Round 83 train loss  -32.8380
+Round 83 global test acc  97.4400 
+
+Rounds 84 filter noisy data:
+Round 84 train loss  -32.8822
+Round 84 global test acc  97.5600 
+
+Rounds 85 filter noisy data:
+Round 85 train loss  -32.8608
+Round 85 global test acc  97.6300 
+
+Rounds 86 filter noisy data:
+Round 86 train loss  -32.8310
+Round 86 global test acc  97.3800 
+
+Rounds 87 filter noisy data:
+Round 87 train loss  -32.8350
+Round 87 global test acc  97.4500 
+
+Rounds 88 filter noisy data:
+Round 88 train loss  -32.8488
+Round 88 global test acc  97.7400 
+
+Rounds 89 filter noisy data:
+Round 89 train loss  -32.8470
+Round 89 global test acc  97.7200 
+
+Rounds 90 filter noisy data:
+Round 90 train loss  -32.8421
+Round 90 global test acc  97.7600 
+
+Rounds 91 filter noisy data:
+Round 91 train loss  -32.8534
+Round 91 global test acc  97.7000 
+
+Rounds 92 filter noisy data:
+Round 92 train loss  -32.8484
+Round 92 global test acc  97.5800 
+
+Rounds 93 filter noisy data:
+Round 93 train loss  -32.8589
+Round 93 global test acc  97.8500 
+
+Rounds 94 filter noisy data:
+Round 94 train loss  -32.8619
+Round 94 global test acc  97.9500 
+
+Rounds 95 filter noisy data:
+Round 95 train loss  -32.8923
+Round 95 global test acc  97.6800 
+
+Rounds 96 filter noisy data:
+Round 96 train loss  -32.8380
+Round 96 global test acc  97.8400 
+
+Rounds 97 filter noisy data:
+Round 97 train loss  -32.8662
+Round 97 global test acc  97.9100 
+
+Rounds 98 filter noisy data:
+Round 98 train loss  -32.8740
+Round 98 global test acc  97.5800 
+
+Rounds 99 filter noisy data:
+Round 99 train loss  -32.8728
+Round 99 global test acc  97.8500 
+
+Rounds 100 filter noisy data:
+Round 100 train loss  -32.9145
+Round 100 global test acc  97.8900 
+
+Rounds 101 filter noisy data:
+Round 101 train loss  -32.9180
+Round 101 global test acc  97.9200 
+
+Rounds 102 filter noisy data:
+Round 102 train loss  -32.9226
+Round 102 global test acc  97.9400 
+
+Rounds 103 filter noisy data:
+Round 103 train loss  -32.9105
+Round 103 global test acc  97.9600 
+
+Rounds 104 filter noisy data:
+Round 104 train loss  -32.9099
+Round 104 global test acc  97.9500 
+
+Rounds 105 filter noisy data:
+Round 105 train loss  -32.8997
+Round 105 global test acc  97.9400 
+
+Rounds 106 filter noisy data:
+Round 106 train loss  -32.9428
+Round 106 global test acc  97.9500 
+
+Rounds 107 filter noisy data:
+Round 107 train loss  -32.9277
+Round 107 global test acc  98.0500 
+
+Rounds 108 filter noisy data:
+Round 108 train loss  -32.9173
+Round 108 global test acc  98.0500 
+
+Rounds 109 filter noisy data:
+Round 109 train loss  -32.9119
+Round 109 global test acc  97.9800 
+
+Rounds 110 filter noisy data:
+Round 110 train loss  -32.9186
+Round 110 global test acc  98.0300 
+
+Rounds 111 filter noisy data:
+Round 111 train loss  -32.9229
+Round 111 global test acc  98.0400 
+
+Rounds 112 filter noisy data:
+Round 112 train loss  -32.9071
+Round 112 global test acc  98.0400 
+
+Rounds 113 filter noisy data:
+Round 113 train loss  -32.9071
+Round 113 global test acc  98.0300 
+
+Rounds 114 filter noisy data:
+Round 114 train loss  -32.9168
+Round 114 global test acc  98.0400 
+
+Rounds 115 filter noisy data:
+Round 115 train loss  -32.9216
+Round 115 global test acc  98.0600 
+
+Rounds 116 filter noisy data:
+Round 116 train loss  -32.9121
+Round 116 global test acc  98.0500 
+
+Rounds 117 filter noisy data:
+Round 117 train loss  -32.9127
+Round 117 global test acc  98.0500 
+
+Rounds 118 filter noisy data:
+Round 118 train loss  -32.9108
+Round 118 global test acc  97.9600 
+
+Rounds 119 filter noisy data:
+Round 119 train loss  -32.9184
+Round 119 global test acc  98.0200 
+
+Rounds 120 filter noisy data:
+Round 120 train loss  -32.9193
+Round 120 global test acc  98.0200 
+
+Rounds 121 filter noisy data:
+Round 121 train loss  -32.9487
+Round 121 global test acc  98.0100 
+
+Rounds 122 filter noisy data:
+Round 122 train loss  -32.9262
+Round 122 global test acc  98.1000 
+
+Rounds 123 filter noisy data:
+Round 123 train loss  -32.9253
+Round 123 global test acc  98.0300 
+
+Rounds 124 filter noisy data:
+Round 124 train loss  -32.9222
+Round 124 global test acc  98.0100 
+
+Rounds 125 filter noisy data:
+Round 125 train loss  -32.9359
+Round 125 global test acc  97.9800 
+
+Rounds 126 filter noisy data:
+Round 126 train loss  -32.9209
+Round 126 global test acc  98.0100 
+
+Rounds 127 filter noisy data:
+Round 127 train loss  -32.9250
+Round 127 global test acc  97.9900 
+
+Rounds 128 filter noisy data:
+Round 128 train loss  -32.9458
+Round 128 global test acc  98.0100 
+
+Rounds 129 filter noisy data:
+Round 129 train loss  -32.9265
+Round 129 global test acc  98.0200 
+
+Rounds 130 filter noisy data:
+Round 130 train loss  -32.9247
+Round 130 global test acc  98.0100 
+
+Rounds 131 filter noisy data:
+Round 131 train loss  -32.9385
+Round 131 global test acc  97.9800 
+
+Rounds 132 filter noisy data:
+Round 132 train loss  -32.9182
+Round 132 global test acc  97.9200 
+
+Rounds 133 filter noisy data:
+Round 133 train loss  -32.9332
+Round 133 global test acc  98.1000 
+
+Rounds 134 filter noisy data:
+Round 134 train loss  -32.9286
+Round 134 global test acc  98.0600 
+
+Rounds 135 filter noisy data:
+Round 135 train loss  -32.9573
+Round 135 global test acc  98.1000 
+
+Rounds 136 filter noisy data:
+Round 136 train loss  -32.9583
+Round 136 global test acc  97.9900 
+
+Rounds 137 filter noisy data:
+Round 137 train loss  -32.9320
+Round 137 global test acc  97.9900 
+
+Rounds 138 filter noisy data:
+Round 138 train loss  -32.9378
+Round 138 global test acc  98.0100 
+
+Rounds 139 filter noisy data:
+Round 139 train loss  -32.9361
+Round 139 global test acc  98.0100 
+
+Rounds 140 filter noisy data:
+Round 140 train loss  -32.9255
+Round 140 global test acc  97.9900 
+
+Rounds 141 filter noisy data:
+Round 141 train loss  -32.9146
+Round 141 global test acc  98.0000 
+
+Rounds 142 filter noisy data:
+Round 142 train loss  -32.9554
+Round 142 global test acc  98.0200 
+
+Rounds 143 filter noisy data:
+Round 143 train loss  -32.9415
+Round 143 global test acc  97.9800 
+
+Rounds 144 filter noisy data:
+Round 144 train loss  -32.9579
+Round 144 global test acc  97.9400 
+
+Rounds 145 filter noisy data:
+Round 145 train loss  -32.9231
+Round 145 global test acc  97.9800 
+
+Rounds 146 filter noisy data:
+Round 146 train loss  -32.9185
+Round 146 global test acc  98.0300 
+
+Rounds 147 filter noisy data:
+Round 147 train loss  -32.9177
+Round 147 global test acc  98.0600 
+
+Rounds 148 filter noisy data:
+Round 148 train loss  -32.9248
+Round 148 global test acc  98.0100 
+
+Rounds 149 filter noisy data:
+Round 149 train loss  -32.9230
+Round 149 global test acc  98.0000 
+
+Rounds 150 filter noisy data:
+Round 150 train loss  -32.9213
+Round 150 global test acc  98.0700 
+
+Rounds 151 filter noisy data:
+Round 151 train loss  -32.9297
+Round 151 global test acc  98.0700 
+
+Rounds 152 filter noisy data:
+Round 152 train loss  -32.9318
+Round 152 global test acc  98.0100 
+
+Rounds 153 filter noisy data:
+Round 153 train loss  -32.9324
+Round 153 global test acc  98.0900 
+
+Rounds 154 filter noisy data:
+Round 154 train loss  -32.9497
+Round 154 global test acc  98.0100 
+
+Rounds 155 filter noisy data:
+Round 155 train loss  -32.9217
+Round 155 global test acc  98.0500 
+
+Rounds 156 filter noisy data:
+Round 156 train loss  -32.9333
+Round 156 global test acc  98.0000 
+
+Rounds 157 filter noisy data:
+Round 157 train loss  -32.9683
+Round 157 global test acc  98.0300 
+
+Rounds 158 filter noisy data:
+Round 158 train loss  -32.9176
+Round 158 global test acc  98.0400 
+
+Rounds 159 filter noisy data:
+Round 159 train loss  -32.9148
+Round 159 global test acc  98.0200 
+
+Rounds 160 filter noisy data:
+Round 160 train loss  -32.9395
+Round 160 global test acc  97.9500 
+
+Rounds 161 filter noisy data:
+Round 161 train loss  -32.9263
+Round 161 global test acc  97.9400 
+
+Rounds 162 filter noisy data:
+Round 162 train loss  -32.9354
+Round 162 global test acc  97.9300 
+
+Rounds 163 filter noisy data:
+Round 163 train loss  -32.9525
+Round 163 global test acc  97.9300 
+
+Rounds 164 filter noisy data:
+Round 164 train loss  -32.9263
+Round 164 global test acc  97.9800 
+
+Rounds 165 filter noisy data:
+Round 165 train loss  -32.9433
+Round 165 global test acc  98.0200 
+
+Rounds 166 filter noisy data:
+Round 166 train loss  -32.9426
+Round 166 global test acc  98.0700 
+
+Rounds 167 filter noisy data:
+Round 167 train loss  -32.9437
+Round 167 global test acc  98.0100 
+
+Rounds 168 filter noisy data:
+Round 168 train loss  -32.9265
+Round 168 global test acc  98.0600 
+
+Rounds 169 filter noisy data:
+Round 169 train loss  -32.9343
+Round 169 global test acc  98.0000 
+
+Rounds 170 filter noisy data:
+Round 170 train loss  -32.9527
+Round 170 global test acc  98.0700 
+
+Rounds 171 filter noisy data:
+Round 171 train loss  -32.9326
+Round 171 global test acc  97.9800 
+
+Rounds 172 filter noisy data:
+Round 172 train loss  -32.9409
+Round 172 global test acc  98.0400 
+
+Rounds 173 filter noisy data:
+Round 173 train loss  -32.9280
+Round 173 global test acc  98.0100 
+
+Rounds 174 filter noisy data:
+Round 174 train loss  -32.9491
+Round 174 global test acc  98.0100 
+
+Rounds 175 filter noisy data:
+Round 175 train loss  -32.9308
+Round 175 global test acc  98.0300 
+
+Rounds 176 filter noisy data:
+Round 176 train loss  -32.9420
+Round 176 global test acc  98.0800 
+
+Rounds 177 filter noisy data:
+Round 177 train loss  -32.9472
+Round 177 global test acc  98.0300 
+
+Rounds 178 filter noisy data:
+Round 178 train loss  -32.9587
+Round 178 global test acc  97.9800 
+
+Rounds 179 filter noisy data:
+Round 179 train loss  -32.9292
+Round 179 global test acc  97.9900 
+
+Rounds 180 filter noisy data:
+Round 180 train loss  -32.9239
+Round 180 global test acc  97.9900 
+
+Rounds 181 filter noisy data:
+Round 181 train loss  -32.9387
+Round 181 global test acc  97.9900 
+
+Rounds 182 filter noisy data:
+Round 182 train loss  -32.9290
+Round 182 global test acc  98.0100 
+
+Rounds 183 filter noisy data:
+Round 183 train loss  -32.9317
+Round 183 global test acc  97.9400 
+
+Rounds 184 filter noisy data:
+Round 184 train loss  -32.9365
+Round 184 global test acc  97.9400 
+
+Rounds 185 filter noisy data:
+Round 185 train loss  -32.9564
+Round 185 global test acc  97.9500 
+
+Rounds 186 filter noisy data:
+Round 186 train loss  -32.9543
+Round 186 global test acc  98.0800 
+
+Rounds 187 filter noisy data:
+Round 187 train loss  -32.9126
+Round 187 global test acc  97.9800 
+
+Rounds 188 filter noisy data:
+Round 188 train loss  -32.9516
+Round 188 global test acc  98.1100 
+
+Rounds 189 filter noisy data:
+Round 189 train loss  -32.9582
+Round 189 global test acc  98.0900 
+
+Rounds 190 filter noisy data:
+Round 190 train loss  -32.9451
+Round 190 global test acc  98.0000 
+
+Rounds 191 filter noisy data:
+Round 191 train loss  -32.9550
+Round 191 global test acc  98.0300 
+
+Rounds 192 filter noisy data:
+Round 192 train loss  -32.9438
+Round 192 global test acc  98.0500 
+
+Rounds 193 filter noisy data:
+Round 193 train loss  -32.9585
+Round 193 global test acc  98.0500 
+
+Rounds 194 filter noisy data:
+Round 194 train loss  -32.9580
+Round 194 global test acc  98.0800 
+
+Rounds 195 filter noisy data:
+Round 195 train loss  -32.9536
+Round 195 global test acc  98.0500 
+
+Rounds 196 filter noisy data:
+Round 196 train loss  -32.9433
+Round 196 global test acc  98.0700 
+
+Rounds 197 filter noisy data:
+Round 197 train loss  -32.9295
+Round 197 global test acc  98.0100 
+
+Rounds 198 filter noisy data:
+Round 198 train loss  -32.9434
+Round 198 global test acc  98.0400 
+
+Rounds 199 filter noisy data:
+Round 199 train loss  -32.9431
+Round 199 global test acc  98.0600 
+
+Round 199 Fscore 
+
+[0.9958159327507019, 0.9932885766029358, 0.9941324591636658, 0.9949748516082764, 0.9966555237770081, 0.9941324591636658, 0.9974937438964844, 0.9915966391563416, 0.9949748516082764, 0.9958159327507019, 0.9958159327507019, 0.9949748516082764, 0.9915966391563416, 0.9949748516082764, 0.9958159327507019, 0.9949748516082764, 0.9898989796638489, 0.9932885766029358, 0.9941324591636658, 0.9958159327507019, 0.9949748516082764, 0.9966555237770081, 0.9941324591636658, 0.9941324591636658, 0.9932885766029358, 0.9983305335044861, 0.9966555237770081, 0.9949748516082764, 0.9974937438964844, 0.992443323135376, 0.9958159327507019, 0.9915966391563416, 0.9941324591636658, 0.9958159327507019, 0.9974937438964844, 0.9966555237770081, 0.9949748516082764, 0.9941324591636658, 0.9949748516082764, 0.9915966391563416, 0.9966555237770081, 0.9949748516082764, 0.9932885766029358, 0.9932885766029358, 0.9974937438964844, 0.9966555237770081, 0.9958159327507019, 0.999165952205658, 0.9966555237770081, 0.9915966391563416, 0.9941324591636658, 0.9949748516082764, 0.992443323135376, 1.0, 0.988195538520813, 0.9966555237770081, 0.9966555237770081, 0.9958159327507019, 0.9958159327507019, 0.9966555237770081, 0.9949748516082764, 0.9932885766029358, 0.9974937438964844, 0.9974937438964844, 0.9974937438964844, 0.9958159327507019, 0.9958159327507019, 0.9966555237770081, 0.992443323135376, 0.9958159327507019, 0.9941324591636658, 0.9898989796638489, 0.992443323135376, 0.9958159327507019, 0.9949748516082764, 0.9890480041503906, 0.9974937438964844, 0.9949748516082764, 0.9941324591636658, 0.9966555237770081, 0.9966555237770081, 0.9907485246658325, 0.9958159327507019, 0.9966555237770081, 0.992443323135376, 0.9974937438964844, 0.992443323135376, 0.9941324591636658, 0.9949748516082764, 0.9941324591636658, 0.9941324591636658, 0.9958159327507019, 0.9974937438964844, 0.988195538520813, 0.9941324591636658, 0.992443323135376, 0.992443323135376, 0.9941324591636658, 0.9958159327507019, 0.9949748516082764]
+time : 9844.079327583313
+('algorithm', 'FedTwin')
+('gpu', 0)
+('seed', 13)
+('save_dir', './record/')
+('rounds2', 200)
+('local_ep', 5)
+('frac2', 0.1)
+('num_users', 100)
+('local_bs', 32)
+('lr', 0.1)
+('model', 'lenet')
+('num_classes', 10)
+('level_n_system', 0.0)
+('level_n_lowerb', 0.0)
+('alpha_dirichlet', 10)
+('non_iid_prob_class', 0.7)
+('dataset', 'mnist')
+('iid', True)
+('LID_k', 20)
+('iteration1', 5)
+('rounds1', 200)
+('frac1', 0.01)
+('pretrained', False)
+('mixup', False)
+('alpha', 1)
+('beta', 5)
+('relabel_ratio', 0.5)
+('confidence_thres', 0.5)
+('clean_set_thres', 0.1)
+('fine_tuning', True)
+('correction', True)
+('T_pl', 100)
+('lambda_cen', 1.0)
+('lambda_e', 0.8)
+('num_gradual', 10)
+('forget_rate', 0.2)
+('lr_decay', 0.1)
+('schedule', [])
+('momentum', 0.5)
+('weight_decay', 0.0001)
+('feature_dim', 128)
+('plr', 0.05)
+('lamda', 15)
+('K', 5)
+('gamma', 1)
+('begin_sel', 10)
+('max_beta', 2)
+('mu', 0.01)
+('device', device(type='cuda', index=0))
+
+Rounds 0 early training:
+Round 0 train loss  1.7172
+Round 0 global test acc  75.1300 
+
+
+Rounds 1 early training:
+Round 1 train loss  0.9463
+Round 1 global test acc  82.4000 
+
+
+Rounds 2 early training:
+Round 2 train loss  0.0291
+Round 2 global test acc  80.4500 
+
+
+Rounds 3 early training:
+Round 3 train loss  -2.8091
+Round 3 global test acc  88.3900 
+
+
+Rounds 4 early training:
+Round 4 train loss  -6.2706
+Round 4 global test acc  90.7300 
+
+
+Rounds 5 early training:
+Round 5 train loss  -9.6170
+Round 5 global test acc  89.4400 
+
+
+Rounds 6 early training:
+Round 6 train loss  -13.1727
+Round 6 global test acc  91.5300 
+
+
+Rounds 7 early training:
+Round 7 train loss  -16.4917
+Round 7 global test acc  94.2000 
+
+
+Rounds 8 early training:
+Round 8 train loss  -19.9159
+Round 8 global test acc  93.3100 
+
+
+Rounds 9 early training:
+Round 9 train loss  -23.3942
+Round 9 global test acc  94.4800 
+
+
+Rounds 10 early training:
+Round 10 train loss  -26.8575
+Round 10 global test acc  95.1500 
+
+
+Rounds 11 filter noisy data:
+Round 11 train loss  -30.9067
+Round 11 global test acc  95.0800 
+
+
+Rounds 12 filter noisy data:
+Round 12 train loss  -32.3380
+Round 12 global test acc  95.0300 
+
+
+Rounds 13 filter noisy data:
+Round 13 train loss  -32.3306
+Round 13 global test acc  95.4300 
+
+
+Rounds 14 filter noisy data:
+Round 14 train loss  -32.3961
+Round 14 global test acc  95.4000 
+
+
+Rounds 15 filter noisy data:
+Round 15 train loss  -32.4324
+Round 15 global test acc  95.6200 
+
+
+Rounds 16 filter noisy data:
+Round 16 train loss  -32.4674
+Round 16 global test acc  95.7700 
+
+
+Rounds 17 filter noisy data:
+Round 17 train loss  -32.4940
+Round 17 global test acc  95.6800 
+
+
+Rounds 18 filter noisy data:
+Round 18 train loss  -32.4881
+Round 18 global test acc  95.4300 
+
+
+Rounds 19 filter noisy data:
+Round 19 train loss  -32.5450
+Round 19 global test acc  96.1200 
+
+
+Rounds 20 filter noisy data:
+Round 20 train loss  -32.5455
+Round 20 global test acc  96.1000 
+
+
+Rounds 21 filter noisy data:
+Round 21 train loss  -32.5157
+Round 21 global test acc  95.8500 
+
+
+Rounds 22 filter noisy data:
+Round 22 train loss  -32.5795
+Round 22 global test acc  96.0200 
+
+
+Rounds 23 filter noisy data:
+Round 23 train loss  -32.6184
+Round 23 global test acc  96.2300 
+
+
+Rounds 24 filter noisy data:
+Round 24 train loss  -32.5982
+Round 24 global test acc  96.0200 
+
+
+Rounds 25 filter noisy data:
+Round 25 train loss  -32.5961
+Round 25 global test acc  95.9200 
+
+
+Rounds 26 filter noisy data:
+Round 26 train loss  -32.6520
+Round 26 global test acc  96.3300 
+
+
+Rounds 27 filter noisy data:
+Round 27 train loss  -32.5779
+Round 27 global test acc  96.2300 
+
+
+Rounds 28 filter noisy data:
+Round 28 train loss  -32.6549
+Round 28 global test acc  96.4100 
+
+
+Rounds 29 filter noisy data:
+Round 29 train loss  -32.6869
+Round 29 global test acc  96.3400 
+
+
+Rounds 30 filter noisy data:
+Round 30 train loss  -32.6692
+Round 30 global test acc  96.5500 
+
+
+Rounds 31 filter noisy data:
+Round 31 train loss  -32.6901
+Round 31 global test acc  96.4000 
+
+
+Rounds 32 filter noisy data:
+Round 32 train loss  -32.6811
+Round 32 global test acc  96.5100 
+
+
+Rounds 33 filter noisy data:
+Round 33 train loss  -32.6692
+Round 33 global test acc  96.6300 
+
+
+Rounds 34 filter noisy data:
+Round 34 train loss  -32.7157
+Round 34 global test acc  96.5900 
+
+
+Rounds 35 filter noisy data:
+Round 35 train loss  -32.7241
+Round 35 global test acc  96.4700 
+
+
+Rounds 36 filter noisy data:
+Round 36 train loss  -32.7103
+Round 36 global test acc  96.5900 
+
+
+Rounds 37 filter noisy data:
+Round 37 train loss  -32.7090
+Round 37 global test acc  96.7800 
+
+
+Rounds 38 filter noisy data:
+Round 38 train loss  -32.7028
+Round 38 global test acc  96.8500 
+
+
+Rounds 39 filter noisy data:
+Round 39 train loss  -32.7492
+Round 39 global test acc  96.8400 
+
+
+Rounds 40 filter noisy data:
+Round 40 train loss  -32.7278
+Round 40 global test acc  96.6800 
+
+
+Rounds 41 filter noisy data:
+Round 41 train loss  -32.7406
+Round 41 global test acc  96.6500 
+
+
+Rounds 42 filter noisy data:
+Round 42 train loss  -32.7667
+Round 42 global test acc  97.0700 
+
+
+Rounds 43 filter noisy data:
+Round 43 train loss  -32.7445
+Round 43 global test acc  96.8500 
+
+
+Rounds 44 filter noisy data:
+Round 44 train loss  -32.7274
+Round 44 global test acc  96.8900 
+
+
+Rounds 45 filter noisy data:
+Round 45 train loss  -32.7437
+Round 45 global test acc  96.8500 
+
+
+Rounds 46 filter noisy data:
+Round 46 train loss  -32.7923
+Round 46 global test acc  96.8900 
+
+
+Rounds 47 filter noisy data:
+Round 47 train loss  -32.7524
+Round 47 global test acc  96.9900 
+
+
+Rounds 48 filter noisy data:
+Round 48 train loss  -32.7769
+Round 48 global test acc  97.0400 
+
+
+Rounds 49 filter noisy data:
+Round 49 train loss  -32.7929
+Round 49 global test acc  97.0600 
+
+
+Rounds 50 filter noisy data:
+Round 50 train loss  -32.8083
+Round 50 global test acc  97.2700 
+
+
+Rounds 51 filter noisy data:
+Round 51 train loss  -32.7846
+Round 51 global test acc  97.2500 
+
+
+Rounds 52 filter noisy data:
+Round 52 train loss  -32.7937
+Round 52 global test acc  97.2700 
+
+
+Rounds 53 filter noisy data:
+Round 53 train loss  -32.8363
+Round 53 global test acc  97.0400 
+
+
+Rounds 54 filter noisy data:
+Round 54 train loss  -32.8051
+Round 54 global test acc  97.2200 
+
+
+Rounds 55 filter noisy data:
+Round 55 train loss  -32.7879
+Round 55 global test acc  97.2000 
+
+
+Rounds 56 filter noisy data:
+Round 56 train loss  -32.7842
+Round 56 global test acc  97.3600 
+
+
+Rounds 57 filter noisy data:
+Round 57 train loss  -32.8102
+Round 57 global test acc  97.2000 
+
+
+Rounds 58 filter noisy data:
+Round 58 train loss  -32.8018
+Round 58 global test acc  97.2300 
+
+
+Rounds 59 filter noisy data:
+Round 59 train loss  -32.7880
+Round 59 global test acc  97.0700 
+
+
+Rounds 60 filter noisy data:
+Round 60 train loss  -32.7955
+Round 60 global test acc  97.1600 
+
+
+Rounds 61 filter noisy data:
+Round 61 train loss  -32.8191
+Round 61 global test acc  97.1500 
+
+
+Rounds 62 filter noisy data:
+Round 62 train loss  -32.8202
+Round 62 global test acc  97.3200 
+
+
+Rounds 63 filter noisy data:
+Round 63 train loss  -32.8017
+Round 63 global test acc  97.4500 
+
+
+Rounds 64 filter noisy data:
+Round 64 train loss  -32.8220
+Round 64 global test acc  97.4800 
+
+
+Rounds 65 filter noisy data:
+Round 65 train loss  -32.8185
+Round 65 global test acc  97.4500 
+
+
+Rounds 66 filter noisy data:
+Round 66 train loss  -32.8100
+Round 66 global test acc  97.5700 
+
+
+Rounds 67 filter noisy data:
+Round 67 train loss  -32.8260
+Round 67 global test acc  97.3800 
+
+
+Rounds 68 filter noisy data:
+Round 68 train loss  -32.8012
+Round 68 global test acc  97.4500 
+
+
+Rounds 69 filter noisy data:
+Round 69 train loss  -32.8186
+Round 69 global test acc  97.1900 
+
+
+Rounds 70 filter noisy data:
+Round 70 train loss  -32.8021
+Round 70 global test acc  97.4600 
+
+
+Rounds 71 filter noisy data:
+Round 71 train loss  -32.8154
+Round 71 global test acc  97.4600 
+
+
+Rounds 72 filter noisy data:
+Round 72 train loss  -32.8045
+Round 72 global test acc  97.4700 
+
+
+Rounds 73 filter noisy data:
+Round 73 train loss  -32.8011
+Round 73 global test acc  97.3900 
+
+
+Rounds 74 filter noisy data:
+Round 74 train loss  -32.7993
+Round 74 global test acc  97.3400 
+
+
+Rounds 75 filter noisy data:
+Round 75 train loss  -32.8277
+Round 75 global test acc  97.5400 
+
+
+Rounds 76 filter noisy data:
+Round 76 train loss  -32.8086
+Round 76 global test acc  97.5700 
+
+
+Rounds 77 filter noisy data:
+Round 77 train loss  -32.8117
+Round 77 global test acc  97.4700 
+
+
+Rounds 78 filter noisy data:
+Round 78 train loss  -32.8395
+Round 78 global test acc  97.5600 
+
+
+Rounds 79 filter noisy data:
+Round 79 train loss  -32.8667
+Round 79 global test acc  97.4500 
+
+
+Rounds 80 filter noisy data:
+Round 80 train loss  -32.8351
+Round 80 global test acc  97.4300 
+
+
+Rounds 81 filter noisy data:
+Round 81 train loss  -32.8524
+Round 81 global test acc  97.3900 
+
+
+Rounds 82 filter noisy data:
+Round 82 train loss  -32.8441
+Round 82 global test acc  97.3200 
+
+
+Rounds 83 filter noisy data:
+Round 83 train loss  -32.8339
+Round 83 global test acc  97.1800 
+
+
+Rounds 84 filter noisy data:
+Round 84 train loss  -32.8978
+Round 84 global test acc  97.4900 
+
+
+Rounds 85 filter noisy data:
+Round 85 train loss  -32.8656
+Round 85 global test acc  97.5400 
+
+
+Rounds 86 filter noisy data:
+Round 86 train loss  -32.8480
+Round 86 global test acc  97.3400 
+
+
+Rounds 87 filter noisy data:
+Round 87 train loss  -32.8377
+Round 87 global test acc  97.4800 
+
+
+Rounds 88 filter noisy data:
+Round 88 train loss  -32.8503
+Round 88 global test acc  97.6400 
+
+
+Rounds 89 filter noisy data:
+Round 89 train loss  -32.8444
+Round 89 global test acc  97.5100 
+
+
+Rounds 90 filter noisy data:
+Round 90 train loss  -32.8628
+Round 90 global test acc  97.6300 
+
+
+Rounds 91 filter noisy data:
+Round 91 train loss  -32.8744
+Round 91 global test acc  97.4800 
+
+
+Rounds 92 filter noisy data:
+Round 92 train loss  -32.8516
+Round 92 global test acc  97.4400 
+
+
+Rounds 93 filter noisy data:
+Round 93 train loss  -32.8545
+Round 93 global test acc  97.7300 
+
+
+Rounds 94 filter noisy data:
+Round 94 train loss  -32.8608
+Round 94 global test acc  97.6700 
+
+
+Rounds 95 filter noisy data:
+Round 95 train loss  -32.9060
+Round 95 global test acc  97.7000 
+
+
+Rounds 96 filter noisy data:
+Round 96 train loss  -32.8598
+Round 96 global test acc  97.4900 
+
+
+Rounds 97 filter noisy data:
+Round 97 train loss  -32.8706
+Round 97 global test acc  97.7200 
+
+
+Rounds 98 filter noisy data:
+Round 98 train loss  -32.8702
+Round 98 global test acc  97.6300 
+
+
+Rounds 99 filter noisy data:
+Round 99 train loss  -32.8844
+Round 99 global test acc  97.6200 
+
+
+Rounds 100 filter noisy data:
+Round 100 train loss  -32.9141
+Round 100 global test acc  97.7300 
+
+
+Rounds 101 filter noisy data:
+Round 101 train loss  -32.9321
+Round 101 global test acc  97.7200 
+
+
+Rounds 102 filter noisy data:
+Round 102 train loss  -32.9312
+Round 102 global test acc  97.8200 
+
+
+Rounds 103 filter noisy data:
+Round 103 train loss  -32.9036
+Round 103 global test acc  97.7700 
+
+
+Rounds 104 filter noisy data:
+Round 104 train loss  -32.9059
+Round 104 global test acc  97.7400 
+
+
+Rounds 105 filter noisy data:
+Round 105 train loss  -32.9057
+Round 105 global test acc  97.7700 
+
+
+Rounds 106 filter noisy data:
+Round 106 train loss  -32.9263
+Round 106 global test acc  97.7700 
+
+
+Rounds 107 filter noisy data:
+Round 107 train loss  -32.9231
+Round 107 global test acc  97.8600 
+
+
+Rounds 108 filter noisy data:
+Round 108 train loss  -32.9274
+Round 108 global test acc  97.9100 
+
+
+Rounds 109 filter noisy data:
+Round 109 train loss  -32.9140
+Round 109 global test acc  97.9000 
+
+
+Rounds 110 filter noisy data:
+Round 110 train loss  -32.9088
+Round 110 global test acc  97.8600 
+
+
+Rounds 111 filter noisy data:
+Round 111 train loss  -32.9250
+Round 111 global test acc  97.9000 
+
+
+Rounds 112 filter noisy data:
+Round 112 train loss  -32.9174
+Round 112 global test acc  97.9200 
+
+
+Rounds 113 filter noisy data:
+Round 113 train loss  -32.9208
+Round 113 global test acc  97.9400 
+
+
+Rounds 114 filter noisy data:
+Round 114 train loss  -32.9171
+Round 114 global test acc  97.9200 
+
+
+Rounds 115 filter noisy data:
+Round 115 train loss  -32.9186
+Round 115 global test acc  97.9200 
+
+
+Rounds 116 filter noisy data:
+Round 116 train loss  -32.9222
+Round 116 global test acc  97.9800 
+
+
+Rounds 117 filter noisy data:
+Round 117 train loss  -32.9156
+Round 117 global test acc  97.9400 
+
+
+Rounds 118 filter noisy data:
+Round 118 train loss  -32.9083
+Round 118 global test acc  97.9500 
+
+
+Rounds 119 filter noisy data:
+Round 119 train loss  -32.9081
+Round 119 global test acc  97.9000 
+
+
+Rounds 120 filter noisy data:
+Round 120 train loss  -32.9243
+Round 120 global test acc  97.9700 
+
+
+Rounds 121 filter noisy data:
+Round 121 train loss  -32.9433
+Round 121 global test acc  98.0400 
+
+
+Rounds 122 filter noisy data:
+Round 122 train loss  -32.9279
+Round 122 global test acc  97.9000 
+
+
+Rounds 123 filter noisy data:
+Round 123 train loss  -32.9265
+Round 123 global test acc  97.8800 
+
+
+Rounds 124 filter noisy data:
+Round 124 train loss  -32.9137
+Round 124 global test acc  97.9000 
+
+
+Rounds 125 filter noisy data:
+Round 125 train loss  -32.9169
+Round 125 global test acc  97.8400 
+
+
+Rounds 126 filter noisy data:
+Round 126 train loss  -32.9319
+Round 126 global test acc  97.8300 
+
+
+Rounds 127 filter noisy data:
+Round 127 train loss  -32.9154
+Round 127 global test acc  97.8300 
+
+
+Rounds 128 filter noisy data:
+Round 128 train loss  -32.9343
+Round 128 global test acc  97.8300 
+
+
+Rounds 129 filter noisy data:
+Round 129 train loss  -32.9249
+Round 129 global test acc  97.9100 
+
+
+Rounds 130 filter noisy data:
+Round 130 train loss  -32.9308
+Round 130 global test acc  97.9300 
+
+
+Rounds 131 filter noisy data:
+Round 131 train loss  -32.9274
+Round 131 global test acc  97.8200 
+
+
+Rounds 132 filter noisy data:
+Round 132 train loss  -32.9140
+Round 132 global test acc  97.8600 
+
+
+Rounds 133 filter noisy data:
+Round 133 train loss  -32.9161
+Round 133 global test acc  97.9000 
+
+
+Rounds 134 filter noisy data:
+Round 134 train loss  -32.9372
+Round 134 global test acc  97.8400 
+
+
+Rounds 135 filter noisy data:
+Round 135 train loss  -32.9515
+Round 135 global test acc  97.9700 
+
+
+Rounds 136 filter noisy data:
+Round 136 train loss  -32.9481
+Round 136 global test acc  97.9300 
+
+
+Rounds 137 filter noisy data:
+Round 137 train loss  -32.9264
+Round 137 global test acc  97.9800 
+
+
+Rounds 138 filter noisy data:
+Round 138 train loss  -32.9280
+Round 138 global test acc  97.9900 
+
+
+Rounds 139 filter noisy data:
+Round 139 train loss  -32.9257
+Round 139 global test acc  98.0100 
+
+
+Rounds 140 filter noisy data:
+Round 140 train loss  -32.9098
+Round 140 global test acc  97.9900 
+
+
+Rounds 141 filter noisy data:
+Round 141 train loss  -32.9260
+Round 141 global test acc  97.9700 
+
+
+Rounds 142 filter noisy data:
+Round 142 train loss  -32.9649
+Round 142 global test acc  97.9100 
+
+
+Rounds 143 filter noisy data:
+Round 143 train loss  -32.9445
+Round 143 global test acc  97.9500 
+
+
+Rounds 144 filter noisy data:
+Round 144 train loss  -32.9459
+Round 144 global test acc  97.9400 
+
+
+Rounds 145 filter noisy data:
+Round 145 train loss  -32.9281
+Round 145 global test acc  97.8800 
+
+
+Rounds 146 filter noisy data:
+Round 146 train loss  -32.9216
+Round 146 global test acc  97.9600 
+
+
+Rounds 147 filter noisy data:
+Round 147 train loss  -32.9462
+Round 147 global test acc  97.9600 
+
+
+Rounds 148 filter noisy data:
+Round 148 train loss  -32.9306
+Round 148 global test acc  97.9200 
+
+
+Rounds 149 filter noisy data:
+Round 149 train loss  -32.9004
+Round 149 global test acc  97.9300 
+
+
+Rounds 150 filter noisy data:
+Round 150 train loss  -32.9299
+Round 150 global test acc  97.9600 
+
+
+Rounds 151 filter noisy data:
+Round 151 train loss  -32.9276
+Round 151 global test acc  98.0200 
+
+
+Rounds 152 filter noisy data:
+Round 152 train loss  -32.9290
+Round 152 global test acc  97.9300 
+
+
+Rounds 153 filter noisy data:
+Round 153 train loss  -32.9297
+Round 153 global test acc  97.9500 
+
+
+Rounds 154 filter noisy data:
+Round 154 train loss  -32.9426
+Round 154 global test acc  98.0100 
+
+
+Rounds 155 filter noisy data:
+Round 155 train loss  -32.9301
+Round 155 global test acc  97.9700 
+
+
+Rounds 156 filter noisy data:
+Round 156 train loss  -32.9201
+Round 156 global test acc  97.9800 
+
+
+Rounds 157 filter noisy data:
+Round 157 train loss  -32.9521
+Round 157 global test acc  97.9800 
+
+
+Rounds 158 filter noisy data:
+Round 158 train loss  -32.9210
+Round 158 global test acc  97.9400 
+
+
+Rounds 159 filter noisy data:
+Round 159 train loss  -32.9274
+Round 159 global test acc  97.8500 
+
+
+Rounds 160 filter noisy data:
+Round 160 train loss  -32.9263
+Round 160 global test acc  97.9700 
+
+
+Rounds 161 filter noisy data:
+Round 161 train loss  -32.9421
+Round 161 global test acc  97.9900 
+
+
+Rounds 162 filter noisy data:
+Round 162 train loss  -32.9248
+Round 162 global test acc  97.9700 
+
+
+Rounds 163 filter noisy data:
+Round 163 train loss  -32.9323
+Round 163 global test acc  97.9800 
+
+
+Rounds 164 filter noisy data:
+Round 164 train loss  -32.9337
+Round 164 global test acc  98.0000 
+
+
+Rounds 165 filter noisy data:
+Round 165 train loss  -32.9394
+Round 165 global test acc  98.0000 
+
+
+Rounds 166 filter noisy data:
+Round 166 train loss  -32.9426
+Round 166 global test acc  98.0100 
+
+
+Rounds 167 filter noisy data:
+Round 167 train loss  -32.9274
+Round 167 global test acc  98.0100 
+
+
+Rounds 168 filter noisy data:
+Round 168 train loss  -32.9296
+Round 168 global test acc  97.9900 
+
+
+Rounds 169 filter noisy data:
+Round 169 train loss  -32.9428
+Round 169 global test acc  97.9900 
+
+
+Rounds 170 filter noisy data:
+Round 170 train loss  -32.9366
+Round 170 global test acc  97.9600 
+
+
+Rounds 171 filter noisy data:
+Round 171 train loss  -32.9255
+Round 171 global test acc  98.0100 
+
+
+Rounds 172 filter noisy data:
+Round 172 train loss  -32.9253
+Round 172 global test acc  97.9100 
+
+
+Rounds 173 filter noisy data:
+Round 173 train loss  -32.9193
+Round 173 global test acc  97.9500 
+
+
+Rounds 174 filter noisy data:
+Round 174 train loss  -32.9370
+Round 174 global test acc  97.9400 
+
+
+Rounds 175 filter noisy data:
+Round 175 train loss  -32.9329
+Round 175 global test acc  98.0300 
+
+
+Rounds 176 filter noisy data:
+Round 176 train loss  -32.9290
+Round 176 global test acc  98.0400 
+
+
+Rounds 177 filter noisy data:
+Round 177 train loss  -32.9336
+Round 177 global test acc  97.9500 
+
+
+Rounds 178 filter noisy data:
+Round 178 train loss  -32.9345
+Round 178 global test acc  98.0000 
+
+
+Rounds 179 filter noisy data:
+Round 179 train loss  -32.9329
+Round 179 global test acc  97.9900 
+
+
+Rounds 180 filter noisy data:
+Round 180 train loss  -32.9155
+Round 180 global test acc  98.0500 
+
+
+Rounds 181 filter noisy data:
+Round 181 train loss  -32.9209
+Round 181 global test acc  98.0500 
+
+
+Rounds 182 filter noisy data:
+Round 182 train loss  -32.9411
+Round 182 global test acc  98.0300 
+
+
+Rounds 183 filter noisy data:
+Round 183 train loss  -32.9374
+Round 183 global test acc  97.9100 
+
+
+Rounds 184 filter noisy data:
+Round 184 train loss  -32.9230
+Round 184 global test acc  97.9100 
+
+
+Rounds 185 filter noisy data:
+Round 185 train loss  -32.9456
+Round 185 global test acc  97.9400 
+
+
+Rounds 186 filter noisy data:
+Round 186 train loss  -32.9483
+Round 186 global test acc  97.8800 
+
+
+Rounds 187 filter noisy data:
+Round 187 train loss  -32.9063
+Round 187 global test acc  97.9300 
+
+
+Rounds 188 filter noisy data:
+Round 188 train loss  -32.9307
+Round 188 global test acc  97.9700 
+
+
+Rounds 189 filter noisy data:
+Round 189 train loss  -32.9629
+Round 189 global test acc  98.0500 
+
+
+Rounds 190 filter noisy data:
+Round 190 train loss  -32.9313
+Round 190 global test acc  98.0200 
+
+
+Rounds 191 filter noisy data:
+Round 191 train loss  -32.9476
+Round 191 global test acc  98.0400 
+
+
+Rounds 192 filter noisy data:
+Round 192 train loss  -32.9310
+Round 192 global test acc  98.0100 
+
+
+Rounds 193 filter noisy data:
+Round 193 train loss  -32.9510
+Round 193 global test acc  98.0300 
+
+
+Rounds 194 filter noisy data:
+Round 194 train loss  -32.9524
+Round 194 global test acc  98.1000 
+
+
+Rounds 195 filter noisy data:
+Round 195 train loss  -32.9473
+Round 195 global test acc  98.0500 
+
+
+Rounds 196 filter noisy data:
+Round 196 train loss  -32.9255
+Round 196 global test acc  98.0100 
+
+
+Rounds 197 filter noisy data:
+Round 197 train loss  -32.9344
+Round 197 global test acc  98.0200 
+
+
+Rounds 198 filter noisy data:
+Round 198 train loss  -32.9308
+Round 198 global test acc  98.0700 
+
+
+Rounds 199 filter noisy data:
+Round 199 train loss  -32.9391
+Round 199 global test acc  98.0900 
+
+Round 199 Fscore 
+
+[0.9949748516082764, 0.9941324591636658, 0.9915966391563416, 0.9958159327507019, 0.9941324591636658, 0.9941324591636658, 0.9949748516082764, 0.9915966391563416, 0.9907485246658325, 0.9941324591636658, 0.999165952205658, 0.9932885766029358, 0.9890480041503906, 0.9958159327507019, 0.9958159327507019, 0.9941324591636658, 0.9907485246658325, 0.9941324591636658, 0.992443323135376, 0.9941324591636658, 0.9949748516082764, 0.9949748516082764, 0.9949748516082764, 0.9932885766029358, 0.9941324591636658, 0.9974937438964844, 0.9958159327507019, 0.9966555237770081, 0.9958159327507019, 0.9941324591636658, 0.9949748516082764, 0.9941324591636658, 0.9958159327507019, 0.9949748516082764, 0.9966555237770081, 0.9966555237770081, 0.9932885766029358, 0.9932885766029358, 0.9932885766029358, 0.9932885766029358, 0.9958159327507019, 0.9966555237770081, 0.9932885766029358, 0.9958159327507019, 0.999165952205658, 0.9949748516082764, 0.9974937438964844, 0.9974937438964844, 0.9958159327507019, 0.9907485246658325, 0.9949748516082764, 0.9974937438964844, 0.9941324591636658, 0.999165952205658, 0.9932885766029358, 0.9941324591636658, 0.9949748516082764, 0.9941324591636658, 0.992443323135376, 0.9949748516082764, 0.9932885766029358, 0.9907485246658325, 0.9966555237770081, 0.9949748516082764, 0.9958159327507019, 0.9932885766029358, 0.9966555237770081, 0.9949748516082764, 0.992443323135376, 0.9941324591636658, 0.9941324591636658, 0.9890480041503906, 0.9932885766029358, 0.9941324591636658, 0.9941324591636658, 0.9907485246658325, 0.992443323135376, 0.9932885766029358, 0.9915966391563416, 0.9949748516082764, 0.9966555237770081, 0.9915966391563416, 0.992443323135376, 0.9958159327507019, 0.9932885766029358, 0.9974937438964844, 0.9907485246658325, 0.992443323135376, 0.9949748516082764, 0.9907485246658325, 0.992443323135376, 0.9958159327507019, 0.9958159327507019, 0.9898989796638489, 0.992443323135376, 0.992443323135376, 0.992443323135376, 0.992443323135376, 0.9941324591636658, 0.9958159327507019]
+time : 20207.644561052322
